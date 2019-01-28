@@ -4900,7 +4900,7 @@ eslint-plugin-react@7.4.0:
     jsx-ast-utils "^2.0.0"
     prop-types "^15.5.10"
 
-eslint-plugin-react@^7.10.0:
+eslint-plugin-react@^7.12.4:
   version "7.12.4"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint-plugin-react/-/eslint-plugin-react-7.12.4.tgz#b1ecf26479d61aee650da612e425c53a99f48c8c"
   dependencies:

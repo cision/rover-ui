@@ -21,7 +21,7 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -47,8 +47,8 @@
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.0",
-    "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
+    "eslint-plugin-react": "^7.12.4",
     "gh-pages": "^1.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
