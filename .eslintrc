@@ -1,9 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react"
-  ],
+  "extends": ["airbnb"],
   "env": {
     "es6": true
   },
@@ -14,10 +11,25 @@
     "sourceType": "module"
   },
   "rules": {
-    // don't force es6 functions to include space before paren
-    "space-before-function-paren": 0,
-
-    // allow specifying true explicitly for boolean props
-    "react/jsx-boolean-value": 0
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "no-return-assign": "off",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/no-named-as-default": "off",
+    "func-names": 0,
+    "no-param-reassign": 0,
+    "max-len": [1, 200, 4],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/prefer-stateless-function": "off",
+    "prefer-default-export": "off",
+    "arrow-body-style": "off",
+    "class-methods-use-this": "off",
+    "spaced-comment": "off",
+    "no-prototype-builtins": "off",
+    "mocha/no-exclusive-tests": "off",
+    "mocha/handle-done-callback": "off",
+    "mocha/no-nested-tests": "off"
   }
 }
