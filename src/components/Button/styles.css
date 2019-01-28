@@ -1,0 +1,7 @@
+.Button {
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: middle;
+  background: transparent none;
+  border: 1px solid transparent;
+}
