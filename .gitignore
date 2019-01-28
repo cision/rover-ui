@@ -10,6 +10,9 @@ dist
 docs
 .rpt2_cache
 
+# coverage / testing
+coverage
+
 # misc
 .DS_Store
 .env

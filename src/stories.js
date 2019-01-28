@@ -1,3 +1,5 @@
+import './shared/colors.css';
+import './shared/sizing.css';
 import './shared/variables.css';
 import './shared/reset.css';
 
@@ -9,8 +11,8 @@ import './shared/reset.css';
  * eg: Paper, Typography, Button, simple text input
  */
 
+/** INJECTOR */
 import './components/Badge/story';
-import './components/Bar/story';
 import './components/Button/story';
 import './components/Paper/story';
 
@@ -20,6 +22,8 @@ import './components/Paper/story';
  * but should be minimal.
  * eg: Button group, dropdown toggle, checkbox group
  */
+
+import './components/Bar/story';
 
 /*
  * GALAXIES
@@ -33,3 +37,8 @@ import './components/Paper/story';
  * just the layout.
  * eg: Responsive layout
  */
+
+import './components/Grid/story';
+import './components/Media/story';
+import './components/Responsive/Grid/story';
+import './components/Responsive/story';

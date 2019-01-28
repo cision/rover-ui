@@ -10,14 +10,14 @@ Instead, write components with generic objects in mind, like people, media, acti
 
 ## Organization
 
-Component js, styles, tests, and stories should be siblings. If they're in their own directory, provide an `index.js` file.
+Component js, style, test, and story should be siblings. If they're in their own directory, provide an `index.js` file.
 
 ```
 Modal/
-|-- index.js   # Core component file, imports module.css
-|-- module.css  # Styles, as CSS modules
-|-- tests.js    # Used with an npm command
-`-- stories.js  # Used by storybook, separate npm command
+|-- index.js   # Core component file, imports style.css
+|-- style.css  # Styles, as CSS modules
+|-- test.js    # Used with an npm command
+`-- story.js  # Used by storybook, separate npm command
 ```
 
 ### Sub-components
@@ -31,14 +31,14 @@ Sub-components have the same structure/naming conventions as top-level component
 ```
 Modal/
 |-- index.js
-|-- module.css
-|-- tests.js
-|-- stories.js
+|-- style.css
+|-- test.js
+|-- story.js
 `-- Header/
     |-- index.js
-    |-- module.css
-    |-- tests.js
-    `-- stories.js
+    |-- style.css
+    |-- test.js
+    `-- story.js
 ```
 
 Generally, if a component has sub-components, you shouldn't render anything else at the component's top-level. Also, those sub-components should not be rendered anywhere outside of the parent.
