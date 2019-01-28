@@ -1,6 +1,6 @@
 {
-  "name": "tk-ui",
-  "version": "1.0.0",
+  "name": "@trendkite/ui-v2",
+  "version": "2.0.0",
   "description": "TrendKite UI Component Library",
   "author": "mdespuits",
   "license": "MIT",
