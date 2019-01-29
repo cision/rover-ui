@@ -1,0 +1,22 @@
+.BarStat {
+  display: flex;
+}
+
+.bar {
+  background-color: var(--bar-stat-bg-color);
+  height: 10px;
+  margin: 5px 20px 5px 0px;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.fill {
+  background-color: var(--bar-stat-fill-color);
+  height: 100%;
+  transition: width 1s ease;
+}
+
+.label {
+  color: var(--base-font-color);
+  width: 35px;
+}

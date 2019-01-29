@@ -2,3 +2,4 @@
 import './shared/variables.css';
 
 export { default as Button } from './components/Button';
+export { default as BarStat } from './components/BarStat';
