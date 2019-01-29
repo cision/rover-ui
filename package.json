@@ -71,5 +71,8 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11"
+  }
 }
