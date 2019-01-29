@@ -1,0 +1,47 @@
+.Badge {
+  display: inline-block;
+  padding: 0 .416666667em;
+  border-radius: 2px;
+  font-family: var(--base-font-family);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  background-color: var(--main-background-color);
+  color: var(--base-font-color);
+}
+
+.dark {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #8A99A2;
+}
+
+.danger {
+  background-color: semantic-color('danger');
+  color: var(--white);
+}
+
+.notify {
+  background-color: semantic-color('notify');
+  color: var(--white);
+}
+
+.warning {
+  background-color: semantic-color('warning');
+}
+
+.info {
+  background-color: semantic-color('info');
+  color: var(--white);
+}
+
+.success {
+  background-color: semantic-color('success');
+  color: var(--white);
+}
+
+.right {
+  margin-left: 0.5em;
+}
+
+.left {
+  margin-right: 0.5em;
+}

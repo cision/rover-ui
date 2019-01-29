@@ -1,5 +1,36 @@
 :root {
+  /* Colors */
+  --white: #fff;
+  --black: #000;
+
+  --danger-color-base: #f76764;
+  --danger-color-light: #feebea;
+  --danger-color-alt: #f87774;
+  --warning-color-base: #f8ca00;
+  --warning-color-light: #fef8d3;
+  --info-color-base: #3398db;
+  --info-color-alt: #50a7e0;
+  --info-color-light: #e8f8fc;
+  --success-color-base: #63bf52;
+  --success-color-alt: #69cc58;
+  --success-color-light: #e9fcf6;
+  --text-highlight: #cbf3f4;
+  --notify-color-base: #E62E5F;
+  --notify-color-light: tint($notify-color-base, 50%);
+  --notify-color-alt: tint($notify-color-base, 10%);
+  --neutral-color-base: #58666e;
+  --neutral-color-alt: #8A99A2;
+  --neutral-color-light: #F6F8F8;
+
+  --main-background-color: #f6f8f8;
+
+  --box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+
+  /* Fonts */
   --base-font-color: #58666e;
+  --base-font-family: 'Source Sans Pro', sans-serif;
+
+  /* Ba Stat */
   --bar-stat-bg-color: #edf1f2;
   --bar-stat-fill-color: #8a99a2;
 }

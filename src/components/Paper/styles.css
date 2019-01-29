@@ -1,0 +1,9 @@
+.Paper {
+  background: var(--white);
+  border-radius: 2px;
+  box-shadow: var(--box-shadow);
+}
+
+.dark {
+  background-color: #414c52;
+}
