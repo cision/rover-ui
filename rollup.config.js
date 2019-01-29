@@ -6,6 +6,8 @@ import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 
+import cssprops from 'postcss-custom-properties';
+
 import pkg from './package.json';
 
 export default {
@@ -25,7 +27,13 @@ export default {
   plugins: [
     external(),
     postcss({
+      plugins: [
+        cssprops({
+          preserve: false,
+        }),
+      ],
       modules: true,
+      sourceMap: true,
     }),
     url(),
     svgr(),

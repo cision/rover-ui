@@ -1,7 +1,4 @@
-import ButtonComponent from './components/Button';
+// Global CSS variables
+import './shared/variables.css';
 
-export const Button = ButtonComponent;
-
-export default {
-  Button: ButtonComponent,
-};
+export { default as Button } from './components/Button';
