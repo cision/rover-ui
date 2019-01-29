@@ -8,10 +8,11 @@ module.exports = (storybookBaseConfig, configType) => {
       {
         loader: require.resolve('css-loader'),
         options: {
+          context: __dirname,
           importLoaders: 1,
           modules: true,
           sourceMap: true,
-          localIdentName: '[local]___[hash:base64:5]',
+          localIdentName: '[local]__[hash:base64:5]',
         }
       }
     ],
