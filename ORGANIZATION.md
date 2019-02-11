@@ -8,31 +8,27 @@ Currently, there is no clear, definitive organization to our tk-ui component lib
 
 ## Atoms
 
-* Badge
-* RadioButton(? in forms)
-* Overlay
-* ShimmerText (DNM?)
-* SVGs
-* Type
-
-**Wrappers**
-
-These components don't fit into the Atomic CSS pattern definitively as an atom/molecule/organism. They add styles and then wrap their children to add some basic UI or shared behavior. This clarify that they take children, but otherwise are relatively simple.
-
 * Activity Block
-* Container
+* Badge
+* Button
 * Floating Panel
-* Paper
+* LinkButton*
+* Overlay
+* Paper (HOC?)
 * Progress
+* RadioButton(? in forms)
+* ShimmerText (DNM?)
 * Status Bar
+* SVGs
 * Template string
 * Toolbar
+* Type
 
 ## Molecules
 
 * Avatar
 * Bar Stat
-* Button
+* Button Group
 * Dropdown
 * Media
 * PerformanceMetric(?)
@@ -82,9 +78,9 @@ These components don't fit into the Atomic CSS pattern definitively as an atom/m
   * Date Range Picker
   * Input Date Picker
 
-## Templates
+## Dark Matter
 
-* Empty State
+* Container
 * Page
 * ( Side Bar )
   * SideBarCollapse
@@ -93,6 +89,7 @@ These components don't fit into the Atomic CSS pattern definitively as an atom/m
 ## DO NOT MIGRATE
 
 * Bulk Actions
+* Empty State
 * NavHeader
 * SimpleLineChart (it's just empty?!?)
 * Sticky
