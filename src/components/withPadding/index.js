@@ -39,18 +39,20 @@ export const withPadding = (BaseComponent, customDefaultPadding) => {
       ...style,
     };
 
-    const wrappedComponent = (<BaseComponent
-      {...otherProps}
-      style={modifiedStyle}
-      ref={forwardedRef}
-    />);
+    const wrappedComponent = (
+      <BaseComponent {...otherProps} style={modifiedStyle} ref={forwardedRef} />
+    );
 
     return wrappedComponent;
   };
 
-  PaddedComponent.displayName = `withPadding(${BaseComponent.displayName || BaseComponent.name || 'BaseComponent'})`;
+  PaddedComponent.displayName = `withPadding(${BaseComponent.displayName ||
+    BaseComponent.name ||
+    'BaseComponent'})`;
 
-  return React.forwardRef((props, ref) => <PaddedComponent {...props} forwardedRef={ref} />);
+  return React.forwardRef((props, ref) => (
+    <PaddedComponent {...props} forwardedRef={ref} />
+  ));
 };
 
 export default withPadding;
