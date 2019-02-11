@@ -6,7 +6,7 @@ Currently, there is no clear, definitive organization to our tk-ui component lib
 
 #### Clarification
 
-## Atoms
+## Planet
 
 * Activity Block
 * Badge
@@ -24,7 +24,7 @@ Currently, there is no clear, definitive organization to our tk-ui component lib
 * Toolbar
 * Type
 
-## Molecules
+## Solar System
 
 * Avatar
 * Bar Stat
@@ -38,7 +38,7 @@ Currently, there is no clear, definitive organization to our tk-ui component lib
 * ScoreMeter(?) (DNM?)
 * Status Indicator
 
-## Organisms
+## Galaxy
 
 * Accordion List
 * Datepicker
