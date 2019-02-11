@@ -46,6 +46,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@storybook/addon-a11y": "^4.1.11",
     "@storybook/addon-actions": "^4.1.11",
     "@storybook/addon-knobs": "^4.1.11",
     "@storybook/addon-links": "^4.1.11",

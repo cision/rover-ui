@@ -1,17 +1,15 @@
 import React from 'react';
 
-import { storiesOf, addDecorator } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { withInfo } from '@storybook/addon-info';
 
-import { Button } from './index';
+import Button from './index';
 
-addDecorator(withInfo);
+// addDecorator(withInfo);
 
-storiesOf('Button', module)
+storiesOf('Planets/Button', module)
   .addParameters({
     info: {
-      // Make a default for all stories in this book,
       inline: true,
     },
   })

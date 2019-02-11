@@ -1,4 +1,9 @@
-import { configure } from '@storybook/react';
+import { configure, addDecorator } from '@storybook/react';
+import { withOptions } from '@storybook/addon-options';
+import { withInfo } from '@storybook/addon-info';
+import { checkA11y } from '@storybook/addon-a11y';
+
+addDecorator(withInfo);
 
 function loadStories() {
   require('../src/stories');
@@ -6,11 +11,7 @@ function loadStories() {
 
 configure(loadStories, module);
 
-import { addDecorator } from '@storybook/react';
-import { withOptions } from '@storybook/addon-options';
-import { withInfo } from '@storybook/addon-info';
-
-addDecorator(withInfo);
+addDecorator(checkA11y);
 
 // Option defaults:
 addDecorator(
