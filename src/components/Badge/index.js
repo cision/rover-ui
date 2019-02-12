@@ -9,25 +9,20 @@ const hasModifier = (modifiers, key) => {
 };
 
 const Badge = ({ className, modifiers, ...passprops }) => {
-  const classes = classNames(
-    styles.Badge,
-    {
-      className: !!className,
-      [styles.dark]: hasModifier(modifiers, 'dark'),
-      [styles.light]: hasModifier(modifiers, 'light'),
-      [styles.danger]: hasModifier(modifiers, 'danger'),
-      [styles.notify]: hasModifier(modifiers, 'notify'),
-      [styles.warning]: hasModifier(modifiers, 'warning'),
-      [styles.info]: hasModifier(modifiers, 'info'),
-      [styles.success]: hasModifier(modifiers, 'success'),
-      [styles.right]: hasModifier(modifiers, 'right'),
-      [styles.left]: hasModifier(modifiers, 'left'),
-    },
-  );
+  const classes = classNames(styles.Badge, {
+    className: !!className,
+    [styles.dark]: hasModifier(modifiers, 'dark'),
+    [styles.light]: hasModifier(modifiers, 'light'),
+    [styles.danger]: hasModifier(modifiers, 'danger'),
+    [styles.notify]: hasModifier(modifiers, 'notify'),
+    [styles.warning]: hasModifier(modifiers, 'warning'),
+    [styles.info]: hasModifier(modifiers, 'info'),
+    [styles.success]: hasModifier(modifiers, 'success'),
+    [styles.right]: hasModifier(modifiers, 'right'),
+    [styles.left]: hasModifier(modifiers, 'left'),
+  });
 
-  return (
-    <div {...passprops} className={classes} />
-  );
+  return <div {...passprops} className={classes} />;
 };
 
 Badge.defaultProps = {

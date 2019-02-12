@@ -1581,10 +1581,6 @@ acorn-jsx@^3.0.0:
   dependencies:
     acorn "^3.0.4"
 
-acorn-jsx@^5.0.0:
-  version "5.0.1"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/acorn-jsx/-/acorn-jsx-5.0.1.tgz#32a064fd925429216a09b141102bfdd185fae40e"
-
 acorn-walk@^6.0.1:
   version "6.1.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/acorn-walk/-/acorn-walk-6.1.1.tgz#d363b66f5fac5f018ff9c3a1e7b6f8e310cc3913"
@@ -1601,7 +1597,7 @@ acorn@^5.0.0, acorn@^5.5.0:
   version "5.7.3"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
 
-acorn@^6.0.1, acorn@^6.0.2, acorn@^6.0.4, acorn@^6.0.5:
+acorn@^6.0.1, acorn@^6.0.4, acorn@^6.0.5:
   version "6.0.5"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/acorn/-/acorn-6.0.5.tgz#81730c0815f3f3b34d8efa95cb7430965f4d887a"
 
@@ -1633,7 +1629,7 @@ ajv-errors@^1.0.0:
   version "1.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv-errors/-/ajv-errors-1.0.1.tgz#f35986aceb91afadec4102fbd85014950cefa64d"
 
-ajv-keywords@^2.0.0:
+ajv-keywords@^2.0.0, ajv-keywords@^2.1.0:
   version "2.1.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv-keywords/-/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"
 
@@ -1641,7 +1637,7 @@ ajv-keywords@^3.0.0, ajv-keywords@^3.1.0:
   version "3.3.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv-keywords/-/ajv-keywords-3.3.0.tgz#cb6499da9b83177af8bc1732b2f0a1a1a3aacf8c"
 
-ajv@^5.0.0, ajv@^5.1.5, ajv@^5.2.0:
+ajv@^5.0.0, ajv@^5.1.5, ajv@^5.2.0, ajv@^5.2.3, ajv@^5.3.0:
   version "5.5.2"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
   dependencies:
@@ -1650,7 +1646,7 @@ ajv@^5.0.0, ajv@^5.1.5, ajv@^5.2.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^6.0.1, ajv@^6.1.0, ajv@^6.5.3, ajv@^6.5.5, ajv@^6.6.1:
+ajv@^6.0.1, ajv@^6.1.0, ajv@^6.5.5:
   version "6.7.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv/-/ajv-6.7.0.tgz#e3ce7bb372d6577bb1839f1dfdfcbf5ad2948d96"
   dependencies:
@@ -1715,7 +1711,7 @@ ansi-styles@^2.2.1:
   version "2.2.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
 
-ansi-styles@^3.0.0, ansi-styles@^3.2.0, ansi-styles@^3.2.1:
+ansi-styles@^3.0.0, ansi-styles@^3.2.1:
   version "3.2.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   dependencies:
@@ -1903,10 +1899,6 @@ ast-types-flow@0.0.7:
 ast-types@0.11.7:
   version "0.11.7"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ast-types/-/ast-types-0.11.7.tgz#f318bf44e339db6a320be0009ded64ec1471f46c"
-
-astral-regex@^1.0.0:
-  version "1.0.0"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
 
 async-each@^1.0.0:
   version "1.0.1"
@@ -3420,10 +3412,6 @@ callsites@^2.0.0:
   version "2.0.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/callsites/-/callsites-2.0.0.tgz#06eb84f00eea413da86affefacbffb36093b3c50"
 
-callsites@^3.0.0:
-  version "3.0.0"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/callsites/-/callsites-3.0.0.tgz#fb7eb569b72ad7a45812f93fd9430a3e410b3dd3"
-
 camel-case@3.0.x:
   version "3.0.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/camel-case/-/camel-case-3.0.0.tgz#ca3c3688a4e9cf3a4cda777dc4dcbc713249cf73"
@@ -4265,7 +4253,7 @@ debug@^3.0.1, debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.1, debug@^4.1.0:
+debug@^4.1.0:
   version "4.1.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   dependencies:
@@ -4916,6 +4904,12 @@ eslint-plugin-node@^7.0.1:
     resolve "^1.8.1"
     semver "^5.5.0"
 
+eslint-plugin-prettier@^3.0.1:
+  version "3.0.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint-plugin-prettier/-/eslint-plugin-prettier-3.0.1.tgz#19d521e3981f69dd6d14f64aec8c6a6ac6eb0b0d"
+  dependencies:
+    prettier-linter-helpers "^1.0.0"
+
 eslint-plugin-promise@^4.0.0:
   version "4.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint-plugin-promise/-/eslint-plugin-promise-4.0.1.tgz#2d074b653f35a23d1ba89d8e976a985117d1c6a2"
@@ -5020,62 +5014,55 @@ eslint@4.10.0:
     table "^4.0.1"
     text-table "~0.2.0"
 
-eslint@^5.0.1:
-  version "5.12.1"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint/-/eslint-5.12.1.tgz#5ca9931fb9029d04e7be92b03ce3b58edfac7e3b"
+eslint@^4.19.1:
+  version "4.19.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint/-/eslint-4.19.1.tgz#32d1d653e1d90408854bfb296f076ec7e186a300"
   dependencies:
-    "@babel/code-frame" "^7.0.0"
-    ajv "^6.5.3"
+    ajv "^5.3.0"
+    babel-code-frame "^6.22.0"
     chalk "^2.1.0"
-    cross-spawn "^6.0.5"
-    debug "^4.0.1"
+    concat-stream "^1.6.0"
+    cross-spawn "^5.1.0"
+    debug "^3.1.0"
     doctrine "^2.1.0"
-    eslint-scope "^4.0.0"
-    eslint-utils "^1.3.1"
+    eslint-scope "^3.7.1"
     eslint-visitor-keys "^1.0.0"
-    espree "^5.0.0"
-    esquery "^1.0.1"
+    espree "^3.5.4"
+    esquery "^1.0.0"
     esutils "^2.0.2"
     file-entry-cache "^2.0.0"
     functional-red-black-tree "^1.0.1"
     glob "^7.1.2"
-    globals "^11.7.0"
-    ignore "^4.0.6"
-    import-fresh "^3.0.0"
+    globals "^11.0.1"
+    ignore "^3.3.3"
     imurmurhash "^0.1.4"
-    inquirer "^6.1.0"
-    js-yaml "^3.12.0"
+    inquirer "^3.0.6"
+    is-resolvable "^1.0.0"
+    js-yaml "^3.9.1"
     json-stable-stringify-without-jsonify "^1.0.1"
     levn "^0.3.0"
-    lodash "^4.17.5"
-    minimatch "^3.0.4"
+    lodash "^4.17.4"
+    minimatch "^3.0.2"
     mkdirp "^0.5.1"
     natural-compare "^1.4.0"
     optionator "^0.8.2"
     path-is-inside "^1.0.2"
     pluralize "^7.0.0"
     progress "^2.0.0"
-    regexpp "^2.0.1"
-    semver "^5.5.1"
+    regexpp "^1.0.1"
+    require-uncached "^1.0.3"
+    semver "^5.3.0"
     strip-ansi "^4.0.0"
-    strip-json-comments "^2.0.1"
-    table "^5.0.2"
-    text-table "^0.2.0"
+    strip-json-comments "~2.0.1"
+    table "4.0.2"
+    text-table "~0.2.0"
 
-espree@^3.5.1:
+espree@^3.5.1, espree@^3.5.4:
   version "3.5.4"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/espree/-/espree-3.5.4.tgz#b0f447187c8a8bed944b815a660bddf5deb5d1a7"
   dependencies:
     acorn "^5.5.0"
     acorn-jsx "^3.0.0"
-
-espree@^5.0.0:
-  version "5.0.0"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/espree/-/espree-5.0.0.tgz#fc7f984b62b36a0f543b13fb9cd7b9f4a7f5b65c"
-  dependencies:
-    acorn "^6.0.2"
-    acorn-jsx "^5.0.0"
-    eslint-visitor-keys "^1.0.0"
 
 esprima@^2.6.0:
   version "2.7.3"
@@ -5089,7 +5076,7 @@ esprima@^4.0.0, esprima@~4.0.0:
   version "4.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
 
-esquery@^1.0.0, esquery@^1.0.1:
+esquery@^1.0.0:
   version "1.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/esquery/-/esquery-1.0.1.tgz#406c51658b1f5991a5f9b62b1dc25b00e3e5c708"
   dependencies:
@@ -5312,6 +5299,10 @@ fast-deep-equal@^1.0.0:
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
+
+fast-diff@^1.1.2:
+  version "1.2.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/fast-diff/-/fast-diff-1.2.0.tgz#73ee11982d86caaf7959828d519cfe927fac5f03"
 
 fast-glob@^2.0.2:
   version "2.2.6"
@@ -5806,7 +5797,11 @@ global@^4.3.2:
     min-document "^2.19.0"
     process "~0.5.1"
 
-globals@^11.1.0, globals@^11.7.0:
+globals@^11.0.1:
+  version "11.11.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/globals/-/globals-11.11.0.tgz#dcf93757fa2de5486fbeed7118538adf789e9c2e"
+
+globals@^11.1.0:
   version "11.10.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/globals/-/globals-11.10.0.tgz#1e09776dffda5e01816b3bb4077c8b59c24eaa50"
 
@@ -6238,7 +6233,7 @@ ignore@^3.3.3, ignore@^3.3.5:
   version "3.3.10"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ignore/-/ignore-3.3.10.tgz#0a97fb876986e8081c631160f8f9f389157f0043"
 
-ignore@^4.0.2, ignore@^4.0.6:
+ignore@^4.0.2:
   version "4.0.6"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
 
@@ -6262,13 +6257,6 @@ import-fresh@^2.0.0:
   dependencies:
     caller-path "^2.0.0"
     resolve-from "^3.0.0"
-
-import-fresh@^3.0.0:
-  version "3.0.0"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/import-fresh/-/import-fresh-3.0.0.tgz#a3d897f420cab0e671236897f75bc14b4885c390"
-  dependencies:
-    parent-module "^1.0.0"
-    resolve-from "^4.0.0"
 
 import-from@^2.1.0:
   version "2.1.0"
@@ -6361,7 +6349,7 @@ inquirer@6.2.0:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-inquirer@^6.1.0, inquirer@^6.2.0:
+inquirer@^6.2.0:
   version "6.2.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/inquirer/-/inquirer-6.2.1.tgz#9943fc4882161bdb0b0c9276769c75b32dbfcd52"
   dependencies:
@@ -8292,12 +8280,6 @@ param-case@2.1.x:
   dependencies:
     no-case "^2.2.0"
 
-parent-module@^1.0.0:
-  version "1.0.0"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/parent-module/-/parent-module-1.0.0.tgz#df250bdc5391f4a085fb589dad761f5ad6b865b5"
-  dependencies:
-    callsites "^3.0.0"
-
 parse-asn1@^5.0.0:
   version "5.1.3"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/parse-asn1/-/parse-asn1-5.1.3.tgz#1600c6cc0727365d68b97f3aa78939e735a75204"
@@ -8855,9 +8837,19 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
+prettier-linter-helpers@^1.0.0:
+  version "1.0.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/prettier-linter-helpers/-/prettier-linter-helpers-1.0.0.tgz#d23d41fe1375646de2d0104d3454a3008802cf7b"
+  dependencies:
+    fast-diff "^1.1.2"
+
 prettier@^1.14.2:
   version "1.16.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/prettier/-/prettier-1.16.1.tgz#534c2c9d7853f8845e5e078384e71973bd74089f"
+
+prettier@^1.16.4:
+  version "1.16.4"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/prettier/-/prettier-1.16.4.tgz#73e37e73e018ad2db9c76742e2647e21790c9717"
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
@@ -9501,6 +9493,10 @@ regexp.prototype.flags@^1.2.0:
   dependencies:
     define-properties "^1.1.2"
 
+regexpp@^1.0.1:
+  version "1.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/regexpp/-/regexpp-1.1.0.tgz#0e3516dd0b7904f413d2d4193dce4618c3a689ab"
+
 regexpp@^2.0.1:
   version "2.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/regexpp/-/regexpp-2.0.1.tgz#8d19d31cf632482b589049f8281f93dbcba4d07f"
@@ -10101,14 +10097,6 @@ slice-ansi@1.0.0:
   dependencies:
     is-fullwidth-code-point "^2.0.0"
 
-slice-ansi@^2.0.0:
-  version "2.1.0"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/slice-ansi/-/slice-ansi-2.1.0.tgz#cacd7693461a637a5788d92a7dd4fba068e81636"
-  dependencies:
-    ansi-styles "^3.2.0"
-    astral-regex "^1.0.0"
-    is-fullwidth-code-point "^2.0.0"
-
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -10458,7 +10446,7 @@ strip-indent@^1.0.1:
   dependencies:
     get-stdin "^4.0.1"
 
-strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
+strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
@@ -10600,6 +10588,17 @@ symbol.prototype.description@^1.0.0:
   dependencies:
     has-symbols "^1.0.0"
 
+table@4.0.2:
+  version "4.0.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/table/-/table-4.0.2.tgz#a33447375391e766ad34d3486e6e2aedc84d2e36"
+  dependencies:
+    ajv "^5.2.3"
+    ajv-keywords "^2.1.0"
+    chalk "^2.1.0"
+    lodash "^4.17.4"
+    slice-ansi "1.0.0"
+    string-width "^2.1.1"
+
 table@^4.0.1:
   version "4.0.3"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/table/-/table-4.0.3.tgz#00b5e2b602f1794b9acaf9ca908a76386a7813bc"
@@ -10609,15 +10608,6 @@ table@^4.0.1:
     chalk "^2.1.0"
     lodash "^4.17.4"
     slice-ansi "1.0.0"
-    string-width "^2.1.1"
-
-table@^5.0.2:
-  version "5.2.2"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/table/-/table-5.2.2.tgz#61d474c9e4d8f4f7062c98c7504acb3c08aa738f"
-  dependencies:
-    ajv "^6.6.1"
-    lodash "^4.17.11"
-    slice-ansi "^2.0.0"
     string-width "^2.1.1"
 
 tapable@^0.1.8:
@@ -10681,7 +10671,7 @@ test-exclude@^4.2.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
-text-table@0.2.0, text-table@^0.2.0, text-table@~0.2.0:
+text-table@0.2.0, text-table@~0.2.0:
   version "0.2.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
 

@@ -6,13 +6,10 @@ import styles from './styles.css';
 import withPadding from '../withPadding';
 
 const Paper = ({ dark, className, ...props }) => {
-  const classes = classNames(
-    styles.Paper,
-    {
-      [className]: !!className,
-      [styles.dark]: dark,
-    },
-  );
+  const classes = classNames(styles.Paper, {
+    [className]: !!className,
+    [styles.dark]: dark,
+  });
 
   const passprops = {
     ...props,

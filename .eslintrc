@@ -5,7 +5,8 @@
     "es6": true
   },
   "plugins": [
-    "react"
+    "react",
+    "prettier"
   ],
   "parserOptions": {
     "sourceType": "module"
@@ -31,6 +32,7 @@
     "no-prototype-builtins": "off",
     "mocha/no-exclusive-tests": "off",
     "mocha/handle-done-callback": "off",
-    "mocha/no-nested-tests": "off"
+    "mocha/no-nested-tests": "off",
+    "prettier/prettier": "error"
   }
 }

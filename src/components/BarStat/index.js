@@ -15,7 +15,7 @@ export default class BarStat extends Component {
 
   state = {
     show: false,
-  }
+  };
 
   componentDidMount() {
     if (!this.state.show) {
@@ -41,11 +41,9 @@ export default class BarStat extends Component {
         <div className={styles.bar}>
           <div className={styles.fill} style={{ width: `${widthPercent}` }} />
         </div>
-        {showLabel &&
-          <div className={styles.label}>
-            {parseInt(percent, 10)}%
-          </div>
-        }
+        {showLabel && (
+          <div className={styles.label}>{parseInt(percent, 10)}%</div>
+        )}
       </div>
     );
   }
