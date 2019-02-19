@@ -14,10 +14,18 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test"
+      "pre-commit": "yarn pre-commit"
     }
   },
+  "lint-staged": {
+    "*.{js,jsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "scripts": {
+    "eslint:commit": "read -r CHANGES <<< `git diff-index --name-only HEAD | grep '\\(src\\|test\\)/.\\+\\.jsx\\?$' | tr '\\n' ' '`; if [[ $CHANGES ]]; then yarn eslint ${CHANGES}; fi;",
+    "pre-commit": "lint-staged && yarn run eslint:commit && yarn test",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
@@ -63,6 +71,7 @@
     "eslint-plugin-standard": "^3.1.0",
     "gh-pages": "^1.2.0",
     "husky": "^1.3.1",
+    "lint-staged": "^8.1.4",
     "postcss-custom-properties": "^8.0.9",
     "prettier": "^1.16.4",
     "react": "^16.4.1",
