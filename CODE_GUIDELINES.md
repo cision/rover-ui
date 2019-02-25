@@ -84,12 +84,10 @@ These UI components should be light and frequently stateless.
 Sometimes, there's good reason to include local state, e.g. to handle clearing an input or to add focus/hover states. In those cases, we should provide a controlled (stateless) version of the component, in addition to an uncontrolled (stateful) version that wraps it. Prefix uncontrolled component names with **Uncontrolled**
 
 ## Linters
-We use the following linters
-* eslint - airbnb-base with some modifications
-* prettier - formatter for stylesheets
-
-> TODO: Add this...
-> * stylelint
+We use the following to help with code quality and consistency:
+* [eslint](https://eslint.org/) with [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb), slightly modified
+* [prettier](https://prettier.io/) to format stylesheets
+* [stylelint](https://github.com/stylelint/stylelint) to lint stylesheets with [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
 
 ## Pull requests
 All code changes should be in branches and should be reviewed and approved by at least 2 people. One of those people should be a TK-UI V2 champion.
