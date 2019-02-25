@@ -1,6 +1,6 @@
 .Badge {
   display: inline-block;
-  padding: 0 .416666667em;
+  padding: 0 0.416666667em;
   border-radius: 2px;
   font-family: var(--base-font-family);
   font-size: 0.8rem;
@@ -11,7 +11,7 @@
 
 .dark {
   background-color: rgba(0, 0, 0, 0.2);
-  color: #8A99A2;
+  color: #8a99a2;
 }
 
 .danger {
