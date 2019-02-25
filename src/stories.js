@@ -1,3 +1,4 @@
+import './shared/variables.css';
 /*
  * PLANETS
  * Planets are the smallest level of component in our universe.
@@ -5,6 +6,8 @@
  * DOM element, and pass all props (including children and DOM event handlers)
  * eg: Paper, Typography, Button, simple text input
  */
+
+import './components/Badge/story';
 import './components/Button/story';
 
 /*

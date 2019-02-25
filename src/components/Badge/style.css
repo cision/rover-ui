@@ -15,26 +15,26 @@
 }
 
 .danger {
-  background-color: semantic-color('danger');
+  background-color: var(--danger-color-base);
   color: var(--white);
 }
 
 .notify {
-  background-color: semantic-color('notify');
+  background-color: var(--notify-color-base);
   color: var(--white);
 }
 
 .warning {
-  background-color: semantic-color('warning');
+  background-color: var(--warning-color-base);
 }
 
 .info {
-  background-color: semantic-color('info');
+  background-color: var(--info-color-base);
   color: var(--white);
 }
 
 .success {
-  background-color: semantic-color('success');
+  background-color: var(--success-color-base);
   color: var(--white);
 }
 

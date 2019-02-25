@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './styles.css';
+import styles from './style.css';
 
 const hasModifier = (modifiers, key) => {
   return Array.isArray(modifiers) && modifiers.includes(key);
