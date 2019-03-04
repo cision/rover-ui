@@ -6,7 +6,8 @@
   },
   "plugins": [
     "react",
-    "prettier"
+    "prettier",
+    "import"
   ],
   "parserOptions": {
     "sourceType": "module"
@@ -33,6 +34,7 @@
     "mocha/no-exclusive-tests": "off",
     "mocha/handle-done-callback": "off",
     "mocha/no-nested-tests": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import/no-anonymous-default-export": "error",
   }
 }
