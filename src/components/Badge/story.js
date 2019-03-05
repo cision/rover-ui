@@ -1,39 +1,53 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { text, select } from '@storybook/addon-knobs';
+import { boolean, text, select } from '@storybook/addon-knobs';
 
 import Badge from '../Badge';
+
+const divStyle = {
+  marginBottom: '10px',
+  padding: '20px',
+};
+const darkStyle = {
+  ...divStyle,
+  backgroundColor: '#414c52',
+};
 
 storiesOf('Planets/Badge', module)
   .add(
     'Overview',
     () => {
-      const modifierOptions = [
-        'dark',
-        'light',
+      const colorOptions = [
+        '',
         'danger',
         'notify',
         'warning',
         'info',
         'success',
-        'right',
-        'left',
       ];
 
       return (
-        <Badge modifiers={[select('modifier', modifierOptions, 'info')]}>
-          {text('Children', 'My Badge')}
-        </Badge>
+        <div style={boolean('dark mode', false) ? darkStyle : divStyle}>
+          <Badge
+            color={select('color', colorOptions, '')}
+            darkMode={boolean('dark mode', false)}
+          >
+            {text('Children', 'My Badge')}
+          </Badge>
+        </div>
       );
-    }, {
+    },
+    {
       info: {
         text: `
               #### Badges are used for additional information
 
-              The color type modifiers should not be used together, but any can be combined with the "right" or "left" modifier
+              The badge background color is controled by the \`color\` prop.
+              Any of the semantic colors can be overridden by \`darkMode = true\`.
+              Color is optional, will default to very light gray background.
 
-              **Valid Modifiers:**
+              **Valid Colors:**
               * dark
               * light
               * danger
@@ -41,59 +55,76 @@ storiesOf('Planets/Badge', module)
               * warning
               * info
               * success
-              * right (puts 10px margin on left side)
-              * left (puts 10px margin on right side)
+
+
+              If you are trying to have spacing around or between badges lined up next to each other, it must be controlled by a parent div like so:
+
+              ~~~js
+              const badgeWrapStyle = { marginRight: '10px' };
+
+              <div style={{ display: 'flex', alignItems: 'baseline' }}>
+                <div style={badgeWrapStyle}>
+                  <Badge color="info">Print</Badge>
+                </div>
+                <div style={badgeWrapStyle}>
+                  <Badge color="info">Broadcast</Badge>
+                </div>
+                <div style={badgeWrapStyle}>
+                  <Badge color="info">Radio</Badge>
+                </div>
+              </div>
+              ~~~
             `,
       },
     }
   )
   .add('Examples', () => {
-    const divStyle = {
-      marginBottom: '10px',
-      padding: '20px',
-    };
-    const darkStyle = {
-      ...divStyle,
-      backgroundColor: '#414c52',
-    };
     return (
       <div>
         <div style={divStyle}>
           <Badge>My Badge</Badge>
         </div>
         <div style={darkStyle}>
-          <Badge modifiers={['dark']}>Dark Badge</Badge>
+          <Badge darkMode>Dark Badge</Badge>
         </div>
         <div style={divStyle}>
-          <Badge modifiers={['danger']}>Danger Badge</Badge>
+          <Badge color="danger">Danger Badge</Badge>
         </div>
         <div style={divStyle}>
-          <Badge modifiers={['notify']}>Notify Badge</Badge>
+          <Badge color="notify">Notify Badge</Badge>
         </div>
         <div style={divStyle}>
-          <Badge modifiers={['info']}>Info Badge</Badge>
+          <Badge color="info">Info Badge</Badge>
         </div>
         <div style={divStyle}>
-          <Badge modifiers={['warning']}>Warning Badge</Badge>
+          <Badge color="warning">Warning Badge</Badge>
         </div>
         <div style={divStyle}>
-          <Badge modifiers={['success']}>Success Badge</Badge>
+          <Badge color="success">Success Badge</Badge>
         </div>
-        <div style={divStyle}>
-          <Badge modifiers={['left']}>Left Badge</Badge>
-          <Badge modifiers={['left']}>Left Badge</Badge>
-          <Badge modifiers={['left']}>Left Badge</Badge>
-          <span role="img" aria-label="smiley">
-            😁
-          </span>
+        <div style={{ ...divStyle, display: 'flex', alignItems: 'baseline' }}>
+          <div style={{ marginRight: '10px' }}>
+            <Badge color="info">Print</Badge>
+          </div>
+          <div style={{ marginRight: '10px' }}>
+            <Badge color="info">Broadcast</Badge>
+          </div>
+          <div style={{ marginRight: '10px' }}>
+            <Badge color="info">Radio</Badge>
+          </div>
+          <span>Article</span>
         </div>
-        <div style={divStyle}>
-          <span role="img" aria-label="smiley">
-            😁
-          </span>
-          <Badge modifiers={['right']}>Right Badge</Badge>
-          <Badge modifiers={['right']}>Right Badge</Badge>
-          <Badge modifiers={['right']}>Right Badge</Badge>
+        <div style={{ ...divStyle, display: 'flex', alignItems: 'baseline' }}>
+          <span>Article</span>
+          <div style={{ marginLeft: '10px' }}>
+            <Badge color="info">Print</Badge>
+          </div>
+          <div style={{ marginLeft: '10px' }}>
+            <Badge color="info">Broadcast</Badge>
+          </div>
+          <div style={{ marginLeft: '10px' }}>
+            <Badge color="info">Radio</Badge>
+          </div>
         </div>
       </div>
     );

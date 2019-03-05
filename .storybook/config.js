@@ -18,10 +18,7 @@ addDecorator(checkA11y);
 
 addDecorator(
   withOptions({
-    showSearchBox: true,
-    sortStoriesByKind: true,
-    hierarchySeparator: '/\//',
-    enableShortcuts: true, // true by default
+    hierarchySeparator: '///',
   })
 );
 
