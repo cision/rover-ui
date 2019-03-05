@@ -5011,6 +5011,12 @@ eslint-config-airbnb@^15.1.0:
   dependencies:
     eslint-config-airbnb-base "^11.3.0"
 
+eslint-config-prettier@^4.1.0:
+  version "4.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint-config-prettier/-/eslint-config-prettier-4.1.0.tgz#181364895899fff9fd3605fecb5c4f20e7d5f395"
+  dependencies:
+    get-stdin "^6.0.0"
+
 eslint-config-react-app@^2.1.0:
   version "2.1.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/eslint-config-react-app/-/eslint-config-react-app-2.1.0.tgz#23c909f71cbaff76b945b831d2d814b8bde169eb"
