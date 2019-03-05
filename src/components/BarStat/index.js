@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.css';
+import styles from './style.css';
 
 export default class BarStat extends Component {
   static propTypes = {

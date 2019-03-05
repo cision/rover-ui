@@ -9,7 +9,8 @@
   },
   "plugins": [
     "react",
-    "prettier"
+    "prettier",
+    "import"
   ],
   "parserOptions": {
     "sourceType": "module"
@@ -28,6 +29,7 @@
     "class-methods-use-this": "off",
     "spaced-comment": "off",
     "no-prototype-builtins": "off",
+    "import/no-anonymous-default-export": "error",
     "prettier/prettier": "error"
   }
 }

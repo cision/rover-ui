@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './styles.css';
+import styles from './style.css';
 import withPadding from '../withPadding';
 
 const Paper = ({ dark, className, ...props }) => {
