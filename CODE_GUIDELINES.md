@@ -95,19 +95,18 @@ Sometimes, there's good reason to include local state, e.g. to handle clearing a
 
 ## Linters
 
-We use the following linters
+We run linters pre-commit to enforce code conventions. It is useful to have your editor automatically fix issues before you attempt to commit. Here are direct links to help you setup each of these linters for your preferred editor.
 
-- ESlint - airbnb-base with some modifications
-- Prettier - formatter for javascript
-- Stylelint - formatter for CSS
+- [ESLint](https://eslint.org/) to lint JS
+- Configuration: [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) (modified)
+- [Editor integrations](https://eslint.org/docs/user-guide/integrations#editors)
 
-### Integrations
+* [stylelint](https://github.com/stylelint/stylelint) to lint stylesheets
+* Configuration: [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
+* [Editor integrations](https://stylelint.io/user-guide/complementary-tools/#editor-plugins)
 
-The three linters we use are all triggered and make sure nothing gets committed that does not follow our conventions. However, it is useful to have your editor automatically fix issues before you attempt to commit. Here are direct links to help you setup each of these linters for your preferred editor.
-
-- ESLint - https://eslint.org/docs/user-guide/integrations#editors
-- Prettier - https://prettier.io/docs/en/editors.html
-- Stylelint - https://stylelint.io/user-guide/complementary-tools/#editor-plugins
+- [Prettier](https://prettier.io/) to format stylesheets
+- [Editor integrations](https://prettier.io/docs/en/editors.html)
 
 ## Pull requests
 
