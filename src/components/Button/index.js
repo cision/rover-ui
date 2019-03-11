@@ -1,9 +1,55 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import styles from './style.css';
+import { tagPropType } from '../../shared/propTypes';
 
-const Button = props => <button {...props} className={styles.Button} />;
+import style from './style.css';
 
-// default export should be named or else Storybook's
-// "Story Source" does not work correctly
+const Button = props => {
+  const {
+    className: passedClassName,
+    darkMode,
+    level,
+    size,
+    tag: Tag,
+    ...passedProps
+  } = props;
+
+  const className = classNames(
+    passedClassName,
+    style.Button,
+    style[level],
+    style[size],
+    {
+      [style.darkMode]: darkMode,
+    }
+  );
+
+  return <Tag {...passedProps} className={className} />;
+};
+
+Button.propTypes = {
+  className: PropTypes.string,
+  darkMode: PropTypes.bool,
+  level: PropTypes.oneOf([
+    'primary',
+    'teal',
+    'secondary',
+    'success',
+    'tertiary',
+    'teal',
+  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  tag: tagPropType,
+};
+
+Button.defaultProps = {
+  className: '',
+  darkMode: false,
+  level: 'secondary',
+  size: 'lg',
+  tag: 'button',
+};
+
 export default Button;

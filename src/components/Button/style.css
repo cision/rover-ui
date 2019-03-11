@@ -1,7 +1,162 @@
+@import './colors.css';
+
 .Button {
-  display: inline-block;
-  box-sizing: border-box;
-  vertical-align: middle;
   background: transparent none;
-  border: 1px solid transparent;
+  border: var(--borderWidth-md) solid transparent;
+  font-size: var(--fontSize-md);
+  line-height: var(--lineHeight-sm);
+  transition: 0.2s linear background-color, 0.2s linear border-color, 0.2s linear color;
+}
+
+/* Sizes */
+
+.sm {
+  padding: var(--space-bordered-xs) var(--space-bordered-sm);
+  border-radius: calc(var(--space-bordered-sm) + (var(--lineHeight-md) / 2));
+}
+
+.md {
+  padding: var(--space-bordered-sm) var(--space-bordered-md);
+  border-radius: calc(var(--space-bordered-md) + (var(--lineHeight-md) / 2));
+}
+
+.lg {
+  padding: var(--space-bordered-md) var(--space-bordered-lg);
+  border-radius: calc(var(--space-bordered-lg) + (var(--lineHeight-md) / 2));
+}
+
+/* Button level colors */
+
+.primary,
+.primary:link,
+.primary:visited {
+  color: var(--color-primary);
+  background-color: var(--bgColor-primary);
+  border-color: var(--borderColor-primary);
+}
+
+.primary:active,
+.primary:hover,
+.primary:focus {
+  color: var(--color-primary-active);
+  background-color: var(--bgColor-primary-active);
+  border-color: var(--borderColor-primary-active);
+}
+
+.primary:disabled {
+  color: var(--color-primary-disabled);
+  background-color: var(--bgColor-primary-disabled);
+  border-color: var(--borderColor-primary-disabled);
+}
+
+.teal,
+.teal:link,
+.teal:visited {
+  color: var(--color-teal);
+  background-color: var(--bgColor-teal);
+  border-color: var(--borderColor-teal);
+}
+
+.teal:active,
+.teal:hover,
+.teal:focus {
+  color: var(--color-teal-active);
+  background-color: var(--bgColor-teal-active);
+  border-color: var(--borderColor-teal-active);
+}
+
+.teal:disabled {
+  color: var(--color-teal-disabled);
+  background-color: var(--bgColor-teal-disabled);
+  border-color: var(--borderColor-teal-disabled);
+}
+
+.secondary,
+.secondary:link,
+.secondary:visited {
+  color: var(--color-secondary);
+  background-color: var(--bgColor-secondary);
+  border-color: var(--borderColor-secondary);
+}
+
+.secondary:active,
+.secondary:hover,
+.secondary:focus {
+  color: var(--color-secondary-active);
+  background-color: var(--bgColor-secondary-active);
+  border-color: var(--borderColor-secondary-active);
+}
+
+.secondary:disabled {
+  color: var(--color-secondary-disabled);
+  background-color: var(--bgColor-secondary-disabled);
+  border-color: var(--borderColor-secondary-disabled);
+}
+
+.success,
+.success:link,
+.success:visited {
+  color: var(--color-success);
+  background-color: var(--bgColor-success);
+  border-color: var(--borderColor-success);
+}
+
+.success:active,
+.success:hover,
+.success:focus {
+  color: var(--color-success-active);
+  background-color: var(--bgColor-success-active);
+  border-color: var(--borderColor-success-active);
+}
+
+.success:disabled {
+  color: var(--color-success-disabled);
+  background-color: var(--bgColor-success-disabled);
+  border-color: var(--borderColor-success-disabled);
+}
+
+.tertiary,
+.tertiary:link,
+.tertiary:visited {
+  color: var(--color-tertiary);
+  background-color: var(--bgColor-tertiary);
+  border-color: var(--borderColor-tertiary);
+}
+
+.tertiary:active,
+.tertiary:hover,
+.tertiary:focus {
+  color: var(--color-tertiary-active);
+  background-color: var(--bgColor-tertiary-active);
+  border-color: var(--borderColor-tertiary-active);
+}
+
+.tertiary:disabled {
+  color: var(--color-tertiary-disabled);
+  background-color: var(--bgColor-tertiary-disabled);
+  border-color: var(--borderColor-tertiary-disabled);
+}
+
+/* Dark mode */
+
+.darkMode,
+.darkMode:link,
+.darkMode:visited {
+  color: var(--color-darkMode);
+  background-color: var(--bgColor-darkMode);
+  border-color: var(--borderColor-darkMode);
+}
+
+.darkMode:active,
+.darkMode:hover,
+.darkMode:focus {
+  color: var(--color-darkMode-active);
+  background-color: var(--bgColor-darkMode-active);
+  border-color: var(--borderColor-darkMode-active);
+}
+
+.darkMode:disabled {
+  color: var(--color-darkMode-disabled);
+  background-color: var(--bgColor-darkMode-disabled);
+  border-color: var(--borderColor-darkMode-disabled);
 }
