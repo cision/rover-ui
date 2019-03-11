@@ -1,5 +1,6 @@
 // Global CSS variables
 import './shared/variables.css';
+import './shared/reset.css';
 
 export { default as Badge } from './components/Badge';
 export { default as BarStat } from './components/BarStat';
