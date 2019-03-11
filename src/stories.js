@@ -1,4 +1,6 @@
 import './shared/variables.css';
+import './shared/reset.css';
+
 /*
  * PLANETS
  * Planets are the smallest level of component in our universe.
