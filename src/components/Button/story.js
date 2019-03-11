@@ -2,19 +2,22 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text, select } from '@storybook/addon-knobs';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Button from './';
 
 const levels = ['tertiary', 'teal', 'secondary', 'primary'];
 const sizes = ['sm', 'md', 'lg'];
 
-const Fancy = props => <div className="fancy" {...props} />;
+const MyComponent = props => (
+  <button {...props} className={classNames(props.className, 'MyComponent')} />
+);
 
-const tags = {
-  a: 'a',
-  button: 'button',
-  Fancy,
-};
+MyComponent.propTypes = { className: PropTypes.string };
+MyComponent.defaultProps = { className: '' };
+
+const tags = ['a', 'button', '<MyComponent />'];
 
 storiesOf('Planets/Button', module)
   .addParameters({
@@ -44,7 +47,11 @@ storiesOf('Planets/Button', module)
         onClick={action('clicked')}
         size={select('size', sizes, 'lg')}
         tabIndex={0}
-        tag={select('tag', tags, 'button')}
+        tag={
+          select('tag', tags, 'button') === '&lt;MyComponent /&gt;'
+            ? MyComponent
+            : select('tag', tags, 'button')
+        }
       >
         {text('children', 'Hello Button')}
       </Button>

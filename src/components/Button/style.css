@@ -1,6 +1,7 @@
 @import './colors.css';
 
 .Button {
+  -webkit-appearance: none;
   background: transparent none;
   border: var(--borderWidth-md) solid transparent;
   font-size: var(--fontSize-md);
@@ -43,7 +44,8 @@
   border-color: var(--borderColor-primary-active);
 }
 
-.primary:disabled {
+.primary:disabled,
+.primary[disabled] {
   color: var(--color-primary-disabled);
   background-color: var(--bgColor-primary-disabled);
   border-color: var(--borderColor-primary-disabled);
@@ -65,7 +67,8 @@
   border-color: var(--borderColor-teal-active);
 }
 
-.teal:disabled {
+.teal:disabled,
+.teal[disabled] {
   color: var(--color-teal-disabled);
   background-color: var(--bgColor-teal-disabled);
   border-color: var(--borderColor-teal-disabled);
@@ -87,7 +90,8 @@
   border-color: var(--borderColor-secondary-active);
 }
 
-.secondary:disabled {
+.secondary:disabled,
+.secondary[disabled] {
   color: var(--color-secondary-disabled);
   background-color: var(--bgColor-secondary-disabled);
   border-color: var(--borderColor-secondary-disabled);
@@ -109,7 +113,8 @@
   border-color: var(--borderColor-success-active);
 }
 
-.success:disabled {
+.success:disabled,
+.success[disabled] {
   color: var(--color-success-disabled);
   background-color: var(--bgColor-success-disabled);
   border-color: var(--borderColor-success-disabled);
@@ -131,7 +136,8 @@
   border-color: var(--borderColor-tertiary-active);
 }
 
-.tertiary:disabled {
+.tertiary:disabled,
+.tertiary[disabled] {
   color: var(--color-tertiary-disabled);
   background-color: var(--bgColor-tertiary-disabled);
   border-color: var(--borderColor-tertiary-disabled);
@@ -155,7 +161,8 @@
   border-color: var(--borderColor-darkMode-active);
 }
 
-.darkMode:disabled {
+.darkMode:disabled,
+.darkMode[disabled] {
   color: var(--color-darkMode-disabled);
   background-color: var(--bgColor-darkMode-disabled);
   border-color: var(--borderColor-darkMode-disabled);

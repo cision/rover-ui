@@ -42,6 +42,7 @@ Button.propTypes = {
   ]),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   tag: tagPropType,
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -50,6 +51,7 @@ Button.defaultProps = {
   level: 'secondary',
   size: 'lg',
   tag: 'button',
+  type: 'button',
 };
 
 export default Button;
