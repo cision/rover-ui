@@ -7,6 +7,8 @@
   font-size: var(--fontSize-md);
   line-height: var(--lineHeight-sm);
   transition: 0.2s linear background-color, 0.2s linear border-color, 0.2s linear color;
+  display: inline-flex;
+  align-content: center;
 }
 
 /* Sizes */

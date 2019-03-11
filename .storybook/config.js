@@ -18,7 +18,7 @@ addDecorator(checkA11y);
 
 addDecorator(
   withOptions({
-    hierarchySeparator: '///',
+    hierarchySeparator: '/',
   })
 );
 

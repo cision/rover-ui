@@ -43,17 +43,50 @@ storiesOf('Planets/Button', module)
         className={text('className', '')}
         darkMode={boolean('darkMode', false)}
         disabled={boolean('disabled', false)}
+        href={select('tag', tags, 'button') === 'a' ? '#' : null}
         level={select('level', levels, 'secondary')}
         onClick={action('clicked')}
         size={select('size', sizes, 'lg')}
-        tabIndex={0}
         tag={
           select('tag', tags, 'button') === '&lt;MyComponent /&gt;'
             ? MyComponent
             : select('tag', tags, 'button')
         }
       >
-        {text('children', 'Hello Button')}
+        {text('children', 'Click me!')}
+      </Button>
+    ),
+    {
+      info: {
+        text: `
+              Here's some custom information about my component
+
+              ~~~js
+              <Button>Click Here</Button>
+              ~~~
+
+              As you can see, it supports markdown
+            `,
+      },
+    }
+  );
+
+storiesOf('Planets/Button/Addon', module)
+  .addParameters({
+    info: {
+      inline: true,
+    },
+  })
+  .addDecorator(storyFn => <div style={{ padding: '5px' }}>{storyFn()}</div>)
+  .add(
+    'Overview',
+    () => (
+      <Button
+        className={text('className', '')}
+        size={select('size', sizes, 'lg')}
+      >
+        <Button.Addon>{text('children', '😸')}</Button.Addon>
+        Click me!
       </Button>
     ),
     {

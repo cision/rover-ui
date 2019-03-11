@@ -4,10 +4,13 @@ import classNames from 'classnames';
 
 import { tagPropType } from '../../shared/propTypes';
 
+import Addon from './Addon';
+
 import style from './style.css';
 
 const Button = props => {
   const {
+    children: initChildren,
     className: passedClassName,
     darkMode,
     level,
@@ -15,6 +18,8 @@ const Button = props => {
     tag: Tag,
     ...passedProps
   } = props;
+
+  let children = initChildren;
 
   const className = classNames(
     passedClassName,
@@ -26,10 +31,33 @@ const Button = props => {
     }
   );
 
-  return <Tag {...passedProps} className={className} />;
+  const addonChildren = React.Children.toArray(initChildren).filter(
+    child => child.type && child.type.name === Addon.name
+  );
+
+  if (addonChildren.length) {
+    children = React.Children.map(initChildren, child => {
+      if (child.type && child.type.name === Addon.name) {
+        return React.cloneElement(child, { ...child.props, size });
+      }
+
+      if (typeof child === 'string') {
+        return <span>{child}</span>;
+      }
+
+      return child;
+    });
+  }
+
+  return (
+    <Tag {...passedProps} className={className}>
+      {children}
+    </Tag>
+  );
 };
 
 Button.propTypes = {
+  children: PropTypes.node,
   className: PropTypes.string,
   darkMode: PropTypes.bool,
   level: PropTypes.oneOf([
@@ -46,6 +74,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  children: null,
   className: '',
   darkMode: false,
   level: 'secondary',
@@ -53,5 +82,7 @@ Button.defaultProps = {
   tag: 'button',
   type: 'button',
 };
+
+Button.Addon = Addon;
 
 export default Button;
