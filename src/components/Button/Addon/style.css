@@ -1,0 +1,31 @@
+.Addon {
+  flex: 0 0 auto;
+  align-self: center;
+}
+
+.sm {
+  margin-left: var(--space-sm);
+  margin-right: var(--space-sm);
+}
+
+.md {
+  margin-left: var(--space-md);
+  margin-right: var(--space-md);
+}
+
+.lg {
+  margin-left: var(--space-lg);
+  margin-right: var(--space-lg);
+}
+
+.Addon:first-child {
+  margin-left: 0;
+}
+
+.Addon:last-child {
+  margin-right: 0;
+}
+
+.Addon + .Addon {
+  margin-left: 0;
+}

@@ -25,10 +25,14 @@
   --gray-lite-5: #edf1f2;
   --gray-lite-6: #f6f8f8;
 
+  /* Link */
+  --color-link: var(--blue);
+  --color-link-active: var(--blue);
+
   /* Semantic */
 
   /* Neutral */
-  --fontColor-neutral: var(--gray-lite-1);
+  --color-neutral: var(--gray-lite-1);
   --bgColor-neutral: var(--gray-lite-6);
 
   /* Danger */
