@@ -1,6 +1,7 @@
+import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { withOptions } from '@storybook/addon-options';
-import { withInfo } from '@storybook/addon-info';
+import { withInfo, setDefaults } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
 import { checkA11y } from '@storybook/addon-a11y';
 
@@ -21,5 +22,13 @@ addDecorator(
     hierarchySeparator: '/',
   })
 );
+
+setDefaults({
+  components: {
+    p({ children }) {
+      return <p>{children}</p>;
+    },
+  },
+});
 
 configure(() => require('../src/stories'), module);

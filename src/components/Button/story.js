@@ -20,17 +20,15 @@ MyComponent.defaultProps = { className: '' };
 const tags = ['a', 'button', '<MyComponent />'];
 
 storiesOf('Planets/Button', module)
-  .addParameters({
-    info: {
-      inline: true,
-    },
-  })
+  /*
+    This wrapper exists to add some padding and a toggle-able dark background.
+  */
   .addDecorator(storyFn => (
     <div
       style={
         boolean('darkMode', false)
-          ? { backgroundColor: 'black', padding: '5px' }
-          : { padding: '5px' }
+          ? { backgroundColor: 'black', padding: '10px' }
+          : { padding: '10px' }
       }
     >
       {storyFn()}
@@ -58,48 +56,54 @@ storiesOf('Planets/Button', module)
     ),
     {
       info: {
+        source: true,
         text: `
-              Here's some custom information about my component
+          The \`<Button/>\` component can wrap any kind of node.
 
-              ~~~js
-              <Button>Click Here</Button>
-              ~~~
+          By default, it creates a \`<button>\` tag, and it propagates down all
+          the props it doesn't use for appearance.
 
-              As you can see, it supports markdown
-            `,
+          That means it will propagate all DOM events that react supports, like
+          \`onClick\`, \`onFocus\`, etc.
+
+          You can change the tag name (aka DOM element) to something like \`a\`
+          or \`div\`. If you do, React will allow different props. It's up to
+          you to not put an \`href\` on a \`button\`.
+        `,
       },
     }
   );
 
 storiesOf('Planets/Button/Addon', module)
-  .addParameters({
-    info: {
-      inline: true,
-    },
-  })
   .addDecorator(storyFn => <div style={{ padding: '5px' }}>{storyFn()}</div>)
   .add(
     'Overview',
     () => (
-      <Button
-        className={text('className', '')}
-        size={select('size', sizes, 'lg')}
-      >
-        <Button.Addon>{text('children', '😸')}</Button.Addon>
+      <Button size={select('<Button/> size', sizes, 'lg')}>
+        <Button.Addon className={text('className', '')}>
+          {text('children', '😸')}
+        </Button.Addon>
         Click me!
       </Button>
     ),
     {
       info: {
+        source: true,
         text: `
-              Here's some custom information about my component
+          The \`<Button.Addon/>\` component can wrap any kind of node.
 
-              ~~~js
-              <Button>Click Here</Button>
-              ~~~
+          If your \`<Button/>\` includes one or more \`<Button.Addon/>\`s, then
+          the \`<Button/>\` will do two additional things.
 
-              As you can see, it supports markdown
-            `,
+          1. \`<Button/>\` will propagate its \`size\` prop down to any
+          \`<Button.Addon/>\` children.
+          2. \`<Button/>\` will wrap any bare text node children in
+          \`<span/>\`s.
+
+          These 2 changes allow \`<Button/>\` to coordinate vertical alignment
+          and horizontal margins between the \`<Button.Addon/>\`s and their
+          siblings with CSS.
+        `,
       },
     }
   );
