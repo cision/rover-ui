@@ -2,35 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './style.css';
-import withPadding from '../withPadding';
+import style from './style.css';
 
-const Paper = ({ dark, className, ...props }) => {
-  const classes = classNames(styles.Paper, {
+const Paper = ({ dark, padding, className, ...passprops }) => {
+  const classes = classNames(style.Paper, style[padding], {
     [className]: !!className,
-    [styles.dark]: dark,
+    [style.dark]: dark,
   });
 
-  const passprops = {
-    ...props,
-    className: classes,
-  };
-
-  return <div {...passprops} />;
+  return <div {...passprops} className={classes} />;
 };
 
 Paper.defaultProps = {
   children: null,
   className: '',
   dark: false,
-  style: {},
+  padding: 'md',
 };
 
 Paper.propTypes = {
   children: PropTypes.node,
+  /*
+   * Additional classes to apply to the wrapping Paper class
+   */
   className: PropTypes.string,
   dark: PropTypes.bool,
-  style: PropTypes.object,
+  padding: PropTypes.oneOf(['none', 'xs', 'sm', 'md', 'lg', 'xl']),
 };
 
-export default withPadding(Paper);
+export default Paper;

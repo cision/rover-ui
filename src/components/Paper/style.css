@@ -1,9 +1,21 @@
 .Paper {
   background: var(--white);
   border-radius: 2px;
+  box-sizing: border-box;
   box-shadow: var(--box-shadow);
 }
 
-.dark {
-  background-color: #414c52;
+.Paper h1 {
+  margin: 0;
 }
+
+.dark {
+  background-color: var(--gray);
+  color: var(--gray-lite-5);
+}
+
+.xs { padding: var(--space-xs); }
+.sm { padding: var(--space-sm); }
+.md { padding: var(--space-md); }
+.lg { padding: var(--space-lg); }
+.xl { padding: var(--space-xl); }
