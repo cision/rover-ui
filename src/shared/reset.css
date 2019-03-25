@@ -33,7 +33,7 @@ body {
   line-height: var(--lineHeight-md);
   color: var(--color-neutral);
   text-align: left;
-  background-color: var(--gray-lite-6);
+  background-color: var(--bgColor-neutral);
 }
 
 [tabindex="-1"]:focus {
@@ -137,7 +137,7 @@ a {
 }
 
 a:hover {
-  color: var(--blue-lite-1);
+  color: var(--color-link-active);
   text-decoration: none;
 }
 
