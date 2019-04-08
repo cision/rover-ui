@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './Addon.css';
+import style from './style.css';
 
 const Addon = ({ className, size, ...passedProps }) => (
   <div

@@ -12,6 +12,7 @@ module.exports = async ({ config, mode }) => {
       {
         loader: 'css-loader',
         options: {
+          context: __dirname,
           importLoaders: 1,
           localIdentName: '[local]--[contenthash:base64:5]',
           minimize: true,

@@ -6,7 +6,7 @@ import { tagPropType } from '../../shared/propTypes';
 
 import Addon from './Addon';
 
-import style from './Button.css';
+import style from './style.css';
 
 const Button = props => {
   const {
