@@ -1,34 +1,21 @@
-import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
-import { withOptions } from '@storybook/addon-options';
-import { withInfo, setDefaults } from '@storybook/addon-info';
+import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
-import { checkA11y } from '@storybook/addon-a11y';
+import { addParameters } from '@storybook/react'; // <- or your storybook framework
 
-addDecorator(
-  withInfo({
-    header: true,
-    inline: true,
-    source: false,
-  })
-);
-
-addDecorator(withKnobs);
-
-addDecorator(checkA11y);
-
-addDecorator(
-  withOptions({
-    hierarchySeparator: '/',
-  })
-);
-
-setDefaults({
-  components: {
-    p({ children }) {
-      return <p>{children}</p>;
-    },
-  },
+addParameters({
+  backgrounds: [
+    { name: 'Light gray (default)', value: '#f6f8f8', default: true },
+    { name: 'White', value: 'white' },
+    { name: 'Black', value: 'black' },
+  ],
 });
 
-configure(() => require('../src/stories'), module);
+addDecorator(withInfo);
+addDecorator(withKnobs);
+
+function loadStories() {
+  require('../src/stories');
+}
+
+configure(loadStories, module);

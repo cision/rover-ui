@@ -38,7 +38,7 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook -o docs"
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -46,14 +46,14 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^4.1.13",
-    "@storybook/addon-actions": "^4.1.11",
-    "@storybook/addon-info": "^4.1.11",
-    "@storybook/addon-knobs": "^4.1.11",
-    "@storybook/addon-links": "^4.1.11",
-    "@storybook/addon-options": "^4.1.11",
-    "@storybook/addons": "^4.1.11",
-    "@storybook/react": "^4.1.11",
+    "@storybook/addon-a11y": "^5.0.6",
+    "@storybook/addon-actions": "^5.0.6",
+    "@storybook/addon-backgrounds": "^5.0.6",
+    "@storybook/addon-info": "^5.0.6",
+    "@storybook/addon-knobs": "^5.0.6",
+    "@storybook/addon-links": "^5.0.6",
+    "@storybook/addons": "^5.0.6",
+    "@storybook/react": "^5.0.6",
     "@svgr/rollup": "^2.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
