@@ -33,7 +33,6 @@ body {
   line-height: var(--lineHeight-md);
   color: var(--color-neutral);
   text-align: left;
-  background-color: var(--bgColor-neutral);
 }
 
 [tabindex="-1"]:focus {

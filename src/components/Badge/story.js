@@ -28,18 +28,17 @@ storiesOf('Planets/Badge', module)
       ];
 
       return (
-        <div style={boolean('dark mode', false) ? darkStyle : divStyle}>
-          <Badge
-            color={select('color', colorOptions, '')}
-            darkMode={boolean('dark mode', false)}
-          >
-            {text('Children', 'My Badge')}
-          </Badge>
-        </div>
+        <Badge
+          color={select('color', colorOptions, '')}
+          darkMode={boolean('dark mode', false)}
+        >
+          {text('Children', 'My Badge')}
+        </Badge>
       );
     },
     {
       info: {
+        inline: true,
         text: `
               #### Badges are used for additional information
 
