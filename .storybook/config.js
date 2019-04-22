@@ -2,7 +2,16 @@ import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
-import { addParameters } from '@storybook/react'; // <- or your storybook framework
+import { addParameters } from '@storybook/react';
+import { addReadme } from 'storybook-readme';
+
+addDecorator(
+  withInfo({
+    header: false,
+    inline: true,
+  })
+);
+addDecorator(addReadme);
 
 addParameters({
   backgrounds: [
@@ -10,9 +19,11 @@ addParameters({
     { name: 'White', value: 'white' },
     { name: 'Black', value: 'black' },
   ],
+  options: {
+    panelPosition: 'right',
+  },
 });
 
-addDecorator(withInfo);
 addDecorator(withKnobs);
 
 function loadStories() {
