@@ -1,34 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import styled from 'styled-components';
+import { color, fontFamily, fontSize, lineHeight, space } from 'styled-system';
 
-import styles from './style.css';
+const StyledBadge = styled.span`
+  border-radius: 2px;
+  display: inline-block;
 
-const Badge = ({ className, darkMode, color, ...passprops }) => {
-  const classes = classNames(styles.Badge, {
-    className: !!className,
-    [styles[color]]: !!color && !darkMode,
-    [styles.dark]: darkMode,
-  });
+  ${lineHeight}
+  ${color}
+  ${fontFamily}
+  ${fontSize}
+  ${space}
+`;
 
-  return <div {...passprops} className={classes} />;
+const Badge = ({ variant, ...props }) => {
+  if (variant === 'danger') {
+    return <StyledBadge {...props} color="white" bg="danger" />;
+  } else if (variant === 'notify') {
+    return <StyledBadge {...props} color="white" bg="notify" />;
+  } else if (variant === 'info') {
+    return <StyledBadge {...props} color="white" bg="info" />;
+  } else if (variant === 'success') {
+    return <StyledBadge {...props} color="white" bg="success" />;
+  } else if (variant === 'dark') {
+    return <StyledBadge {...props} color="white" bg="rgba(0, 0, 0, 0.2)" />;
+  } else if (variant === 'warning') {
+    return <StyledBadge {...props} bg="warning" />;
+  }
+
+  return <StyledBadge {...props} />;
 };
 
 Badge.defaultProps = {
   alignment: '',
-  children: null,
-  className: '',
-  darkMode: false,
-  color: '',
-  style: {},
+  variant: '',
+  color: 'grayLite.0',
+  fontFamily: 'body',
+  fontSize: 0,
+  lineHeight: 1.5,
+  py: 0,
+  px: '0.5em',
+  ml: 0,
+  mr: 0,
 };
 
 Badge.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  color: PropTypes.oneOf(['danger', 'notify', 'warning', 'info', 'success']),
-  darkMode: PropTypes.boolean,
-  style: PropTypes.object,
+  variant: PropTypes.oneOf([
+    'dark',
+    'danger',
+    'notify',
+    'warning',
+    'info',
+    'success',
+    '',
+  ]),
+  ...color.propTypes,
+  ...fontFamily.propTypes,
+  ...fontSize.propTypes,
+  ...space.propTypes,
 };
 
 export default Badge;
