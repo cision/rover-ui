@@ -8,12 +8,7 @@ import { alignSelf, justifyContent, flex, color, space } from 'styled-system';
 import theme from '../../shared/theme.js';
 import Badge from '../Badge';
 
-const Flex = styled.div`
-  display: flex;
-
-  ${flex}
-  ${space}
-`;
+const Flex = styled.div({ display: 'flex' }, flex, space);
 
 Flex.defaultProps = {
   justifyContent: 'flex-start',
