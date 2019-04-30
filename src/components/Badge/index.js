@@ -26,17 +26,17 @@ const StyledBadge = styled.span`
 const Badge = ({ variant, ...props }) => {
   let bg = variant;
 
-  const passprops = {
-    ...props,
-    bg: variant,
-    color: includes(['warning', ''], variant) ? props.color : 'white',
-  };
-
   if (variant === 'dark') {
     bg = 'rgba(0, 0, 0, 0.2)';
   }
 
-  return <StyledBadge {...passprops} bg={bg} />;
+  const passprops = {
+    ...props,
+    bg,
+    color: includes(['warning', ''], variant) ? props.color : 'white',
+  };
+
+  return <StyledBadge {...passprops} />;
 };
 
 Badge.defaultProps = {
