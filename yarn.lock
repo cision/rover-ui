@@ -3879,6 +3879,11 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+batch-processor@^1.0.0:
+  version "1.0.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/batch-processor/-/batch-processor-1.0.0.tgz#75c95c32b748e0850d10c2b168f6bdbe9891ace8"
+  integrity sha1-dclcMrdI4IUNEMKxaPa9vpiRrOg=
+
 batch@0.6.1:
   version "0.6.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/batch/-/batch-0.6.1.tgz#dc34314f4e679318093fc760272525f94bf25c16"
@@ -4819,6 +4824,11 @@ constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
   integrity sha1-wguW2MYXdIqvHBYCF2DNJ/y4y3U=
+
+container-query-toolkit@0.1.3:
+  version "0.1.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/container-query-toolkit/-/container-query-toolkit-0.1.3.tgz#79ece9fe491d9187b7051247067f1faac6ce00b0"
+  integrity sha1-eezp/kkdkYe3BRJHBn8fqsbOALA=
 
 contains-path@^0.1.0:
   version "0.1.0"
@@ -5766,6 +5776,13 @@ elegant-spinner@^1.0.1:
   version "1.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/elegant-spinner/-/elegant-spinner-1.0.1.tgz#db043521c95d7e303fd8f345bedc3349cfb0729e"
   integrity sha1-2wQ1IcldfjA/2PNFvtwzSc+wcp4=
+
+element-resize-detector@1.1.13:
+  version "1.1.13"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/element-resize-detector/-/element-resize-detector-1.1.13.tgz#f61907e98a91b1ad215f92790bc15113df68444d"
+  integrity sha1-9hkH6YqRsa0hX5J5C8FRE99oRE0=
+  dependencies:
+    batch-processor "^1.0.0"
 
 elliptic@^6.0.0:
   version "6.4.1"
@@ -11923,6 +11940,14 @@ react-color@^2.17.0:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
+react-container-query@^0.11.0:
+  version "0.11.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react-container-query/-/react-container-query-0.11.0.tgz#b07ac2794612499dd8f2d1759b72e9c415e53567"
+  integrity sha1-sHrCeUYSSZ3Y8tF1m3LpxBXlNWc=
+  dependencies:
+    container-query-toolkit "0.1.3"
+    resize-observer-lite "0.2.3"
+
 react-dev-utils@^5.0.2:
   version "5.0.3"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react-dev-utils/-/react-dev-utils-5.0.3.tgz#92f97668f03deb09d7fa11ea288832a8c756e35e"
@@ -12764,6 +12789,13 @@ reserved-words@^0.1.2:
   version "0.1.2"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/reserved-words/-/reserved-words-0.1.2.tgz#00a0940f98cd501aeaaac316411d9adc52b31ab1"
   integrity sha1-AKCUD5jNUBrqqsMWQR2a3FKzGrE=
+
+resize-observer-lite@0.2.3:
+  version "0.2.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/resize-observer-lite/-/resize-observer-lite-0.2.3.tgz#b557f378e2ce9b9aab1dc71a91047bd7ed1d8915"
+  integrity sha1-tVfzeOLOm5qrHccakQR71+0diRU=
+  dependencies:
+    element-resize-detector "1.1.13"
 
 resize-observer-polyfill@^1.5.1:
   version "1.5.1"
