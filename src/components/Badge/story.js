@@ -3,10 +3,17 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, select } from '@storybook/addon-knobs';
 import styled from 'styled-components';
-import { alignSelf, justifyContent, flex, color, space } from 'styled-system';
+import {
+  alignSelf,
+  color,
+  flex,
+  justifyContent,
+  order,
+  space,
+} from 'styled-system';
 
 import theme from '../../shared/theme.js';
-import Badge from '../Badge';
+import Badge, { variants } from '../Badge';
 
 const Flex = styled.div({ display: 'flex' }, flex, space);
 
@@ -17,12 +24,20 @@ Flex.defaultProps = {
   mb: 0,
 };
 
-const Box = styled.div`
-  ${alignSelf}
-  ${justifyContent}
-  ${color}
-  ${space}
-`;
+Flex.displayName = 'Flex';
+
+const Box = styled.div(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  alignSelf,
+  justifyContent,
+  flex,
+  order,
+  color,
+  space
+);
 
 Box.displayName = 'Box';
 
@@ -37,15 +52,7 @@ storiesOf('Planets/Badge', module)
   .add(
     'Overview',
     () => {
-      const colorOptions = [
-        '',
-        'danger',
-        'dark',
-        'notify',
-        'warning',
-        'info',
-        'success',
-      ];
+      const colorOptions = variants;
 
       const fontSize = select('Font size', theme.fontSizes.map((_, i) => i), 2);
       const variant = select('Variant', colorOptions, '');

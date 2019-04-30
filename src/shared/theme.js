@@ -40,57 +40,6 @@ const theme = {
   colors,
   fontSizes,
   fonts: fontFamilies,
-  textStyles: {
-    headline: {
-      fontSize: [11, 12, 14],
-      fontWeight: 800,
-      lineHeight: [1],
-      textTransform: 'uppercase',
-      fontFamily: fontFamilies.heading,
-    },
-    trafalgar: {
-      tag: 'h1',
-      fontSize: [6, 9, 12],
-      lineHeight: ['24px', '28px', '40px'],
-      fontWeight: 500,
-      fontFamily: fontFamilies.heading,
-    },
-    paragon: {
-      tag: 'h2',
-      fontSize: [6, 8, 11],
-      fontWeight: 500,
-      fontFamily: fontFamilies.heading,
-      lineHeight: ['20px', '26px', '32px'],
-    },
-    doublePica: {
-      fontSize: [6, 6, 10],
-      fontWeight: 400,
-      fontFamily: fontFamilies.heading,
-      lineHeight: ['24px', '24px', '30px'],
-    },
-    greatPrimer: {
-      tag: 'h3',
-      fontWeight: 400,
-      fontSize: [5, 5, 7],
-      fontFamily: fontFamilies.heading,
-      lineHeight: ['22px', '22px', '24px'],
-    },
-    bodyCopy: {
-      fontSize: [3, 4, 5],
-      fontFamily: fontFamilies.body,
-      lineHeight: ['20px', '22px', '24px'],
-    },
-    code: {
-      px: '4px',
-      py: '2px',
-      lineHeight: '22px',
-      borderRadius: 4,
-      fontFamily: fontFamilies.code,
-    },
-    underline: {
-      textDecoration: 'underline',
-    },
-  },
 };
 
 export default theme;
