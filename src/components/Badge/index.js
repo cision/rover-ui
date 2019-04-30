@@ -23,17 +23,21 @@ const StyledBadge = styled.span`
   ${marginRight}
 `;
 
-const Badge = ({ variant, ...props }) => {
+const Badge = ({ variant, color: badgeColor, ...props }) => {
   let bg = variant;
 
   if (variant === 'dark') {
     bg = 'rgba(0, 0, 0, 0.2)';
   }
 
+  if (includes(['warning', ''], variant)) {
+    badgeColor = 'grayLite.0';
+  }
+
   const passprops = {
     ...props,
     bg,
-    color: includes(['warning', ''], variant) ? props.color : 'white',
+    color: badgeColor,
   };
 
   return <StyledBadge {...passprops} />;
@@ -42,7 +46,7 @@ const Badge = ({ variant, ...props }) => {
 Badge.defaultProps = {
   alignment: '',
   variant: '',
-  color: 'grayLite.0',
+  color: 'white',
   fontFamily: 'body',
   fontSize: 0,
   ml: 0,
