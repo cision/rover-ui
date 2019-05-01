@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { includes } from 'lodash';
+import includes from 'lodash/includes';
 import styled from 'styled-components';
 import {
   color,
@@ -23,30 +23,32 @@ const StyledBadge = styled.span`
   ${marginRight}
 `;
 
-const Badge = ({ variant, color: badgeColor, ...props }) => {
-  let bg = variant;
+const Badge = ({ variant, ...props }) => {
+  let bg = props.bg || variant;
+  let { color: badgeColor } = props;
 
   if (variant === 'dark') {
     bg = 'rgba(0, 0, 0, 0.2)';
   }
 
-  if (includes(['warning', ''], variant)) {
-    badgeColor = 'grayLite.0';
+  if (!includes(['warning', ''], variant)) {
+    badgeColor = 'white';
   }
 
-  const passprops = {
+  const defaultProps = {
     ...props,
     bg,
     color: badgeColor,
   };
 
-  return <StyledBadge {...passprops} />;
+  return <StyledBadge {...defaultProps} />;
 };
 
 Badge.defaultProps = {
   alignment: '',
   variant: '',
-  color: 'white',
+  bg: null,
+  color: 'grayLite.0',
   fontFamily: 'body',
   fontSize: 0,
   ml: 0,

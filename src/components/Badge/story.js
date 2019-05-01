@@ -110,6 +110,9 @@ storiesOf('Planets/Badge', module)
     <Box p={1}>
       <Box>
         <Badge>My Badge</Badge>
+        <Badge ml={2} bg="grayLite.3" color="gray">
+          Other
+        </Badge>
       </Box>
       <Box bg="#414c52">
         <Badge variant="dark">Dark Badge</Badge>
@@ -124,7 +127,12 @@ storiesOf('Planets/Badge', module)
         <Badge variant="info">Info Badge</Badge>
       </Box>
       <Box>
-        <Badge variant="warning">Warning Badge</Badge>
+        <Badge mr={2} variant="warning">
+          Warning Badge
+        </Badge>
+        <Badge bg="grayLite.0" color="success">
+          Different text color and font-size
+        </Badge>
       </Box>
       <Box>
         <Badge variant="success">Success Badge</Badge>
