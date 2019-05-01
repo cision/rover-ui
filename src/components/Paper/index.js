@@ -1,5 +1,7 @@
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { backgroundColor, padding, marginBottom } from 'styled-system';
+
+import defaultTheme from '../../shared/theme.js';
 
 const Paper = styled.div`
   border-radius: 2px;
@@ -13,9 +15,10 @@ const Paper = styled.div`
 Paper.displayName = 'Paper';
 
 Paper.defaultProps = {
+  theme: { ...defaultTheme },
   bg: 'white',
   mb: 3,
   p: '20px',
 };
 
-export default Paper;
+export default withTheme(Paper);

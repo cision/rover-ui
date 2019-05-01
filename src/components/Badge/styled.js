@@ -7,7 +7,7 @@ import {
   marginRight,
 } from 'styled-system';
 
-import theme from '../../shared/theme.js';
+import defaultTheme from '../../shared/theme.js';
 
 const StyledBadge = styled.span`
   border-radius: 2px;
@@ -23,11 +23,7 @@ const StyledBadge = styled.span`
 `;
 
 StyledBadge.defaultProps = {
-  theme: { ...theme },
-};
-
-StyledBadge.defaultProps = {
-  theme: { ...theme },
+  theme: { ...defaultTheme },
   bg: null,
   color: 'grayLite.0',
   fontFamily: 'body',
