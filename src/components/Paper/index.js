@@ -1,36 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import styled from 'styled-components';
+import { backgroundColor, padding, marginBottom } from 'styled-system';
 
-import styles from './style.css';
-import withPadding from '../withPadding';
+const Paper = styled.div`
+  border-radius: 2px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 
-const Paper = ({ dark, className, ...props }) => {
-  const classes = classNames(styles.Paper, {
-    [className]: !!className,
-    [styles.dark]: dark,
-  });
+  ${backgroundColor}
+  ${padding}
+  ${marginBottom}
+`;
 
-  const passprops = {
-    ...props,
-    className: classes,
-  };
-
-  return <div {...passprops} />;
-};
+Paper.displayName = 'Paper';
 
 Paper.defaultProps = {
-  children: null,
-  className: '',
-  dark: false,
-  style: {},
+  bg: 'white',
+  mb: 3,
+  p: '20px',
 };
 
-Paper.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  dark: PropTypes.bool,
-  style: PropTypes.object,
-};
-
-export default withPadding(Paper);
+export default Paper;
