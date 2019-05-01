@@ -34,7 +34,7 @@ const fontFamilies = {
 
 const fontSizes = [12, 14, 18, 25, 30];
 
-const theme = {
+const defaultTheme = {
   breakpoints: ['450px', '599px'],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   colors,
@@ -42,4 +42,4 @@ const theme = {
   fonts: fontFamilies,
 };
 
-export default theme;
+export default defaultTheme;
