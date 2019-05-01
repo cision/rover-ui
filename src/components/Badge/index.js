@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import {
   color,
   fontFamily,
@@ -9,6 +9,18 @@ import {
   marginLeft,
   marginRight,
 } from 'styled-system';
+
+import theme from '../../shared/theme.js';
+
+export const variants = [
+  'dark',
+  'danger',
+  'notify',
+  'warning',
+  'info',
+  'success',
+  '',
+];
 
 const StyledBadge = styled.span`
   border-radius: 2px;
@@ -22,6 +34,10 @@ const StyledBadge = styled.span`
   ${marginLeft}
   ${marginRight}
 `;
+
+StyledBadge.defaultProps = {
+  theme: { ...theme },
+};
 
 const Badge = ({ variant, ...props }) => {
   let bg = props.bg || variant;
@@ -41,7 +57,9 @@ const Badge = ({ variant, ...props }) => {
     color: badgeColor,
   };
 
-  return <StyledBadge {...defaultProps} />;
+  const ThemedBadge = withTheme(StyledBadge);
+
+  return <ThemedBadge {...defaultProps} />;
 };
 
 Badge.defaultProps = {
@@ -54,16 +72,6 @@ Badge.defaultProps = {
   ml: 0,
   mr: 0,
 };
-
-export const variants = [
-  'dark',
-  'danger',
-  'notify',
-  'warning',
-  'info',
-  'success',
-  '',
-];
 
 Badge.propTypes = {
   variant: PropTypes.oneOf(variants),
