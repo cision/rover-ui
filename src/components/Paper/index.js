@@ -18,7 +18,7 @@ Paper.defaultProps = {
   theme: { ...defaultTheme },
   bg: 'white',
   mb: 3,
-  p: '20px',
+  p: 3,
 };
 
 export default withTheme(Paper);
