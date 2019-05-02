@@ -11,6 +11,7 @@ import './shared/reset.css';
 
 import './components/Badge/story';
 import './components/Button/story';
+import './components/Paper/story';
 
 /*
  * STAR SYSTEMS

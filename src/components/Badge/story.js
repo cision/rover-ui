@@ -1,46 +1,75 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { boolean, text, select } from '@storybook/addon-knobs';
+import { text, select } from '@storybook/addon-knobs';
+import styled from 'styled-components';
+import {
+  alignSelf,
+  color,
+  flex,
+  justifyContent,
+  order,
+  space,
+} from 'styled-system';
 
-import Badge from '../Badge';
+import theme from '../../shared/theme.js';
+import Badge, { variants } from '../Badge';
 
-const divStyle = {
-  marginBottom: '10px',
-  padding: '20px',
+const Flex = styled.div({ display: 'flex' }, flex, space);
+
+Flex.defaultProps = {
+  justifyContent: 'flex-start',
+  flex: '1 0 auto',
+  p: 3,
+  mb: 0,
 };
-const darkStyle = {
-  ...divStyle,
-  backgroundColor: '#414c52',
+
+Flex.displayName = 'Flex';
+
+const Box = styled.div(
+  {
+    boxSizing: 'border-box',
+    minWidth: 0,
+  },
+  alignSelf,
+  justifyContent,
+  flex,
+  order,
+  color,
+  space
+);
+
+Box.displayName = 'Box';
+
+Box.defaultProps = {
+  alignSelf: 'flex-start',
+  justifyContent: 'center',
+  p: 3,
+  mb: 2,
 };
 
 storiesOf('Planets/Badge', module)
   .add(
     'Overview',
     () => {
-      const colorOptions = [
-        '',
-        'danger',
-        'notify',
-        'warning',
-        'info',
-        'success',
-      ];
+      const colorOptions = variants;
+
+      const fontSize = select('Font size', theme.fontSizes.map((_, i) => i), 2);
+      const variant = select('Variant', colorOptions, '');
 
       return (
-        <Badge
-          color={select('color', colorOptions, '')}
-          darkMode={boolean('dark mode', false)}
-        >
-          {text('Children', 'My Badge')}
-        </Badge>
+        <Box p={4}>
+          <Badge fontSize={fontSize} variant={variant}>
+            {text('Children', 'My Badge')}
+          </Badge>
+        </Box>
       );
     },
     {
       info: {
         inline: true,
         text: `
-              #### Badges are used for additional information
+#### Badges are used for additional information
 
               The badge background color is controled by the \`color\` prop.
               Any of the semantic colors can be overridden by \`darkMode = true\`.
@@ -77,54 +106,64 @@ storiesOf('Planets/Badge', module)
       },
     }
   )
-  .add('Examples', () => {
-    return (
-      <div>
-        <div style={divStyle}>
-          <Badge>My Badge</Badge>
-        </div>
-        <div style={darkStyle}>
-          <Badge darkMode>Dark Badge</Badge>
-        </div>
-        <div style={divStyle}>
-          <Badge color="danger">Danger Badge</Badge>
-        </div>
-        <div style={divStyle}>
-          <Badge color="notify">Notify Badge</Badge>
-        </div>
-        <div style={divStyle}>
-          <Badge color="info">Info Badge</Badge>
-        </div>
-        <div style={divStyle}>
-          <Badge color="warning">Warning Badge</Badge>
-        </div>
-        <div style={divStyle}>
-          <Badge color="success">Success Badge</Badge>
-        </div>
-        <div style={{ ...divStyle, display: 'flex', alignItems: 'baseline' }}>
-          <div style={{ marginRight: '10px' }}>
-            <Badge color="info">Print</Badge>
-          </div>
-          <div style={{ marginRight: '10px' }}>
-            <Badge color="info">Broadcast</Badge>
-          </div>
-          <div style={{ marginRight: '10px' }}>
-            <Badge color="info">Radio</Badge>
-          </div>
-          <span>Article</span>
-        </div>
-        <div style={{ ...divStyle, display: 'flex', alignItems: 'baseline' }}>
-          <span>Article</span>
-          <div style={{ marginLeft: '10px' }}>
-            <Badge color="info">Print</Badge>
-          </div>
-          <div style={{ marginLeft: '10px' }}>
-            <Badge color="info">Broadcast</Badge>
-          </div>
-          <div style={{ marginLeft: '10px' }}>
-            <Badge color="info">Radio</Badge>
-          </div>
-        </div>
-      </div>
-    );
-  });
+  .add('Examples', () => (
+    <Box p={1}>
+      <Box>
+        <Badge>My Badge</Badge>
+        <Badge ml={2} bg="grayLite.3" color="gray">
+          Other
+        </Badge>
+      </Box>
+      <Box bg="#414c52">
+        <Badge variant="dark">Dark Badge</Badge>
+      </Box>
+      <Box>
+        <Badge variant="danger">Danger Badge</Badge>
+      </Box>
+      <Box>
+        <Badge variant="notify">Notify Badge</Badge>
+      </Box>
+      <Box>
+        <Badge variant="info">Info Badge</Badge>
+      </Box>
+      <Box>
+        <Badge mr={2} variant="warning">
+          Warning Badge
+        </Badge>
+        <Badge bg="grayLite.0" color="success">
+          Different text color and font-size
+        </Badge>
+      </Box>
+      <Box>
+        <Badge variant="success">Success Badge</Badge>
+      </Box>
+      <Flex m={0} p={0}>
+        <Box>
+          <Badge mr={2} variant="info">
+            Print
+          </Badge>
+          <Badge mr={2} variant="info">
+            Broadcast
+          </Badge>
+          <Badge mr={2} variant="info">
+            Radio
+          </Badge>
+          <Badge>Article</Badge>
+        </Box>
+      </Flex>
+      <Flex m={0} p={0}>
+        <Box>
+          <Badge>Article</Badge>
+          <Badge ml={2} variant="info">
+            Print
+          </Badge>
+          <Badge ml={2} variant="info">
+            Broadcast
+          </Badge>
+          <Badge ml={2} variant="info">
+            Radio
+          </Badge>
+        </Box>
+      </Flex>
+    </Box>
+  ));

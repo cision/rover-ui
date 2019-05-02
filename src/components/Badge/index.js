@@ -1,34 +1,50 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import includes from 'lodash/includes';
 
-import styles from './style.css';
+import ThemedBadge from './styled.js';
 
-const Badge = ({ className, darkMode, color, ...passprops }) => {
-  const classes = classNames(styles.Badge, {
-    className: !!className,
-    [styles[color]]: !!color && !darkMode,
-    [styles.dark]: darkMode,
-  });
+const Badge = ({ variant, bg, ...props }) => {
+  let background = bg || variant;
+  let { color: badgeColor } = props;
 
-  return <div {...passprops} className={classes} />;
+  if (variant === 'dark') {
+    background = 'rgba(0, 0, 0, 0.2)';
+  }
+
+  if (!includes(['warning', ''], variant)) {
+    badgeColor = 'white';
+  }
+
+  const defaultProps = {
+    ...props,
+    bg: background,
+    color: badgeColor,
+  };
+
+  return <ThemedBadge {...defaultProps} />;
 };
 
+export const variants = [
+  'dark',
+  'danger',
+  'notify',
+  'warning',
+  'info',
+  'success',
+  '',
+];
+
 Badge.defaultProps = {
-  alignment: '',
-  children: null,
-  className: '',
-  darkMode: false,
-  color: '',
-  style: {},
+  bg: null,
+  color: null,
+  variant: '',
 };
 
 Badge.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  color: PropTypes.oneOf(['danger', 'notify', 'warning', 'info', 'success']),
-  darkMode: PropTypes.boolean,
-  style: PropTypes.object,
+  bg: PropTypes.string,
+  color: PropTypes.string,
+  variant: PropTypes.oneOf(variants),
 };
 
 export default Badge;
