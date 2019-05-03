@@ -1244,14 +1244,14 @@
     util-deprecate "^1.0.2"
 
 "@storybook/addon-info@^5.0.6":
-  version "5.0.6"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.0.6.tgz#3919d873ece5a126a7b98dad5b4cf6246c0c50a9"
-  integrity sha512-+jkyx4MlF/wrJ+v7ybQOpGYDL2jvu/dWiVO7mitQ6oyjQiRsmBXejuHv+NXpeVAGkzfXZBsnx0eCzCJLvpF69g==
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-5.0.10.tgz#469fb109e49cad96181816372491bcfda72bdecd"
+  integrity sha512-pEqLuPopo42AgGVrCSmF/LLB9WrCD0BP/kdTN5FK+xHtRxMHBGMXfmKkErdeXNRWNgRlKi20iJfgX8n0ysxGEA==
   dependencies:
-    "@storybook/addons" "5.0.6"
-    "@storybook/client-logger" "5.0.6"
-    "@storybook/components" "5.0.6"
-    "@storybook/theming" "5.0.6"
+    "@storybook/addons" "5.0.10"
+    "@storybook/client-logger" "5.0.10"
+    "@storybook/components" "5.0.10"
+    "@storybook/theming" "5.0.10"
     core-js "^2.6.5"
     global "^4.3.2"
     marksy "^6.1.0"
@@ -1299,6 +1299,17 @@
     prop-types "^15.6.2"
     qs "^6.5.2"
 
+"@storybook/addons@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.0.10.tgz#8911e6e7797185327f0117035a4bc451a57e62d7"
+  integrity sha512-plpLh17dt8KWhs8dRQlleClc7sibE1Plq7QQWyAsZjblRHfpNnv82Ax9ArmMeGFx2TRTTbCOcw9PiaKkt5/E7Q==
+  dependencies:
+    "@storybook/channels" "5.0.10"
+    "@storybook/client-logger" "5.0.10"
+    core-js "^2.6.5"
+    global "^4.3.2"
+    util-deprecate "^1.0.2"
+
 "@storybook/addons@5.0.6", "@storybook/addons@^5.0.6":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-5.0.6.tgz#3ecb7fd8421e6557b1abc71ebede905e8decfebc"
@@ -1320,6 +1331,13 @@
     core-js "^2.6.5"
     global "^4.3.2"
     telejson "^2.1.0"
+
+"@storybook/channels@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/channels/-/channels-5.0.10.tgz#b1ae31784359a3d12403a53a5be8eb2327c4a467"
+  integrity sha512-5WWSHEI6uFkzv3E5UaqMH2H0BFCI1CyPrJRUZyhsrBcnJctUQ+4J74IMCP9FQhaBCc6yLQlKWLpllaIHB5kPbA==
+  dependencies:
+    core-js "^2.6.5"
 
 "@storybook/channels@5.0.6":
   version "5.0.6"
@@ -1348,12 +1366,50 @@
     memoizerific "^1.11.3"
     qs "^6.5.2"
 
+"@storybook/client-logger@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-5.0.10.tgz#710b249c30aa320a0aef7da464d7e621a390bf92"
+  integrity sha512-Nh4dJ8rTPtOT1/Bef39+4HZVYX6EJthMpjjV04AWxT5ngxBa2MzhmcbnoYc3NOBSRh9fhJ6jm14/skQmLAO/jQ==
+  dependencies:
+    core-js "^2.6.5"
+
 "@storybook/client-logger@5.0.6":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@storybook/client-logger/-/client-logger-5.0.6.tgz#d183534ccc8c864039113dcc33407e7f1f5d7594"
   integrity sha512-WYF3E2A5UzAPcCVs3A2xqbdrDfGi/g6zByDZYnmgW46U7NkvmGRPLGMt/lTXBQNwB3LVNlg7SRQO/AJwgqIJ0Q==
   dependencies:
     core-js "^2.6.5"
+
+"@storybook/components@5.0.10", "@storybook/components@^5.0.6":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.0.10.tgz#e0e7eed0e42160a8143fb7e57e7b45bb1ed71841"
+  integrity sha512-G2+2+8y3vFBvOqbaqOLDAjWFM9iO3TNnWadqkS5t6jAsl/pCVozKecPihR8S7Qr4Joy3PpdVSXGjFNFDWVJT4g==
+  dependencies:
+    "@storybook/addons" "5.0.10"
+    "@storybook/client-logger" "5.0.10"
+    "@storybook/core-events" "5.0.10"
+    "@storybook/router" "5.0.10"
+    "@storybook/theming" "5.0.10"
+    core-js "^2.6.5"
+    global "^4.3.2"
+    immer "^1.12.0"
+    js-beautify "^1.8.9"
+    lodash.pick "^4.4.0"
+    lodash.throttle "^4.1.1"
+    memoizerific "^1.11.3"
+    polished "^2.3.3"
+    prop-types "^15.6.2"
+    react "^16.8.1"
+    react-dom "^16.8.1"
+    react-focus-lock "^1.17.7"
+    react-helmet-async "^0.2.0"
+    react-inspector "^2.3.0"
+    react-popper-tooltip "^2.8.0"
+    react-syntax-highlighter "^8.0.1"
+    react-textarea-autosize "^7.0.4"
+    reactjs-popup "^1.3.2"
+    recompose "^0.30.0"
+    render-fragment "^0.1.1"
 
 "@storybook/components@5.0.6":
   version "5.0.6"
@@ -1385,6 +1441,13 @@
     reactjs-popup "^1.3.2"
     recompose "^0.30.0"
     render-fragment "^0.1.1"
+
+"@storybook/core-events@5.0.10", "@storybook/core-events@^5.0.6":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-5.0.10.tgz#6437f8b6a6c3c902fa2fbad8de992c5104115332"
+  integrity sha512-Hp8PleSXAbVNr/yi58JIQb/tjZVpRcjEe8ztIp4JT5qhpz+xHTiVnS7mo8gCdyMw5cr38ANgdlZGnLshJY29lQ==
+  dependencies:
+    core-js "^2.6.5"
 
 "@storybook/core-events@5.0.6":
   version "5.0.6"
@@ -1504,6 +1567,18 @@
     semver "^5.6.0"
     webpack "^4.29.0"
 
+"@storybook/router@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/router/-/router-5.0.10.tgz#a756dc521fc4df19a090fcc23eed0a5de5fedc87"
+  integrity sha512-mHxMynnsbUNcr1GoXXunRVI+JvDTBE/lAAdqzMUduI4E6eUv8MHXw2KfeNQcZaNAf0PLynvbqJd2qpfMpKo/zA==
+  dependencies:
+    "@reach/router" "^1.2.1"
+    "@storybook/theming" "5.0.10"
+    core-js "^2.6.5"
+    global "^4.3.2"
+    memoizerific "^1.11.3"
+    qs "^6.5.2"
+
 "@storybook/router@5.0.6":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@storybook/router/-/router-5.0.6.tgz#1856aaa2771145a7ace804d893fa92bc73418039"
@@ -1515,6 +1590,26 @@
     global "^4.3.2"
     memoizerific "^1.11.3"
     qs "^6.5.2"
+
+"@storybook/theming@5.0.10":
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-5.0.10.tgz#6e2b00f879678419e2297ed8a31c357ae7976801"
+  integrity sha512-4IUtWglyAQCPHKMqPZkTWc/8FbfGHwtRSbaNxbv5S6PEcfWPIiMVWWRYMBNyETvYoYbCOHORH1w7iwJs75sRmA==
+  dependencies:
+    "@emotion/core" "^10.0.7"
+    "@emotion/styled" "^10.0.7"
+    "@storybook/client-logger" "5.0.10"
+    common-tags "^1.8.0"
+    core-js "^2.6.5"
+    deep-object-diff "^1.1.0"
+    emotion-theming "^10.0.7"
+    global "^4.3.2"
+    lodash.isequal "^4.5.0"
+    lodash.mergewith "^4.6.1"
+    memoizerific "^1.11.3"
+    polished "^2.3.3"
+    prop-types "^15.6.2"
+    react-inspector "^2.3.1"
 
 "@storybook/theming@5.0.6":
   version "5.0.6"
@@ -2365,6 +2460,11 @@ ast-types@0.11.7:
   version "0.11.7"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ast-types/-/ast-types-0.11.7.tgz#f318bf44e339db6a320be0009ded64ec1471f46c"
   integrity sha1-8xi/ROM522oyC+AAne1k7BRx9Gw=
+
+ast-types@0.9.6:
+  version "0.9.6"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ast-types/-/ast-types-0.9.6.tgz#102c9e9e9005d3e7e3829bf0c4fa24ee862ee9b9"
+  integrity sha1-ECyenpAF0+fjgpvwxPok7oYu6bk=
 
 astral-regex@^1.0.0:
   version "1.0.0"
@@ -5863,6 +5963,14 @@ es6-symbol@3.1.1, es6-symbol@^3.1.1, es6-symbol@~3.1.1:
     d "1"
     es5-ext "~0.10.14"
 
+es6-templates@^0.2.3:
+  version "0.2.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/es6-templates/-/es6-templates-0.2.3.tgz#5cb9ac9fb1ded6eb1239342b81d792bbb4078ee4"
+  integrity sha1-XLmsn7He1usSOTQrgdeSu7QHjuQ=
+  dependencies:
+    recast "~0.11.12"
+    through "~2.3.6"
+
 es6-weak-map@^2.0.1:
   version "2.0.2"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/es6-weak-map/-/es6-weak-map-2.0.2.tgz#5e3ab32251ffd1538a1f8e5ffa1357772f92d96f"
@@ -6243,7 +6351,7 @@ esprima@^2.6.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
   integrity sha1-luO3DVd59q1JzQMmc9HDEnZ7pYE=
 
-esprima@^3.1.3:
+esprima@^3.1.3, esprima@~3.1.0:
   version "3.1.3"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
   integrity sha1-/cpRzuYTOJXjyI1TXOSdv/YqRjM=
@@ -7622,7 +7730,18 @@ html-entities@^1.2.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
   integrity sha1-DfKTUfByEWNRXfueVUPl9u7VFi8=
 
-html-minifier@^3.2.3, html-minifier@^3.5.20:
+html-loader@^0.5.5:
+  version "0.5.5"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/html-loader/-/html-loader-0.5.5.tgz#6356dbeb0c49756d8ebd5ca327f16ff06ab5faea"
+  integrity sha1-Y1bb6wxJdW2OvVyjJ/Fv8Gq1+uo=
+  dependencies:
+    es6-templates "^0.2.3"
+    fastparse "^1.1.1"
+    html-minifier "^3.5.8"
+    loader-utils "^1.1.0"
+    object-assign "^4.1.1"
+
+html-minifier@^3.2.3, html-minifier@^3.5.20, html-minifier@^3.5.8:
   version "3.5.21"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/html-minifier/-/html-minifier-3.5.21.tgz#d0040e054730e354db008463593194015212d20c"
   integrity sha1-0AQOBUcw41TbAIRjWTGUAVIS0gw=
@@ -9403,6 +9522,11 @@ lodash.throttle@^4.1.1:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
 
+lodash.toarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
+  integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
+
 lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
@@ -9570,6 +9694,14 @@ markdown-escapes@^1.0.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/markdown-escapes/-/markdown-escapes-1.0.2.tgz#e639cbde7b99c841c0bacc8a07982873b46d2122"
   integrity sha1-5jnL3nuZyEHAusyKB5goc7RtISI=
 
+markdown-loader@^5.0.0:
+  version "5.0.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/markdown-loader/-/markdown-loader-5.0.0.tgz#d6af0f2d5fe7713fb692cbd85b547ff0ef26baa8"
+  integrity sha1-1q8PLV/ncT+2ksvYW1R/8O8muqg=
+  dependencies:
+    loader-utils "^1.2.3"
+    marked "^0.6.0"
+
 markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
@@ -9587,6 +9719,11 @@ marked@^0.3.12:
   version "0.3.19"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/marked/-/marked-0.3.19.tgz#5d47f709c4c9fc3c216b6d46127280f40b39d790"
   integrity sha1-XUf3CcTJ/Dwha21GEnKA9As515A=
+
+marked@^0.6.0, marked@^0.6.1:
+  version "0.6.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/marked/-/marked-0.6.2.tgz#c574be8b545a8b48641456ca1dbe0e37b6dccc1a"
+  integrity sha1-xXS+i1Rai0hkFFbKHb4ON7bczBo=
 
 marksy@^6.1.0:
   version "6.1.0"
@@ -10061,6 +10198,13 @@ node-dir@^0.1.10:
   integrity sha1-X1Zl2TNRM1yqvvjxxVRRbPXx5OU=
   dependencies:
     minimatch "^3.0.2"
+
+node-emoji@1.10.0:
+  version "1.10.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/node-emoji/-/node-emoji-1.10.0.tgz#8886abd25d9c7bb61802a658523d1f8d2a89b2da"
+  integrity sha1-iIar0l2ce7YYAqZYUj0fjSqJsto=
+  dependencies:
+    lodash.toarray "^4.4.0"
 
 node-fetch@^1.0.1:
   version "1.7.3"
@@ -11450,7 +11594,12 @@ pretty-hrtime@^1.0.3:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-prismjs@^1.8.4, prismjs@~1.16.0:
+prism-themes@^1.1.0:
+  version "1.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/prism-themes/-/prism-themes-1.1.0.tgz#9f4fadf0c9c7ee415773717ea69c2aaa25aedbfd"
+  integrity sha1-n0+t8MnH7kFXc3F+ppwqqiWu2/0=
+
+prismjs@^1.16.0, prismjs@^1.8.4, prismjs@~1.16.0:
   version "1.16.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/prismjs/-/prismjs-1.16.0.tgz#406eb2c8aacb0f5f0f1167930cb83835d10a4308"
   integrity sha1-QG6yyKrLD18PEWeTDLg4NdEKQwg=
@@ -12195,6 +12344,16 @@ recast@^0.16.0:
     esprima "~4.0.0"
     private "~0.1.5"
     source-map "~0.6.1"
+
+recast@~0.11.12:
+  version "0.11.23"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/recast/-/recast-0.11.23.tgz#451fd3004ab1e4df9b4e4b66376b2a21912462d3"
+  integrity sha1-RR/TAEqx5N+bTktmN2sqIZEkYtM=
+  dependencies:
+    ast-types "0.9.6"
+    esprima "~3.1.0"
+    private "~0.1.5"
+    source-map "~0.5.0"
 
 rechoir@^0.6.2:
   version "0.6.2"
@@ -13260,7 +13419,7 @@ source-map-url@^0.4.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/source-map-url/-/source-map-url-0.4.0.tgz#3e935d7ddd73631b97659956d55128e87b5084a3"
   integrity sha1-PpNdfd1zYxuXZZlW1VEo6HtQhKM=
 
-source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.1:
+source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.0, source-map@~0.5.1:
   version "0.5.7"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
@@ -13422,6 +13581,23 @@ stealthy-require@^1.1.1:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
+storybook-readme@^5.0.2:
+  version "5.0.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/storybook-readme/-/storybook-readme-5.0.2.tgz#c341f61078372976851fe93c1c4698191cff8960"
+  integrity sha1-w0H2EHg3KXaFH+k8HEaYGRz/iWA=
+  dependencies:
+    "@storybook/components" "^5.0.6"
+    "@storybook/core-events" "^5.0.6"
+    html-loader "^0.5.5"
+    lodash "^4.17.11"
+    markdown-loader "^5.0.0"
+    marked "^0.6.1"
+    node-emoji "1.10.0"
+    prism-themes "^1.1.0"
+    prismjs "^1.16.0"
+    string-raw "^1.0.1"
+    vuex "^3.1.0"
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -13475,6 +13651,11 @@ string-length@^1.0.1:
   integrity sha1-VpcPscOFWOnnC3KL894mmsRa36w=
   dependencies:
     strip-ansi "^3.0.0"
+
+string-raw@^1.0.1:
+  version "1.0.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/string-raw/-/string-raw-1.0.1.tgz#01be2665a1cfa2c57520c910698f6ca276a4c726"
+  integrity sha1-Ab4mZaHPosV1IMkQaY9sonakxyY=
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
@@ -14049,7 +14230,7 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-through@^2.3.6:
+through@^2.3.6, through@~2.3.6:
   version "2.3.8"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
@@ -14675,6 +14856,11 @@ vm-browserify@0.0.4:
   integrity sha1-XX6kW7755Kb/ZflUOOCofDV9WnM=
   dependencies:
     indexof "0.0.1"
+
+vuex@^3.1.0:
+  version "3.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/vuex/-/vuex-3.1.0.tgz#634b81515cf0cfe976bd1ffe9601755e51f843b9"
+  integrity sha1-Y0uBUVzwz+l2vR/+lgF1XlH4Q7k=
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"
