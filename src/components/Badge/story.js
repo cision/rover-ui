@@ -3,18 +3,12 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { text, select } from '@storybook/addon-knobs';
 import styled from 'styled-components';
-import {
-  alignSelf,
-  color,
-  flex,
-  justifyContent,
-  order,
-  space,
-} from 'styled-system';
+import { alignSelf, justifyContent, flex, space } from 'styled-system';
 
 import theme from '../../shared/theme.js';
 import Badge, { variants } from './';
 import Readme from './README.md';
+import Paper from '../Paper';
 
 const Flex = styled.div({ display: 'flex' }, flex, space);
 
@@ -27,18 +21,7 @@ Flex.defaultProps = {
 
 Flex.displayName = 'Flex';
 
-const Box = styled.div(
-  {
-    boxSizing: 'border-box',
-    minWidth: 0,
-  },
-  alignSelf,
-  justifyContent,
-  flex,
-  order,
-  color,
-  space
-);
+const Box = styled(Paper)(alignSelf, justifyContent);
 
 Box.displayName = 'Box';
 
@@ -47,6 +30,7 @@ Box.defaultProps = {
   justifyContent: 'center',
   p: 3,
   mb: 2,
+  mx: 2,
 };
 
 storiesOf('Planets/Badge', module)
@@ -64,7 +48,7 @@ storiesOf('Planets/Badge', module)
       const variant = select('Variant', colorOptions, '');
 
       return (
-        <Box p={4}>
+        <Box m={2} p={4}>
           <Badge fontSize={fontSize} variant={variant}>
             {text('Children', 'My Badge')}
           </Badge>
@@ -78,7 +62,7 @@ storiesOf('Planets/Badge', module)
     }
   )
   .add('Examples', () => (
-    <Box p={1}>
+    <React.Fragment>
       <Box>
         <Badge>My Badge</Badge>
         <Badge ml={2} bg="grayLite.3" color="gray">
@@ -108,8 +92,8 @@ storiesOf('Planets/Badge', module)
       <Box>
         <Badge variant="success">Success Badge</Badge>
       </Box>
-      <Flex m={0} p={0}>
-        <Box>
+      <Box>
+        <Flex m={0} p={0}>
           <Badge mr={2} variant="info">
             Print
           </Badge>
@@ -120,10 +104,10 @@ storiesOf('Planets/Badge', module)
             Radio
           </Badge>
           <Badge>Article</Badge>
-        </Box>
-      </Flex>
-      <Flex m={0} p={0}>
-        <Box>
+        </Flex>
+      </Box>
+      <Box>
+        <Flex m={0} p={0}>
           <Badge>Article</Badge>
           <Badge ml={2} variant="info">
             Print
@@ -134,7 +118,7 @@ storiesOf('Planets/Badge', module)
           <Badge ml={2} variant="info">
             Radio
           </Badge>
-        </Box>
-      </Flex>
-    </Box>
+        </Flex>
+      </Box>
+    </React.Fragment>
   ));
