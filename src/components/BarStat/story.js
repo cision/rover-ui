@@ -8,7 +8,7 @@ import { margin, space } from 'styled-system';
 import BarStat, * as Bar from './index.js';
 import Paper from '../Paper';
 import BarStatReadme from './README.md';
-import withDefaultTheme from '../withDefaultTheme/index.js';
+import withDefaultTheme from '../withDefaultTheme';
 
 const Wrap = withDefaultTheme(styled.div(margin));
 Wrap.defaultProps = { m: 3 };

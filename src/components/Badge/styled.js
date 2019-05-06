@@ -1,4 +1,4 @@
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import {
   color,
   fontFamily,
@@ -7,7 +7,7 @@ import {
   marginRight,
 } from 'styled-system';
 
-import defaultTheme from '../../shared/theme.js';
+import withDefaultTheme from '../withDefaultTheme';
 
 const StyledBadge = styled.span`
   border-radius: 2px;
@@ -23,9 +23,8 @@ const StyledBadge = styled.span`
 `;
 
 StyledBadge.defaultProps = {
-  theme: { ...defaultTheme },
   bg: null,
-  color: 'grayLite.0',
+  color: 'grays.0',
   fontFamily: 'body',
   fontSize: 0,
   ml: 0,
@@ -40,4 +39,4 @@ StyledBadge.propTypes = {
   ...marginRight.propTypes,
 };
 
-export default withTheme(StyledBadge);
+export default withDefaultTheme(StyledBadge);

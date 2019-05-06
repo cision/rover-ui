@@ -25,7 +25,7 @@ export const Bar = withDefaultTheme(
 
 Bar.displayName = 'Bar';
 Bar.defaultProps = {
-  bg: 'grayLite.4',
+  bg: 'grays.4',
   width: '100%',
   height: '10px',
 };
@@ -44,7 +44,7 @@ const BarStat = props => {
   return (
     <Fragment>
       <Bar>
-        <Bar bg="grayLite.1" width={widthPercent} />
+        <Bar bg="grays.1" width={widthPercent} />
       </Bar>
       {props.children}
     </Fragment>
