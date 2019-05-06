@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Context } from '../Context';
 
 export const Element = ({ children, ...passedProps }) => {
@@ -17,7 +18,7 @@ export const Element = ({ children, ...passedProps }) => {
 };
 
 Element.propTypes = {
-  children: React.node,
+  children: PropTypes.node,
 };
 
 Element.defaultProps = {

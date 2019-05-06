@@ -106,7 +106,7 @@ Container.propTypes = {
 };
 
 Container.defaultProps = {
-  customBreakpoints: null,
+  customBreakpoints: defaultBreakpoints,
 };
 
 export default Container;
