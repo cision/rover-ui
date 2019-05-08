@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { number } from '@storybook/addon-knobs';
+import { number, select } from '@storybook/addon-knobs';
 import styled from 'styled-components';
 import { fontFamily, fontSize, margin, space } from 'styled-system';
 
@@ -8,6 +8,7 @@ import Bar from './';
 import Paper from '../Paper';
 import BarStatReadme from './README.md';
 import withDefaultTheme from '../withDefaultTheme';
+import theme from '../../shared/theme';
 
 const Label = withDefaultTheme(styled.span(fontFamily, fontSize));
 Label.displayName = 'Label';
@@ -24,6 +25,19 @@ const Spacer = withDefaultTheme(styled.div(space));
 Spacer.defaultProps = { mb: 3 };
 Spacer.displayName = 'Spacer';
 
+const colorOptions = {
+  'river-bed': theme.colors['river-bed'],
+  'shuttle-gray': theme.colors['shuttle-gray'],
+  blue: theme.colors.blue,
+  gray: theme.colors.gray,
+  green: theme.colors.green,
+  porcelain: theme.colors.porcelain,
+  salmon: theme.colors.salmon,
+  teal: theme.colors.teal,
+  white: theme.colors.white,
+  transparent: 'transparent',
+};
+
 const options = {
   range: true,
   min: 0,
@@ -38,11 +52,18 @@ storiesOf('Solar System/Bar', module)
     },
   })
   .add('Overview', () => {
-    const value = number('Percent', 73, options);
+    const value = number('Percent', 25, options);
+    const background = select(
+      'Background',
+      colorOptions,
+      theme.colors.porcelain
+    );
+    const fill = select('Fill', colorOptions, theme.colors.blue);
+
     return (
       <Paper mx={3}>
-        <Bar.Wrapper>
-          <Bar.Fill width={`${value}%`} />
+        <Bar.Wrapper bg={background}>
+          <Bar.Fill bg={fill} width={`${value}%`} />
         </Bar.Wrapper>
         <Label>Percent: {value}</Label>
       </Paper>
