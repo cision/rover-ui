@@ -28,7 +28,7 @@ colors.grays = [
   colors['shuttle-gray'],
   colors['regent-gray'],
   colors.loblolly,
-  colors.geyset,
+  colors.geyser,
   colors.porcelain,
   '#f6f8f8',
 ];
