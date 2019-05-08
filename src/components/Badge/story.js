@@ -65,7 +65,7 @@ storiesOf('Planets/Badge', module)
     <React.Fragment>
       <Box>
         <Badge>My Badge</Badge>
-        <Badge ml={2} bg="grays.3" color="gray">
+        <Badge ml={2} bg="geyser" color="gray">
           Other
         </Badge>
       </Box>
@@ -85,7 +85,7 @@ storiesOf('Planets/Badge', module)
         <Badge mr={2} variant="warning">
           Warning Badge
         </Badge>
-        <Badge bg="grays.0" color="success">
+        <Badge bg="shuttle-gray" color="success">
           Different text color and font-size
         </Badge>
       </Box>

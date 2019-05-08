@@ -10,7 +10,7 @@ import './shared/reset.css';
  */
 
 import './components/Badge/story';
-import './components/BarStat/story';
+import './components/Bar/story';
 import './components/Button/story';
 import './components/Paper/story';
 

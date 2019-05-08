@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import includes from 'lodash/includes';
 
-import ThemedBadge from './styled.js';
+import StyledBadge from './styled.js';
 
 const Badge = ({ variant, bg, ...props }) => {
   let background = bg || variant;
@@ -22,7 +22,7 @@ const Badge = ({ variant, bg, ...props }) => {
     color: badgeColor,
   };
 
-  return <ThemedBadge {...defaultProps} />;
+  return <StyledBadge {...defaultProps} />;
 };
 
 export const variants = [

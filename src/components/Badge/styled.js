@@ -24,7 +24,7 @@ const StyledBadge = styled.span`
 
 StyledBadge.defaultProps = {
   bg: null,
-  color: 'grays.0',
+  color: 'river-bed',
   fontFamily: 'body',
   fontSize: 0,
   ml: 0,
