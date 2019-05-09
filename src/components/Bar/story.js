@@ -4,7 +4,7 @@ import { number, select } from '@storybook/addon-knobs';
 import styled from 'styled-components';
 import { fontFamily, fontSize, margin, space } from 'styled-system';
 
-import Bar from './';
+import { Bar, Fill } from './';
 import Paper from '../Paper';
 import BarStatReadme from './README.md';
 import withDefaultTheme from '../withDefaultTheme';
@@ -62,9 +62,9 @@ storiesOf('Solar System/Bar', module)
 
     return (
       <Paper mx={3}>
-        <Bar.Wrapper bg={background}>
-          <Bar.Fill bg={fill} width={`${value}%`} />
-        </Bar.Wrapper>
+        <Bar bg={background}>
+          <Fill bg={fill} width={`${value}%`} />
+        </Bar>
         <Label>Percent: {value}</Label>
       </Paper>
     );
@@ -73,44 +73,44 @@ storiesOf('Solar System/Bar', module)
     <Wrap>
       <Paper mb={2}>
         <h3>Default Bar</h3>
-        <Bar.Wrapper>
-          <Bar.Fill />
-        </Bar.Wrapper>
+        <Bar>
+          <Fill />
+        </Bar>
       </Paper>
 
       <Paper mb={2}>
         <h3>Custom Wrapper and Fill</h3>
-        <Bar.Wrapper bg="loblolly">
-          <Bar.Fill bg="salmon" width="50%" />
-        </Bar.Wrapper>
+        <Bar bg="loblolly">
+          <Fill bg="salmon" width="50%" />
+        </Bar>
       </Paper>
 
       <Paper mb={2}>
         <h3>Wrapper Width</h3>
-        <Bar.Wrapper width="25%">
-          <Bar.Fill bg="salmon" width="50%" />
-        </Bar.Wrapper>
+        <Bar width="25%">
+          <Fill bg="salmon" width="50%" />
+        </Bar>
         <Spacer />
-        <Bar.Wrapper width="50%">
-          <Bar.Fill bg="green" width="50%" />
-        </Bar.Wrapper>
+        <Bar width="50%">
+          <Fill bg="green" width="50%" />
+        </Bar>
         <Spacer />
-        <Bar.Wrapper width="75%">
-          <Bar.Fill bg="blue" width="50%" />
-        </Bar.Wrapper>
+        <Bar width="75%">
+          <Fill bg="blue" width="50%" />
+        </Bar>
         <Spacer />
-        <Bar.Wrapper width="100%">
-          <Bar.Fill bg="teal" width="50%" />
-        </Bar.Wrapper>
+        <Bar width="100%">
+          <Fill bg="teal" width="50%" />
+        </Bar>
       </Paper>
 
       <Paper mb={2}>
         <h3>Bars with multiple colors</h3>
-        <Bar.Wrapper width="100%">
-          <Bar.Fill bg="green" width="25%" />
-          <Bar.Fill bg="brandColor" width="10%" />
-          <Bar.Fill bg="loblolly" width="10%" />
-        </Bar.Wrapper>
+        <Bar width="100%">
+          <Fill bg="green" width="25%" />
+          <Fill bg="brandColor" width="10%" />
+          <Fill bg="loblolly" width="10%" />
+        </Bar>
       </Paper>
 
       <Paper mb={2}>
@@ -118,9 +118,9 @@ storiesOf('Solar System/Bar', module)
         {[0, 10, 20, 50, 99, 100].map(percent => (
           <React.Fragment key={`${percent}`.toString()}>
             <Spacer />
-            <Bar.Wrapper width="100%">
-              <Bar.Fill bg="green" width={`${percent || 0}%`} />
-            </Bar.Wrapper>
+            <Bar width="100%">
+              <Fill bg="green" width={`${percent || 0}%`} />
+            </Bar>
             <Label>Percent: {percent || 0}%</Label>
           </React.Fragment>
         ))}

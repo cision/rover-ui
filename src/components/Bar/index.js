@@ -2,7 +2,7 @@ import React from 'react';
 
 import StyledBar from './styled.js';
 
-export const Wrapper = props => (
+export const Bar = props => (
   <StyledBar
     bg="porcelain"
     borderRadius={2}
@@ -18,7 +18,7 @@ export const Fill = props => (
 );
 
 const BarStat = {
-  Wrapper,
+  Bar,
   Fill,
 };
 
