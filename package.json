@@ -1,10 +1,10 @@
 {
-  "name": "@trendkite/ui-v2",
+  "name": "@trendkite/rover-ui",
   "version": "2.0.0",
-  "description": "TrendKite UI Component Library",
+  "description": "UI Component Library",
   "author": "mdespuits",
   "license": "MIT",
-  "repository": "pixelbandito/tk-ui",
+  "repository": "pixelbandito/rover-ui",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
