@@ -6456,7 +6456,7 @@ timers-browserify@^2.0.4:
   dependencies:
     setimmediate "^1.0.4"
 
-"tk-ui@link:..":
+"rover-ui@link:..":
   version "0.0.0"
   uid ""
 

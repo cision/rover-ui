@@ -1,6 +1,6 @@
 {
   "name": "rover-ui-example",
-  "homepage": "https://mdespuits.github.io/tk-ui",
+  "homepage": "https://mdespuits.github.io/rover-ui",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -9,7 +9,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "tk-ui": "link:.."
+    "rover-ui": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",
