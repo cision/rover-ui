@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ExampleComponent from '@trendkite/rover-ui';
+import ExampleComponent from '@rover-ui';
 
 export default class App extends Component {
   render() {
