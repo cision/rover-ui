@@ -7,14 +7,13 @@ export const Bar = props => (
     bg="porcelain"
     borderRadius={2}
     height="10px"
-    overflow="hidden"
     width="100%"
     {...props}
   />
 );
 
 export const Fill = props => (
-  <StyledBar bg="regent-gray" borderRadius={0} height="10px" {...props} />
+  <StyledBar bg="regent-gray" borderRadius={0} height="100%" {...props} />
 );
 
 const BarStat = {
