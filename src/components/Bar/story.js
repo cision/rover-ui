@@ -74,7 +74,7 @@ storiesOf('Solar System/Bar', module)
       <Paper mb={2}>
         <h3>Default Bar</h3>
         <Bar>
-          <Fill />
+          <Fill width="73%" />
         </Bar>
       </Paper>
 
@@ -116,13 +116,13 @@ storiesOf('Solar System/Bar', module)
       <Paper mb={2}>
         <h3>At various fill widths...</h3>
         {[0, 10, 20, 50, 99, 100].map(percent => (
-          <React.Fragment key={`${percent}`.toString()}>
+          <div key={`${percent}`.toString()}>
             <Spacer />
             <Bar width="100%">
               <Fill bg="green" width={`${percent || 0}%`} />
             </Bar>
             <Label>Percent: {percent || 0}%</Label>
-          </React.Fragment>
+          </div>
         ))}
       </Paper>
     </Wrap>
