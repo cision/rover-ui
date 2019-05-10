@@ -1,24 +1,21 @@
-import styled, { withTheme } from 'styled-components';
-import { backgroundColor, padding, marginBottom } from 'styled-system';
+import React from 'react';
+import { borderRadius, color, space } from 'styled-system';
 
-import defaultTheme from '../../shared/theme.js';
+import StyledPaper from './styled.js';
 
-const Paper = styled.div`
-  border-radius: 2px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-
-  ${backgroundColor}
-  ${padding}
-  ${marginBottom}
-`;
-
-Paper.displayName = 'Paper';
+const Paper = props => <StyledPaper {...props} />;
 
 Paper.defaultProps = {
-  theme: { ...defaultTheme },
   bg: 'white',
-  mb: 3,
+  borderRadius: '2px',
+  color: 'gray',
   p: 3,
 };
 
-export default withTheme(Paper);
+Paper.propTypes = {
+  ...borderRadius.propTypes,
+  ...color.propTypes,
+  ...space.propTypes,
+};
+
+export default Paper;
