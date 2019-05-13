@@ -104,8 +104,5 @@
   "bugs": {
     "url": "https://github.com/pixelbandito/rover-ui/issues"
   },
-  "homepage": "https://github.com/pixelbandito/rover-ui#readme",
-  "directories": {
-    "example": "example"
-  }
+  "homepage": "https://github.com/pixelbandito/rover-ui#readme"
 }
