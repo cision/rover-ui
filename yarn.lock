@@ -1802,6 +1802,11 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
+"@types/estree@0.0.39":
+  version "0.0.39"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
+  integrity sha1-4Xfmme4bjCLSMXTKqnQiZEOJUJ8=
+
 "@types/events@*":
   version "3.0.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
@@ -4164,6 +4169,11 @@ builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
+builtin-modules@^2.0.0:
+  version "2.0.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/builtin-modules/-/builtin-modules-2.0.0.tgz#60b7ef5ae6546bd7deefa74b08b62a43a232648e"
+  integrity sha1-YLfvWuZUa9fe76dLCLYqQ6IyZI4=
+
 builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
@@ -4761,6 +4771,13 @@ concat-stream@^1.5.0, concat-stream@^1.6.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
+concat-with-sourcemaps@^1.0.5:
+  version "1.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/concat-with-sourcemaps/-/concat-with-sourcemaps-1.1.0.tgz#d4ea93f05ae25790951b99e7b3b09e3908a4082e"
+  integrity sha1-1OqT8FriV5CVG5nns7CeOQikCC4=
+  dependencies:
+    source-map "^0.6.1"
+
 config-chain@^1.1.12:
   version "1.1.12"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/config-chain/-/config-chain-1.1.12.tgz#0fde8d091200eb5e808caf25fe618c02f48e4efa"
@@ -5104,6 +5121,18 @@ css-loader@^2.1.0:
     postcss-value-parser "^3.3.0"
     schema-utils "^1.0.0"
 
+css-modules-loader-core@^1.1.0:
+  version "1.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/css-modules-loader-core/-/css-modules-loader-core-1.1.0.tgz#5908668294a1becd261ae0a4ce21b0b551f21d16"
+  integrity sha1-WQhmgpShvs0mGuCkziGwtVHyHRY=
+  dependencies:
+    icss-replace-symbols "1.1.0"
+    postcss "6.0.1"
+    postcss-modules-extract-imports "1.1.0"
+    postcss-modules-local-by-default "1.2.0"
+    postcss-modules-scope "1.1.0"
+    postcss-modules-values "1.3.0"
+
 css-select-base-adapter@^0.1.1:
   version "0.1.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
@@ -5183,7 +5212,7 @@ cssesc@^3.0.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha1-N3QZGZA7hoVl4cCep0dEXNGJg+4=
 
-"cssnano@>=2.6.1 <4":
+"cssnano@>=2.6.1 <4", cssnano@^3.10.0:
   version "3.10.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/cssnano/-/cssnano-3.10.0.tgz#4f38f6cea2b9b17fa01490f23f1dc68ea65c1c38"
   integrity sha1-Tzj2zqK5sX+gFJDyPx3GjqZcHDg=
@@ -6351,6 +6380,11 @@ estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
   integrity sha1-De4/7TH81GlhjOc0IJn8GvoL2xM=
 
+estree-walker@^0.2.1:
+  version "0.2.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/estree-walker/-/estree-walker-0.2.1.tgz#bdafe8095383d8414d5dc2ecf4c9173b6db9412e"
+  integrity sha1-va/oCVOD2EFNXcLs9MkXO225QS4=
+
 estree-walker@^0.6.0:
   version "0.6.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/estree-walker/-/estree-walker-0.6.0.tgz#5d865327c44a618dde5699f763891ae31f257dae"
@@ -7131,6 +7165,13 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+generic-names@^1.0.3:
+  version "1.0.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/generic-names/-/generic-names-1.0.3.tgz#2d786a121aee508876796939e8e3bff836c20917"
+  integrity sha1-LXhqEhruUIh2eWk56OO/+DbCCRc=
+  dependencies:
+    loader-utils "^0.2.16"
+
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
@@ -7845,7 +7886,7 @@ iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.24, iconv-lite@^0.4.4, ic
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-icss-replace-symbols@^1.1.0:
+icss-replace-symbols@1.1.0, icss-replace-symbols@^1.1.0:
   version "1.1.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/icss-replace-symbols/-/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
   integrity sha1-Bupvg2ead0njhs/h/oEq5dsiPe0=
@@ -7906,7 +7947,7 @@ immer@^1.12.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/immer/-/immer-1.12.1.tgz#40c6e5b292c00560836c2993bda3a24379d466f5"
   integrity sha1-QMblspLABWCDbCmTvaOiQ3nUZvU=
 
-import-cwd@^2.0.0:
+import-cwd@^2.0.0, import-cwd@^2.1.0:
   version "2.1.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
   integrity sha1-qmzzbnInYShcs3HsZRn1PiQ1sKk=
@@ -8324,6 +8365,11 @@ is-installed-globally@^0.1.0:
   dependencies:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
+
+is-module@^1.0.0:
+  version "1.0.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/is-module/-/is-module-1.0.0.tgz#3258fb69f78c14d5b815d664336b4cffb6441591"
+  integrity sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=
 
 is-npm@^1.0.0:
   version "1.0.0"
@@ -9577,6 +9623,13 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+magic-string@^0.25.2:
+  version "0.25.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/magic-string/-/magic-string-0.25.2.tgz#139c3a729515ec55e96e69e82a11fe890a293ad9"
+  integrity sha1-E5w6cpUV7FXpbmnoKhH+iQopOtk=
+  dependencies:
+    sourcemap-codec "^1.4.4"
+
 make-dir@^1.0.0:
   version "1.3.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
@@ -10651,6 +10704,11 @@ p-map@^2.0.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/p-map/-/p-map-2.1.0.tgz#310928feef9c9ecc65b68b17693018a665cea175"
   integrity sha1-MQko/u+cnsxltosXaTAYpmXOoXU=
 
+p-queue@^2.4.2:
+  version "2.4.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/p-queue/-/p-queue-2.4.2.tgz#03609826682b743be9a22dba25051bd46724fc34"
+  integrity sha1-A2CYJmgrdDvpoi26JQUb1Gck/DQ=
+
 p-try@^1.0.0:
   version "1.0.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
@@ -11205,6 +11263,13 @@ postcss-minify-selectors@^2.0.4:
     postcss "^5.0.14"
     postcss-selector-parser "^2.0.0"
 
+postcss-modules-extract-imports@1.1.0:
+  version "1.1.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.1.0.tgz#b614c9720be6816eaee35fb3a5faa1dba6a05ddb"
+  integrity sha1-thTJcgvmgW6u41+zpfqh26agXds=
+  dependencies:
+    postcss "^6.0.1"
+
 postcss-modules-extract-imports@^1.0.0:
   version "1.2.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss-modules-extract-imports/-/postcss-modules-extract-imports-1.2.1.tgz#dc87e34148ec7eab5f791f7cd5849833375b741a"
@@ -11219,7 +11284,7 @@ postcss-modules-extract-imports@^2.0.0:
   dependencies:
     postcss "^7.0.5"
 
-postcss-modules-local-by-default@^1.0.1:
+postcss-modules-local-by-default@1.2.0, postcss-modules-local-by-default@^1.0.1:
   version "1.2.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss-modules-local-by-default/-/postcss-modules-local-by-default-1.2.0.tgz#f7d80c398c5a393fa7964466bd19500a7d61c069"
   integrity sha1-99gMOYxaOT+nlkRmvRlQCn1hwGk=
@@ -11236,7 +11301,7 @@ postcss-modules-local-by-default@^2.0.6:
     postcss-selector-parser "^6.0.0"
     postcss-value-parser "^3.3.1"
 
-postcss-modules-scope@^1.0.0:
+postcss-modules-scope@1.1.0, postcss-modules-scope@^1.0.0:
   version "1.1.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss-modules-scope/-/postcss-modules-scope-1.1.0.tgz#d6ea64994c79f97b62a72b426fbe6056a194bb90"
   integrity sha1-1upkmUx5+XtipytCb75gVqGUu5A=
@@ -11252,7 +11317,7 @@ postcss-modules-scope@^2.1.0:
     postcss "^7.0.6"
     postcss-selector-parser "^6.0.0"
 
-postcss-modules-values@^1.1.0:
+postcss-modules-values@1.3.0, postcss-modules-values@^1.1.0:
   version "1.3.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss-modules-values/-/postcss-modules-values-1.3.0.tgz#ecffa9d7e192518389f42ad0e83f72aec456ea20"
   integrity sha1-7P+p1+GSUYOJ9CrQ6D9yrsRW6iA=
@@ -11267,6 +11332,17 @@ postcss-modules-values@^2.0.0:
   dependencies:
     icss-replace-symbols "^1.1.0"
     postcss "^7.0.6"
+
+postcss-modules@^1.1.0:
+  version "1.4.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss-modules/-/postcss-modules-1.4.1.tgz#8aa35bd3461db67e27377a7ce770d77b654a84ef"
+  integrity sha1-iqNb00Ydtn4nN3p853DXe2VKhO8=
+  dependencies:
+    css-modules-loader-core "^1.1.0"
+    generic-names "^1.0.3"
+    lodash.camelcase "^4.3.0"
+    postcss "^7.0.1"
+    string-hash "^1.1.1"
 
 postcss-normalize-charset@^1.1.0:
   version "1.1.1"
@@ -11428,6 +11504,15 @@ postcss-zindex@^2.0.1:
     postcss "^5.0.4"
     uniqs "^2.0.0"
 
+postcss@6.0.1:
+  version "6.0.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss/-/postcss-6.0.1.tgz#000dbd1f8eef217aa368b9a212c5fc40b2a8f3f2"
+  integrity sha1-AA29H47vIXqjaLmiEsX8QLKo8/I=
+  dependencies:
+    chalk "^1.1.3"
+    source-map "^0.5.6"
+    supports-color "^3.2.3"
+
 postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.16:
   version "5.2.18"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss/-/postcss-5.2.18.tgz#badfa1497d46244f6390f58b319830d9107853c5"
@@ -11438,7 +11523,7 @@ postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0
     source-map "^0.5.6"
     supports-color "^3.2.3"
 
-postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.13:
+postcss@^6.0.0, postcss@^6.0.1, postcss@^6.0.13, postcss@^6.0.21:
   version "6.0.23"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/postcss/-/postcss-6.0.23.tgz#61c82cc328ac60e677645f979054eb98bc0e3324"
   integrity sha1-YcgswyisYOZ3ZF+XkFTrmLwOMyQ=
@@ -11564,6 +11649,11 @@ promise.prototype.finally@^3.1.0:
     define-properties "^1.1.2"
     es-abstract "^1.9.0"
     function-bind "^1.1.1"
+
+promise.series@^0.2.0:
+  version "0.2.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/promise.series/-/promise.series-0.2.0.tgz#2cc7ebe959fc3a6619c04ab4dbdc9e452d864bbd"
+  integrity sha1-LMfr6Vn8OmYZwEq029yeRS2GS70=
 
 promise@8.0.1:
   version "8.0.1"
@@ -12670,6 +12760,11 @@ requires-port@^1.0.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
 
+reserved-words@^0.1.2:
+  version "0.1.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/reserved-words/-/reserved-words-0.1.2.tgz#00a0940f98cd501aeaaac316411d9adc52b31ab1"
+  integrity sha1-AKCUD5jNUBrqqsMWQR2a3FKzGrE=
+
 resize-observer-polyfill@^1.5.1:
   version "1.5.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
@@ -12769,13 +12864,89 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rollup-pluginutils@^2.3.1:
+rollup-plugin-babel@^3.0.7:
+  version "3.0.7"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-plugin-babel/-/rollup-plugin-babel-3.0.7.tgz#5b13611f1ab8922497e9d15197ae5d8a23fe3b1e"
+  integrity sha1-WxNhHxq4kiSX6dFRl65diiP+Ox4=
+  dependencies:
+    rollup-pluginutils "^1.5.0"
+
+rollup-plugin-commonjs@^9.1.3:
+  version "9.3.4"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-plugin-commonjs/-/rollup-plugin-commonjs-9.3.4.tgz#2b3dddbbbded83d45c36ff101cdd29e924fd23bc"
+  integrity sha1-Kz3du73tg9RcNv8QHN0p6ST9I7w=
+  dependencies:
+    estree-walker "^0.6.0"
+    magic-string "^0.25.2"
+    resolve "^1.10.0"
+    rollup-pluginutils "^2.6.0"
+
+rollup-plugin-node-resolve@^3.3.0:
+  version "3.4.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.4.0.tgz#908585eda12e393caac7498715a01e08606abc89"
+  integrity sha1-kIWF7aEuOTyqx0mHFaAeCGBqvIk=
+  dependencies:
+    builtin-modules "^2.0.0"
+    is-module "^1.0.0"
+    resolve "^1.1.6"
+
+rollup-plugin-peer-deps-external@^2.2.0:
+  version "2.2.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-plugin-peer-deps-external/-/rollup-plugin-peer-deps-external-2.2.0.tgz#99ef9231aa01736f3e9605b7c3084a0d627f665b"
+  integrity sha1-me+SMaoBc28+lgW3wwhKDWJ/Zls=
+
+rollup-plugin-postcss@^1.6.2:
+  version "1.6.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-plugin-postcss/-/rollup-plugin-postcss-1.6.3.tgz#18256ba66f29ecd9d42a68f4ef136b92b939ddb8"
+  integrity sha1-GCVrpm8p7NnUKmj07xNrkrk53bg=
+  dependencies:
+    chalk "^2.0.0"
+    concat-with-sourcemaps "^1.0.5"
+    cssnano "^3.10.0"
+    fs-extra "^5.0.0"
+    import-cwd "^2.1.0"
+    p-queue "^2.4.2"
+    pify "^3.0.0"
+    postcss "^6.0.21"
+    postcss-load-config "^1.2.0"
+    postcss-modules "^1.1.0"
+    promise.series "^0.2.0"
+    reserved-words "^0.1.2"
+    resolve "^1.5.0"
+    rollup-pluginutils "^2.0.1"
+    style-inject "^0.3.0"
+
+rollup-plugin-url@^1.4.0:
+  version "1.4.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-plugin-url/-/rollup-plugin-url-1.4.0.tgz#346124cad853267b324cba0991f10bfd4be60c65"
+  integrity sha1-NGEkythTJnsyTLoJkfEL/UvmDGU=
+  dependencies:
+    mime "^2.3.1"
+    rollup-pluginutils "^2.0.1"
+
+rollup-pluginutils@^1.5.0:
+  version "1.5.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-pluginutils/-/rollup-pluginutils-1.5.2.tgz#1e156e778f94b7255bfa1b3d0178be8f5c552408"
+  integrity sha1-HhVud4+UtyVb+hs9AXi+j1xVJAg=
+  dependencies:
+    estree-walker "^0.2.1"
+    minimatch "^3.0.2"
+
+rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.3.1, rollup-pluginutils@^2.6.0:
   version "2.6.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup-pluginutils/-/rollup-pluginutils-2.6.0.tgz#203706edd43dfafeaebc355d7351119402fc83ad"
   integrity sha1-IDcG7dQ9+v6uvDVdc1ERlAL8g60=
   dependencies:
     estree-walker "^0.6.0"
     micromatch "^3.1.10"
+
+rollup@^0.64.1:
+  version "0.64.1"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/rollup/-/rollup-0.64.1.tgz#9188ee368e5fcd43ffbc00ec414e72eeb5de87ba"
+  integrity sha1-kYjuNo5fzUP/vADsQU5y7rXeh7o=
+  dependencies:
+    "@types/estree" "0.0.39"
+    "@types/node" "*"
 
 run-async@^2.2.0:
   version "2.3.0"
@@ -13263,6 +13434,11 @@ source-map@^0.7.2:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha1-UwL4FpAxc1ImVECS5kmB91F1A4M=
 
+sourcemap-codec@^1.4.4:
+  version "1.4.4"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/sourcemap-codec/-/sourcemap-codec-1.4.4.tgz#c63ea927c029dd6bd9a2b7fa03b3fec02ad56e9f"
+  integrity sha1-xj6pJ8Ap3WvZorf6A7P+wCrVbp8=
+
 space-separated-tokens@^1.0.0:
   version "1.1.2"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/space-separated-tokens/-/space-separated-tokens-1.1.2.tgz#e95ab9d19ae841e200808cd96bc7bd0adbbb3412"
@@ -13464,6 +13640,11 @@ string-argv@^0.0.2:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/string-argv/-/string-argv-0.0.2.tgz#dac30408690c21f3c3630a3ff3a05877bdcbd736"
   integrity sha1-2sMECGkMIfPDYwo/86BYd73L1zY=
 
+string-hash@^1.1.1:
+  version "1.1.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/string-hash/-/string-hash-1.1.3.tgz#e8aafc0ac1855b4666929ed7dd1275df5d6c811b"
+  integrity sha1-6Kr8CsGFW0Zmkp7X3RJ1311sgRs=
+
 string-length@^1.0.1:
   version "1.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/string-length/-/string-length-1.0.1.tgz#56970fb1c38558e9e70b728bf3de269ac45adfac"
@@ -13646,6 +13827,11 @@ strip-url-auth@^1.0.0:
   version "1.0.1"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/strip-url-auth/-/strip-url-auth-1.0.1.tgz#22b0fa3a41385b33be3f331551bbb837fa0cd7ae"
   integrity sha1-IrD6OkE4WzO+PzMVUbu4N/oM164=
+
+style-inject@^0.3.0:
+  version "0.3.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/style-inject/-/style-inject-0.3.0.tgz#d21c477affec91811cc82355832a700d22bf8dd3"
+  integrity sha1-0hxHev/skYEcyCNVgypwDSK/jdM=
 
 style-loader@0.19.0:
   version "0.19.0"
