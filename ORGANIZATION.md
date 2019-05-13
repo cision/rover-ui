@@ -24,7 +24,7 @@ Currently, there is no clear, definitive organization to our RoverUI component l
 - Toolbar
 - Type
 
-## Solar System
+## Star System
 
 - Avatar
 - ~~Bar Stat~~ Bar.Bar + Bar.Fill

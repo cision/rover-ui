@@ -45,7 +45,7 @@ const options = {
   step: 1,
 };
 
-storiesOf('Solar System/Bar', module)
+storiesOf('Star System/Bar', module)
   .addParameters({
     readme: {
       sidebar: BarStatReadme,

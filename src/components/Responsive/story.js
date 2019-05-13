@@ -28,7 +28,7 @@ MyComponent.defaultProps = {
   responsiveContext: [],
 };
 
-storiesOf('Planets/Responsive', module).add(
+storiesOf('Dark Matter/Responsive', module).add(
   'Examples',
   () => (
     <Responsive.Container readOnly style={{ resize: 'both' }}>
@@ -49,7 +49,7 @@ storiesOf('Planets/Responsive', module).add(
   }
 );
 
-storiesOf('Planets/Responsive/Moons/Container', module).add(
+storiesOf('Dark Matter/Responsive/Moons/Container', module).add(
   'Sandbox',
   () => (
     <Responsive.Container
@@ -80,7 +80,7 @@ storiesOf('Planets/Responsive/Moons/Container', module).add(
   }
 );
 
-storiesOf('Planets/Responsive/Moons/Element', module).add(
+storiesOf('Dark Matter/Responsive/Moons/Element', module).add(
   'Sandbox',
   () => <Responsive.Element />,
   {
