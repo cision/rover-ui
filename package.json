@@ -34,7 +34,7 @@
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
+    "prepare": "",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
@@ -102,6 +102,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
+    "react-container-query": "^0.11.0",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0"
   }

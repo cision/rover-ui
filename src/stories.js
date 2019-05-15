@@ -13,6 +13,7 @@ import './components/Badge/story';
 import './components/Bar/story';
 import './components/Button/story';
 import './components/Paper/story';
+import './components/Responsive/story';
 
 /*
  * STAR SYSTEMS
