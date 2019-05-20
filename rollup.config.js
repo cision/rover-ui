@@ -41,7 +41,23 @@ export default {
       exclude: 'node_modules/**',
       plugins: ['external-helpers'],
     }),
-    resolve(),
-    commonjs(),
+    resolve({
+      customResolveOptions: {
+        moduleDirectory: 'node_modules',
+      },
+    }),
+    commonjs({
+      include: 'node_modules/**',
+      // left-hand side can be an absolute path, a path
+      // relative to the current directory, or the name
+      // of a module in node_modules
+      namedExports: {
+        'node_modules/react-is/index.js': [
+          'isElement',
+          'isValidElementType',
+          'ForwardRef',
+        ],
+      },
+    }),
   ],
 };
