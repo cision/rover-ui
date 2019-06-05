@@ -16,13 +16,13 @@ const TestComponentWithContext = props => (
 );
 
 describe('Responsive.Container', () => {
-  test('renders', () => {
+  it('renders', () => {
     shallow(<Container>Boom</Container>);
   });
 
   describe('Responsive `Context`', () => {
     describe('without `props.customBreakpoints`', () => {
-      test('passes default query to ContainerQuery', () => {
+      it('passes default query to ContainerQuery', () => {
         const wrapper = mount(
           <Container>
             <TestComponent />
@@ -51,7 +51,7 @@ describe('Responsive.Container', () => {
       });
 
       describe('when `ContainerQuery` indicates medium breakpoint', () => {
-        test('`Container` provides correct context', () => {
+        it('`Container` provides correct context', () => {
           const wrapper = shallow(
             <Container>
               <TestComponentWithContext />
@@ -96,7 +96,7 @@ describe('Responsive.Container', () => {
         });
 
         describe('when `ContainerQuery` indicates extra small breakpoint', () => {
-          test('`Container` provides correct context', () => {
+          it('`Container` provides correct context', () => {
             const wrapper = shallow(
               <Container>
                 <TestComponentWithContext />
@@ -142,7 +142,7 @@ describe('Responsive.Container', () => {
         });
 
         describe('when `ContainerQuery` indicates extra large breakpoint', () => {
-          test('`Container` provides correct context', () => {
+          it('`Container` provides correct context', () => {
             const wrapper = shallow(
               <Container>
                 <TestComponentWithContext />
@@ -190,7 +190,7 @@ describe('Responsive.Container', () => {
     });
 
     describe('with `props.customBreakpoints`', () => {
-      test('passes default query to ContainerQuery', () => {
+      it('passes default query to ContainerQuery', () => {
         const wrapper = mount(
           <Container
             customBreakpoints={[
@@ -215,7 +215,7 @@ describe('Responsive.Container', () => {
       });
 
       describe('when `ContainerQuery` indicates foo breakpoint', () => {
-        test('`Container` provides correct context', () => {
+        it('`Container` provides correct context', () => {
           const wrapper = shallow(
             <Container>
               <TestComponentWithContext />
