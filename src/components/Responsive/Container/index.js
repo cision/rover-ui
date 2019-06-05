@@ -29,28 +29,20 @@ const defaultBreakpoints = [
 
 export const getBreakpointsQuery = breakpoints =>
   breakpoints.reduce((result, breakpoint, index) => {
-    const { minWidth, name } = breakpoint;
+    const { minWidth = 0, name } = breakpoint;
     const nextBreakpoint = breakpoints[index + 1] || null;
     const maxWidth = nextBreakpoint ? nextBreakpoint.minWidth - 0.2 : null;
+    const maxProp = maxWidth ? { maxWidth } : {};
+    const minProp = minWidth ? { minWidth } : {};
 
-    // Add 'up' queries
-    if (minWidth) {
-      result[`container-${name}-up`] = { minWidth };
-    }
-
-    if (maxWidth) {
-      result[`container-${name}-down`] = { maxWidth };
-    }
-
-    if (minWidth && maxWidth) {
-      result[`container-${name}-only`] = { minWidth, maxWidth };
-    } else if (minWidth) {
-      result[`container-${name}-only`] = { minWidth };
-    } else if (maxWidth) {
-      result[`container-${name}-only`] = { maxWidth };
-    }
-
-    return result;
+    return {
+      ...result,
+      // No `min-width` means viewport is always wider or equal to breakpoint min.
+      [`container-${name}-up`]: { ...minProp },
+      // No `max-width` means the viewport is always narrower or equal to breakpoint max.
+      [`container-${name}-down`]: { ...maxProp },
+      [`container-${name}-only`]: { ...maxProp, ...minProp },
+    };
   }, {});
 
 /**
