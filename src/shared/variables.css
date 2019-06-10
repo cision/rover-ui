@@ -1,0 +1,12 @@
+@import "./colors.css";
+@import "./sizing.css";
+
+:root {
+  /* Colors */
+  --box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+
+  /* Fonts */
+  --base-font-color: #58666e;
+  --base-font-family: 'Source Sans Pro', sans-serif;
+  --fontFamily-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

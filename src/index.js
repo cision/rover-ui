@@ -1,22 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+// Global CSS variables
+import './shared/variables.css';
+import './shared/reset.css';
 
-import styles from './styles.css'
-
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
-
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
-}
+export { default as Badge } from './components/Badge';
+export { default as Bar } from './components/Bar';
+export { default as Button } from './components/Button';
+export { default as Paper } from './components/Paper';
