@@ -1,8 +1,13 @@
 {
   "name": "@trendkite/rover-ui",
-  "version": "2.0.0",
+  "version": "0.1.0-alpha.1",
   "description": "UI Component Library",
-  "author": "mdespuits",
+  "author": "Matthew Wells (https://github.com/mdespuits)",
+  "contributors": [
+    "Matthew Wells (https://github.com/mdespuits)",
+    "Chelsea Shaw <chelshaw.dev@gmail.com> (https://github.com/chelshaw)",
+    "Chris Garcia <pixelbandito@gmail.com> (https://github.com/pixelbandito)"
+  ],
   "license": "MIT",
   "repository": "pixelbandito/rover-ui",
   "main": "dist/index.js",
