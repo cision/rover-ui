@@ -9,7 +9,7 @@ describe('Paper', () => {
   });
 
   describe('with children renders children', () => {
-    it(`renders it's children`, () => {
+    it('renders its children', () => {
       const wrapper = mount(
         <Paper>
           <div>Hello</div>
