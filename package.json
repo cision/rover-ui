@@ -40,6 +40,7 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "build": "rollup -c",
     "start": "rollup -c -w",
+    "hygen": "hygen",
     "prepare": "",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
