@@ -1,21 +1,21 @@
 ---
-to: src/components/<%= name %>/index.js
+to: src/components/<%= h.changeCase.pascal(name) %>/index.js
 unless_exists: true
 ---
 import React from 'react';
 // import PropTypes from 'prop-types';
 // import classNames from 'classnames';
 
-const <%= name %> = props => {
-  return <div>Hello World, from <%= name %>!</div>;
+const <%= h.changeCase.pascal(name) %> = props => {
+  return <div>Hello World, from <%= h.changeCase.pascal(name) %>!</div>;
 };
 
-<%= name %>.propTypes = {
+<%= h.changeCase.pascal(name) %>.propTypes = {
   // Define your proptypes here
 };
 
-<%= name %>.defaultProps = {
+<%= h.changeCase.pascal(name) %>.defaultProps = {
   // Define any default prop values here
 };
 
-export default <%= name %>;
+export default <%= h.changeCase.pascal(name) %>;
