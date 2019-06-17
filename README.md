@@ -28,7 +28,7 @@ class Example extends Component {
 
 ### Creating a new component
 
-We use `hygen` templates to make adding component boilerplate much simpler.
+We use [`hygen`](http://www.hygen.io/) templates to make adding component boilerplate much simpler.
 
 ```sh
 # rover-ui
