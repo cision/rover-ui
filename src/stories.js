@@ -9,6 +9,7 @@ import './shared/reset.css';
  * eg: Paper, Typography, Button, simple text input
  */
 
+/** INJECTOR */
 import './components/Badge/story';
 import './components/Bar/story';
 import './components/Button/story';
