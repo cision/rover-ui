@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { tagPropType } from '../../shared/propTypes';
+import { propTypes as tagPropTypes } from '../../shared/models/tag';
 
 import Addon from './Addon';
 
@@ -69,7 +69,7 @@ Button.propTypes = {
     'teal',
   ]),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  tag: tagPropType,
+  tag: tagPropTypes,
   type: PropTypes.string,
 };
 

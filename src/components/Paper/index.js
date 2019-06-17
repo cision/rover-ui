@@ -9,7 +9,8 @@ Paper.defaultProps = {
   bg: 'white',
   borderRadius: '2px',
   color: 'gray',
-  p: 3,
+  p: 'lg',
+  m: 0,
 };
 
 Paper.propTypes = {

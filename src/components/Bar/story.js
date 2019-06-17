@@ -18,11 +18,11 @@ Label.defaultProps = {
 };
 
 const Wrap = withDefaultTheme(styled.div(margin));
-Wrap.defaultProps = { m: 3 };
+Wrap.defaultProps = { m: 'md' };
 Wrap.displayName = 'Wrap';
 
 const Spacer = withDefaultTheme(styled.div(space));
-Spacer.defaultProps = { mb: 3 };
+Spacer.defaultProps = { mb: 'md' };
 Spacer.displayName = 'Spacer';
 
 const colorOptions = {
@@ -61,7 +61,7 @@ storiesOf('Star System/Bar', module)
     const fill = select('Fill', colorOptions, theme.colors.blue);
 
     return (
-      <Paper mx={3}>
+      <Paper mx="lg">
         <Bar bg={background}>
           <Fill bg={fill} width={`${value}%`} />
         </Bar>
@@ -71,21 +71,21 @@ storiesOf('Star System/Bar', module)
   })
   .add('Examples', () => (
     <Wrap>
-      <Paper mb={2}>
+      <Paper mb="sm">
         <h3>Default Bar</h3>
         <Bar>
           <Fill width="73%" />
         </Bar>
       </Paper>
 
-      <Paper mb={2}>
+      <Paper mb="sm">
         <h3>Custom Wrapper and Fill</h3>
         <Bar bg="loblolly">
           <Fill bg="salmon" width="50%" />
         </Bar>
       </Paper>
 
-      <Paper mb={2}>
+      <Paper mb="sm">
         <h3>Wrapper Width</h3>
         <Bar width="25%">
           <Fill bg="salmon" width="50%" />
@@ -104,7 +104,7 @@ storiesOf('Star System/Bar', module)
         </Bar>
       </Paper>
 
-      <Paper mb={2}>
+      <Paper mb="sm">
         <h3>Bars with multiple colors</h3>
         <Bar width="100%">
           <Fill bg="green" width="25%" />
@@ -113,7 +113,7 @@ storiesOf('Star System/Bar', module)
         </Bar>
       </Paper>
 
-      <Paper mb={2}>
+      <Paper mb="sm">
         <h3>At various fill widths...</h3>
         {[0, 10, 20, 50, 99, 100].map(percent => (
           <div key={`${percent}`.toString()}>

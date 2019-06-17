@@ -13,8 +13,8 @@ Paper provides a nice clean wrapper to separate pieces of content.
 The `<Paper>` wraper supports the `color`, `space`, `borderRadius` props from the `styled-system` utilities and supports theming using the default theme.
 
 ```js
-<Paper padding={3} bg="gray" color="white">
-  <Paper borderRadius={0} p={6}>
+<Paper p="lg" bg="gray" color="white">
+  <Paper borderRadius={0} p="4xl">
     {SampleText}
   </Paper>
   <Paper borderRadius={0} bg="green" color="white">

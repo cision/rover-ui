@@ -10,10 +10,8 @@ import './shared/reset.css';
  */
 
 import './components/Badge/story';
-import './components/Bar/story';
 import './components/Button/story';
 import './components/Paper/story';
-import './components/Responsive/story';
 
 /*
  * STAR SYSTEMS
@@ -21,6 +19,8 @@ import './components/Responsive/story';
  * but should be minimal.
  * eg: Button group, dropdown toggle, checkbox group
  */
+
+import './components/Bar/story';
 
 /*
  * GALAXIES
@@ -34,3 +34,5 @@ import './components/Responsive/story';
  * just the layout.
  * eg: Responsive layout
  */
+
+import './components/Responsive/story';
