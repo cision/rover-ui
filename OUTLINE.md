@@ -24,7 +24,7 @@ We use `hygen` templates to make adding component boilerplate much simpler.
 
 ```sh
 # rover-ui
-$ hygen component new Dropdown
+$ yarn hygen component new Dropdown
 
 Loaded templates: _templates
        added: src/components/Dropdown/index.js
