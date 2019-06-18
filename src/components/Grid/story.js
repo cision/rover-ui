@@ -13,7 +13,7 @@ storiesOf('Dark Matter/Grid', module)
     },
   })
   .add(
-    'Overview',
+    'Sandbox',
     () => (
       <Grid gutter={text('gutter', '20px')} columns={number('columns', 3)}>
         <span
