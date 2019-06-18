@@ -35,4 +35,5 @@ import './components/Bar/story';
  * eg: Responsive layout
  */
 
+import './components/Grid/story';
 import './components/Responsive/story';
