@@ -15,7 +15,7 @@ const Flex = styled.div({ display: 'flex' }, flex, space);
 Flex.defaultProps = {
   justifyContent: 'flex-start',
   flex: '1 0 auto',
-  p: 3,
+  p: 'md',
   mb: 0,
 };
 
@@ -28,9 +28,9 @@ Box.displayName = 'Box';
 Box.defaultProps = {
   alignSelf: 'flex-start',
   justifyContent: 'center',
-  p: 3,
-  mb: 2,
-  mx: 2,
+  p: 'md',
+  mb: 'sm',
+  mx: 'sm',
 };
 
 storiesOf('Planets/Badge', module)
@@ -48,7 +48,7 @@ storiesOf('Planets/Badge', module)
       const variant = select('Variant', colorOptions, '');
 
       return (
-        <Box m={2} p={4}>
+        <Box m="sm" p="2xl">
           <Badge fontSize={fontSize} variant={variant}>
             {text('Children', 'My Badge')}
           </Badge>
@@ -65,7 +65,7 @@ storiesOf('Planets/Badge', module)
     <React.Fragment>
       <Box>
         <Badge>My Badge</Badge>
-        <Badge ml={2} bg="geyser" color="gray">
+        <Badge ml="sm" bg="geyser" color="gray">
           Other
         </Badge>
       </Box>
@@ -82,7 +82,7 @@ storiesOf('Planets/Badge', module)
         <Badge variant="info">Info Badge</Badge>
       </Box>
       <Box>
-        <Badge mr={2} variant="warning">
+        <Badge mr="sm" variant="warning">
           Warning Badge
         </Badge>
         <Badge bg="shuttle-gray" color="success">
@@ -94,13 +94,13 @@ storiesOf('Planets/Badge', module)
       </Box>
       <Box>
         <Flex m={0} p={0}>
-          <Badge mr={2} variant="info">
+          <Badge mr="sm" variant="info">
             Print
           </Badge>
-          <Badge mr={2} variant="info">
+          <Badge mr="sm" variant="info">
             Broadcast
           </Badge>
-          <Badge mr={2} variant="info">
+          <Badge mr="sm" variant="info">
             Radio
           </Badge>
           <Badge>Article</Badge>
@@ -109,13 +109,13 @@ storiesOf('Planets/Badge', module)
       <Box>
         <Flex m={0} p={0}>
           <Badge>Article</Badge>
-          <Badge ml={2} variant="info">
+          <Badge ml="sm" variant="info">
             Print
           </Badge>
-          <Badge ml={2} variant="info">
+          <Badge ml="sm" variant="info">
             Broadcast
           </Badge>
-          <Badge ml={2} variant="info">
+          <Badge ml="sm" variant="info">
             Radio
           </Badge>
         </Flex>

@@ -8,7 +8,7 @@ import PaperReadme from './README.md';
 
 const Wrap = styled.div(margin);
 Wrap.defaultProps = {
-  m: 3,
+  m: 'md',
 };
 
 Wrap.displayName = 'Wrap';
@@ -33,29 +33,29 @@ storiesOf('Planets/Paper', module)
         <Wrap>
           <h2>Padding Examples</h2>
 
-          <Paper mb={3} p={0}>
+          <Paper mb="lg" p={0}>
             {SampleText}
           </Paper>
-          <Paper mb={3} p={1}>
+          <Paper mb="lg" p="xs">
             {SampleText}
           </Paper>
-          <Paper mb={3} p={2}>
+          <Paper mb="lg" p="sm">
             {SampleText}
           </Paper>
-          <Paper mb={3} p={3}>
+          <Paper mb="lg" p="lg">
             {SampleText}
           </Paper>
-          <Paper mb={3} p={4}>
+          <Paper mb="lg" p="2xl">
             {SampleText}
           </Paper>
-          <Paper mb={3} p={5}>
+          <Paper mb="lg" p="3xl">
             {SampleText}
           </Paper>
         </Wrap>
         <Wrap>
           <h3>Complex Nesting</h3>
-          <Paper padding={3} bg="gray" color="white">
-            <Paper borderRadius={0} p={6}>
+          <Paper p="lg" bg="gray" color="white">
+            <Paper borderRadius={0} p="4xl">
               {SampleText}
             </Paper>
             <Paper borderRadius={0} bg="green" color="white">
