@@ -11,7 +11,7 @@ You can adjust all the basic grid's layout props.
 - an entry spanning multiple columns
 - adding columns of empty space before an entry
 
-See [`<Grid>`](/?path=/story/dark-matter-grid--sandbox) for details on configurability:
+See [`<Grid>`](/?path=/story/dark-matter-grid--overview) for details on configurability:
 
 To use these features, you just need a `breakpoints` prop that maps breakpoint query names to the customized props.
 

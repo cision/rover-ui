@@ -3,7 +3,7 @@
 Throw this component around a section of the DOM.
 `<Responsive.Container>` provides width information to React components nested within it using the [React Context API](https://reactjs.org/docs/context.html).
 
-This context information is designed to be consumed by the [`<Responsive.Element>`](/?path=/story/dark-matter-responsive-moons-element--sandbox) component.
+This context information is designed to be consumed by the [`<Responsive.Element>`](/?path=/story/dark-matter-responsive-moons-element--overview) component.
 
 This component takes breakpoints as an argument, and delivers a list of strings that indicate which breakpoints are active, which are larger than the current size, and which are smaller than the current size.
 
