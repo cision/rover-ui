@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Grid from './';
 
 describe('<Grid />', () => {
-  test('renders without error', () => {
+  it('renders without error', () => {
     shallow(<Grid />);
   });
 });
