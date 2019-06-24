@@ -1,0 +1,15 @@
+.Entry {
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  min-width: 0;
+
+  /* Make content fill the space by default */
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+}
+
+.Clear {
+  flex-basis: 100%;
+  max-width: 100%;
+}
