@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import UnresponsiveGrid from '../../Grid';
-import { Context } from '../Context';
+import Context from '../Context';
 
 const Grid = ({ breakpoints, children, columns, gutter, ...passedProps }) => {
   let responsiveProps = {
