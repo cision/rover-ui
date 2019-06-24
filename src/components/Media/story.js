@@ -42,18 +42,16 @@ storiesOf('Dark Matter/Media', module)
             <Paper mx="sm">Item 1</Paper>
           </Media.Item>
           <Media.Body px="sm">
-            <Paper mb="lg">Main Content Body</Paper>
-
-            <Media>
-              <Media.Item p="md" tag="div">
-                Just a small thing
-              </Media.Item>
-              <Media.Body>
-                <Paper bg="dark">
-                  <span>Moar nested content!</span>
-                </Paper>
-              </Media.Body>
-            </Media>
+            <Paper>
+              <Media>
+                <Media.Item pr="md">
+                  <img src="https://placekitten.com/150/100" alt="" />
+                </Media.Item>
+                <Media.Body>
+                  <h2>Kittehs!</h2>
+                </Media.Body>
+              </Media>
+            </Paper>
           </Media.Body>
           <Media.Item>
             <Paper mx="sm">Item 2</Paper>
