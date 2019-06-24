@@ -32,13 +32,18 @@
       "git add"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/(test|story).js"
+    ]
+  },
   "scripts": {
     "eslint:commit": "read -r CHANGES <<< `git diff-index --name-only HEAD | grep '\\(src\\|test\\)/.\\+\\.js$' | tr '\\n' ' '`; if [[ $CHANGES ]]; then yarn eslint ${CHANGES}; fi;",
     "pre-commit": "yarn lint-staged && yarn test",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:coverage": "cross-env CI=1 react-scripts test --env=jsdom --coverage --collectCoverageFrom='src/**/*.js' --collectCoverageFrom='!src/**/(test|story).js'",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "",
