@@ -13,11 +13,7 @@ import Entry from './Entry';
 
 const StyledGrid = styled.div(margin);
 
-const parseGutter = ({ gutter, theme = { space: {} } }) => {
-  if (theme.space[gutter] || theme.space[gutter] === 0) {
-    return { size: theme.space[gutter], unit: 'px' }; // Gutter is a theme key
-  }
-
+const parseGutter = ({ gutter }) => {
   if (typeof gutter === 'number') {
     return { size: gutter, unit: 'px' }; // Gutter is a number of pixels
   }
@@ -35,48 +31,59 @@ const parseGutter = ({ gutter, theme = { space: {} } }) => {
   return { size, unit };
 };
 
-export const Grid = ({
-  children,
-  className: customClassName,
-  gutter,
-  columns,
-  ...passedProps
-}) => {
-  const parsedGutter = parseGutter({ gutter, theme: passedProps.theme });
-  let safeGutter = `${parsedGutter.size / 2}${parsedGutter.unit}`;
-  const inverseGutter = `${-parsedGutter.size / 2}${parsedGutter.unit}`;
+export const Grid = withDefaultTheme(
+  ({
+    children,
+    className: customClassName,
+    gutter,
+    columns,
+    ...passedProps
+  }) => {
+    let themeGutter;
 
-  if (parsedGutter.unit === '%') {
-    const safeGutterSize =
-      (parsedGutter.size / 2) * // Normal gutter size calc
-      (100 / (parsedGutter.size + 100)); // Compensate for embiggening from the negative margin on the column wrapper
+    /** `theme.space` prop is provided by the `withDefaultTheme` HOC */
+    const { theme } = passedProps;
 
-    safeGutter = `${safeGutterSize}${parsedGutter.unit}`;
+    if (theme.space[gutter] || theme.space[gutter] === 0) {
+      themeGutter = `${theme.space[gutter]}px`; // Gutter is a theme key
+    }
+
+    const parsedGutter = parseGutter({ gutter: themeGutter || gutter });
+    let safeGutter = `${parsedGutter.size / 2}${parsedGutter.unit}`;
+    const inverseGutter = `${-parsedGutter.size / 2}${parsedGutter.unit}`;
+
+    if (parsedGutter.unit === '%') {
+      const safeGutterSize =
+        (parsedGutter.size / 2) * // Normal gutter size calc
+        (100 / (parsedGutter.size + 100)); // Compensate for embiggening from the negative margin on the column wrapper
+
+      safeGutter = `${safeGutterSize}${parsedGutter.unit}`;
+    }
+
+    const safeRows = columns || 1;
+    const entryPercentWidth = 100 / safeRows;
+    const entries = React.Children.toArray(children);
+
+    return (
+      <StyledGrid
+        {...passedProps}
+        className={classNames(style.Grid, customClassName)}
+      >
+        <div className={style.Columns} style={{ margin: inverseGutter }}>
+          {entries.map((child, i) => (
+            <Entry
+              entryPercentWidth={entryPercentWidth}
+              gutter={safeGutter}
+              key={`entry${child.key || `.i.${i}`}`}
+            >
+              {React.cloneElement(child)}
+            </Entry>
+          ))}
+        </div>
+      </StyledGrid>
+    );
   }
-
-  const safeRows = columns || 1;
-  const entryPercentWidth = 100 / safeRows;
-  const entries = React.Children.toArray(children);
-
-  return (
-    <StyledGrid
-      {...passedProps}
-      className={classNames(style.Grid, customClassName)}
-    >
-      <div className={style.Columns} style={{ margin: inverseGutter }}>
-        {entries.map((child, i) => (
-          <Entry
-            entryPercentWidth={entryPercentWidth}
-            gutter={safeGutter}
-            key={`entry${child.key || `.i.${i}`}`}
-          >
-            {React.cloneElement(child)}
-          </Entry>
-        ))}
-      </div>
-    </StyledGrid>
-  );
-};
+);
 
 Grid.propTypes = {
   children: PropTypes.node,
@@ -93,21 +100,4 @@ Grid.defaultProps = {
   gutter: 0,
 };
 
-const ThemedGrid = withDefaultTheme(Grid);
-
-ThemedGrid.propTypes = {
-  children: PropTypes.node,
-  /** Optional css class for custom styles */
-  className: PropTypes.string,
-  columns: PropTypes.number,
-  gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-ThemedGrid.defaultProps = {
-  children: null,
-  className: '',
-  columns: 1,
-  gutter: 0,
-};
-
-export default ThemedGrid;
+export default Grid;
