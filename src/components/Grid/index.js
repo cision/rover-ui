@@ -22,6 +22,10 @@ const parseGutter = ({ gutter }) => {
 
   try {
     size = parseInt(gutter, 10);
+
+    if (isNaN(size)) {
+      throw new Error("That's not a number");
+    }
   } catch (e) {
     return { size: 0, unit: 'px' };
   }
@@ -70,11 +74,11 @@ export const Grid = withDefaultTheme(
         className={classNames(style.Grid, customClassName)}
       >
         <div className={style.Columns} style={{ margin: inverseGutter }}>
-          {entries.map((child, i) => (
+          {entries.map(child => (
             <Entry
               entryPercentWidth={entryPercentWidth}
               gutter={safeGutter}
-              key={`entry${child.key || `.i.${i}`}`}
+              key={`entry${child.key}`}
             >
               {React.cloneElement(child)}
             </Entry>
