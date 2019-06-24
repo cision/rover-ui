@@ -8,7 +8,7 @@ import { shallow } from 'enzyme';
 import <%= h.changeCase.pascal(name) %> from './';
 
 describe('<%= h.changeCase.pascal(name) %>', () => {
-  it('reminds you to write some tests', () = >{
+  it('reminds you to write some tests', () => {
     expect(false).toEqual(true);
   });
 
