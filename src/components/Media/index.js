@@ -21,8 +21,8 @@ const StyledMedia = styled(BaseMediaObj)`
   ${space}
 `;
 
-StyledMedia.displayName = 'Media';
 const Media = withDefaultTheme(StyledMedia);
+Media.displayName = 'Media';
 
 const StyledBody = styled(BaseMediaObj)`
   flex: 1 1 auto;
@@ -31,8 +31,8 @@ const StyledBody = styled(BaseMediaObj)`
   grid-template-columns: 100%;
   ${space}
 `;
-StyledBody.displayName = 'Media.Body';
 const Body = withDefaultTheme(StyledBody);
+Body.displayName = 'Media.Body';
 
 const StyledItem = styled(BaseMediaObj)`
   flex: 0 0 auto;
@@ -40,8 +40,8 @@ const StyledItem = styled(BaseMediaObj)`
   grid-template-columns: 100%;
   ${space}
 `;
-StyledItem.displayName = 'Media.Item';
 const Item = withDefaultTheme(StyledItem);
+Item.displayName = 'Media.Item';
 
 Media.Body = Body;
 Media.Item = Item;
