@@ -15,7 +15,7 @@ storiesOf('Dark Matter/Responsive/Grid', module)
       sidebar: Readme,
     },
   })
-  .add('Sandbox', () => (
+  .add('Overview', () => (
     <Container>
       <Grid
         breakpoints={object('Grid breakpoints', {

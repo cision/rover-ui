@@ -50,7 +50,7 @@ storiesOf('Dark Matter/Responsive', module).add(
 );
 
 storiesOf('Dark Matter/Responsive/Moons/Container', module).add(
-  'Sandbox',
+  'Overview',
   () => (
     <Responsive.Container
       customBreakpoints={object(
@@ -81,7 +81,7 @@ storiesOf('Dark Matter/Responsive/Moons/Container', module).add(
 );
 
 storiesOf('Dark Matter/Responsive/Moons/Element', module).add(
-  'Sandbox',
+  'Overview',
   () => <Responsive.Element />,
   {
     info: {
