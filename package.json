@@ -41,6 +41,7 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "hygen": "hygen",
+    "generate-component": "hygen component new",
     "prepare": "",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
