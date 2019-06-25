@@ -59,51 +59,80 @@ storiesOf('Dark Matter/Media', module)
     'Examples',
     () => (
       <React.Fragment>
-        <h2>Basic Usage</h2>
-        <Media tag="main">
-          <Media.Item>Item 1</Media.Item>
-          <Media.Item>Item 2</Media.Item>
-          <Media.Body>Body</Media.Body>
-          <Media.Item>Item 3</Media.Item>
-          <Media.Item>Item 4</Media.Item>
-        </Media>
+        <Paper mx="md" mb="md">
+          <h2>Basic Usage</h2>
 
-        <h2>With Nesting</h2>
-        <Media>
-          <Media.Item>Item 1</Media.Item>
-          <Media.Body>
-            <Media>
-              <Media.Item>Nested Item 1</Media.Item>
-              <Media.Body>Nested Body 2</Media.Body>
-            </Media>
-          </Media.Body>
-          <Media.Item>Item 2</Media.Item>
-        </Media>
+          <Media mt="md" tag="main">
+            <Media.Item mr="md">
+              <img width="100" src="https://placebeard.it/100x100" alt="" />
+            </Media.Item>
+            <Media.Body>
+              <h3>Hi, this is John Doe!</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+            </Media.Body>
+          </Media>
+        </Paper>
 
-        <h2>With Nesting</h2>
-        <Media tag="main">
-          <Media.Item tag="span">
-            <Paper mx="sm">Item 1</Paper>
-          </Media.Item>
-          <Media.Body px="sm">
-            <Paper>
-              <Media>
-                <Media.Item pr="md">
-                  <img src="https://placekitten.com/150/100" alt="" />
+        <Paper mx="md" mb="md">
+          <h2>With Nesting</h2>
+
+          <Media mt="md" tag="main">
+            <Media.Item mr="md">
+              <img width="100" src="https://placebeard.it/100x100" alt="" />
+            </Media.Item>
+            <Media.Body>
+              <h3>Hi, this is John Doe!</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+
+              <Media mt="lg" tag="main">
+                <Media.Item mr="md">
+                  <img src="https://placekitten.com/100" alt="" />
                 </Media.Item>
                 <Media.Body>
-                  <h2>Kittehs!</h2>
+                  <h3>Hi, this is Jane Doe!</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
+                  </p>
                 </Media.Body>
               </Media>
-            </Paper>
-          </Media.Body>
-          <Media.Item>
-            <Paper mx="sm">Item 2</Paper>
-          </Media.Item>
-          <Media.Item>
-            <Paper mx="sm">Item 3</Paper>
-          </Media.Item>
-        </Media>
+            </Media.Body>
+          </Media>
+        </Paper>
+
+        <Paper color="porcelain" bg="river-bed" mx="md" mb="md">
+          <h2>Example Use with Horizontal Organization</h2>
+          <Media mt="sm" tag="main">
+            <Media.Item tag="span">
+              <Paper mr="sm">Item 1</Paper>
+            </Media.Item>
+            <Media.Body px="sm">
+              <Paper>
+                <Media>
+                  <Media.Item pr="md">
+                    <img src="https://placekitten.com/150/100" alt="" />
+                  </Media.Item>
+                  <Media.Body>
+                    <h2>Kittehs!</h2>
+                  </Media.Body>
+                </Media>
+              </Paper>
+            </Media.Body>
+            <Media.Item>
+              <Paper mx="sm">Item 2</Paper>
+            </Media.Item>
+            <Media.Item>
+              <Paper ml="sm">Item 3</Paper>
+            </Media.Item>
+          </Media>
+        </Paper>
       </React.Fragment>
     ),
     {
