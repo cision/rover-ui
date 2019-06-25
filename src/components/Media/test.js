@@ -4,8 +4,6 @@ import { shallow, mount } from 'enzyme';
 import Media from './';
 
 describe('Media', () => {
-  it('reminds you to write some tests', () => {});
-
   describe('Media.Item', () => {
     it('supports custom tags', () => {
       const wrapper = mount(
