@@ -16,7 +16,7 @@ The `<Media>` is a basic wrapper that sets up a basic flex style that makes crea
 
 ## Items and Body
 
-These two components are the bread and butter of the Media object. When you use `<Media>`, you will only want to use `<Media.Item>` and `<Media.Body>` as direct children to make sure that the proper flex/grid CSS styling is used.
+These two components are the bread and butter of the Media object. When you use `<Media>`, you will want to use `<Media.Item>` and `<Media.Body>` the majority of the time as direct children to make sure that the proper flex/grid CSS styling is used.
 
 There is only one major difference between these two compoents: a `Media.Body` component will fill the available space while `Media.Item` will shrink to fit.
 
