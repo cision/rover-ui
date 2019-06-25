@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { space } from 'styled-system';
+import { space, flex } from 'styled-system';
 import { propTypes as TagType } from '../../shared/models/tag';
 import withDefaultTheme from '../withDefaultTheme';
 
@@ -18,6 +18,7 @@ export const StyledMedia = withDefaultTheme(styled(BaseMediaObj)`
   flex-flow: row nowrap;
   align-items: stretch;
   width: 100%;
+  ${flex}
   ${space}
 `);
 

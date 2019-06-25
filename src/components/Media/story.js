@@ -115,12 +115,13 @@ storiesOf('Dark Matter/Media', module)
             </Media.Item>
             <Media.Body px="sm">
               <Paper>
-                <Media>
-                  <Media.Item pr="md">
-                    <img src="https://placekitten.com/150/100" alt="" />
-                  </Media.Item>
+                <Media justifyContent="center">
                   <Media.Body>
-                    <h2>Kittehs!</h2>
+                    <img
+                      style={{ margin: '0 auto' }}
+                      src="https://placekitten.com/150/100"
+                      alt=""
+                    />
                   </Media.Body>
                 </Media>
               </Paper>
