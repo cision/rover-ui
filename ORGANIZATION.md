@@ -30,7 +30,6 @@ Currently, there is no clear, definitive organization to our RoverUI component l
 - ~~Bar Stat~~ Bar.Bar + Bar.Fill
 - Button Group
 - Dropdown
-- Media
 - PerformanceMetric(?)
 - Pill
 - Tooltip
@@ -81,6 +80,7 @@ Currently, there is no clear, definitive organization to our RoverUI component l
 ## Dark Matter
 
 - Container
+- Media (CSS Object. Not reference to media content specifically)
 - Page
 - ( Side Bar )
   - SideBarCollapse
