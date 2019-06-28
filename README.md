@@ -1,8 +1,8 @@
 # RoverUI
 
-> UI Component Library used at TrendKite
+> UI Component Library used at Cision
 
-[![NPM](https://img.shields.io/npm/v/rover-ui.svg)](https://www.npmjs.com/package/rover-ui) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@cision/rover-ui.svg)](https://www.npmjs.com/package/@cision/rover-ui)
 
 ## Install
 

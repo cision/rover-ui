@@ -4,7 +4,7 @@ This outline covers the proposed contents of [README.md](./README.md)
 
 ## Introduction
 
-RoverUI is a collection UI components that define TrendKite's design language. These components should help you build applications in React that look and feel right.
+RoverUI is a collection of UI components originally built for and by Cision. These components should help the Cision team build applications that look hot, in React, quickly.
 
 ## Installation
 
@@ -16,7 +16,7 @@ To install and develop or run locally, you're in the right place.
 
 ### What to avoid in RoverUI
 
-It's _not_ a repository for all of TrendKite's shared components. Don't try to add components that deal specifically with TrendKite business logic and concepts here. Don't try to add components that handle whole layout areas.
+It's _not_ a repository for all shared components. Don't try to add components that deal specifically with business logic and concepts here. Don't try to add components that handle whole layout areas.
 
 ### Creating a new component
 

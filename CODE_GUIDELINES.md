@@ -4,7 +4,7 @@
 
 ### Business-agnostic
 
-This is an agnostic UI library, and shouldn't have TrendKite-specific business logic built in. That means there should be no references to "TK nouns" by name, e.g. article, contact, story, campaign.
+This is an agnostic UI library, and shouldn't have business-specific logic built in. That means there should be no references to "TK nouns" by name, e.g. article, contact, story, campaign.
 
 Instead, write components with generic objects in mind, like people, media, actions, etc.
 
