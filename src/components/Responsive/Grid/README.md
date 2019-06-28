@@ -23,7 +23,7 @@ For instance, Grid has (number of) columns and (size of) gutter props. To set th
 <Responsive.Grid
   breakpoints={{ 'container-md-up': { columns: 3, gutter: 'xl' } }}
   columns={1}
-  gutter="no"
+  gutter={0}
   ...
 ```
 
