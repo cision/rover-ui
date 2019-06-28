@@ -38,4 +38,5 @@ import './components/Bar/story';
 
 import './components/Grid/story';
 import './components/Media/story';
+import './components/Responsive/Grid/story';
 import './components/Responsive/story';

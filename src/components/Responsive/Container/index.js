@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ContainerQuery } from 'react-container-query';
-import { Context } from '../Context';
+import Context from '../Context';
 
 // breakpointMins should be in sync with `@trendkite/ui/src/styles/_breakpoints.scss: $breakpoint-mins`
 const defaultBreakpoints = [
@@ -51,7 +51,7 @@ export const getBreakpointsQuery = breakpoints =>
   media-query-like strings available to child components via a
   <Context.Consumer/>
 */
-export const Container = props => {
+const Container = props => {
   let query;
 
   if (props.customBreakpoints) {
