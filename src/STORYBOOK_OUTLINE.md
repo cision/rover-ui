@@ -6,7 +6,7 @@ This outline only covers the content that should go in storybook documentation.
 
 ---
 
-RoverUI is a collection UI components that define TrendKite's design language. These components should help you build applications in React that look and feel right.
+RoverUI is a collection of UI components originally built for and by Cision. These components should help the Cision team build applications that look hot, in React, quickly.
 
 ### Installation
 

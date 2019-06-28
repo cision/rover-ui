@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ContainerQuery } from 'react-container-query';
 import Context from '../Context';
 
-// breakpointMins should be in sync with `@trendkite/ui/src/styles/_breakpoints.scss: $breakpoint-mins`
 const defaultBreakpoints = [
   {
     name: 'xs',
