@@ -1,7 +1,3 @@
-.Grid {
-  overflow: hidden;
-}
-
 .Columns {
   display: flex;
   flex-flow: row wrap;
