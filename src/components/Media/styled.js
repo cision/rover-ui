@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { space, flexbox } from 'styled-system';
+import { space, flex } from 'styled-system';
 import withDefaultTheme from '../withDefaultTheme';
 
 export const StyledMedia = withDefaultTheme(styled.div`
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
-  ${flexbox}
+  ${flex}
   ${space}
 `);
 
