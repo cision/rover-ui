@@ -2,13 +2,21 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { number, select } from '@storybook/addon-knobs';
 import styled from 'styled-components';
-import { fontFamily, fontSize, margin, space } from 'styled-system';
+import { fontFamily, fontSize, margin, marginTop, space } from 'styled-system';
 
 import { Bar, Fill } from './';
 import Paper from '../Paper';
 import BarStatReadme from './README.md';
 import withDefaultTheme from '../withDefaultTheme';
 import theme from '../../shared/theme';
+
+const Heading = withDefaultTheme(styled.h3(marginTop, fontFamily, fontSize));
+Heading.displayName = 'Heading';
+Heading.defaultProps = {
+  marginTop: 0,
+  fontFamily: 'body',
+  fontSize: 2,
+};
 
 const Label = withDefaultTheme(styled.span(fontFamily, fontSize));
 Label.displayName = 'Label';
@@ -72,21 +80,21 @@ storiesOf('Star System/Bar', module)
   .add('Examples', () => (
     <Wrap>
       <Paper mb="sm">
-        <h3>Default Bar</h3>
+        <Heading>Default Bar</Heading>
         <Bar>
           <Fill width="73%" />
         </Bar>
       </Paper>
 
       <Paper mb="sm">
-        <h3>Custom Wrapper and Fill</h3>
+        <Heading>Custom Wrapper and Fill</Heading>
         <Bar bg="loblolly">
           <Fill bg="salmon" width="50%" />
         </Bar>
       </Paper>
 
       <Paper mb="sm">
-        <h3>Wrapper Width</h3>
+        <Heading>Wrapper Width</Heading>
         <Bar width="25%">
           <Fill bg="salmon" width="50%" />
         </Bar>
@@ -105,7 +113,7 @@ storiesOf('Star System/Bar', module)
       </Paper>
 
       <Paper mb="sm">
-        <h3>Bars with multiple colors</h3>
+        <Heading>Bars with multiple colors</Heading>
         <Bar width="100%">
           <Fill bg="green" width="25%" />
           <Fill bg="brandColor" width="10%" />
@@ -114,7 +122,7 @@ storiesOf('Star System/Bar', module)
       </Paper>
 
       <Paper mb="sm">
-        <h3>At various fill widths...</h3>
+        <Heading>At various fill widths...</Heading>
         {[0, 10, 20, 50, 99, 100].map(percent => (
           <div key={`${percent}`.toString()}>
             <Spacer />

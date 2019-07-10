@@ -18,7 +18,7 @@
   margin-right: var(--space-lg);
 }
 
-.Addon:first-child {
+.Addon:first-of-type {
   margin-left: 0;
 }
 
