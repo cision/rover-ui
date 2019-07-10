@@ -1,8 +1,8 @@
 // Global CSS variables
-import './shared/colors.css';
-import './shared/sizing.css';
-import './shared/variables.css';
-import './shared/reset.css';
+// import './shared/colors.css';
+// import './shared/sizing.css';
+// import './shared/variables.css';
+// import './shared/reset.css';
 
 export { default as Badge } from './components/Badge';
 export { default as Bar } from './components/Bar';
