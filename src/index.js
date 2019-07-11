@@ -11,3 +11,4 @@ export { default as Media } from './components/Media';
 export { default as Paper } from './components/Paper';
 export { default as Grid } from './components/Grid';
 export { default as Responsive } from './components/Responsive';
+export { default as Pill } from './components/Pill';

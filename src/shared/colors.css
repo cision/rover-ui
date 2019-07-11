@@ -53,4 +53,56 @@
 
   /* Notify */
   --color-notify: var(--hotPink);
+
+  /* colors from zeplin styleguide, created by Egle */
+  --teal: #00837e;
+  --light-blue: #0092c2;
+  --light-teal: #43bfb7;
+  --gray-20: #ebeced;
+  --orange-hover: #fc5b08;
+  --error: #de4543;
+  --error-hover: #fa6866;
+  --charting-blue-dark: #0177b2;
+  --charting-teal-light: #89ebe8;
+  --warning: #f8ca00;
+  --charting-yellow-base: #fde568;
+  --charting-red-light: #ffa2a7;
+  --charting-blue-light: #65c1ea;
+  --light-blue-hover: #0ba5d6;
+  --charting-magenta-base: #ff64c6;
+  --charting-green-base: #00c68d;
+  --charting-teal-base: #39dbd8;
+  --charting-yellow-dark: #fdd500;
+  --gray-10: #f7f7f7;
+  --charting-blue-base: #0195de;
+  --charting-green-light: #a1f0d7;
+  --gray-60: #9aa0a5;
+  --charting-red-base: #ff626b;
+  --light-teal-hover: #49d1c8;
+  --charting-purple-base: #8575cd;
+  --success-light: #e9fcf6;
+  --aqua-marine: #44c0c2;
+  --charting-red-dark: #cb4e55;
+  --white: #fff;
+  --gray-90: #34404b;
+  --orange: #e35207;
+  --error-light: #feebea;
+  --charting-teal-dark: #2dafac;
+  --notification: #fc356a;
+  --warning-light: #fef8d3;
+  --medium-blue: #00607f;
+  --charting-green-dark: #009e71;
+  --gray-80: #677078;
+  --success: #63bf52;
+  --light-sky-blue: #d2eef7;
+  --charting-magenta-dark: #cb509e;
+  --charting-purple-dark: #6b5da3;
+  --charting-yellow-light: #fdf5d0;
+  --charting-magenta-light: #ffa4de;
+  --teal-hover: #00a19b;
+  --info-light: #e3f6fc;
+  --gray-40: #cccfd2;
+  --charting-purple-light: #b5ade1;
+  --medium-blue-hover: #007499;
+  --aqua-marine-two: #47cacc;
 }

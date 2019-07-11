@@ -12,6 +12,7 @@ import './shared/reset.css';
  */
 
 /** INJECTOR */
+import './components/Pill/story';
 import './components/Badge/story';
 import './components/Button/story';
 import './components/Paper/story';

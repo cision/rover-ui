@@ -1,0 +1,51 @@
+@import '../../shared/colors.css';
+
+.pill {
+  border-radius: 16px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  background-color: var(--white);
+  font-size: 14px;
+  font-weight: normal;
+  text-align: center;
+  color: var(--light-blue);
+  display: inline-block;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  border: solid 1px transparent;
+  outline: none;
+  margin: 5px;
+}
+
+.pill:hover {
+  background-color: var(--light-blue-hover);
+  color: var(--white);
+}
+
+.selected {
+  border: solid 1px var(--light-teal);
+  background-color: #ebfffe;
+  color: var(--gray-80);
+}
+
+.selected:hover {
+  border: solid 1px var(--light-teal-hover);
+  background-color: #d5f5f3;
+  color: var(--gray-90);
+}
+
+.clear {
+  width: 20px;
+  margin-right: -10px;
+  margin-left: 8px;
+  vertical-align: top;
+  color: var(--light-teal);
+  transition: color 0.2s ease;
+}
+
+.selected:hover .clear {
+  color: var(--light-teal-hover);
+}
