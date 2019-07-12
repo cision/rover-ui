@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ClearIcon(props) {
+const ClearIcon = props => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,6 +16,6 @@ function ClearIcon(props) {
       />
     </svg>
   );
-}
+};
 
 export default ClearIcon;

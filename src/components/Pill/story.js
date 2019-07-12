@@ -7,7 +7,7 @@ import Readme from './README.md';
 function handleClick(id) {
   alert(`clicked ${id}`);
 }
-storiesOf('Uncategorized/Pill', module)
+storiesOf('Star System/Pill', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -16,11 +16,25 @@ storiesOf('Uncategorized/Pill', module)
   .add(
     'Overview',
     () => (
+      <Pill id="pill-1" onClick={handleClick} selected>
+        Pill 1
+      </Pill>
+    ),
+    {
+      info: {
+        inline: true,
+        source: true,
+      },
+    }
+  )
+  .add(
+    'Pills list',
+    () => (
       <React.Fragment>
-        <Pill id="pill-1" onClick={handleClick}>
+        <Pill id="pill-1" onClick={handleClick} selected>
           Pill 1
         </Pill>
-        <Pill selected id="pill-2" onClick={handleClick}>
+        <Pill id="pill-2" onClick={handleClick} selected>
           Pill 2
         </Pill>
         <Pill id="pill-3" onClick={handleClick}>
