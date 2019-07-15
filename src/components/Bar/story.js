@@ -45,7 +45,7 @@ const options = {
   step: 1,
 };
 
-storiesOf('Star System/Bar', module)
+storiesOf('Star Systems/Bar', module)
   .addParameters({
     readme: {
       sidebar: BarStatReadme,
