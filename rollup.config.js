@@ -7,7 +7,8 @@ import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import svgr from '@svgr/rollup';
 
-import cssprops from 'postcss-custom-properties';
+import postcssCustomProperties from 'postcss-custom-properties';
+import postcssCalc from 'postcss-calc';
 
 import pkg from './package.json';
 
@@ -29,9 +30,16 @@ export default {
     external(),
     postcss({
       plugins: [
-        cssprops({
+        postcssCustomProperties({
           preserve: false,
+          importFrom: [
+            'src/shared/colors.css',
+            'src/shared/buttons.css',
+            'src/shared/sizing.css',
+            'src/shared/variables.css',
+          ],
         }),
+        postcssCalc(),
       ],
       modules: true,
       sourceMap: true,
@@ -40,7 +48,7 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['external-helpers'],
+      plugins: ['transform-es2017-object-entries', 'external-helpers'],
     }),
     resolve({
       customResolveOptions: {
