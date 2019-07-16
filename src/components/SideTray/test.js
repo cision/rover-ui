@@ -5,6 +5,12 @@ import SideTray from './';
 
 describe('SideTray', () => {
   it('renders', () => {
-    shallow(<SideTray>Boom</SideTray>);
+    const wrapper = shallow(
+      <SideTray visible closeCallback={() => {}}>
+        Hey I am a sidetray!
+      </SideTray>
+    );
+
+    expect(wrapper.text()).toEqual('Hey I am a sidetray!');
   });
 });
