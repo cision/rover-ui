@@ -4,18 +4,18 @@
 }
 
 .sm {
-  margin-left: var(--space-sm);
-  margin-right: var(--space-sm);
+  margin-left: var(--rvr-space-sm);
+  margin-right: var(--rvr-space-sm);
 }
 
 .md {
-  margin-left: var(--space-md);
-  margin-right: var(--space-md);
+  margin-left: var(--rvr-space-md);
+  margin-right: var(--rvr-space-md);
 }
 
 .lg {
-  margin-left: var(--space-lg);
-  margin-right: var(--space-lg);
+  margin-left: var(--rvr-space-lg);
+  margin-right: var(--rvr-space-lg);
 }
 
 .Addon:first-child {

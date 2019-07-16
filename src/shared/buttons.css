@@ -1,0 +1,91 @@
+:root {
+  /* PRIMARY */
+  --rvr-color-primary: var(--rvr-white);
+  --rvr-bg-color-primary: var(--rvr-blue);
+  --rvr-border-color-primary: var(--rvr-bg-color-primary);
+
+  /* Active */
+  --rvr-color-primary-active: var(--rvr-color-primary);
+  --rvr-bg-color-primary-active: var(--rvr-blue-lite-1);
+  --rvr-border-color-primary-active: var(--rvr-bg-color-primary-active);
+
+  /* Disabled */
+  --rvr-color-primary-disabled: var(--rvr-white);
+  --rvr-bg-color-primary-disabled: var(--rvr-gray-lite-3);
+  --rvr-border-color-primary-disabled: var(--rvr-gray-lite-3);
+
+  /* TEAL */
+  --rvr-color-teal: var(--rvr-white);
+  --rvr-bg-color-teal: var(--rvr-teal);
+  --rvr-border-color-teal: var(--rvr-bg-color-teal);
+
+  /* Active */
+  --rvr-color-teal-active: var(--rvr-color-teal);
+  --rvr-bg-color-teal-active: var(--rvr-teal-lite-1);
+  --rvr-border-color-teal-active: var(--rvr-bg-color-teal-active);
+
+  /* Disabled */
+  --rvr-color-teal-disabled: var(--rvr-color-primary-disabled);
+  --rvr-bg-color-teal-disabled: var(--rvr-bg-color-primary-disabled);
+  --rvr-border-color-teal-disabled: var(--rvr-border-color-primary-disabled);
+
+  /* SECONDARY */
+  --rvr-color-secondary: var(--rvr-blue);
+  --rvr-bg-color-secondary: var(--rvr-white);
+  --rvr-border-color-secondary: var(--rvr-color-secondary);
+
+  /* Active */
+  --rvr-color-secondary-active: var(--rvr-color-primary-active);
+  --rvr-bg-color-secondary-active: var(--rvr-bg-color-primary-active);
+  --rvr-border-color-secondary-active: var(--rvr-border-color-primary-active);
+
+  /* Disabled */
+  --rvr-color-secondary-disabled: var(--rvr-gray-lite-3);
+  --rvr-bg-color-secondary-disabled: var(--rvr-gray-lite-6);
+  --rvr-border-color-secondary-disabled: var(--rvr-gray-lite-4);
+
+  /* SUCCESS */
+  --rvr-color-success: var(--rvr-white);
+  --rvr-bg-color-success: var(--rvr-green);
+  --rvr-border-color-success: var(--rvr-bg-color-success);
+
+  /* Active */
+  --rvr-color-success-active: var(--rvr-white);
+  --rvr-bg-color-success-active: var(--rvr-green-lite-1);
+  --rvr-border-color-success-active: var(--rvr-bg-color-success-active);
+
+  /* Disabled */
+  --rvr-color-success-disabled: var(--rvr-color-secondary-disabled);
+  --rvr-bg-color-success-disabled: var(--rvr-bg-color-secondary-disabled);
+  --rvr-border-color-success-disabled: var(--rvr-border-color-secondary-disabled);
+
+  /* TERTIARY */
+  --rvr-color-tertiary: var(--rvr-gray-lite-2);
+  --rvr-bg-color-tertiary: var(--rvr-white);
+  --rvr-border-color-tertiary: var(--rvr-gray-lite-3);
+
+  /* Active */
+  --rvr-color-tertiary-active: var(--rvr-gray);
+  --rvr-bg-color-tertiary-active: var(--rvr-gray-lite-6);
+  --rvr-border-color-tertiary-active: var(--rvr-gray-lite-2);
+
+  /* Disabled */
+  --rvr-color-tertiary-disabled: var(--rvr-color-secondary-disabled);
+  --rvr-bg-color-tertiary-disabled: var(--rvr-bg-color-secondary-disabled);
+  --rvr-border-color-tertiary-disabled: var(--rvr-border-color-secondary-disabled);
+
+  /* DARK MODE */
+  --rvr-color-darkMode: var(--rvr-white);
+  --rvr-bg-color-darkMode: transparent;
+  --rvr-border-color-darkMode: var(--rvr-white);
+
+  /* Active */
+  --rvr-color-darkMode-active: var(--rvr-gray-lite-3);
+  --rvr-bg-color-darkMode-active: var(--rvr-bg-color-darkMode);
+  --rvr-border-color-darkMode-active: var(--rvr-gray-lite-3);
+
+  /* Disabled */
+  --rvr-color-darkMode-disabled: #fff6;
+  --rvr-bg-color-darkMode-disabled: var(--rvr-bg-color-darkMode);
+  --rvr-border-color-darkMode-disabled: #fff6;
+}

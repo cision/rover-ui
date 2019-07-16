@@ -1,7 +1,7 @@
 .Paper {
-  background: var(--white);
+  background: var(--rvr-white);
   border-radius: 2px;
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--rvr-box-shadow);
 }
 
 .dark {
