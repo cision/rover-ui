@@ -217,9 +217,9 @@ ajv@^5.0.0, ajv@^5.1.5, ajv@^5.2.0:
     json-schema-traverse "^0.3.0"
 
 ajv@^6.0.1, ajv@^6.5.5:
-  version "6.10.1"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv/-/ajv-6.10.1.tgz#ebf8d3af22552df9dd049bfbe50cc2390e823593"
-  integrity sha1-6/jTryJVLfndBJv75QzCOQ6CNZM=
+  version "6.10.2"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/ajv/-/ajv-6.10.2.tgz#d3cea04d6b017b2894ad69040fec8b623eb4bd52"
+  integrity sha1-086gTWsBeyiUrWkED+yLYj60vVI=
   dependencies:
     fast-deep-equal "^2.0.1"
     fast-json-stable-stringify "^2.0.0"
@@ -482,11 +482,11 @@ async@^1.5.2:
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
 async@^2.1.2, async@^2.1.4, async@^2.4.1:
-  version "2.6.2"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/async/-/async-2.6.2.tgz#18330ea7e6e313887f5d2f2a904bac6fe4dd5381"
-  integrity sha1-GDMOp+bjE4h/XS8qkEusb+TdU4E=
+  version "2.6.3"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
+  integrity sha1-1yYl4jRKNlbjo61Pp0n6gymdgv8=
   dependencies:
-    lodash "^4.17.11"
+    lodash "^4.17.14"
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -1666,14 +1666,14 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000983"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/caniuse-db/-/caniuse-db-1.0.30000983.tgz#9bf82a9ea8ec5ffd802aa5214ee46eee7ed417b0"
-  integrity sha1-m/gqnqjsX/2AKqUhTuRu7n7UF7A=
+  version "1.0.30000984"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/caniuse-db/-/caniuse-db-1.0.30000984.tgz#3e4a53d78f33403e931ef1d2b2db07556d253dff"
+  integrity sha1-PkpT148zQD6THvHSstsHVW0lPf8=
 
 caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000792:
-  version "1.0.30000983"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/caniuse-lite/-/caniuse-lite-1.0.30000983.tgz#ab3c70061ca2a3467182a10ac75109b199b647f8"
-  integrity sha1-qzxwBhyio0ZxgqEKx1EJsZm2R/g=
+  version "1.0.30000984"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/caniuse-lite/-/caniuse-lite-1.0.30000984.tgz#dc96c3c469e9bcfc6ad5bdd24c77ec918ea76fe0"
+  integrity sha1-3JbDxGnpvPxq1b3STHfskY6nb+A=
 
 capture-stack-trace@^1.0.0:
   version "1.0.1"
@@ -2616,9 +2616,9 @@ ee-first@1.1.1:
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30:
-  version "1.3.188"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/electron-to-chromium/-/electron-to-chromium-1.3.188.tgz#e28e1afe4bb229989e280bfd3b395c7ec03c8b7a"
-  integrity sha1-4o4a/kuyKZieKAv9OzlcfsA8i3o=
+  version "1.3.191"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/electron-to-chromium/-/electron-to-chromium-1.3.191.tgz#c451b422cd8b2eab84dedabab5abcae1eaefb6f0"
+  integrity sha1-xFG0Is2LLquE3tq6tavK4ervtvA=
 
 element-resize-detector@1.1.13:
   version "1.1.13"
@@ -4367,10 +4367,10 @@ is-utf8@^0.2.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
   integrity sha1-Sw2hRCEE0bM2NA6AeX6GXPOffXI=
 
-is-what@^3.2.3:
-  version "3.2.3"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/is-what/-/is-what-3.2.3.tgz#50f76f1bd8e56967e15765d1d34302513701997b"
-  integrity sha1-UPdvG9jlaWfhV2XR00MCUTcBmXs=
+is-what@^3.2.4:
+  version "3.2.4"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/is-what/-/is-what-3.2.4.tgz#da528659017bdd4b07892dfe4fd60da6ac500e98"
+  integrity sha1-2lKGWQF73UsHiS3+T9YNpqxQDpg=
 
 is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
@@ -5057,7 +5057,7 @@ lodash.uniq@^4.5.0:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-"lodash@>=3.5 <5", lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0:
+"lodash@>=3.5 <5", lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.14"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
   integrity sha1-nOSHrmbJYlT+ILWZ8htoFgKAeLo=
@@ -5197,11 +5197,11 @@ meow@^3.3.0, meow@^3.7.0:
     trim-newlines "^1.0.0"
 
 merge-anything@^2.2.4:
-  version "2.2.5"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/merge-anything/-/merge-anything-2.2.5.tgz#37ef13f36359ee64f09c657d2cef45f7e29493f9"
-  integrity sha1-N+8T82NZ7mTwnGV9LO9F9+KUk/k=
+  version "2.4.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/merge-anything/-/merge-anything-2.4.0.tgz#86959caf02bb8969d1ae5e1b652862bc5fe54e44"
+  integrity sha1-hpWcrwK7iWnRrl4bZShivF/lTkQ=
   dependencies:
-    is-what "^3.2.3"
+    is-what "^3.2.4"
 
 merge-descriptors@1.0.1:
   version "1.0.1"
@@ -6009,9 +6009,9 @@ pluralize@^7.0.0:
   integrity sha1-KYuJ34uTsCIdv0Ia0rGx6iP8Z3c=
 
 portfinder@^1.0.9:
-  version "1.0.20"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/portfinder/-/portfinder-1.0.20.tgz#bea68632e54b2e13ab7b0c4775e9b41bf270e44a"
-  integrity sha1-vqaGMuVLLhOrewxHdem0G/Jw5Eo=
+  version "1.0.21"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/portfinder/-/portfinder-1.0.21.tgz#60e1397b95ac170749db70034ece306b9a27e324"
+  integrity sha1-YOE5e5WsFwdJ23ADTs4wa5on4yQ=
   dependencies:
     async "^1.5.2"
     debug "^2.2.0"
@@ -6592,7 +6592,7 @@ react-dev-utils@^5.0.2:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.4.1:
+react-dom@^16.8.0:
   version "16.8.6"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react-dom/-/react-dom-16.8.6.tgz#71d6303f631e8b0097f56165ef608f051ff6e10f"
   integrity sha1-cdYwP2MeiwCX9WFl72CPBR/24Q8=
@@ -6658,7 +6658,7 @@ react-scripts@^1.1.4:
   optionalDependencies:
     fsevents "^1.1.3"
 
-react@^16.4.1:
+react@^16.8.0:
   version "16.8.6"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react/-/react-16.8.6.tgz#ad6c3a9614fd3a4e9ef51117f54d888da01f2bbe"
   integrity sha1-rWw6lhT9Ok6e9REX9U2IjaAfK74=
@@ -7375,9 +7375,9 @@ spdx-expression-parse@^3.0.0:
     spdx-license-ids "^3.0.0"
 
 spdx-license-ids@^3.0.0:
-  version "3.0.4"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/spdx-license-ids/-/spdx-license-ids-3.0.4.tgz#75ecd1a88de8c184ef015eafb51b5b48bfd11bb1"
-  integrity sha1-dezRqI3owYTvAV6vtRtbSL/RG7E=
+  version "3.0.5"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/spdx-license-ids/-/spdx-license-ids-3.0.5.tgz#3694b5804567a458d3c8045842a6358632f62654"
+  integrity sha1-NpS1gEVnpFjTyARYQqY1hjL2JlQ=
 
 spdy-transport@^2.0.18:
   version "2.1.1"
