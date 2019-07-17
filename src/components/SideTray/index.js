@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import style from './style.css';
 
-const SideTray = ({ visible, closeCallback, header, children, modifiers }) => {
+const SideTray = ({ visible, closeCallback, header, footer, children }) => {
   useEffect(() => {
     const handleEscape = e => {
       if (visible && e.keyCode === 27) {
@@ -26,26 +26,23 @@ const SideTray = ({ visible, closeCallback, header, children, modifiers }) => {
   }, [visible, closeCallback]);
 
   const clickOffBackdrop = visible ? (
-    <button
-      className={classNames(style.backdrop)}
-      onClick={() => closeCallback('backdrop')}
-    />
+    <button className={classNames(style.backdrop)} onClick={closeCallback} />
   ) : null;
 
-  const mainClass = classNames(style.main);
+  const mainClassName = classNames(style.main);
 
-  const className = classNames(style.SideTray, {
-    [style.flex]: modifiers.indexOf('flex') >= 0,
+  const sideTrayClassName = classNames(style.sideTray, {
     [style.show]: visible,
     [style.hide]: !visible,
   });
 
   return (
     <div>
-      <div className={className}>
-        <div className={mainClass}>
+      <div className={sideTrayClassName}>
+        <div className={mainClassName}>
           {header}
           <div className={classNames(style.content)}>{children}</div>
+          {footer}
         </div>
       </div>
       {clickOffBackdrop}
@@ -57,14 +54,15 @@ SideTray.defaultProps = {
   visible: false,
   modifiers: [],
   header: null,
+  footer: null,
 };
 
 SideTray.propTypes = {
   visible: PropTypes.bool,
   closeCallback: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  modifiers: PropTypes.arrayOf(PropTypes.oneOf(['flex'])),
   header: PropTypes.node,
+  footer: PropTypes.node,
 };
 
 export default SideTray;

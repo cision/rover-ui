@@ -8,4 +8,13 @@
   --rvr-base-font-color: #58666e;
   --rvr-base-font-family: 'Source Sans Pro', sans-serif;
   --rvr-font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* SideTray */
+  --rvr-side-tray-width: 400px;
+  --rvr-off-canvas-drawer-z-index: 900;
+
+  /* Transitions */
+  --rvr-linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  --rvr-easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --rvr-easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
 }
