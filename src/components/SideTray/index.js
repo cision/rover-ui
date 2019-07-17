@@ -26,10 +26,8 @@ const SideTray = ({ visible, closeCallback, header, footer, children }) => {
   }, [visible, closeCallback]);
 
   const clickOffBackdrop = visible ? (
-    <button className={classNames(style.backdrop)} onClick={closeCallback} />
+    <button className={style.backdrop} onClick={closeCallback} />
   ) : null;
-
-  const mainClassName = classNames(style.main);
 
   const sideTrayClassName = classNames(style.sideTray, {
     [style.show]: visible,
@@ -39,9 +37,9 @@ const SideTray = ({ visible, closeCallback, header, footer, children }) => {
   return (
     <div>
       <div className={sideTrayClassName}>
-        <div className={mainClassName}>
+        <div className={style.main}>
           {header}
-          <div className={classNames(style.content)}>{children}</div>
+          <div className={style.content}>{children}</div>
           {footer}
         </div>
       </div>
@@ -52,7 +50,6 @@ const SideTray = ({ visible, closeCallback, header, footer, children }) => {
 
 SideTray.defaultProps = {
   visible: false,
-  modifiers: [],
   header: null,
   footer: null,
 };

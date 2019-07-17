@@ -1,6 +1,3 @@
-@import '../../shared/variables.css';
-@import '../../shared/colors.css';
-
 .sideTray {
   width: var(--rvr-side-tray-width);
   height: 100vh;
