@@ -7,11 +7,19 @@
   --rvr-base-font-family: 'Source Sans Pro', sans-serif;
   --rvr-font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  /* SideTray */
-  --rvr-off-canvas-drawer-z-index: 900;
-
   /* Transitions */
   --rvr-linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
   --rvr-easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   --rvr-easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+  --rvr-slideout: cubic-bezier(0, 0.52, 0, 1);
+
+  /* Z-Indices */
+  --rvr-zindex-dropdown: 1000 !default;
+  --rvr-zindex-sticky: 1020 !default;
+  --rvr-zindex-fixed: 1030 !default;
+  --rvr-zindex-sidetray-backdrop: 1040 !default;
+  --rvr-zindex-sidetray: 1050 !default;
+  --rvr-zindex-modal-backdrop: 1060 !default;
+  --rvr-zindex-modal: 1070 !default;
+  --rvr-zindex-popover: 1080 !default;
 }
