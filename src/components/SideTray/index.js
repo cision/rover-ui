@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Header from './Header';
-import Footer from './Footer';
-import Body from './Body';
 
 import style from './style.css';
 
@@ -56,6 +53,21 @@ SideTray.defaultProps = {
 SideTray.propTypes = {
   visible: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
+
+const Header = props => <div {...props} className={style.SideTray__Header} />;
+Header.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const Footer = props => <div {...props} className={style.SideTray__Footer} />;
+Footer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+const Body = props => <div {...props} className={style.SideTray__Body} />;
+Body.propTypes = {
   children: PropTypes.node.isRequired,
 };
 

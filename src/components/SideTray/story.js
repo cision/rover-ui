@@ -41,28 +41,6 @@ function SideTrayExample() {
   );
 }
 
-const renderContent = () => (
-  <React.Fragment>
-    <p>
-      Body by default does <strong>not</strong> have padding. It stretches to
-      fit the space, but everything else is up to you!
-    </p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>.</p>
-    <p>And look at that, it scrolls!</p>
-  </React.Fragment>
-);
-
 storiesOf('Star Systems/SideTray', module)
   .addParameters({
     readme: {
@@ -78,7 +56,23 @@ storiesOf('Star Systems/SideTray', module)
         </SideTray.Header>
         <SideTray.Body>
           <div style={{ padding: `${text('padding amount', '30')}px` }}>
-            {renderContent()}
+            <p>
+              Body by default does <strong>not</strong> have padding. It
+              stretches to fit the space, but everything else is up to you!
+            </p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>.</p>
+            <p>And look at that, it scrolls!</p>
           </div>
         </SideTray.Body>
         <SideTray.Footer>
