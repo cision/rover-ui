@@ -6,7 +6,7 @@ import SideTray from './';
 describe('SideTray', () => {
   it('renders', () => {
     const wrapper = shallow(
-      <SideTray visible closeCallback={() => {}}>
+      <SideTray visible onClose={() => {}}>
         Hey I am a sidetray!
       </SideTray>
     );
