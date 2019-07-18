@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Header from './Header';
+import Footer from './Footer';
+import Body from './Body';
 
 import style from './style.css';
 
-const SideTray = ({ visible, closeCallback, header, footer, children }) => {
+const SideTray = ({ visible, onClose, children }) => {
   useEffect(() => {
     const handleEscape = e => {
       if (visible && e.keyCode === 27) {
-        closeCallback(e);
+        onClose(e);
       }
     };
 
@@ -23,28 +26,24 @@ const SideTray = ({ visible, closeCallback, header, footer, children }) => {
     return () => {
       if (visible) window.removeEventListener('keyup', handleEscape);
     };
-  }, [visible, closeCallback]);
+  }, [visible, onClose]);
 
   const clickOffBackdrop = visible ? (
-    <button className={style.backdrop} onClick={closeCallback} />
+    <button className={style.backdrop} onClick={onClose} />
   ) : null;
 
-  const sideTrayClassName = classNames(style.sideTray, {
+  const sideTrayClassName = classNames(style.SideTray, {
     [style.show]: visible,
     [style.hide]: !visible,
   });
 
   return (
-    <div>
+    <React.Fragment>
       <div className={sideTrayClassName}>
-        <div className={style.main}>
-          {header}
-          <div className={style.content}>{children}</div>
-          {footer}
-        </div>
+        <div className={style.container}>{children}</div>
       </div>
       {clickOffBackdrop}
-    </div>
+    </React.Fragment>
   );
 };
 
@@ -56,10 +55,12 @@ SideTray.defaultProps = {
 
 SideTray.propTypes = {
   visible: PropTypes.bool,
-  closeCallback: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  header: PropTypes.node,
-  footer: PropTypes.node,
 };
+
+SideTray.Header = Header;
+SideTray.Footer = Footer;
+SideTray.Body = Body;
 
 export default SideTray;

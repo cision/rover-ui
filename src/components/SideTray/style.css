@@ -1,5 +1,5 @@
-.sideTray {
-  width: var(--rvr-side-tray-width);
+.SideTray {
+  width: 400px;
   height: 100vh;
   background-color: var(--rvr-white);
   position: fixed;
@@ -19,18 +19,11 @@
   transform: translate3d(0, 0, 0);
 }
 
-.main {
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  overflow: hidden;
+  align-items: stretch;
   height: 100%;
-}
-
-.content {
-  flex-grow: 1;
-  overflow: auto;
-  padding: 0;
 }
 
 .backdrop {
@@ -44,7 +37,7 @@
   left: 0;
   height: 100vh;
   width: 100vw;
-  z-index: var(--rvr-off-canvas-drawer-z-index) - 1;
+  z-index: calc(var(--rvr-off-canvas-drawer-z-index) - 1);
   background-color: rgba(0, 0, 0, 0.3);
   overflow: auto;
   opacity: 10;

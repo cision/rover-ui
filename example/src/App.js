@@ -97,7 +97,7 @@ const App = () => {
           </button>
           <SideTray
             visible={isSideTrayOpen}
-            closeCallback={() => setIsSideTrayOpen(false)}
+            onClose={() => setIsSideTrayOpen(false)}
           >
             <div style={{ padding: '20px' }}>
               <p>Side Tray Content!</p>

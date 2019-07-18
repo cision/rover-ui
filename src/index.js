@@ -1,6 +1,7 @@
 // Global CSS variables
 import './shared/colors.css';
 import './shared/sizing.css';
+import './shared/buttons.css';
 import './shared/variables.css';
 
 export { default as Badge } from './components/Badge';
