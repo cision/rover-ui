@@ -60,18 +60,12 @@ storiesOf('Star Systems/SideTray', module)
               Body by default does <strong>not</strong> have padding. It
               stretches to fit the space, but everything else is up to you!
             </p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
+            <div style={{ height: '110vh' }}>
+              scroll{' '}
+              <span aria-label="point down" role="img">
+                👇👇
+              </span>
+            </div>
             <p>And look at that, it scrolls!</p>
           </div>
         </SideTray.Body>

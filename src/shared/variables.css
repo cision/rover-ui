@@ -14,12 +14,12 @@
   --rvr-slideout: cubic-bezier(0, 0.52, 0, 1);
 
   /* Z-Indices */
-  --rvr-zindex-dropdown: 1000 !default;
-  --rvr-zindex-sticky: 1020 !default;
-  --rvr-zindex-fixed: 1030 !default;
-  --rvr-zindex-sidetray-backdrop: 1040 !default;
-  --rvr-zindex-sidetray: 1050 !default;
-  --rvr-zindex-modal-backdrop: 1060 !default;
-  --rvr-zindex-modal: 1070 !default;
-  --rvr-zindex-popover: 1080 !default;
+  --rvr-zindex-dropdown: 1000;
+  --rvr-zindex-sticky: 1020;
+  --rvr-zindex-fixed: 1030;
+  --rvr-zindex-sidetray-backdrop: 1040;
+  --rvr-zindex-sidetray: 1050;
+  --rvr-zindex-modal-backdrop: 1060;
+  --rvr-zindex-modal: 1070;
+  --rvr-zindex-popover: 1080;
 }
