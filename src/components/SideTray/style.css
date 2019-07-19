@@ -48,20 +48,20 @@
   cursor: unset;
 }
 
-.SideTray__Body {
+.body {
   flex: 1 1 auto;
   overflow-y: scroll;
   min-height: 0;
 }
 
-.SideTray__Header {
+.header {
   padding: 12px;
   border-bottom: 1px solid var(--rvr-gray-lite-5);
   flex: 0 1 auto;
   min-height: 0;
 }
 
-.SideTray__Footer {
+.footer {
   padding: 12px;
   border-top: 1px solid var(--rvr-gray-lite-5);
   flex: 0 1 auto;

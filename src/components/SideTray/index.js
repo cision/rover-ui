@@ -56,20 +56,32 @@ SideTray.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-const Header = props => <div {...props} className={style.SideTray__Header} />;
+const Header = props => (
+  <div {...props} className={`${style.header} ${props.className}`} />
+);
 Header.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
+Header.defaultProps = { className: '' };
 
-const Footer = props => <div {...props} className={style.SideTray__Footer} />;
+const Footer = props => (
+  <div {...props} className={`${style.footer} ${props.className}`} />
+);
 Footer.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
+Footer.defaultProps = { className: '' };
 
-const Body = props => <div {...props} className={style.SideTray__Body} />;
+const Body = props => (
+  <div {...props} className={`${style.body} ${props.className}`} />
+);
 Body.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
+Body.defaultProps = { className: '' };
 
 SideTray.Header = Header;
 SideTray.Footer = Footer;
