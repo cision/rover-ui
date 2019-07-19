@@ -1,5 +1,3 @@
-@import './colors.css';
-
 :root {
   /* Colors */
   --rvr-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
@@ -8,4 +6,20 @@
   --rvr-base-font-color: #58666e;
   --rvr-base-font-family: 'Source Sans Pro', sans-serif;
   --rvr-font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Transitions */
+  --rvr-linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+  --rvr-easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --rvr-easeInOutQuint: cubic-bezier(0.86, 0, 0.07, 1);
+  --rvr-slideout: cubic-bezier(0, 0.52, 0, 1);
+
+  /* Z-Indices */
+  --rvr-zindex-dropdown: 1000;
+  --rvr-zindex-sticky: 1020;
+  --rvr-zindex-fixed: 1030;
+  --rvr-zindex-sidetray-backdrop: 1040;
+  --rvr-zindex-sidetray: 1050;
+  --rvr-zindex-modal-backdrop: 1060;
+  --rvr-zindex-modal: 1070;
+  --rvr-zindex-popover: 1080;
 }

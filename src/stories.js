@@ -1,5 +1,6 @@
 import './shared/colors.css';
 import './shared/sizing.css';
+import './shared/buttons.css';
 import './shared/variables.css';
 
 /*
@@ -23,6 +24,7 @@ import './components/Paper/story';
  */
 
 import './components/Bar/story';
+import './components/SideTray/story';
 
 /*
  * GALAXIES
