@@ -1,21 +1,10 @@
 .SideTray {
-  width: 400px;
-  height: 100vh;
   background-color: var(--rvr-white);
   position: fixed;
-  top: 0;
-  right: 0;
   transition: transform 0.3s var(--rvr-slideout);
   overflow: auto;
   z-index: var(--rvr-zindex-sidetray);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
-}
-
-.hide {
-  transform: translate3d(400px, 0, 0);
-}
-
-.show {
   transform: translate3d(0, 0, 0);
 }
 

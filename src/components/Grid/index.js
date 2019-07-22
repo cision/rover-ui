@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { margin } from 'styled-system';
 
 // Rover UI dependencies
+import { parseCssSize } from '../../shared/css-utils';
 import withDefaultTheme from '../withDefaultTheme';
 
 // This component's dependencies
@@ -12,28 +13,6 @@ import style from './style.css';
 import Entry from './Entry';
 
 const StyledGrid = styled.div(margin);
-
-const parseGutter = ({ gutter }) => {
-  if (typeof gutter === 'number') {
-    return { size: gutter, unit: 'px' }; // Gutter is a number of pixels
-  }
-
-  let size;
-
-  try {
-    size = parseInt(gutter, 10);
-
-    if (isNaN(size)) {
-      throw new Error("That's not a number");
-    }
-  } catch (e) {
-    return { size: 0, unit: 'px' };
-  }
-
-  const unit = gutter.replace(size, '') || 'px';
-
-  return { size, unit };
-};
 
 export const Grid = withDefaultTheme(
   ({
@@ -52,7 +31,7 @@ export const Grid = withDefaultTheme(
       themeGutter = `${theme.space[gutter]}px`; // Gutter is a theme key
     }
 
-    const parsedGutter = parseGutter({ gutter: themeGutter || gutter });
+    const parsedGutter = parseCssSize({ size: themeGutter || gutter });
     let safeGutter = `${parsedGutter.size / 2}${parsedGutter.unit}`;
     const inverseGutter = `${-parsedGutter.size / 2}${parsedGutter.unit}`;
 
