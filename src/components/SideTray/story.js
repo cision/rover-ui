@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 import SideTray from './';
 import Button from '../Button';
@@ -50,7 +51,22 @@ storiesOf('Star Systems/SideTray', module)
   .add(
     'Overview',
     () => (
-      <SideTray visible onClose={() => {}}>
+      <SideTray
+        visible={boolean('visible', true)}
+        onClose={action('onClose')}
+        height={text('height', '100vh')}
+        width={text('width', '400px')}
+        direction={select(
+          'direction',
+          {
+            't (top)': 't',
+            'b (bottom)': 'b',
+            'r (right)': 'r',
+            'l (left)': 'l',
+          },
+          'r'
+        )}
+      >
         <SideTray.Header>
           Header by default has padding and bottom border
         </SideTray.Header>

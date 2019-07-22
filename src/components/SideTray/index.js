@@ -1,11 +1,26 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
+// Rover UI dependencies
+import { parseCssSize } from '../../shared/css-utils';
+
+// This component's dependencies
 import style from './style.css';
 
-const SideTray = ({ visible, onClose, children }) => {
+const SideTray = ({
+  children,
+  className,
+  direction,
+  height,
+  onClose,
+  visible,
+  width,
+  ...passedProps
+}) => {
+  // Close tray when the user hits "Escape"
   useEffect(() => {
+    // TODO: Hitting "Escape" should only close the active tray
+    // TODO: Hitting "Escape" in a text field shouldn't close the tray
     const handleEscape = e => {
       if (visible && e.keyCode === 27) {
         onClose(e);
@@ -25,18 +40,57 @@ const SideTray = ({ visible, onClose, children }) => {
     };
   }, [visible, onClose]);
 
+  // Handle clicking backdrop to close tray
+  // TODO: Click and drag from inside to outside the tray shouldn't close it
   const clickOffBackdrop = visible ? (
     <button className={style.backdrop} onClick={onClose} />
   ) : null;
 
-  const sideTrayClassName = classNames(style.SideTray, {
-    [style.show]: visible,
-    [style.hide]: !visible,
-  });
+  // Handle custom widths / heights / directions
+  const parsedHeight = parseCssSize({ size: height });
+  const parsedWidth = parseCssSize({ size: width });
+  let hideTransformStyle;
+
+  const sideTrayStyles = {
+    bottom: 0,
+    height: `${parsedHeight.size}${parsedHeight.unit}`,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: `${parsedWidth.size}${parsedWidth.unit}`,
+  };
+
+  switch (direction) {
+    case 't':
+      hideTransformStyle = `translate3d(0, ${-parsedHeight.size}${parsedHeight.unit}, 0)`; // prettier-ignore
+      sideTrayStyles.bottom = 'auto';
+      break;
+    case 'b':
+      hideTransformStyle = `translate3d(0, ${parsedHeight.size}${parsedHeight.unit}, 0)`;
+      sideTrayStyles.top = 'auto';
+      break;
+    case 'l':
+      hideTransformStyle = `translate3d(${-parsedWidth.size}${parsedWidth.unit}, 0, 0)`; // prettier-ignore
+      sideTrayStyles.right = 'auto';
+      break;
+    default:
+    case 'r':
+      hideTransformStyle = `translate3d(${parsedWidth.size}${parsedWidth.unit}, 0, 0)`;
+      sideTrayStyles.left = 'auto';
+      break;
+  }
 
   return (
     <React.Fragment>
-      <div className={sideTrayClassName}>
+      <div
+        {...passedProps}
+        style={{
+          ...sideTrayStyles,
+          ...(!visible ? { transform: hideTransformStyle } : {}),
+          ...passedProps.style,
+        }}
+        className={`${style.SideTray} ${className}`}
+      >
         <div className={style.container}>{children}</div>
       </div>
       {clickOffBackdrop}
@@ -44,16 +98,26 @@ const SideTray = ({ visible, onClose, children }) => {
   );
 };
 
-SideTray.defaultProps = {
-  visible: false,
-  header: null,
-  footer: null,
+SideTray.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  direction: PropTypes.oneOf(['t', 'r', 'b', 'l']),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  onClose: PropTypes.func.isRequired,
+  style: PropTypes.object,
+  visible: PropTypes.bool,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-SideTray.propTypes = {
-  visible: PropTypes.bool,
-  onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+SideTray.defaultProps = {
+  className: '',
+  direction: 'r',
+  footer: null,
+  header: null,
+  height: '100vh',
+  style: {},
+  visible: false,
+  width: '400px',
 };
 
 const Header = props => (
