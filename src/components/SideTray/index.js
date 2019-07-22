@@ -112,8 +112,6 @@ SideTray.propTypes = {
 SideTray.defaultProps = {
   className: '',
   direction: 'r',
-  footer: null,
-  header: null,
   height: '100vh',
   style: {},
   visible: false,
