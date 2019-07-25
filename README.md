@@ -44,22 +44,22 @@ It's _not_ a repository for all shared components. Don't try to add components t
 
 ## Run locally
 
-0. Read the [Code Guidelines](./CODE_GUIDELINES.md)
-1. Download the repository
-1. From the root, run `yarn` to install dependencies.
-1. Run `yarn storybook` to start a local copy of the docs with living examples you can develop against
-1. Add components using the provided templates (see "Creating a new component" below) or modify components
-1. Add or modify tests, stories, READMEs and styles in the relevant places in your component's folder.
-1. Add your component to `example/src/App.js`
-1. When everything looks good in storybook, run `yarn build` from the root to build the `dist` folder.
-1. From the `example/` directory, run `yarn start`.
-1. That should open a new tab in your browser with an example page that imports the compiled components.
-1. Bump the `package.json`'s version _using [semver](https://semver.org/)_. We're currently in alpha, and probably will be for a while. Versions are cheap.
-1. If all tests look good, submit a pull-request against the master branch through Github. We're using the master branch for now, but by the time we're out of alpha, we'll have a dev branch.
-1. Once you have at least one PR approval from a champion and no pending requests for changes, you can merge in to master.
-1. After merging to master, from your local machine, run `yarn publish` in the root. You'll be prompted for the publish version, which should match the package version.
-1. After publishing, git tag the commit with a `"v"` prefix, e.g. package version `"0.1.0-alpha.8"` becomes `"v0.1.0-alpha.8"`.
-1. Push your tag to the repo
+1. Read the [Code Guidelines](./CODE_GUIDELINES.md)
+2. Download the repository
+3. From the root, run `yarn` to install dependencies.
+4. Run `yarn storybook` to start a local copy of the docs with living examples you can develop against
+5. Add components using the provided templates (see "Creating a new component" below) or modify components
+6. Add or modify tests, stories, READMEs and styles in the relevant places in your component's folder.
+7. Add your component to `example/src/App.js`
+8. When everything looks good in storybook, run `yarn build` from the root to build the `dist` folder.
+9. From the `example/` directory, run `yarn start`.
+10. That should open a new tab in your browser with an example page that imports the compiled components.
+11. Bump the `package.json`'s version _using [semver](https://semver.org/)_. We're currently in alpha, and probably will be for a while. Versions are cheap.
+12. If all tests look good, submit a pull-request against the master branch through Github. We're using the master branch for now, but by the time we're out of alpha, we'll have a dev branch.
+13. Once you have at least one PR approval from a champion and no pending requests for changes, you can merge in to master.
+14. After merging to master, from your local machine, run `yarn publish` in the root. You'll be prompted for the publish version, which should match the package version.
+15. After publishing, git tag the commit with a `"v"` prefix, e.g. package version `"0.1.0-alpha.8"` becomes `"v0.1.0-alpha.8"`.
+16. Push your tag to the repo
 
 ## Reporting issues
 
@@ -94,11 +94,16 @@ At any time you can see what generators we have configured using `hygen help`.
 
 ### Customizing the theme with a custom build
 
+There are a few different styling paradigms at work in RoverUI.
+Currently, the best way to customize appearance is by forking the project and making a custom build.
+
 1. Fork the `rover-ui` repository
 2. Edit files
 3. Run `yarn build` from the project root
 4. Publish your fork
 5. Point your front-end consumer app at the fork
+
+Now, you can edit CSS-in-JS and/or the CSS custom properties that are imported for use in CSS modules.
 
 ##### CSS-in-JS
 
