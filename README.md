@@ -10,7 +10,7 @@ RoverUI is a collection of UI components originally built for and by Cision. The
 
 ```bash
 # yarn
-yarn rover-ui
+yarn add rover-ui
 ```
 
 ```bash
@@ -98,7 +98,7 @@ At any time you can see what generators we have configured using `hygen help`.
 2. Edit files
 3. Run `yarn build` from the project root
 4. Publish your fork
-5. Point your front-end consumer app at the Fork
+5. Point your front-end consumer app at the fork
 
 ##### CSS-in-JS
 
