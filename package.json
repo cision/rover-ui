@@ -1,6 +1,9 @@
 {
   "name": "@cision/rover-ui",
-  "version": "0.1.0-alpha.9",
+  "version": "0.1.0-alpha.10",
+  "publishConfig": {
+    "tag": "v0.1.0-alpha.10"
+  },
   "description": "UI Component Library",
   "author": "Matthew Wells (https://github.com/mdespuits)",
   "contributors": [
@@ -52,7 +55,8 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "prepublish": "yarn build"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
