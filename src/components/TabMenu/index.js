@@ -55,7 +55,7 @@ SimpleTabMenu.propTypes = {
 SimpleTabMenu.defaultProps = {
   tabs: [],
   activeTab: '',
-  size: 'sm',
+  size: 'md',
 };
 
 export default TabMenu;

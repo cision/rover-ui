@@ -31,7 +31,7 @@
   border-radius: 0;
 }
 
-.xsTextSize { font-size: 14px; }
-.smTextSize { font-size: 16px; }
-.mdTextSize { font-size: 18px; }
-.lgTextSize { font-size: 20px; }
+.xsTextSize { font-size: var(--rvr-font-size-sm); }
+.smTextSize { font-size: var(--rvr-font-size-md); }
+.mdTextSize { font-size: var(--rvr-font-size-h4); }
+.lgTextSize { font-size: var(--rvr-font-size-h3); }

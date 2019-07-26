@@ -4,10 +4,11 @@ export const sizeBase = 8;
 
 export const fontSizeMap = {
   sm: fontSizeBase * (12 / 14), // 12px
-  md: fontSizeBase,
-  lg: fontSizeBase * (18 / 14), // 18px
-  xl: fontSizeBase * (25 / 14), // 25px
-  '2xl': fontSizeBase * (30 / 14), // 30px
+  md: fontSizeBase, // 14px
+  h4: fontSizeBase * (16 / 14), // 16px
+  h3: fontSizeBase * (24 / 14), // 24px
+  h2: fontSizeBase * (32 / 14), // 32px
+  h1: fontSizeBase * (40 / 14), // 40px
 };
 
 export const lineHeightMap = {
