@@ -4,23 +4,15 @@ import PropTypes from 'prop-types';
 
 import style from './style.css';
 
-const Item = ({
-  size,
-  className: customClassName,
-  active,
-  onClick,
-  children,
-  ...props
-}) => {
+const Item = ({ className: customClassName, active, children, ...props }) => {
   const isChildActive = child => {
-    if (typeof child !== 'object') return false;
-    if ((child.props || {}).className) {
+    if (React.isValidElement(child)) {
       return child.props.className.indexOf('active') >= 0;
     }
     return false;
   };
 
-  const className = classNames(style.TabItem, customClassName, {
+  const className = classNames(style.Item, customClassName, {
     [style.active]: active || isChildActive(children),
   });
   return (
@@ -31,15 +23,12 @@ const Item = ({
 };
 
 Item.propTypes = {
-  size: PropTypes.number,
   className: PropTypes.string,
   active: PropTypes.bool,
-  onClick: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 
 Item.defaultProps = {
-  size: 16,
   className: '',
   active: false,
   onClick: () => {},

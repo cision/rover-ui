@@ -1,4 +1,4 @@
-.TabItem {
+.Item {
   color: var(--rvr-gray-lite-1);
   font-weight: normal;
   padding: 0;
@@ -8,7 +8,7 @@
   box-sizing: content-box;
 }
 
-.TabItem:hover {
+.Item:hover {
   color: var(--rvr-gray);
   cursor: pointer;
 }
