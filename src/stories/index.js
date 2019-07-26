@@ -27,6 +27,7 @@ import '../components/Paper/story';
 
 import '../components/Bar/story';
 import '../components/SideTray/story';
+import './components/TabMenu/story';
 
 /*
  * GALAXIES

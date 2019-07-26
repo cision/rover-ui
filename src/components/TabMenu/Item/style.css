@@ -1,0 +1,20 @@
+.Item {
+  color: var(--rvr-gray-lite-1);
+  font-weight: normal;
+  padding: 0;
+  margin: 0 12px;
+  display: block;
+  border-bottom: 2px solid transparent;
+  box-sizing: content-box;
+}
+
+.Item:hover {
+  color: var(--rvr-gray);
+  cursor: pointer;
+}
+
+.active {
+  color: var(--rvr-gray);
+  font-weight: 700;
+  border-bottom-color: var(--rvr-blue);
+}
