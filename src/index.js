@@ -12,3 +12,4 @@ export { default as Paper } from './components/Paper';
 export { default as Grid } from './components/Grid';
 export { default as Responsive } from './components/Responsive';
 export { default as SideTray } from './components/SideTray';
+export { default as TabMenu } from './components/TabMenu';

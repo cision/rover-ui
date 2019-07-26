@@ -1,0 +1,37 @@
+.TabMenu {
+  display: flex;
+  align-items: flex-end;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.leftAlign {
+  justify-content: flex-start;
+}
+
+.centerAlign {
+  justify-content: center;
+}
+
+.rightAlign {
+  justify-content: flex-end;
+}
+
+/* SimpleTabMenu uses these */
+.itemPadding {
+  padding: 16px 0;
+
+  /* reset default button styles */
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  border-radius: 0;
+}
+
+.xsTextSize { font-size: 14px; }
+.smTextSize { font-size: 16px; }
+.mdTextSize { font-size: 18px; }
+.lgTextSize { font-size: 20px; }
