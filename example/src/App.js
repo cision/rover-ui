@@ -9,10 +9,12 @@ import {
   Grid,
   Responsive,
   SideTray,
+  SimpleTabMenu,
 } from '@cision/rover-ui';
 
 const App = () => {
   const [isSideTrayOpen, setIsSideTrayOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('ONE');
 
   return (
     <div>
@@ -108,6 +110,31 @@ const App = () => {
               </p>
             </div>
           </SideTray>
+        </div>
+      </section>
+      <section>
+        <h1>SimpleTabMenu</h1>
+        <div style={{ background: 'white', padding: '0 20px' }}>
+          <SimpleTabMenu
+            tabs={[
+              {
+                key: 'ONE',
+                label: 'First',
+                onClick: () => setActiveTab('ONE'),
+              },
+              {
+                key: 'TWO',
+                label: 'Second',
+                onClick: () => setActiveTab('TWO'),
+              },
+              {
+                key: 'THREE',
+                label: 'Three',
+                onClick: () => setActiveTab('THREE'),
+              },
+            ]}
+            activeTab={activeTab}
+          />
         </div>
       </section>
     </div>
