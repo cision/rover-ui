@@ -17,3 +17,4 @@ export {
   SimpleTabMenu,
   EasyTabMenu,
 } from './components/TabMenu';
+export { default as Icon } from './components/Icon';
