@@ -8,6 +8,14 @@
   box-sizing: content-box;
 }
 
+.Item:first-of-type {
+  margin-left: 0;
+}
+
+.Item:last-of-type {
+  margin-right: 0;
+}
+
 .Item:hover {
   color: var(--rvr-gray);
   cursor: pointer;
