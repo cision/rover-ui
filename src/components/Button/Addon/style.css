@@ -4,28 +4,28 @@
 }
 
 .sm {
-  margin-left: var(--rvr-space-sm);
-  margin-right: var(--rvr-space-sm);
+  margin-inline-start: var(--rvr-space-sm);
+  margin-inline-end: var(--rvr-space-sm);
 }
 
 .md {
-  margin-left: var(--rvr-space-md);
-  margin-right: var(--rvr-space-md);
+  margin-inline-start: var(--rvr-space-md);
+  margin-inline-end: var(--rvr-space-md);
 }
 
 .lg {
-  margin-left: var(--rvr-space-lg);
-  margin-right: var(--rvr-space-lg);
+  margin-inline-start: var(--rvr-space-lg);
+  margin-inline-end: var(--rvr-space-lg);
 }
 
 .Addon:first-child {
-  margin-left: 0;
+  margin-inline-start: 0;
 }
 
 .Addon:last-child {
-  margin-right: 0;
+  margin-inline-end: 0;
 }
 
 .Addon + .Addon {
-  margin-left: 0;
+  margin-inline-start: 0;
 }

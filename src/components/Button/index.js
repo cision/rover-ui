@@ -32,12 +32,12 @@ const Button = props => {
   );
 
   const addonChildren = React.Children.toArray(initChildren).filter(
-    child => child.type && child.type.name === Addon.name
+    child => child && child.type && child.type.name === Addon.displayName
   );
 
   if (addonChildren.length) {
     children = React.Children.map(initChildren, child => {
-      if (child.type && child.type.name === Addon.name) {
+      if (child && child.type && child.type.name === Addon.displayName) {
         return React.cloneElement(child, { ...child.props, size });
       }
 
