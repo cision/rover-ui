@@ -18,7 +18,7 @@ storiesOf('Uncategorized/<%= h.changeCase.pascal(name) %>', module)
     'Overview',
     () => (
       <<%= h.changeCase.pascal(name) %>>
-        Hi! I'm a child of your new `\<<%= h.changeCase.pascal(name) %>\>` component.
+        Hi! I&apos;m a child of your new `&lt;<%= h.changeCase.pascal(name) %>&gt;` component.
       </<%= h.changeCase.pascal(name) %>>
     ),
     {

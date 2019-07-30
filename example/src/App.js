@@ -137,6 +137,7 @@ const App = () => {
           />
         </div>
       </section>
+      {/** USAGE_INJECTOR */}
     </div>
   );
 };
