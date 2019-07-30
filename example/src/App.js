@@ -7,6 +7,7 @@ import {
   Media,
   Paper,
   Grid,
+  Icon,
   Responsive,
   SideTray,
   EasyTabMenu,
@@ -136,6 +137,10 @@ const App = () => {
             activeTab={activeTab}
           />
         </div>
+      </section>
+      <section>
+        <h1>Icon</h1>
+        <Icon name="clear" />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
