@@ -20,4 +20,6 @@ Addon.defaultProps = {
   className: '',
 };
 
+Addon.displayName = 'ButtonAddon';
+
 export default Addon;
