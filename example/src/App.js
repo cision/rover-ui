@@ -9,7 +9,7 @@ import {
   Grid,
   Responsive,
   SideTray,
-  SimpleTabMenu,
+  EasyTabMenu,
 } from '@cision/rover-ui';
 
 const App = () => {
@@ -113,9 +113,9 @@ const App = () => {
         </div>
       </section>
       <section>
-        <h1>SimpleTabMenu</h1>
+        <h1>EasyTabMenu</h1>
         <div style={{ background: 'white', padding: '0 20px' }}>
-          <SimpleTabMenu
+          <EasyTabMenu
             tabs={[
               {
                 key: 'ONE',
