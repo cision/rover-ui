@@ -1,0 +1,12 @@
+# EasyPill
+
+Easy pills are more opinionated than basic pills, to make it easy to get started on the most common use cases.
+They take an `actions` prop that's an array of objects.
+Each object has, at least, a callback function (`onClick`) and a text label (`label`).
+
+Easy pills show those action labels in a list. Each one fires its callback function when clicked.
+Easy pill actions may also have `children` props, in which case they'll render the `children` as a React node instead of the label. You still need to provide a unique text label, though, for use as an identifying key.
+
+Easy pills come with a delete action by default. If you provide an `onDelete` function as a prop, it will show up automatically.
+
+**TODO**: The easy pill's actions should be in a small dropdown with an ellipsis icon that triggers it.

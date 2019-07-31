@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import TabMenu, { SimpleTabMenu } from './';
+import TabMenu, { EasyTabMenu } from './';
 
 describe('TabMenu', () => {
   it('renders', () => {
@@ -29,10 +29,10 @@ describe('TabMenu.Item', () => {
   });
 });
 
-describe('SimpleTabMenu', () => {
+describe('EasyTabMenu', () => {
   it('has the same number of children as array items', () => {
     const wrapper = shallow(
-      <SimpleTabMenu
+      <EasyTabMenu
         tabs={[
           { key: 'one', label: 'first', onClick: () => {} },
           { key: 'two', label: 'second', onClick: () => {} },

@@ -11,6 +11,10 @@ import {
   Responsive,
   SideTray,
   EasyTabMenu,
+  Pill,
+  DeletablePill,
+  EasyPill,
+  // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
 const App = () => {
@@ -141,6 +145,51 @@ const App = () => {
       <section>
         <h1>Icon</h1>
         <Icon name="clear" />
+      </section>
+      <section>
+        <h1>Pill</h1>
+        <Pill onClick={() => {}} checked>
+          Pill with addon
+          <Pill.Addon onClick={() => {}}>✓</Pill.Addon>
+        </Pill>
+      </section>
+      <section>
+        <h1>DeletablePill</h1>
+        <DeletablePill onDelete={() => {}} checked>
+          DeletablePill
+        </DeletablePill>
+      </section>
+      <section>
+        <h1>EasyPill</h1>
+        <EasyPill
+          actions={[
+            {
+              label: '✓',
+              onClick: () => {},
+            },
+            {
+              label: '✰',
+              onClick: () => {},
+            },
+          ]}
+        >
+          EasyPill
+        </EasyPill>{' '}
+        <EasyPill
+          actions={[
+            {
+              label: '✓',
+              onClick: () => {},
+            },
+            {
+              label: '✰',
+              onClick: () => {},
+            },
+          ]}
+          checked
+        >
+          EasyPill checked
+        </EasyPill>
       </section>
       {/** USAGE_INJECTOR */}
     </div>

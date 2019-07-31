@@ -26,6 +26,9 @@ import '../components/Paper/story';
  */
 
 import '../components/Bar/story';
+import '../components/Pill/story';
+import '../components/DeletablePill/story';
+import '../components/EasyPill/story';
 import '../components/SideTray/story';
 import '../components/TabMenu/story';
 
@@ -44,8 +47,8 @@ import '../components/TabMenu/story';
 
 import '../components/Grid/story';
 import '../components/Media/story';
-import '../components/Responsive/Grid/story';
 import '../components/Responsive/story';
+import '../components/Responsive/Grid/story';
 
 /*
  * NEW & UNCATEGORIZED

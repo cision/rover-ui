@@ -26,11 +26,7 @@ TabMenu.defaultProps = {
   className: '',
 };
 
-/*
- * SimpleComponent naming convention is deprecated due to confusion.
- * Use EasyComponent moving forward.
- */
-export const SimpleTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
+export const EasyTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
   const inner = classNames(style.itemPadding, style[`${size}TextSize`]);
   return (
     <TabMenu {...props}>
@@ -45,9 +41,7 @@ export const SimpleTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
   );
 };
 
-export const EasyTabMenu = SimpleTabMenu;
-
-SimpleTabMenu.propTypes = {
+EasyTabMenu.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string.isRequired,
@@ -58,10 +52,17 @@ SimpleTabMenu.propTypes = {
   activeTab: PropTypes.string,
   size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
 };
-SimpleTabMenu.defaultProps = {
+
+EasyTabMenu.defaultProps = {
   tabs: [],
   activeTab: '',
   size: 'md',
 };
+
+/*
+ * SimpleComponent naming convention is deprecated due to confusion.
+ * Use EasyComponent moving forward.
+ */
+export const SimpleTabMenu = EasyTabMenu;
 
 export default TabMenu;
