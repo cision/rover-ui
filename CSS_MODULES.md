@@ -32,9 +32,9 @@ CSS modules are a way of importing CSS rules to be implied locally, to a single 
 
 RoverUI uses CSS modules via webpack's [css-loader](https://github.com/webpack-contrib/css-loader), and it mainly works by obfuscating CSS class names and making those class names importable into JavaScript files for use in templates.
 
-[Official docs](https://github.com/css-modules/css-modules)
-[Here's a primer from the folks at Invision](https://engineering.invisionapp.com/post/introduction-css-modules/)
-The real rocket fuel - [ICSS](https://github.com/css-modules/icss)
+- [Official docs](https://github.com/css-modules/css-modules)
+- [Here's a primer from the folks at Invision](https://engineering.invisionapp.com/post/introduction-css-modules/)
+- The real rocket fuel - [ICSS](https://github.com/css-modules/icss)
 
 ### Usage
 
