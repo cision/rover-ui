@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ClearIcon = props => {
+const TimesCircle = props => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,4 +18,4 @@ const ClearIcon = props => {
   );
 };
 
-export default ClearIcon;
+export default TimesCircle;

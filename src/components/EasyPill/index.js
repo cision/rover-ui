@@ -28,7 +28,7 @@ export const EasyPill = ({ actions, children, onDelete, ...passedProps }) => {
             onDelete(e);
           }}
         >
-          <Icon name="clear" />
+          <Icon name="times-circle" />
         </Pill.Addon>
       )}
     </Pill>

@@ -71,7 +71,7 @@ storiesOf('Star Systems/Pill', module)
               action('onClickClear')(e);
             }}
           >
-            <Icon name="clear" />
+            <Icon name="times-circle" />
           </Pill.Addon>
         </Pill>
       </React.Fragment>

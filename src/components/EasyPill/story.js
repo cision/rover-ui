@@ -27,6 +27,7 @@ storiesOf('Star Systems/EasyPill', module)
           },
         ]}
         checked={boolean('checked', false)}
+        onClick={action('onClick')}
         onDelete={action('onDelete')}
       >
         EasyPill 1

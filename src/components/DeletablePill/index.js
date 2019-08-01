@@ -6,11 +6,18 @@ import Pill from '../Pill';
 
 export const DeletablePill = ({ children, onDelete, ...passedProps }) => {
   return (
-    <Pill {...passedProps} onClick={passedProps.checked ? onDelete : undefined}>
+    <Pill {...passedProps}>
       {children}
       {passedProps.checked && (
-        <Pill.Addon>
-          <Icon name="clear" style={{ display: 'block' }} />
+        <Pill.Addon
+          onClick={e => {
+            e.stopPropagation();
+            onDelete(e);
+          }}
+          role="button"
+          tabIndex={0}
+        >
+          <Icon name="times-circle" style={{ display: 'block' }} />
         </Pill.Addon>
       )}
     </Pill>

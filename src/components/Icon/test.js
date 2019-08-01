@@ -5,7 +5,7 @@ import Icon from './';
 
 describe('Icon', () => {
   it('renders', () => {
-    const wrapper = mount(<Icon name="clear" />);
+    const wrapper = mount(<Icon name="times-circle" />);
 
     expect(wrapper.find('svg').children()).toHaveLength(1);
   });

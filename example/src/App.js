@@ -144,7 +144,7 @@ const App = () => {
       </section>
       <section>
         <h1>Icon</h1>
-        <Icon name="clear" />
+        <Icon name="times-circle" />
       </section>
       <section>
         <h1>Pill</h1>
