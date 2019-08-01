@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ClearIcon from './ClearIcon';
+import TimesCircle from './icons/TimesCircle';
 
 export const iconsMap = {
-  clear: ClearIcon,
+  'times-circle': TimesCircle,
 };
 
 const Icon = ({ name, ...passedProps }) =>

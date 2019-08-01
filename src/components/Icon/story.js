@@ -13,7 +13,9 @@ storiesOf('Planets/Icon', module)
       sidebar: IconReadme,
     },
   })
-  .add('Overview', () => <Icon name={select('name', iconNames, 'clear')} />)
+  .add('Overview', () => (
+    <Icon name={select('name', iconNames, 'times-circle')} />
+  ))
   .add('Examples', () => (
     <dl>
       {iconNames.map(iconName => (

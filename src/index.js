@@ -12,9 +12,14 @@ export { default as Paper } from './components/Paper';
 export { default as Grid } from './components/Grid';
 export { default as Responsive } from './components/Responsive';
 export { default as SideTray } from './components/SideTray';
+
 export {
   default as TabMenu,
   SimpleTabMenu,
   EasyTabMenu,
 } from './components/TabMenu';
+
 export { default as Icon } from './components/Icon';
+export { default as Pill } from './components/Pill';
+export { default as EasyPill } from './components/EasyPill';
+export { default as DeletablePill } from './components/DeletablePill';

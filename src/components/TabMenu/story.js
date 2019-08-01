@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { text, select, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import TabMenu, { SimpleTabMenu, itemPadding } from './';
+import TabMenu, { EasyTabMenu, itemPadding } from './';
 import Readme from './README.md';
 
 storiesOf('Star Systems/TabMenu', module)
@@ -84,7 +84,7 @@ storiesOf('Star Systems/TabMenu/Item', module)
     }
   );
 
-storiesOf('Star Systems/TabMenu/SimpleTabMenu', module)
+storiesOf('Star Systems/TabMenu/EasyTabMenu', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -97,7 +97,7 @@ storiesOf('Star Systems/TabMenu/SimpleTabMenu', module)
     const alignment = select('align', ['left', 'center', 'right'], 'left');
     if (!withContainer) {
       return (
-        <SimpleTabMenu
+        <EasyTabMenu
           align={alignment}
           size={sizeOptions}
           tabs={[
@@ -115,7 +115,7 @@ storiesOf('Star Systems/TabMenu/SimpleTabMenu', module)
     }
     return (
       <div style={{ background: '#ffffff', padding: '0px 20px' }}>
-        <SimpleTabMenu
+        <EasyTabMenu
           style={{ borderBottom: '1px solid #ccc' }}
           align={alignment}
           size={sizeOptions}
