@@ -1,8 +1,8 @@
 {
   "name": "@cision/rover-ui",
-  "version": "0.1.0-alpha.13",
+  "version": "0.1.0-alpha.14",
   "publishConfig": {
-    "tag": "v0.1.0-alpha.13"
+    "tag": "v0.1.0-alpha.14"
   },
   "description": "UI Component Library",
   "author": "Matthew Wells (https://github.com/mdespuits)",
