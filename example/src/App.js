@@ -106,14 +106,24 @@ const App = () => {
             visible={isSideTrayOpen}
             onClose={() => setIsSideTrayOpen(false)}
           >
-            <div style={{ padding: '20px' }}>
-              <p>Side Tray Content!</p>
-              <p>
-                You can close me by clicking outside, clicking this{' '}
-                <button onClick={() => setIsSideTrayOpen(false)}>button</button>
-                , or clicking the &apos;esc&apos; key
-              </p>
-            </div>
+            <SideTray.Header>Header</SideTray.Header>
+            <SideTray.Body>
+              <div style={{ padding: '20px' }}>
+                <p>Side Tray Content!</p>
+                <p>
+                  You can close me by clicking outside, clicking this{' '}
+                  <button onClick={() => setIsSideTrayOpen(false)}>
+                    button
+                  </button>
+                  , or clicking the &apos;esc&apos; key
+                </p>
+                <p style={{ padding: '250px 0' }}>More content</p>
+                <p style={{ padding: '250px 0' }}>More content</p>
+                <p style={{ padding: '250px 0' }}>More content</p>
+                <p style={{ padding: '250px 0' }}>More content</p>
+              </div>
+            </SideTray.Body>
+            <SideTray.Footer>Footer</SideTray.Footer>
           </SideTray>
         </div>
       </section>
