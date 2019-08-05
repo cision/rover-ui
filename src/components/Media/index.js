@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { space, flex } from 'styled-system';
 
 import styles from './style.css';
-import withDefaultTheme from '../withDefaultTheme/index.js';
+import withDefaultTheme from '../withDefaultTheme';
 
 const FlexSpacer = withDefaultTheme(styled.div(flex, space));
 
