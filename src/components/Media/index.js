@@ -12,13 +12,12 @@ const FlexSpacer = withDefaultTheme(styled.div(flex, space));
 // Factory to build the components for the Media component
 // Since all three are very basic and use basically the same basis
 // underneath, we can construct these components programatically.
-const mediaFactory = (name, cssClass) => {
+const MediaGenerator = (name, cssClass) => {
   const MediaComponent = props => {
-    const newprops = {
-      ...props,
-      className: classNames(cssClass, props.className),
-    };
-    return <FlexSpacer {...newprops} />;
+    const { className, ...rest } = props;
+    return (
+      <FlexSpacer {...rest} className={classNames(cssClass, props.className)} />
+    );
   };
 
   MediaComponent.propTypes = {
@@ -33,9 +32,9 @@ const mediaFactory = (name, cssClass) => {
   return MediaComponent;
 };
 
-const Media = mediaFactory('Media', styles.Media);
-const Body = mediaFactory('Media.Body', styles.Body);
-const Item = mediaFactory('Media.Item', styles.Item);
+const Media = MediaGenerator('Media', styles.Media);
+const Body = MediaGenerator('Media.Body', styles.Body);
+const Item = MediaGenerator('Media.Item', styles.Item);
 
 Media.Body = Body;
 Media.Item = Item;
