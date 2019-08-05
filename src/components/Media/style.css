@@ -1,0 +1,21 @@
+.Media {
+  align-items: stretch;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+
+.Body,
+.Item {
+  display: grid;
+  grid-template-columns: 100%;
+  min-width: 0;
+}
+
+.Body {
+  flex: 1 1 auto;
+}
+
+.Item {
+  flex: 0 0 auto;
+}
