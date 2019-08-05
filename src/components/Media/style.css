@@ -9,11 +9,11 @@
 .Item {
   display: grid;
   grid-template-columns: 100%;
+  min-width: 0;
 }
 
 .Body {
   flex: 1 1 auto;
-  min-width: 0;
 }
 
 .Item {
