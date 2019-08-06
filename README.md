@@ -54,12 +54,13 @@ It's _not_ a repository for all shared components. Don't try to add components t
 8. When everything looks good in storybook, run `yarn build` from the root to build the `dist` folder.
 9. From the `example/` directory, run `yarn start`.
 10. That should open a new tab in your browser with an example page that imports the compiled components.
-11. Bump the `package.json`'s version _using [semver](https://semver.org/)_. We're currently in alpha, and probably will be for a while. Versions are cheap.
-12. If all tests look good, submit a pull-request against the master branch through Github. We're using the master branch for now, but by the time we're out of alpha, we'll have a dev branch.
-13. Once you have at least one PR approval from a champion and no pending requests for changes, you can merge in to master.
-14. After merging to master, from your local machine, run `yarn publish` in the root. You'll be prompted for the publish version, which should match the package version.
-15. After publishing, git tag the commit with a `"v"` prefix, e.g. package version `"0.1.0-alpha.8"` becomes `"v0.1.0-alpha.8"`.
-16. Push your tag to the repo
+
+## Publishing a new version
+
+1. Bump the `package.json`'s version _using [semver](https://semver.org/)_. We're currently in alpha, and probably will be for a while. Versions are cheap.
+2. If all tests look good (`yarn test`), submit a pull-request against the master branch through Github. We're using the master branch for now, but by the time we're out of alpha, we'll have a dev branch.
+3. Once you have at least one PR approval from a champion and no pending requests for changes, you can merge in to master.
+4. After merging to master, from your local machine, run `yarn release` in the root. You'll be prompted for the publish version, which should match the package version.
 
 ## Reporting issues
 

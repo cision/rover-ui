@@ -52,9 +52,10 @@
     "hygen": "hygen",
     "generate-component": "hygen component new",
     "prepare": "",
-    "prepublish": "build",
+    "prepublish": "yarn test && yarn build",
     "predeploy": "cd example && yarn install && yarn run build",
     "postpublish": "git tag v$npm_package_version && git push --tags && echo \"Successfully released version $npm_package_version!\"",
+    "release": "yarn publish . --tag $npm_package_version --no-git-tag-version",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook"
