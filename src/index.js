@@ -23,3 +23,4 @@ export { default as Icon } from './components/Icon';
 export { default as Pill } from './components/Pill';
 export { default as EasyPill } from './components/EasyPill';
 export { default as DeletablePill } from './components/DeletablePill';
+export { default as Dropdown } from './components/Dropdown';

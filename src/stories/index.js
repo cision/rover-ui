@@ -26,6 +26,8 @@ import '../components/Paper/story';
  */
 
 import '../components/Bar/story';
+import '../components/Dropdown/story';
+import '../components/Dropdown/Menu/story';
 import '../components/Pill/story';
 import '../components/DeletablePill/story';
 import '../components/EasyPill/story';
@@ -54,5 +56,4 @@ import '../components/Responsive/Grid/story';
  * NEW & UNCATEGORIZED
  * Move these to a section above before committing
  */
-
 /** INJECTOR */
