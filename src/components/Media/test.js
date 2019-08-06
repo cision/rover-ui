@@ -18,12 +18,13 @@ describe('Media', () => {
 
     it('renders its children', () => {
       const wrapper = mount(
-        <Media>
-          <Media.Item>Hello</Media.Item>
+        <Media className="media-classname">
+          <Media.Item className="item-classname">Hello</Media.Item>
         </Media>
       );
 
       expect(wrapper.children()).toHaveLength(1);
+      expect(wrapper.find('.media-classname').length).toBeGreaterThan(0);
       expect(wrapper.text()).toEqual('Hello');
     });
   });
@@ -43,11 +44,12 @@ describe('Media', () => {
     it('renders its children', () => {
       const wrapper = mount(
         <Media>
-          <Media.Body>Hello</Media.Body>
+          <Media.Body className="body-classname">Hello</Media.Body>
         </Media>
       );
 
       expect(wrapper.children()).toHaveLength(1);
+      expect(wrapper.find('.body-classname').length).toBeGreaterThan(0);
       expect(wrapper.text()).toEqual('Hello');
     });
   });
