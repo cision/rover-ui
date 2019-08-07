@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
+
 import { isOpenContext } from '../';
 import style from './style.css';
+import ItemMoon from './Item';
 
 const Menu = ({
   className,
@@ -52,5 +54,8 @@ Menu.defaultProps = {
   isOpen: undefined,
   position: 'bottomRight',
 };
+
+export const Item = ItemMoon;
+Menu.Item = Item;
 
 export default Menu;

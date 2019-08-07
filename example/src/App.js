@@ -15,6 +15,7 @@ import {
   DeletablePill,
   EasyPill,
   Dropdown,
+  EasyDropdown,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -226,6 +227,10 @@ const App = () => {
             Menu
           </Dropdown.Menu>
         </Dropdown>
+      </section>
+      <section>
+        <h1>EasyDropdown</h1>
+        <EasyDropdown />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
