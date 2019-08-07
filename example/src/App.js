@@ -14,12 +14,14 @@ import {
   Pill,
   DeletablePill,
   EasyPill,
+  Dropdown,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
 const App = () => {
   const [isSideTrayOpen, setIsSideTrayOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('ONE');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <div>
@@ -200,6 +202,30 @@ const App = () => {
         >
           EasyPill checked
         </EasyPill>
+      </section>
+      <section>
+        <h1>Dropdown</h1>
+        <Dropdown
+          isOpen={isDropdownOpen}
+          onToggle={() => {
+            setIsDropdownOpen(!isDropdownOpen);
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => {
+              setIsDropdownOpen(!isDropdownOpen);
+            }}
+          >
+            Toggle dropdown
+          </button>
+          <Dropdown.Menu
+            position="topRight"
+            style={{ minWidth: '100px', padding: '10px' }}
+          >
+            Menu
+          </Dropdown.Menu>
+        </Dropdown>
       </section>
       {/** USAGE_INJECTOR */}
     </div>

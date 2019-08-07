@@ -1,0 +1,66 @@
+.Menu {
+  background: var(--rvr-white);
+  box-shadow: var(--rvr-box-shadow);
+  z-index: var(--rvr-zindex-dropdown);
+  min-width: 100%;
+  position: absolute;
+  top: 100%;
+  bottom: 100%;
+  right: 0;
+  left: 0;
+  transition: opacity 200ms var(--rvr-easeInOutQuad);
+  opacity: 0;
+  display: block;
+}
+
+.entering {
+  opacity: 0;
+}
+
+.entered {
+  opacity: 1;
+}
+
+.exiting {
+  opacity: 0;
+}
+
+.exited {
+  opacity: 0;
+}
+
+.topLeft {
+  /*
+    Pinned to the left side, so contents extends down and
+    to the right when is wider than the parent.
+  */
+  top: auto;
+  left: auto;
+}
+
+.topRight {
+  /*
+    Pinned to the left side, so contents extends down and
+    to the right when is wider than the parent.
+  */
+  top: auto;
+  right: auto;
+}
+
+.bottomRight {
+  /*
+    Pinned to the left side, so contents extends down and
+    to the right when is wider than the parent.
+  */
+  bottom: auto;
+  right: auto;
+}
+
+.bottomLeft {
+  /*
+    Pinned to the right side, so contents extends down and
+    to the left when is wider than the parent.
+  */
+  bottom: auto;
+  left: auto;
+}
