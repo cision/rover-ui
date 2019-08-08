@@ -1,0 +1,29 @@
+.EasyDropdown {
+  display: inline-block;
+}
+
+.toggle {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
+}
+
+.group {
+  border-top: var(--rvr-border-width-md) solid var(--rvr-gray-lite-5);
+}
+
+.group:first-child {
+  border-top-width: 0;
+}
+
+.single {
+  border-top: var(--rvr-border-width-md) solid var(--rvr-gray-lite-5);
+}
+
+.single:first-child {
+  border-top-width: 0;
+}
+
+.single + .single {
+  border-top-width: 0;
+}

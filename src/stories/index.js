@@ -28,6 +28,8 @@ import '../components/Paper/story';
 import '../components/Bar/story';
 import '../components/Dropdown/story';
 import '../components/Dropdown/Menu/story';
+import '../components/Dropdown/Menu/Item/story';
+import '../components/EasyDropdown/story';
 import '../components/Pill/story';
 import '../components/DeletablePill/story';
 import '../components/EasyPill/story';
