@@ -42,7 +42,7 @@ function SideTrayExample() {
   );
 }
 
-storiesOf('Star Systems/SideTray', module)
+storiesOf('Galaxies/SideTray', module)
   .addParameters({
     readme: {
       sidebar: Readme,

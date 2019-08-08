@@ -6,7 +6,7 @@ import { boolean, object } from '@storybook/addon-knobs';
 import EasyPill from './';
 import Readme from './README.md';
 
-storiesOf('Star Systems/EasyPill', module)
+storiesOf('Galaxies/EasyPill', module)
   .addParameters({
     readme: {
       sidebar: Readme,

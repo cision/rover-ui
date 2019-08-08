@@ -9,7 +9,7 @@ import Readme from './README.md';
 
 const defaultIsOpenOptions = ['true', 'false', 'undefined'];
 
-storiesOf('Uncategorized/EasyDropdown', module)
+storiesOf('Galaxies/EasyDropdown', module)
   .addParameters({
     readme: {
       sidebar: Readme,
