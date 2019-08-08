@@ -9,7 +9,7 @@ import Readme from './README.md';
 
 const defaultIsOpenOptions = ['true', 'false', 'undefined'];
 
-storiesOf('Uncategorized/EasyDropdown', module)
+storiesOf('Galaxies/EasyDropdown', module)
   .addParameters({
     readme: {
       sidebar: Readme,
@@ -100,9 +100,9 @@ storiesOf('Uncategorized/EasyDropdown', module)
             menuItems={[{ label: 'Click me!', onClick: () => {} }]}
             defaultIsOpen={false}
           >
-            <Button level="teal" onClick={action('Custom toggle onClick')}>
+            <button type="button" onClick={action('Custom toggle onClick')}>
               Custom toggle
-            </Button>
+            </button>
           </EasyDropdown>
           <br />
           <br />
@@ -123,6 +123,7 @@ storiesOf('Uncategorized/EasyDropdown', module)
                   </Button>
                 ),
                 onClick: action('Custom menu item onClick'),
+                style: { padding: '0' },
               },
             ]}
             defaultIsOpen={false}

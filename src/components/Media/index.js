@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styled from 'styled-components';
-import { space, flex } from 'styled-system';
+import { alignSelf, space, flex } from 'styled-system';
 
 import styles from './style.css';
 import withDefaultTheme from '../withDefaultTheme';
 
-const FlexSpacer = withDefaultTheme(styled.div(flex, space));
+const FlexSpacer = withDefaultTheme(styled.div(alignSelf, flex, space));
 
 // Factory to build the components for the Media component
 // Since all three are very basic and use basically the same basis

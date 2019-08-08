@@ -49,7 +49,7 @@ storiesOf('Star Systems/Dropdown/Menu/Item', module)
         </Item>
         <Item>
           <Media>
-            <Media.Item style={{ paddingRight: '10px' }}>
+            <Media.Item mr="md">
               <img
                 alt="Random from Unsplash"
                 style={{ borderRadius: '20px' }}
@@ -63,7 +63,7 @@ storiesOf('Star Systems/Dropdown/Menu/Item', module)
         </Item>
         <Item onClick={action('onClick')}>
           <Media>
-            <Media.Item style={{ paddingRight: '10px' }}>
+            <Media.Item mr="md">
               <img
                 alt="Random from Unsplash"
                 style={{ borderRadius: '20px' }}

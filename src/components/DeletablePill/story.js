@@ -6,7 +6,7 @@ import { boolean } from '@storybook/addon-knobs';
 import DeletablePill from './';
 import Readme from './README.md';
 
-storiesOf('Star Systems/DeletablePill', module)
+storiesOf('Galaxies/DeletablePill', module)
   .addParameters({
     readme: {
       sidebar: Readme,

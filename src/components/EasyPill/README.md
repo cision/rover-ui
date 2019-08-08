@@ -10,3 +10,59 @@ Easy pill actions may also have `children` props, in which case they'll render t
 Easy pills come with a delete action by default. If you provide an `onDelete` function as a prop, it will show up automatically.
 
 **TODO**: The easy pill's actions should be in a small dropdown with an ellipsis icon that triggers it.
+
+## Examples
+
+`EasyPill` provides dropdown logic, but the consuming component is still responsible for `isChecked` and `setIsChecked`.
+
+```jsx
+<EasyPill
+  actions={[
+    {
+      label: 'Boom',
+      onClick: action('Boom'),
+    },
+    {
+      label: 'Bang',
+      onClick: action('Bang'),
+    },
+  ]}
+  checked={isChecked}
+  onClick={() => setIsChecked(!isChecked)}
+  onDelete={action('onDelete')}
+>
+  With actions and onDelete
+</EasyPill>
+
+<EasyPill
+  actions={[
+    {
+      label: 'Boom',
+      onClick: action('Boom'),
+    },
+    {
+      label: 'Bang',
+      onClick: action('Bang'),
+    },
+  ]}
+  checked={isChecked}
+  onClick={() => setIsChecked(!isChecked)}
+>
+  With actions but no onDelete
+</EasyPill>
+
+<EasyPill
+  checked={isChecked}
+  onClick={() => setIsChecked(!isChecked)}
+  onDelete={action('onDelete')}
+>
+  With onDelete but no actions
+</EasyPill>
+
+<EasyPill
+  checked={isChecked}
+  onClick={() => setIsChecked(!isChecked)}
+>
+  With neither onDelete nor actions
+</EasyPill>
+```

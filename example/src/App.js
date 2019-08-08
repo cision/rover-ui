@@ -23,6 +23,7 @@ const App = () => {
   const [isSideTrayOpen, setIsSideTrayOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('ONE');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isEasyPillChecked, setIsEasyPillChecked] = useState(false);
 
   return (
     <div>
@@ -230,7 +231,38 @@ const App = () => {
       </section>
       <section>
         <h1>EasyDropdown</h1>
-        <EasyDropdown />
+        <EasyDropdown
+          menuItems={[
+            { label: 'I do nothing!' },
+            { label: 'Click me!', onClick: () => {} },
+            { label: "I'm in a group", onClick: () => {}, group: 'Group 1' },
+            { label: 'Me too', onClick: () => {}, group: 'Group 1' },
+            { label: 'Also me', onClick: () => {}, group: 'Group 1' },
+          ]}
+          defaultIsOpen={false}
+        >
+          Simple config
+        </EasyDropdown>
+      </section>
+      <section>
+        <h1>EasyPill</h1>
+        <EasyPill
+          actions={[
+            {
+              label: 'Boom',
+              onClick: () => {},
+            },
+            {
+              label: 'Bang',
+              onClick: () => {},
+            },
+          ]}
+          checked={isEasyPillChecked}
+          onClick={() => setIsEasyPillChecked(!isEasyPillChecked)}
+          onDelete={() => {}}
+        >
+          With actions and onDelete
+        </EasyPill>
       </section>
       {/** USAGE_INJECTOR */}
     </div>

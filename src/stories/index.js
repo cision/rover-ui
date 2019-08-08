@@ -29,11 +29,7 @@ import '../components/Bar/story';
 import '../components/Dropdown/story';
 import '../components/Dropdown/Menu/story';
 import '../components/Dropdown/Menu/Item/story';
-import '../components/EasyDropdown/story';
 import '../components/Pill/story';
-import '../components/DeletablePill/story';
-import '../components/EasyPill/story';
-import '../components/SideTray/story';
 import '../components/TabMenu/story';
 
 /*
@@ -41,6 +37,11 @@ import '../components/TabMenu/story';
  * Has one or more star systems, and can also include planets.
  * eg: form, calendar range picker
  */
+
+import '../components/EasyDropdown/story';
+import '../components/DeletablePill/story';
+import '../components/EasyPill/story';
+import '../components/SideTray/story';
 
 /*
  * DARK MATTER
