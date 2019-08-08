@@ -99,21 +99,15 @@ const EasyDropdown = ({
                   [style.group]: group.indexOf('_ungrouped-') !== 0,
                   [style.single]: group.indexOf('_ungrouped-') === 0,
                 })}
+                key={group}
               >
-                {menuItemGroups[group].map(item => (
-                  <Menu.Item
-                    key={item.label}
-                    label=""
-                    onClick={item.onClick}
-                    style={
-                      item.children && {
-                        padding: '0',
-                      }
-                    }
-                  >
-                    {item.children || item.label}
-                  </Menu.Item>
-                ))}
+                {menuItemGroups[group].map(
+                  ({ children: itemChildren, label, ...itemProps }) => (
+                    <Menu.Item {...itemProps} key={label}>
+                      {itemChildren || label}
+                    </Menu.Item>
+                  )
+                )}
               </div>
             );
           })}

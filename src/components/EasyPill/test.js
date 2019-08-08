@@ -43,7 +43,6 @@ describe('EasyPill', () => {
 
         // Should use css modules selector, but our version of react-scripts doesn't support it.
         const addons = wrapper.find(Pill.Addon);
-
         expect(addons.children()).toHaveLength(0);
       });
     });
@@ -71,10 +70,7 @@ describe('EasyPill', () => {
 
         // Should use css modules selector, but our version of react-scripts doesn't support it.
         const addons = wrapper.find(Pill.Addon);
-
-        expect(addons).toHaveLength(2);
-        expect(addons.at(0).text()).toEqual('Boom');
-        expect(addons.at(1).text()).toEqual('Bang');
+        expect(addons).toHaveLength(1);
       });
     });
   });
