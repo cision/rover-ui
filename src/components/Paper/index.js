@@ -1,22 +1,32 @@
 import React from 'react';
-import { borderRadius, color, space } from 'styled-system';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import StyledPaper from './styled.js';
+import styles from './style.css';
 
-const Paper = props => <StyledPaper {...props} />;
+import { propTypes } from '../../shared/models/tag';
 
-Paper.defaultProps = {
-  bg: 'white',
-  borderRadius: '2px',
-  color: 'gray',
-  p: 'lg',
-  m: 0,
+const Paper = props => {
+  const { className, flat, squared, tag: Tag, ...rest } = props;
+  const classname = classNames(styles.Paper, className, {
+    [styles.flat]: flat,
+    [styles.squared]: squared,
+  });
+  return <Tag {...rest} className={classname} />;
 };
 
 Paper.propTypes = {
-  ...borderRadius.propTypes,
-  ...color.propTypes,
-  ...space.propTypes,
+  className: PropTypes.string,
+  squared: PropTypes.bool,
+  flat: PropTypes.bool,
+  tag: propTypes,
+};
+
+Paper.defaultProps = {
+  className: '',
+  squared: false,
+  flat: false,
+  tag: 'div',
 };
 
 export default Paper;
