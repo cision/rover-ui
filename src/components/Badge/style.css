@@ -1,0 +1,44 @@
+.Badge {
+  background-color: var(--rvr-white);
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: var(--rvr-gray);
+  display: inline-block;
+  font-size: var(--rvr-font-size-sm);
+  line-height: 1.5;
+  padding: 0 0.5em;
+  margin: 0;
+}
+
+.dark {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.round {
+  border-radius: 100px;
+}
+
+.danger {
+  background-color: var(--rvr-color-danger);
+  color: var(--rvr-white);
+}
+
+.notify {
+  background-color: var(--rvr-color-notify);
+  color: var(--rvr-white);
+}
+
+.warning {
+  background-color: var(--rvr-yellow);
+  color: var(--rvr-gray);
+}
+
+.info {
+  background-color: var(--rvr-color-info);
+  color: var(--rvr-white);
+}
+
+.success {
+  background-color: var(--rvr-bg-color-success);
+  color: var(--rvr-white);
+}

@@ -1,10 +1,8 @@
 # Badge
 
-#### Badges are used for additional information
+_Badges are used for additional information_
 
-The badge background color is controled by the \`color\` prop.
-Any of the semantic colors can be overridden by \`darkMode = true\`.
-Color is optional, will default to very light gray background.
+The badge background color is controled by the `color` prop. Any of the semantic colors can be overridden using the `variant` prop.
 
 **Valid Variants:**
 
