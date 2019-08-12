@@ -47,6 +47,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "postbuild": "build-storybook",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "hygen": "hygen",
@@ -58,7 +59,7 @@
     "release": "yarn publish --no-git-tag-version",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
