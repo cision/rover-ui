@@ -16,6 +16,7 @@ import {
   EasyPill,
   Dropdown,
   EasyDropdown,
+  Avatar,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -263,6 +264,10 @@ const App = () => {
         >
           With actions and onDelete
         </EasyPill>
+      </section>
+      <section>
+        <h1>Avatar</h1>
+        <Avatar />
       </section>
       {/** USAGE_INJECTOR */}
     </div>

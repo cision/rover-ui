@@ -13,6 +13,7 @@ import './rover-ui';
  * eg: Paper, Typography, Button, simple text input
  */
 
+import '../components/Avatar/story';
 import '../components/Badge/story';
 import '../components/Button/story';
 import '../components/Icon/story';
@@ -59,4 +60,5 @@ import '../components/Responsive/Grid/story';
  * NEW & UNCATEGORIZED
  * Move these to a section above before committing
  */
+
 /** INJECTOR */

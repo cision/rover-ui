@@ -25,3 +25,4 @@ export { default as EasyPill } from './components/EasyPill';
 export { default as DeletablePill } from './components/DeletablePill';
 export { default as Dropdown } from './components/Dropdown';
 export { default as EasyDropdown } from './components/EasyDropdown';
+export { default as Avatar } from './components/Avatar';
