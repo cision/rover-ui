@@ -47,7 +47,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "postbuild": "build-storybook",
+    "postbuild": "yarn build-storybook",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "hygen": "hygen",
