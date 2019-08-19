@@ -18,7 +18,7 @@ yarn add rover-ui
 npm install --save rover-ui
 ```
 
-For more instructions on installing and using the RoverUI package in your app, see the [docs in Storybook](./src/stories/ROVER_UI.md)
+For more instructions on installing and using the RoverUI package in your app, see the [docs in Storybook](https://cision.github.io/rover-ui)
 
 To install and develop or run locally, you're in the right place.
 
