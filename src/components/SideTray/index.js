@@ -10,8 +10,10 @@ import style from './style.css';
 const SideTray = ({
   children,
   className,
+  closeOnOutsideClick,
   direction,
   height,
+  marginTop,
   onClose,
   visible,
   width,
@@ -40,13 +42,20 @@ const SideTray = ({
     };
   }, [visible, onClose]);
 
+  const parsedMarginTop = parseCssSize({ size: marginTop });
+
   // Handle clicking backdrop to close tray
   // TODO: Click and drag from inside to outside the tray shouldn't close it
-  const clickOffBackdrop = visible ? (
-    <button className={style.backdrop} onClick={onClose} />
-  ) : null;
+  const clickOffBackdrop =
+    visible && closeOnOutsideClick ? (
+      <button
+        className={style.backdrop}
+        style={{ marginTop: `${parsedMarginTop.size}${parsedMarginTop.unit}` }}
+        onClick={onClose}
+      />
+    ) : null;
 
-  // Handle custom widths / heights / directions
+  // Handle custom widths / heights / directions / top margin
   const parsedHeight = parseCssSize({ size: height });
   const parsedWidth = parseCssSize({ size: width });
   let hideTransformStyle;
@@ -58,6 +67,7 @@ const SideTray = ({
     right: 0,
     top: 0,
     width: `${parsedWidth.size}${parsedWidth.unit}`,
+    marginTop: `${parsedMarginTop.size}${parsedMarginTop.unit}`,
   };
 
   switch (direction) {
@@ -101,8 +111,10 @@ const SideTray = ({
 SideTray.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  closeOnOutsideClick: PropTypes.bool,
   direction: PropTypes.oneOf(['t', 'r', 'b', 'l']),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  marginTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClose: PropTypes.func.isRequired,
   style: PropTypes.object,
   visible: PropTypes.bool,
@@ -111,8 +123,10 @@ SideTray.propTypes = {
 
 SideTray.defaultProps = {
   className: '',
+  closeOnOutsideClick: true,
   direction: 'r',
   height: '100vh',
+  marginTop: '0px',
   style: {},
   visible: false,
   width: '400px',
