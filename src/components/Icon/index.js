@@ -4,11 +4,28 @@ import PropTypes from 'prop-types';
 import EllipsisV from './icons/EllipsisV';
 import TimesCircle from './icons/TimesCircle';
 import Trash from './icons/Trash';
+/* Logo Icons */
+import Facebook from './icons/Facebook';
+import GooglePlus from './icons/GooglePlus';
+import Instagram from './icons/Instagram';
+import LinkedIn from './icons/LinkedIn';
+import Reddit from './icons/Reddit';
+import Twitch from './icons/Twitch';
+import Twitter from './icons/Twitter';
+import YouTube from './icons/YouTube';
 
 export const iconsMap = {
   'times-circle': TimesCircle,
   trash: Trash,
   'ellipsis-v': EllipsisV,
+  facebook: Facebook,
+  googleplus: GooglePlus,
+  instagram: Instagram,
+  linkedin: LinkedIn,
+  reddit: Reddit,
+  twitch: Twitch,
+  twitter: Twitter,
+  youtube: YouTube,
 };
 
 const Icon = ({ name, ...passedProps }) =>

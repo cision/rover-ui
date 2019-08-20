@@ -159,6 +159,22 @@ const App = () => {
       <section>
         <h1>Icon</h1>
         <Icon name="times-circle" />
+        <Icon name="facebook" />
+        <Icon name="googleplus" />
+        <Icon name="instagram" />
+        <Icon name="linkedin" />
+        <Icon name="reddit" />
+        <Icon name="twitch" />
+        <Icon name="twitter" />
+        <Icon name="youtube" />
+        <Icon name="facebook" fill="#ffffff" />
+        <Icon name="googleplus" fill="#ffffff" />
+        <Icon name="instagram" fill="#ffffff" />
+        <Icon name="linkedin" fill="#ffffff" />
+        <Icon name="reddit" fill="#ffffff" />
+        <Icon name="twitch" fill="#ffffff" />
+        <Icon name="twitter" fill="#ffffff" />
+        <Icon name="youtube" fill="#ffffff" />
       </section>
       <section>
         <h1>Pill</h1>
