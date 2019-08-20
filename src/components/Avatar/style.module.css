@@ -1,5 +1,14 @@
 .Avatar {
-  background-color: blue;
+  background-color: var(--rvr-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+}
+
+.Avatar img {
+  height: 100%;
+  border-radius: 50px;
 }
 
 .small {
@@ -13,6 +22,10 @@
 }
 
 .large {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+}
+
+.initials {
+  color: var(--rvr-white);
 }

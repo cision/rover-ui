@@ -26,7 +26,7 @@ storiesOf('Planets/Avatar', module)
   )
   .add('Examples', () => (
     <React.Fragment>
-      <Avatar name="Rob Heckart" />
+      <Avatar name="Rob Heckart" size="small" />
       <Avatar
         name="Rob Heckart"
         url="https://pbs.twimg.com/profile_images/872159975375683585/gRuwKA-5_400x400.jpg"

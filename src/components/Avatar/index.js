@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import style from './style.module.css';
 
 const Avatar = ({ className, loading, name, size, disabled, badge, url }) => {
   const [mainElement, setMainElement] = useState(<span />);
   const [loadError, setLoadError] = useState(false);
-  const classNames = [className, style[size], style.Avatar];
 
   const formatInitials = nameToShorten => {
     if (!nameToShorten) return '';
@@ -29,12 +29,14 @@ const Avatar = ({ className, loading, name, size, disabled, badge, url }) => {
         <img src={url} alt={name} onError={() => setLoadError(true)} />
       );
     } else {
-      setMainElement(<span>{formatInitials(name)}</span>);
+      setMainElement(
+        <span className={style.initials}>{formatInitials(name)}</span>
+      );
     }
   }, [loading, loadError, name, url]);
 
   return (
-    <div className={classNames}>
+    <div className={classNames(className, style[size], style.Avatar)}>
       {mainElement}
       <div className="badger">{badge}</div>
     </div>
