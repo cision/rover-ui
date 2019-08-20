@@ -13,10 +13,10 @@ const SideTray = ({
   closeOnOutsideClick,
   direction,
   height,
-  marginTop,
   onClose,
   visible,
   width,
+  wrapperStyle,
   ...passedProps
 }) => {
   // Close tray when the user hits "Escape"
@@ -42,17 +42,11 @@ const SideTray = ({
     };
   }, [visible, onClose]);
 
-  const parsedMarginTop = parseCssSize({ size: marginTop });
-
   // Handle clicking backdrop to close tray
   // TODO: Click and drag from inside to outside the tray shouldn't close it
   const clickOffBackdrop =
     visible && closeOnOutsideClick ? (
-      <button
-        className={style.backdrop}
-        style={{ marginTop: `${parsedMarginTop.size}${parsedMarginTop.unit}` }}
-        onClick={onClose}
-      />
+      <button className={style.backdrop} onClick={onClose} />
     ) : null;
 
   // Handle custom widths / heights / directions / top margin
@@ -67,7 +61,6 @@ const SideTray = ({
     right: 0,
     top: 0,
     width: `${parsedWidth.size}${parsedWidth.unit}`,
-    marginTop: `${parsedMarginTop.size}${parsedMarginTop.unit}`,
   };
 
   switch (direction) {
@@ -91,20 +84,28 @@ const SideTray = ({
   }
 
   return (
-    <React.Fragment>
-      <div
-        {...passedProps}
-        style={{
-          ...sideTrayStyles,
-          ...(!visible ? { transform: hideTransformStyle } : {}),
-          ...passedProps.style,
-        }}
-        className={`${style.SideTray} ${className}`}
-      >
-        <div className={style.container}>{children}</div>
+    <div
+      className={style.wrapper}
+      style={{
+        ...wrapperStyle,
+        ...(!visible ? { display: 'none' } : {}),
+      }}
+    >
+      <div className={style.container}>
+        <div
+          {...passedProps}
+          style={{
+            ...sideTrayStyles,
+            ...(!visible ? { transform: hideTransformStyle } : {}),
+            ...passedProps.style,
+          }}
+          className={`${style.SideTray} ${className}`}
+        >
+          <div className={style.content}>{children}</div>
+        </div>
+        {clickOffBackdrop}
       </div>
-      {clickOffBackdrop}
-    </React.Fragment>
+    </div>
   );
 };
 
@@ -114,11 +115,11 @@ SideTray.propTypes = {
   closeOnOutsideClick: PropTypes.bool,
   direction: PropTypes.oneOf(['t', 'r', 'b', 'l']),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  marginTop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClose: PropTypes.func.isRequired,
   style: PropTypes.object,
   visible: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  wrapperStyle: PropTypes.object,
 };
 
 SideTray.defaultProps = {
@@ -126,10 +127,10 @@ SideTray.defaultProps = {
   closeOnOutsideClick: true,
   direction: 'r',
   height: '100vh',
-  marginTop: '0px',
   style: {},
   visible: false,
   width: '400px',
+  wrapperStyle: {},
 };
 
 const Header = props => (
