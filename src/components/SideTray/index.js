@@ -10,11 +10,13 @@ import style from './style.css';
 const SideTray = ({
   children,
   className,
+  closeOnOutsideClick,
   direction,
   height,
   onClose,
   visible,
   width,
+  wrapperStyle,
   ...passedProps
 }) => {
   // Close tray when the user hits "Escape"
@@ -42,9 +44,10 @@ const SideTray = ({
 
   // Handle clicking backdrop to close tray
   // TODO: Click and drag from inside to outside the tray shouldn't close it
-  const clickOffBackdrop = visible ? (
-    <button className={style.backdrop} onClick={onClose} />
-  ) : null;
+  const clickOffBackdrop =
+    visible && closeOnOutsideClick ? (
+      <button className={style.backdrop} onClick={onClose} />
+    ) : null;
 
   // Handle custom widths / heights / directions
   const parsedHeight = parseCssSize({ size: height });
@@ -81,41 +84,53 @@ const SideTray = ({
   }
 
   return (
-    <React.Fragment>
-      <div
-        {...passedProps}
-        style={{
-          ...sideTrayStyles,
-          ...(!visible ? { transform: hideTransformStyle } : {}),
-          ...passedProps.style,
-        }}
-        className={`${style.SideTray} ${className}`}
-      >
-        <div className={style.container}>{children}</div>
+    <div
+      className={style.wrapper}
+      style={{
+        ...wrapperStyle,
+        ...(!visible ? { display: 'none' } : {}),
+      }}
+    >
+      <div className={style.container}>
+        <div
+          {...passedProps}
+          style={{
+            ...sideTrayStyles,
+            ...(!visible ? { transform: hideTransformStyle } : {}),
+            ...passedProps.style,
+          }}
+          className={`${style.SideTray} ${className}`}
+        >
+          <div className={style.content}>{children}</div>
+        </div>
+        {clickOffBackdrop}
       </div>
-      {clickOffBackdrop}
-    </React.Fragment>
+    </div>
   );
 };
 
 SideTray.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  closeOnOutsideClick: PropTypes.bool,
   direction: PropTypes.oneOf(['t', 'r', 'b', 'l']),
   height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClose: PropTypes.func.isRequired,
   style: PropTypes.object,
   visible: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  wrapperStyle: PropTypes.object,
 };
 
 SideTray.defaultProps = {
   className: '',
+  closeOnOutsideClick: true,
   direction: 'r',
   height: '100vh',
   style: {},
   visible: false,
   width: '400px',
+  wrapperStyle: {},
 };
 
 const Header = props => (
