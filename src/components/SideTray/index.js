@@ -49,7 +49,7 @@ const SideTray = ({
       <button className={style.backdrop} onClick={onClose} />
     ) : null;
 
-  // Handle custom widths / heights / directions / top margin
+  // Handle custom widths / heights / directions
   const parsedHeight = parseCssSize({ size: height });
   const parsedWidth = parseCssSize({ size: width });
   let hideTransformStyle;
