@@ -103,7 +103,20 @@ const EasyDropdown = ({
               >
                 {menuItemGroups[group].map(
                   ({ children: itemChildren, label, ...itemProps }) => (
-                    <Menu.Item {...itemProps} key={label}>
+                    <Menu.Item
+                      {...itemProps}
+                      key={label}
+                      onClick={event => {
+                        // Clicking a menu item has the side effect of closing the menu
+                        if (!isControlled) {
+                          setUncontrolledIsOpen(false);
+                        }
+                        // Call the item's onClick event too, for the consumer to observe
+                        if (itemProps.onClick) {
+                          itemProps.onClick(event);
+                        }
+                      }}
+                    >
                       {itemChildren || label}
                     </Menu.Item>
                   )
