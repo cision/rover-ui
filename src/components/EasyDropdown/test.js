@@ -1,8 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 
 import Button from '../Button';
 
+import { Menu } from '../Dropdown';
 import EasyDropdown from './';
 
 describe('EasyDropdown', () => {
@@ -63,6 +65,36 @@ describe('EasyDropdown', () => {
             .getDOMNode()
             .getAttribute('data-is-open')
         ).toEqual('true');
+      });
+
+      it.only('clicking a menu item closes the menu', async () => {
+        const wrapper = mount(
+          <EasyDropdown
+            defaultIsOpen
+            menuItems={[
+              {
+                children: <span className="item-foo">Bing</span>,
+                label: 'Bang',
+              },
+            ]}
+          >
+            Boom
+          </EasyDropdown>
+        );
+
+        const menuItem = wrapper
+          .find('.item-foo')
+          .first()
+          .parent(Menu.Item);
+
+        act(() => menuItem.props().onClick());
+
+        expect(
+          wrapper
+            .find(Button)
+            .getDOMNode()
+            .getAttribute('data-is-open')
+        ).toEqual('false');
       });
     });
 
