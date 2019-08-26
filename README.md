@@ -57,6 +57,8 @@ It's _not_ a repository for all shared components. Don't try to add components t
 
 ## Publishing a new version
 
+To publish the npm package, you'll need a free account on npmjs.com, and you'll need to be added to the list of maintainers by one of the current RoverUI maintainers.
+
 1. Bump the `package.json`'s version _using [semver](https://semver.org/)_. We're currently in alpha, and probably will be for a while. Versions are cheap.
 2. If all tests look good (`yarn test`), submit a pull-request against the master branch through Github. We're using the master branch for now, but by the time we're out of alpha, we'll have a dev branch.
 3. Once you have at least one PR approval from a champion and no pending requests for changes, you can merge in to master.
