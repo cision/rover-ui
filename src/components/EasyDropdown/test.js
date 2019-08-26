@@ -67,7 +67,9 @@ describe('EasyDropdown', () => {
         ).toEqual('true');
       });
 
-      it.only('clicking a menu item closes the menu', async () => {
+      it('clicking a menu item closes the menu', async () => {
+        const onClickMenuItemSpy = jest.fn();
+
         const wrapper = mount(
           <EasyDropdown
             defaultIsOpen
@@ -75,6 +77,7 @@ describe('EasyDropdown', () => {
               {
                 children: <span className="item-foo">Bing</span>,
                 label: 'Bang',
+                onClick: onClickMenuItemSpy,
               },
             ]}
           >
@@ -87,7 +90,9 @@ describe('EasyDropdown', () => {
           .first()
           .parent(Menu.Item);
 
-        act(() => menuItem.props().onClick());
+        act(() => menuItem.props().onClick('Pretend event!'));
+
+        expect(onClickMenuItemSpy.mock.calls[0][0]).toEqual('Pretend event!');
 
         expect(
           wrapper
