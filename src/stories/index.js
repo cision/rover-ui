@@ -26,6 +26,7 @@ import '../components/Paper/story';
  */
 
 import '../components/Bar/story';
+import '../components/Collapse/story';
 import '../components/Dropdown/story';
 import '../components/Dropdown/Menu/story';
 import '../components/Dropdown/Menu/Item/story';

@@ -16,6 +16,7 @@ import {
   EasyPill,
   Dropdown,
   EasyDropdown,
+  Collapse,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -279,6 +280,10 @@ const App = () => {
         >
           With actions and onDelete
         </EasyPill>
+      </section>
+      <section>
+        <h1>Collapse</h1>
+        <Collapse isOpen={true}>Collapse content</Collapse>
       </section>
       {/** USAGE_INJECTOR */}
     </div>
