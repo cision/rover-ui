@@ -293,6 +293,19 @@ const App = () => {
           <ExpansionPanel.Body>├── Body</ExpansionPanel.Body>
         </ExpansionPanel>
       </section>
+      <section>
+        <h1>Accordion</h1>
+        <Accordion>
+          <ExpansionPanel>
+            <ExpansionPanel.Header>Header 1</ExpansionPanel.Header>
+            <ExpansionPanel.Body>Body 1</ExpansionPanel.Body>
+          </ExpansionPanel>
+          <ExpansionPanel>
+            <ExpansionPanel.Header>Header 2</ExpansionPanel.Header>
+            <ExpansionPanel.Body>Body 2</ExpansionPanel.Body>
+          </ExpansionPanel>
+        </Accordion>
+      </section>
       {/** USAGE_INJECTOR */}
     </div>
   );

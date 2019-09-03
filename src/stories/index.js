@@ -46,6 +46,7 @@ import '../components/EasyDropdown/story';
 import '../components/DeletablePill/story';
 import '../components/EasyPill/story';
 import '../components/SideTray/story';
+import '../components/Accordion/story';
 
 /*
  * DARK MATTER
