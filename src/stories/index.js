@@ -30,6 +30,9 @@ import '../components/Collapse/story';
 import '../components/Dropdown/story';
 import '../components/Dropdown/Menu/story';
 import '../components/Dropdown/Menu/Item/story';
+import '../components/ExpansionPanel/story';
+import '../components/ExpansionPanel/Body/story';
+import '../components/ExpansionPanel/Header/story';
 import '../components/Pill/story';
 import '../components/TabMenu/story';
 

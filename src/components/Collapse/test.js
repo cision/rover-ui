@@ -18,34 +18,34 @@ describe('Collapse', () => {
     expect(wrapper.text()).toEqual('hello');
   });
 
-  it('Wraps Transition component', () => {
+  it('wraps Transition component', () => {
     const wrapper = shallow(<Collapse />);
     expect(wrapper.is('Transition')).toEqual(true);
   });
 
-  it('Has default isOpen value', () => {
+  it('has default isOpen value', () => {
     const wrapper = mount(<Collapse />);
     expect(wrapper.props().isOpen).toEqual(false);
   });
 
-  it('Has default timeout value', () => {
+  it('has default timeout value', () => {
     const wrapper = mount(<Collapse />);
     expect(wrapper.props().timeout).toEqual(200);
   });
 
-  it('Sets transition duration when isOpen', () => {
+  it('sets transition duration when isOpen', () => {
     const wrapper = mount(<Collapse />);
     wrapper.setProps({ isOpen: true });
     expect(wrapper.getDOMNode().style.transitionDuration).toBe('200ms');
   });
 
-  it('Sets custom transition duration when custom timeout prop is passed', () => {
+  it('sets custom transition duration when custom timeout prop is passed', () => {
     const wrapper = mount(<Collapse timeout={400} />);
     wrapper.setProps({ isOpen: true });
     expect(wrapper.getDOMNode().style.transitionDuration).toBe('400ms');
   });
 
-  it('Forward all Transition callbacks', () => {
+  it('forwards all Transition callbacks', () => {
     const callbacks = {
       onEnter: jest.fn(),
       onEntering: jest.fn(),

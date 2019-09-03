@@ -17,6 +17,7 @@ import {
   Dropdown,
   EasyDropdown,
   Collapse,
+  ExpansionPanel,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -284,6 +285,13 @@ const App = () => {
       <section>
         <h1>Collapse</h1>
         <Collapse isOpen={true}>Collapse content</Collapse>
+      </section>
+      <section>
+        <h1>ExpansionPanel</h1>
+        <ExpansionPanel defaultExpanded={false}>
+          <ExpansionPanel.Header>Click me!</ExpansionPanel.Header>
+          <ExpansionPanel.Body>├── Body</ExpansionPanel.Body>
+        </ExpansionPanel>
       </section>
       {/** USAGE_INJECTOR */}
     </div>
