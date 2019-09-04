@@ -87,7 +87,7 @@ describe('ExpansionPanel', () => {
   describe('in uncontrolled mode', () => {
     it('initial expanded is taken from `defaultExpanded`', () => {
       const wrapper = shallow(
-        <ExpansionPanel defaultExpanded={true}>
+        <ExpansionPanel defaultExpanded>
           <ExpansionPanel.Header />
           <ExpansionPanel.Body />
         </ExpansionPanel>

@@ -45,6 +45,7 @@ const Collapse = ({
 
   const handleExiting = useCallback(
     node => {
+      /* eslint-disable no-unused-expressions */
       node.offsetHeight; // getting this variable triggers a reflow
       setHeight(0);
       node.style.transitionDuration = `${timeout}ms`;
@@ -105,6 +106,7 @@ Collapse.propTypes = {
 
 Collapse.defaultProps = {
   ...Transition.defaultProps,
+  children: null,
   isOpen: false,
   timeout: 200,
 };

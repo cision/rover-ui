@@ -47,11 +47,11 @@ describe('Accordion', () => {
   it('`expanded` prop passed to panels should be overrided', () => {
     const wrapper = shallow(
       <Accordion>
-        <ExpansionPanel expanded={true}>
+        <ExpansionPanel expanded>
           <ExpansionPanel.Header>Header 1</ExpansionPanel.Header>
           <ExpansionPanel.Body>Body 1</ExpansionPanel.Body>
         </ExpansionPanel>
-        <ExpansionPanel expanded={true}>
+        <ExpansionPanel expanded>
           <ExpansionPanel.Header>Header 2</ExpansionPanel.Header>
           <ExpansionPanel.Body>Body 2</ExpansionPanel.Body>
         </ExpansionPanel>
@@ -81,9 +81,9 @@ describe('Accordion', () => {
   });
 
   it('should keep only an expanded panel at the same time', () => {
-    const togglePanelAndValidate = (wrapper, panel, validateFn) => {
+    const togglePanelAndValidate = (wrapper, panelIndex, validateFn) => {
       wrapper
-        .childAt(panel)
+        .childAt(panelIndex)
         .shallow()
         .childAt(0)
         .simulate('click');

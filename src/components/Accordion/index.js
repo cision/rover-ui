@@ -5,8 +5,7 @@ const Accordion = ({ defaultExpandedPanel, children, ...passedProps }) => {
   const [expandedPanel, setExpandedPanel] = useState(defaultExpandedPanel);
 
   const handleToggle = (panel, onToggle) => (event, expanded) => {
-    const expandedPanel = expanded ? panel : false;
-    setExpandedPanel(expandedPanel);
+    setExpandedPanel(expanded ? panel : null);
     if (onToggle) {
       onToggle(event, expanded);
     }
@@ -30,10 +29,7 @@ Accordion.propTypes = {
   /**
    * Group of expansion panels.
    */
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
+  children: PropTypes.node,
   /**
    * Index of default expanded panel starting from 0.
    */
@@ -42,6 +38,7 @@ Accordion.propTypes = {
 
 Accordion.defaultProps = {
   children: null,
+  defaultExpandedPanel: null,
 };
 
 export default Accordion;

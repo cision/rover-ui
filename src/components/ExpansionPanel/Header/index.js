@@ -35,13 +35,13 @@ const Header = ({
 
 Header.propTypes = {
   /**
+   * Optional classes.
+   */
+  className: PropTypes.string,
+  /**
    * The header content to render.
    */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-    PropTypes.func,
-  ]),
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   /**
    * Whether it is expanded or not.
    */
@@ -53,7 +53,10 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
+  children: null,
+  className: '',
   expanded: false,
+  expandIcon: null,
 };
 
 Header.displayName = 'ExpansionPanel.Header';

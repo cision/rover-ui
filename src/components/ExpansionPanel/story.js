@@ -20,6 +20,7 @@ storiesOf('Galaxies/ExpansionPanel', module)
         expanded={boolean('expanded', false)}
         onToggle={action('onToggle')}
         collapseProps={object('collapseProps', { timeout: 200 })}
+        style={object('style', {})}
       >
         <ExpansionPanel.Header>Header</ExpansionPanel.Header>
         <ExpansionPanel.Body>├── Body</ExpansionPanel.Body>

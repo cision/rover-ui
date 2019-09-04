@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
+import { object, number } from '@storybook/addon-knobs';
 
 import ExpansionPanel from '../ExpansionPanel';
 import Icon from '../Icon';
@@ -15,7 +16,10 @@ storiesOf('Galaxies/Accordion', module)
   .add(
     'Overview',
     () => (
-      <Accordion>
+      <Accordion
+        style={object('style', {})}
+        defaultExpandedPanel={number('defaultExpandedPanel', null)}
+      >
         <ExpansionPanel>
           <ExpansionPanel.Header>Header 1</ExpansionPanel.Header>
           <ExpansionPanel.Body>├── Body 1</ExpansionPanel.Body>

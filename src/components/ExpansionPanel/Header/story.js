@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean } from '@storybook/addon-knobs';
+import { boolean, object } from '@storybook/addon-knobs';
 
 import Icon from '../../Icon';
 import Header from './';
@@ -12,7 +12,7 @@ storiesOf('Galaxies/ExpansionPanel/Header', module)
       sidebar: Readme,
     },
   })
-  .add('Overview', () => <Header>Header</Header>, {
+  .add('Overview', () => <Header style={object('style', {})}>Header</Header>, {
     info: {
       inline: true,
       source: true,

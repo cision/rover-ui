@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import isBoolean from 'lodash/isBoolean';
-import isEmpty from 'lodash/isEmpty';
 
+import { combinePropTypes } from '../../shared/propTypes';
 import Collapse from '../Collapse';
 import Header from './Header';
 import Body from './Body';
@@ -33,7 +33,8 @@ const ExpansionPanel = ({
 
   return (
     <div {...passedProps}>
-      {React.cloneElement(header, { expanded, onClick: handleToggle })}
+      {header &&
+        React.cloneElement(header, { expanded, onClick: handleToggle })}
       <Collapse isOpen={expanded} {...collapseProps}>
         {body}
       </Collapse>
@@ -45,18 +46,15 @@ ExpansionPanel.propTypes = {
   /**
    * The content of the expansion panel.
    */
-  children: props => {
+  /* eslint-disable react/require-default-props */
+  children: combinePropTypes(PropTypes.node.isRequired, props => {
     const children = React.Children.toArray(props.children);
-    if (isEmpty(children)) {
-      return new Error('ExpansionPanel: children is required.');
-    }
     if (children[0].type !== Header) {
       return new Error(
         'ExpansionPanel: only accept a ExpansionPanel.Header as first child.'
       );
     }
-    return null;
-  },
+  }),
   /**
    * Props passed to the `Collapse` component.
    */
@@ -81,7 +79,10 @@ ExpansionPanel.propTypes = {
 };
 
 ExpansionPanel.defaultProps = {
+  collapseProps: {},
+  defaultExpanded: null,
   expanded: false,
+  onToggle: undefined,
 };
 
 ExpansionPanel.Header = Header;

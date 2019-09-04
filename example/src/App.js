@@ -284,7 +284,7 @@ const App = () => {
       </section>
       <section>
         <h1>Collapse</h1>
-        <Collapse isOpen={true}>Collapse content</Collapse>
+        <Collapse isOpen>Collapse content</Collapse>
       </section>
       <section>
         <h1>ExpansionPanel</h1>

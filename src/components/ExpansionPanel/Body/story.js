@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { object } from '@storybook/addon-knobs';
 
 import Body from './';
 import Readme from './README.md';
@@ -10,7 +11,7 @@ storiesOf('Galaxies/ExpansionPanel/Body', module)
       sidebar: Readme,
     },
   })
-  .add('Overview', () => <Body>Body</Body>, {
+  .add('Overview', () => <Body style={object('style', {})}>Body</Body>, {
     info: {
       inline: true,
       source: true,
