@@ -1,0 +1,29 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+
+// Rover UI dependencies
+import Container from '../Container';
+
+// This component's dependencies
+import Readme from './README.md';
+import Visible from './';
+
+storiesOf('Dark Matter/Responsive/Visible', module)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+  .add('Overview', () => (
+    <div>
+      <Container readOnly style={{ resize: 'both' }}>
+        <div>
+          <Visible
+            responsiveContext={['container-xs-only', 'container-md-only']}
+          >
+            I&apos;ll appear at certain sizes
+          </Visible>
+        </div>
+      </Container>
+    </div>
+  ));
