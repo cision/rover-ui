@@ -3,6 +3,7 @@ import Context from './Context';
 import Element from './Element';
 import Grid from './Grid';
 import Hidden from './Hidden';
+import Visible from './Visible';
 
 const Responsive = {
   Container,
@@ -10,6 +11,7 @@ const Responsive = {
   Element,
   Grid,
   Hidden,
+  Visible,
 };
 
 export default Responsive;

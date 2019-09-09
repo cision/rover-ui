@@ -22,7 +22,7 @@ describe('<Hidden />', () => {
           'container-md-down',
         ]}
       >
-        <Hidden responsiveContext={['container-sm-down']}>
+        <Hidden breakpoints={['container-sm-down']}>
           <span>Boom</span>
         </Hidden>
       </Context.Provider>
@@ -41,7 +41,7 @@ describe('<Hidden />', () => {
           'container-md-down',
         ]}
       >
-        <Hidden responsiveContext={['container-md-up']}>
+        <Hidden breakpoints={['container-md-up']}>
           <span>Boom</span>
         </Hidden>
       </Context.Provider>

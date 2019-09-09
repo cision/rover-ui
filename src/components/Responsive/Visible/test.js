@@ -22,7 +22,7 @@ describe('<Visible />', () => {
           'container-md-down',
         ]}
       >
-        <Visible responsiveContext={['container-sm-down']}>
+        <Visible breakpoints={['container-sm-down']}>
           <span>Boom</span>
         </Visible>
       </Context.Provider>
@@ -41,7 +41,7 @@ describe('<Visible />', () => {
           'container-md-down',
         ]}
       >
-        <Visible responsiveContext={['container-md-up']}>
+        <Visible breakpoints={['container-md-up']}>
           <span>Boom</span>
         </Visible>
       </Context.Provider>

@@ -18,9 +18,7 @@ storiesOf('Dark Matter/Responsive/Visible', module)
     <div>
       <Container readOnly style={{ resize: 'both' }}>
         <div>
-          <Visible
-            responsiveContext={['container-xs-only', 'container-md-only']}
-          >
+          <Visible breakpoints={['container-xs-only', 'container-md-only']}>
             I&apos;ll appear at certain sizes
           </Visible>
         </div>

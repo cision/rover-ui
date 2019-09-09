@@ -4,15 +4,10 @@ import intersection from 'lodash/intersection';
 
 import Context from '../Context';
 
-const Visible = ({
-  children,
-  responsiveContext: VisibleResponsiveContext,
-  ...passedProps
-}) => {
+const Visible = ({ children, breakpoints, ...passedProps }) => {
   const getIsVisible = useCallback(
-    responsiveContext =>
-      !!intersection(VisibleResponsiveContext, responsiveContext).length,
-    [VisibleResponsiveContext]
+    responsiveContext => !!intersection(breakpoints, responsiveContext).length,
+    [breakpoints]
   );
 
   return (
@@ -41,13 +36,13 @@ const Visible = ({
 Visible.propTypes = {
   children: PropTypes.node,
   container: PropTypes.string,
-  responsiveContext: PropTypes.arrayOf(PropTypes.string),
+  breakpoints: PropTypes.arrayOf(PropTypes.string),
 };
 
 Visible.defaultProps = {
   children: null,
   container: null,
-  responsiveContext: [],
+  breakpoints: [],
 };
 
 export default Visible;

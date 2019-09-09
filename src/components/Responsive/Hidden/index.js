@@ -4,15 +4,10 @@ import intersection from 'lodash/intersection';
 
 import Context from '../Context';
 
-const Hidden = ({
-  children,
-  responsiveContext: hiddenResponsiveContext,
-  ...passedProps
-}) => {
+const Hidden = ({ children, breakpoints, ...passedProps }) => {
   const getIsHidden = useCallback(
-    responsiveContext =>
-      !!intersection(hiddenResponsiveContext, responsiveContext).length,
-    [hiddenResponsiveContext]
+    responsiveContext => !!intersection(breakpoints, responsiveContext).length,
+    [breakpoints]
   );
 
   return (
@@ -41,13 +36,13 @@ const Hidden = ({
 Hidden.propTypes = {
   children: PropTypes.node,
   container: PropTypes.string,
-  responsiveContext: PropTypes.arrayOf(PropTypes.string),
+  breakpoints: PropTypes.arrayOf(PropTypes.string),
 };
 
 Hidden.defaultProps = {
   children: null,
   container: null,
-  responsiveContext: [],
+  breakpoints: [],
 };
 
 export default Hidden;
