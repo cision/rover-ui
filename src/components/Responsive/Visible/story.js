@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { array } from '@storybook/addon-knobs';
 
 // Rover UI dependencies
 import Container from '../Container';
@@ -18,7 +19,12 @@ storiesOf('Dark Matter/Responsive/Visible', module)
     <div>
       <Container readOnly style={{ resize: 'both' }}>
         <div>
-          <Visible breakpoints={['container-xs-only', 'container-md-only']}>
+          <Visible
+            breakpoints={array('breakpoints', [
+              'container-xs-only',
+              'container-md-only',
+            ])}
+          >
             I&apos;ll appear at certain sizes
           </Visible>
         </div>
