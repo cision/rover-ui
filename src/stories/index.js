@@ -59,6 +59,8 @@ import '../components/Grid/story';
 import '../components/Media/story';
 import '../components/Responsive/story';
 import '../components/Responsive/Grid/story';
+import '../components/Responsive/Hidden/story';
+import '../components/Responsive/Visible/story';
 
 /*
  * NEW & UNCATEGORIZED

@@ -73,6 +73,8 @@ const App = () => {
       </section>
       <section>
         <h1>Responsive</h1>
+        <hr />
+        <h1>Responsive.Grid</h1>
         <div
           style={{
             border: '1px solid black',
@@ -99,6 +101,42 @@ const App = () => {
               <Paper>Grid entry 3</Paper>
               <Paper>Grid entry 4</Paper>
             </Responsive.Grid>
+          </Responsive.Container>
+        </div>
+        <hr />
+        <h1>Responsive.Hidden</h1>
+        <div
+          style={{
+            border: '1px solid black',
+            padding: '20px',
+            resize: 'horizontal',
+            overflowX: 'hidden',
+          }}
+        >
+          <Responsive.Container>
+            <div>
+              <Responsive.Hidden breakpoints={['container-xs-down']}>
+                I hide on small pages.
+              </Responsive.Hidden>
+            </div>
+          </Responsive.Container>
+        </div>
+        <hr />
+        <h1>Responsive.Visible</h1>
+        <div
+          style={{
+            border: '1px solid black',
+            padding: '20px',
+            resize: 'horizontal',
+            overflowX: 'hidden',
+          }}
+        >
+          <Responsive.Container>
+            <div>
+              <Responsive.Visible breakpoints={['container-xs-down']}>
+                I appear on small pages.
+              </Responsive.Visible>
+            </div>
           </Responsive.Container>
         </div>
       </section>
