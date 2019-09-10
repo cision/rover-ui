@@ -26,9 +26,13 @@ import '../components/Paper/story';
  */
 
 import '../components/Bar/story';
+import '../components/Collapse/story';
 import '../components/Dropdown/story';
 import '../components/Dropdown/Menu/story';
 import '../components/Dropdown/Menu/Item/story';
+import '../components/ExpansionPanel/story';
+import '../components/ExpansionPanel/Body/story';
+import '../components/ExpansionPanel/Header/story';
 import '../components/Pill/story';
 import '../components/TabMenu/story';
 
@@ -42,6 +46,7 @@ import '../components/EasyDropdown/story';
 import '../components/DeletablePill/story';
 import '../components/EasyPill/story';
 import '../components/SideTray/story';
+import '../components/Accordion/story';
 
 /*
  * DARK MATTER

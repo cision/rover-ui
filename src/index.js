@@ -25,3 +25,6 @@ export { default as EasyPill } from './components/EasyPill';
 export { default as DeletablePill } from './components/DeletablePill';
 export { default as Dropdown } from './components/Dropdown';
 export { default as EasyDropdown } from './components/EasyDropdown';
+export { default as Collapse } from './components/Collapse';
+export { default as ExpansionPanel } from './components/ExpansionPanel';
+export { default as Accordion } from './components/Accordion';

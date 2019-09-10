@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Chevron from './icons/Chevron';
 import EllipsisV from './icons/EllipsisV';
 import TimesCircle from './icons/TimesCircle';
 import Trash from './icons/Trash';
@@ -15,6 +16,7 @@ import Twitter from './icons/Twitter';
 import YouTube from './icons/YouTube';
 
 export const iconsMap = {
+  chevron: Chevron,
   'times-circle': TimesCircle,
   trash: Trash,
   'ellipsis-v': EllipsisV,

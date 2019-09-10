@@ -1,0 +1,16 @@
+.entering {
+  height: 0;
+  overflow-y: hidden;
+  transition: height 200ms var(--rvr-easeInOutQuad);
+}
+
+.exiting {
+  height: 0;
+  overflow-y: hidden;
+  transition: height 200ms var(--rvr-easeInOutQuad);
+}
+
+.exited {
+  height: 0;
+  overflow-y: hidden;
+}
