@@ -18,6 +18,7 @@ import {
   EasyDropdown,
   Collapse,
   ExpansionPanel,
+  Avatar,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -343,6 +344,10 @@ const App = () => {
             <ExpansionPanel.Body>Body 2</ExpansionPanel.Body>
           </ExpansionPanel>
         </Accordion>
+      </section>
+      <section>
+        <h1>Avatar</h1>
+        <Avatar />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
