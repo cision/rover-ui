@@ -21,6 +21,21 @@ const positionOptions = [
   'bottom-left',
 ];
 
+/* eslint-disable react/prop-types */
+const BadgeExample = ({ size, color }) => {
+  return (
+    <div
+      style={{
+        backgroundColor: color,
+        border: '2px solid white',
+        width: `${size}px`,
+        height: `${size}px`,
+        borderRadius: '50%',
+      }}
+    />
+  );
+};
+
 storiesOf('Planets/Avatar', module)
   .addParameters({
     readme: {
@@ -33,14 +48,7 @@ storiesOf('Planets/Avatar', module)
       name={text('name', 'Helter Skelter')}
       imageUrl={text('imageUrl', 'https://picsum.photos/40')}
       size={text('size', 'small')}
-    >
-      <Avatar.Addon>
-        <div
-          style={badgeStyle}
-          position={select('Position', positionOptions, 'bottom-right')}
-        />
-      </Avatar.Addon>
-    </Avatar>
+    />
   ))
   .add(
     'Examples',
@@ -61,8 +69,8 @@ storiesOf('Planets/Avatar', module)
         <Paper style={{ marginBottom: '10px' }}>
           <h1>Small, Medium, Large</h1>
           <Avatar size="small" imageUrl="https://picsum.photos/40" />
-          <Avatar size="medium" imageUrl="https://picsum.photos/40" />
-          <Avatar size="large" imageUrl="https://picsum.photos/40" />
+          <Avatar size="medium" imageUrl="https://picsum.photos/60" />
+          <Avatar size="large" imageUrl="https://picsum.photos/100" />
         </Paper>
         <Paper style={{ marginBottom: '10px' }}>
           <h1>Any Size</h1>
@@ -85,6 +93,36 @@ storiesOf('Planets/Avatar', module)
           </Avatar>
         </Paper>
       </div>
+    ),
+    {
+      info: {
+        inline: true,
+        source: true,
+      },
+    }
+  );
+
+storiesOf('Planets/Avatar/Moons', module)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
+  .add(
+    'Overview',
+    () => (
+      <Avatar
+        name="Helter Skelter"
+        imageUrl={text('Avatar imageUrl', 'https://picsum.photos/60')}
+        size={text('Avatar size', 'medium')}
+      >
+        <Avatar.Addon
+          offset={text('offset', '-3')}
+          position={select('position', positionOptions, 'bottom-right')}
+        >
+          <BadgeExample size={text('badge example size', 20)} color="#00f" />
+        </Avatar.Addon>
+      </Avatar>
     ),
     {
       info: {

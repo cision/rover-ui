@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Addon from './Addon';
 import style from './style.css';
 
 const semanticSizes = {
@@ -28,6 +29,7 @@ const Avatar = ({
     return {
       width: `${pixelSize}px`,
       height: `${pixelSize}px`,
+      fontSize: `${pixelSize / 2}px`,
     };
   }, [size]);
 
@@ -52,33 +54,6 @@ const Avatar = ({
       {children}
     </div>
   );
-};
-
-const Addon = ({ position, offset, ...rest }) => {
-  const positions = useMemo(() => {
-    const p = position.split('-');
-    return {
-      [p[0]]: offset,
-      [p[1]]: offset,
-    };
-  }, [position, offset]);
-  const badgeClassNames = classNames(style.AvatarBadge, rest.className);
-  return <div {...rest} className={badgeClassNames} style={positions} />;
-};
-
-Addon.propTypes = {
-  position: PropTypes.oneOf([
-    'top-left',
-    'top-right',
-    'bottom-right',
-    'bottom-left',
-  ]),
-  offset: PropTypes.number,
-};
-
-Addon.defaultProps = {
-  position: 'bottom-right',
-  offset: 0,
 };
 
 Avatar.Addon = Addon;
