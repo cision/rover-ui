@@ -42,14 +42,23 @@ storiesOf('Planets/Avatar', module)
       sidebar: Readme,
     },
   })
-  .add('Overview', () => (
-    <Avatar
-      loading={boolean('loading', false)}
-      name={text('name', 'Helter Skelter')}
-      imageUrl={text('imageUrl', 'https://picsum.photos/40')}
-      size={text('size', 'small')}
-    />
-  ))
+  .add(
+    'Overview',
+    () => (
+      <Avatar
+        loading={boolean('loading', false)}
+        name={text('name', 'Helter Skelter')}
+        imageUrl={text('imageUrl', 'https://picsum.photos/40')}
+        size={text('size', 'small')}
+      />
+    ),
+    {
+      info: {
+        inline: true,
+        source: true,
+      },
+    }
+  )
   .add(
     'Examples',
     () => (
@@ -96,7 +105,7 @@ storiesOf('Planets/Avatar', module)
     ),
     {
       info: {
-        inline: true,
+        inline: false,
         source: true,
       },
     }
