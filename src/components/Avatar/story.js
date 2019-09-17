@@ -5,6 +5,7 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import Avatar from './';
 import Paper from '../Paper';
 import Readme from './README.md';
+import AddonReadme from './Addon.README.md';
 
 const badgeStyle = {
   backgroundColor: 'green',
@@ -114,7 +115,7 @@ storiesOf('Planets/Avatar', module)
 storiesOf('Planets/Avatar/Moons', module)
   .addParameters({
     readme: {
-      sidebar: Readme,
+      sidebar: AddonReadme,
     },
   })
   .add(
