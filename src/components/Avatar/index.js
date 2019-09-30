@@ -4,11 +4,12 @@ import classNames from 'classnames';
 
 import Addon from './Addon';
 import style from './style.css';
+import { sizeBase } from '../../shared/sizing';
 
 const semanticSizes = {
-  small: 40,
-  medium: 60,
-  large: 100,
+  small: sizeBase * 5,
+  medium: sizeBase * 7,
+  large: sizeBase * 12,
 };
 
 const Avatar = ({
@@ -16,12 +17,15 @@ const Avatar = ({
   loading,
   name,
   imageUrl,
+  disabled,
   className,
   children,
   ...rest
 }) => {
   const mainClassName = classNames(style.Avatar, className, {
     [style.loading]: loading,
+    [style.disabled]: disabled && imageUrl,
+    [style.disabledNoImage]: disabled && !imageUrl,
   });
 
   const sizes = useMemo(() => {
@@ -50,7 +54,7 @@ const Avatar = ({
 
   return (
     <div className={mainClassName} {...rest} style={mainStyle}>
-      {!loading && !imageUrl && <div className={style.inner}>{initials}</div>}
+      {!loading && !imageUrl && initials}
       {children}
     </div>
   );
@@ -64,6 +68,7 @@ Avatar.propTypes = {
     PropTypes.oneOf(['small', 'medium', 'large']),
   ]),
   loading: PropTypes.bool,
+  disabled: PropTypes.bool,
   name: PropTypes.string,
   imageUrl: PropTypes.string,
   className: PropTypes.string,
@@ -74,6 +79,7 @@ Avatar.defaultProps = {
   loading: false,
   className: '',
   size: 'small',
+  disabled: false,
   name: '',
   imageUrl: '',
   children: null,

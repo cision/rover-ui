@@ -21,6 +21,16 @@
   position: relative;
 }
 
+.disabled {
+  background-color: var(--rvr-white);
+  opacity: 0.7;
+}
+
+.disabledNoImage {
+  opacity: 1;
+  background-color: var(--rvr-gray-lite-3);
+}
+
 .AvatarBadge {
   position: absolute;
   bottom: 0;

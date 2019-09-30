@@ -14,7 +14,13 @@ const Addon = ({ position, offset, ...rest }) => {
   }, [position, offset]);
 
   const badgeClassNames = classNames(style.AvatarBadge, rest.className);
-  return <div {...rest} className={badgeClassNames} style={positions} />;
+  return (
+    <div
+      {...rest}
+      className={badgeClassNames}
+      style={{ ...positions, ...rest.style }}
+    />
+  );
 };
 
 Addon.propTypes = {
@@ -23,6 +29,10 @@ Addon.propTypes = {
     'top-right',
     'bottom-right',
     'bottom-left',
+    'left-top',
+    'right-top',
+    'left-bottom',
+    'right-bottom',
   ]),
   offset: PropTypes.number,
 };
