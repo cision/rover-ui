@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import {
+  Accordion,
+  Avatar,
   Badge,
   Bar,
   Button,
@@ -18,7 +20,6 @@ import {
   EasyDropdown,
   Collapse,
   ExpansionPanel,
-  Avatar,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -347,7 +348,7 @@ const App = () => {
       </section>
       <section>
         <h1>Avatar</h1>
-        <Avatar />
+        <Avatar size="medium" imageUrl="https://picsum.photos/60" />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
