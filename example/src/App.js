@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import {
+  Accordion,
+  Avatar,
   Badge,
   Bar,
   Button,
@@ -343,6 +345,10 @@ const App = () => {
             <ExpansionPanel.Body>Body 2</ExpansionPanel.Body>
           </ExpansionPanel>
         </Accordion>
+      </section>
+      <section>
+        <h1>Avatar</h1>
+        <Avatar size="medium" imageUrl="https://picsum.photos/60" />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
