@@ -10,23 +10,15 @@ Paper provides a nice clean wrapper to separate pieces of content.
 
 ## Options
 
-The `<Paper>` wraper supports the `color`, `space`, `borderRadius` props from the `styled-system` utilities and supports theming using the default theme.
+Boolean options are `flat` and `squared`. `flat` simply removes the box shadow and `squared` removes the border radius. If you need to adjust styles more than that, you may pass in `className` or `style` props as you would with normal HTML tags.
 
 ```js
-<Paper p="lg" bg="gray" color="white">
-  <Paper borderRadius={0} p="4xl">
+<Paper>
+  <Paper squared className="custom-classname">
     {SampleText}
   </Paper>
-  <Paper borderRadius={0} bg="green" color="white">
+  <Paper flat style={{ backgroundColor: 'red' }}>
     {SampleText}
   </Paper>
-</Paper>
-```
-
-You can also pass strings as explicit CSS property values instead of using the provided theme's `space` options.
-
-```js
-<Paper py="20px" px="10px">
-  // moar children
 </Paper>
 ```
