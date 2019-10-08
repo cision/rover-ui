@@ -17,6 +17,7 @@ import '../components/Badge/story';
 import '../components/Button/story';
 import '../components/Icon/story';
 import '../components/Paper/story';
+import '../components/Avatar/story';
 
 /*
  * STAR SYSTEMS
