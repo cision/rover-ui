@@ -59,10 +59,17 @@ const Avatar = ({
   const mainStyle = {
     ...sizes,
     backgroundImage: image && !loading ? `url(${image})` : undefined,
+    ...rest.style,
   };
 
   return (
-    <div className={mainClassName} {...rest} style={mainStyle}>
+    <div
+      className={mainClassName}
+      aria-label={name ? `Profile image of ${name}` : ''}
+      aria-hidden={!name}
+      {...rest}
+      style={mainStyle}
+    >
       {!loading && !image && initials}
       {children}
     </div>
