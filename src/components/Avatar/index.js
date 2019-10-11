@@ -37,11 +37,6 @@ const Avatar = ({
     };
   }, [size]);
 
-  const mainStyle = {
-    ...sizes,
-    backgroundImage: imageUrl && !loading ? `url(${imageUrl})` : undefined,
-  };
-
   const initials = useMemo(() => {
     if (!name) return '';
     const nameParts = name.split(' ', 2);
@@ -52,9 +47,23 @@ const Avatar = ({
     return returnInitials.slice(0, 2);
   }, [name]);
 
+  const image = useMemo(() => {
+    if (!imageUrl) return null;
+    // Only load the image if the url response is 200
+    const http = new XMLHttpRequest();
+    http.open('HEAD', imageUrl, false);
+    http.send();
+    return http.status === 200 ? imageUrl : null;
+  }, [imageUrl]);
+
+  const mainStyle = {
+    ...sizes,
+    backgroundImage: image && !loading ? `url(${image})` : undefined,
+  };
+
   return (
     <div className={mainClassName} {...rest} style={mainStyle}>
-      {!loading && !imageUrl && initials}
+      {!loading && !image && initials}
       {children}
     </div>
   );
