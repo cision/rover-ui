@@ -50,11 +50,11 @@ export const getBreakpointsQuery = breakpoints =>
   media-query-like strings available to child components via a
   <Context.Consumer/>
 */
-const Container = props => {
+const Container = ({ children, customBreakpoints, ...passedProps }) => {
   let query;
 
-  if (props.customBreakpoints) {
-    query = getBreakpointsQuery(props.customBreakpoints);
+  if (customBreakpoints) {
+    query = getBreakpointsQuery(customBreakpoints);
   } else {
     query = getBreakpointsQuery(defaultBreakpoints);
   }
@@ -73,9 +73,11 @@ const Container = props => {
         );
 
         return (
-          <Context.Provider value={responsiveValue}>
-            {props.children}
-          </Context.Provider>
+          <div {...passedProps}>
+            <Context.Provider value={responsiveValue}>
+              {children}
+            </Context.Provider>
+          </div>
         );
       }}
     </ContainerQuery>

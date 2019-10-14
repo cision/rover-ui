@@ -20,6 +20,12 @@ describe('Responsive.Container', () => {
     shallow(<Container>Boom</Container>);
   });
 
+  it.only('passes props', () => {
+    const wrapper = mount(<Container className="foo">Boom</Container>);
+    const inner = wrapper.find('div').first();
+    expect(inner.hasClass('foo')).toEqual(true);
+  });
+
   describe('Responsive `Context`', () => {
     describe('without `props.customBreakpoints`', () => {
       it('passes default query to ContainerQuery', () => {
