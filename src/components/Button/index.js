@@ -32,12 +32,12 @@ const Button = props => {
   );
 
   const addonChildren = React.Children.toArray(initChildren).filter(
-    child => child && child.type && child.type.name === Addon.displayName
+    child => child && child.type && child.type.displayName === Addon.displayName
   );
 
   if (addonChildren.length) {
     children = React.Children.map(initChildren, child => {
-      if (child && child.type && child.type.name === Addon.displayName) {
+      if (child && child.type && child.type.displayName === Addon.displayName) {
         return React.cloneElement(child, { ...child.props, size });
       }
 
@@ -70,7 +70,6 @@ Button.propTypes = {
   ]),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   tag: tagPropTypes,
-  type: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -80,7 +79,6 @@ Button.defaultProps = {
   level: 'secondary',
   size: 'lg',
   tag: 'button',
-  type: 'button',
 };
 
 Button.Addon = Addon;
