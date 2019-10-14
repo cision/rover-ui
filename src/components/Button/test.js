@@ -2,7 +2,6 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import Button from './';
-// import style from './style.css';
 
 describe('Button', () => {
   it('renders a `button` tag without error', () => {
