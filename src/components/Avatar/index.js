@@ -50,10 +50,14 @@ const Avatar = ({
   const image = useMemo(() => {
     if (!imageUrl) return null;
     // Only load the image if the url response is 200
-    const http = new XMLHttpRequest();
-    http.open('HEAD', imageUrl, false);
-    http.send();
-    return http.status === 200 ? imageUrl : null;
+    try {
+      const http = new XMLHttpRequest();
+      http.open('HEAD', imageUrl, false);
+      http.send();
+      return http.status === 200 ? imageUrl : null;
+    } catch (e) {
+      return null;
+    }
   }, [imageUrl]);
 
   const mainStyle = {

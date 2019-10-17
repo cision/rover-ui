@@ -6,12 +6,12 @@ import Addon from './';
 describe('Addon', () => {
   describe('Main component', () => {
     it('renders an `Addon` tag without error', () => {
-      shallow(<Addon />);
+      shallow(<Addon size="sm" />);
     });
 
     describe('props.className', () => {
       it('adds custom className', () => {
-        const wrapper = shallow(<Addon className="foo" />);
+        const wrapper = shallow(<Addon className="foo" size="sm" />);
         expect(wrapper.hasClass('foo')).toEqual(true);
       });
     });
