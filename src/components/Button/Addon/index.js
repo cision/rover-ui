@@ -13,11 +13,12 @@ const Addon = ({ className, size, ...passedProps }) => (
 
 Addon.propTypes = {
   className: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']).isRequired,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
 Addon.defaultProps = {
   className: '',
+  size: 'md',
 };
 
 Addon.displayName = 'ButtonAddon';
