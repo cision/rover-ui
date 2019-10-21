@@ -5,6 +5,8 @@
   font-size: var(--rvr-font-size-md);
   line-height: var(--rvr-line-height-sm);
   transition: 0.2s linear background-color, 0.2s linear border-color, 0.2s linear color;
+  display: inline-flex;
+  flex-flow: row nowrap;
   align-content: center;
 }
 
