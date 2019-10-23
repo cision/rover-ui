@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <path fill="#677078" d="M20,7 L10,7 L10,13 L8,13 L8,5 L14,5 L14,1 L6,1 L6,7 L4,7 C2.9,7 2,7.9 2,9 L2,21 C2,22.1 2.9,23 4,23 L20,23 C21.1,23 22,22.1 22,21 L22,9 C22,7.9 21.1,7 20,7 Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path fill="#677078" d="M20 7H10v6H8V5h6V1H6v6H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2z"/></svg>

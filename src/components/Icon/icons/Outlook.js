@@ -11,7 +11,7 @@ const Outlook = ({ fill, ...props }) => (
     fill={fill}
     {...props}
   >
-    <polygon points="4 17.7 4 6.6 14.24 3 20 4.8 20 19.2 14.24 21 4 17.7 14.24 18.6 14.24 6 7.52 7.2 7.52 16.2" />
+    <path d="M4 17.7V6.6L14.24 3 20 4.8v14.4L14.24 21 4 17.7l10.24.9V6L7.52 7.2v9z" />
   </svg>
 );
 Outlook.propTypes = { fill: PropTypes.string };

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import AdEquiv from './icons/AdEquiv';
 import Chevron from './icons/Chevron';
 import EllipsisV from './icons/EllipsisV';
 import TimesCircle from './icons/TimesCircle';
@@ -10,7 +11,6 @@ import Trash from './icons/Trash';
 import Exchange from './icons/Exchange';
 import Facebook from './icons/Facebook';
 import Google from './icons/Google';
-import GooglePlus from './icons/GooglePlus';
 import Instagram from './icons/Instagram';
 import LinkedIn from './icons/LinkedIn';
 import Outlook from './icons/Outlook';
@@ -28,12 +28,12 @@ import TwitterLike from './icons/TwitterLike';
 import TwitterVerified from './icons/TwitterVerified';
 
 export const iconsMap = {
+  'ad-equiv': AdEquiv,
   chevron: Chevron,
   'times-circle': TimesCircle,
   trash: Trash,
   'ellipsis-v': EllipsisV,
   facebook: Facebook,
-  googleplus: GooglePlus,
   instagram: Instagram,
   linkedin: LinkedIn,
   reddit: Reddit,

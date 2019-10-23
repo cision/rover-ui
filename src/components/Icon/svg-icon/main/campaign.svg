@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
-  <defs>
-    <path id="campaign-a" d="M20,4 L20,20 L8,14.6666667 L8,9.33333333 L20,4 Z M6.66666667,9.33333333 L6.66666667,17.3333333 L4,17.3333333 L4,9.33333333 L6.66666667,9.33333333 Z M17.3333333,8 L10.6666667,10.8779907 L10.6666667,13.3333333 L17.3333333,16 L17.3333333,8 Z"/>
-  </defs>
-  <use fill="#677078" xlink:href="#campaign-a"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24"><defs><path id="a" d="M20 4v16L8 14.667V9.333L20 4zM6.667 9.333v8H4v-8h2.667zM17.333 8l-6.666 2.878v2.455L17.333 16V8z"/></defs><use fill="#677078" xlink:href="#a"/></svg>
