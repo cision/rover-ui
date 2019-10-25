@@ -1,7 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/* Main Icons */
 import AdEquiv from './icons/AdEquiv';
+import Add from './icons/Add';
+import AddCircle from './icons/AddCircle';
+import AddDocument from './icons/AddDocument';
+import AddToGroup from './icons/AddToGroup';
+import ArrowBack from './icons/ArrowBack';
+import ArrowDown from './icons/ArrowDown';
+import ArrowDropDown from './icons/ArrowDropDown';
+import ArrowDropUp from './icons/ArrowDropUp';
+import ArrowForward from './icons/ArrowForward';
+import ArrowLeft from './icons/ArrowLeft';
+import ArrowRight from './icons/ArrowRight';
 import Chevron from './icons/Chevron';
 import EllipsisV from './icons/EllipsisV';
 import TimesCircle from './icons/TimesCircle';
@@ -11,6 +23,7 @@ import Trash from './icons/Trash';
 import Exchange from './icons/Exchange';
 import Facebook from './icons/Facebook';
 import Google from './icons/Google';
+import GooglePlus from './icons/GooglePlus';
 import Instagram from './icons/Instagram';
 import LinkedIn from './icons/LinkedIn';
 import Outlook from './icons/Outlook';
@@ -29,6 +42,17 @@ import TwitterVerified from './icons/TwitterVerified';
 
 export const iconsMap = {
   'ad-equiv': AdEquiv,
+  add: Add,
+  'add-circle': AddCircle,
+  'add-document': AddDocument,
+  'add-to-group': AddToGroup,
+  'arrow-back': ArrowBack,
+  'arrow-down': ArrowDown,
+  'arrow-drop-down': ArrowDropDown,
+  'arrow-drop-up': ArrowDropUp,
+  'arrow-forward': ArrowForward,
+  'arrow-left': ArrowLeft,
+  'arrow-right': ArrowRight,
   chevron: Chevron,
   'times-circle': TimesCircle,
   trash: Trash,
@@ -42,6 +66,7 @@ export const iconsMap = {
   youtube: YouTube,
   exchange: Exchange,
   google: Google,
+  googleplus: GooglePlus,
   outlook: Outlook,
   retweet: Retweet,
   slack: Slack,
