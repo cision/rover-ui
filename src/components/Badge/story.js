@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
-import { text, select } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 import styled from 'styled-components';
 import { alignSelf, justifyContent, flex, space } from 'styled-system';
 
-import theme from '../../shared/theme.js';
 import Badge, { variants } from './';
 import Readme from './README.md';
 import Paper from '../Paper';
@@ -21,16 +20,21 @@ Flex.defaultProps = {
 
 Flex.displayName = 'Flex';
 
-const Box = styled(Paper)(alignSelf, justifyContent);
+const Box = styled(Paper)(space, alignSelf, justifyContent);
 
 Box.displayName = 'Box';
-
 Box.defaultProps = {
-  alignSelf: 'flex-start',
-  justifyContent: 'center',
-  p: 'md',
-  mb: 'sm',
-  mx: 'sm',
+  mb: '15px',
+};
+
+const fontSizes = {
+  base: 'var(--rvr-font-size-base)',
+  sm: 'var(--rvr-font-size-sm)',
+  md: 'var(--rvr-font-size-md)',
+  h4: 'var(--rvr-font-size-h4)',
+  h3: 'var(--rvr-font-size-h3)',
+  h2: 'var(--rvr-font-size-h2)',
+  h1: 'var(--rvr-font-size-h1)',
 };
 
 storiesOf('Planets/Badge', module)
@@ -44,12 +48,15 @@ storiesOf('Planets/Badge', module)
     () => {
       const colorOptions = variants;
 
-      const fontSize = select('Font size', theme.fontSizes.map((_, i) => i), 2);
+      const fontSize = select('Font size', fontSizes, 'sm');
       const variant = select('Variant', colorOptions, '');
+      const isRound = boolean('Round', false);
+
+      const styles = { fontSize };
 
       return (
-        <Box m="sm" p="2xl">
-          <Badge fontSize={fontSize} variant={variant}>
+        <Box style={{ marginBottom: '10px' }} p="2xl">
+          <Badge round={isRound} style={styles} variant={variant}>
             {text('Children', 'My Badge')}
           </Badge>
         </Box>
@@ -94,13 +101,13 @@ storiesOf('Planets/Badge', module)
       </Box>
       <Box>
         <Flex m={0} p={0}>
-          <Badge mr="sm" variant="info">
+          <Badge round style={{ marginRight: '10px' }} variant="info">
             Print
           </Badge>
-          <Badge mr="sm" variant="info">
+          <Badge round style={{ marginRight: '10px' }} variant="info">
             Broadcast
           </Badge>
-          <Badge mr="sm" variant="info">
+          <Badge round style={{ marginRight: '10px' }} variant="info">
             Radio
           </Badge>
           <Badge>Article</Badge>
@@ -109,13 +116,13 @@ storiesOf('Planets/Badge', module)
       <Box>
         <Flex m={0} p={0}>
           <Badge>Article</Badge>
-          <Badge ml="sm" variant="info">
+          <Badge round style={{ marginLeft: '10px' }} variant="info">
             Print
           </Badge>
-          <Badge ml="sm" variant="info">
+          <Badge round style={{ marginLeft: '10px' }} variant="info">
             Broadcast
           </Badge>
-          <Badge ml="sm" variant="info">
+          <Badge round style={{ marginLeft: '10px' }} variant="info">
             Radio
           </Badge>
         </Flex>
