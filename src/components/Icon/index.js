@@ -14,6 +14,16 @@ import ArrowDropUp from './icons/ArrowDropUp';
 import ArrowForward from './icons/ArrowForward';
 import ArrowLeft from './icons/ArrowLeft';
 import ArrowRight from './icons/ArrowRight';
+import ArrowUp from './icons/ArrowUp';
+import Attach from './icons/Attach';
+import Bell from './icons/Bell';
+import Blocked from './icons/Blocked';
+import Blog from './icons/Blog';
+import Bolt from './icons/Bolt';
+import Bookmark from './icons/Bookmark';
+import Business from './icons/Business';
+import Calendar from './icons/Calendar';
+import Campaign from './icons/Campaign';
 import Chevron from './icons/Chevron';
 import EllipsisV from './icons/EllipsisV';
 import TimesCircle from './icons/TimesCircle';
@@ -53,6 +63,16 @@ export const iconsMap = {
   'arrow-forward': ArrowForward,
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
+  'arrow-up': ArrowUp,
+  attach: Attach,
+  bell: Bell,
+  blocked: Blocked,
+  blog: Blog,
+  bolt: Bolt,
+  bookmark: Bookmark,
+  business: Business,
+  calendar: Calendar,
+  campaign: Campaign,
   chevron: Chevron,
   'times-circle': TimesCircle,
   trash: Trash,
