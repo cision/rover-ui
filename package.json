@@ -59,10 +59,10 @@
     "deploy": "gh-pages -d docs",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook -o docs",
-    "deploy:storybook": "yarn build-storybook && yarn gh-pages -d docs",
-    "prop-types": "^15.5.4"
+    "deploy:storybook": "yarn build-storybook && yarn gh-pages -d docs"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
@@ -108,6 +108,7 @@
     "postcss-calc": "^7.0.1",
     "postcss-custom-properties": "^8.0.9",
     "prettier": "^1.16.4",
+    "prop-types": "^15.5.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "^1.1.4",
