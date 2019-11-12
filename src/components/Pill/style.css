@@ -21,7 +21,7 @@
 }
 
 .Pill:hover {
-  background-color: var(--rvr-rvr-light-blue-hover);
+  background-color: var(--rvr-light-blue-hover);
   color: var(--rvr-white);
 }
 

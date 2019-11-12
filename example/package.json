@@ -5,10 +5,10 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "prop-types": "^15.6.2",
+    "prop-types": "link:../node_modules/prop-types",
     "react": "link:../node_modules/react",
-    "react-dom": "^16.8.0",
-    "react-scripts": "^1.1.4",
+    "react-dom": "link:../node_modules/react-dom",
+    "react-scripts": "link:../node_modules/react-scripts",
     "@cision/rover-ui": "link:../"
   },
   "scripts": {
