@@ -8,6 +8,7 @@
   display: inline-flex;
   flex-flow: row nowrap;
   align-content: center;
+  text-decoration: none;
 }
 
 /* Sizes */

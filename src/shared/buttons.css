@@ -1,12 +1,12 @@
 :root {
   /* PRIMARY */
   --rvr-color-primary: var(--rvr-white);
-  --rvr-bg-color-primary: var(--rvr-blue);
+  --rvr-bg-color-primary: var(--rvr-light-blue);
   --rvr-border-color-primary: var(--rvr-bg-color-primary);
 
   /* Active */
   --rvr-color-primary-active: var(--rvr-color-primary);
-  --rvr-bg-color-primary-active: var(--rvr-blue-lite-1);
+  --rvr-bg-color-primary-active: var(--rvr-light-blue-hover);
   --rvr-border-color-primary-active: var(--rvr-bg-color-primary-active);
 
   /* Disabled */
@@ -30,7 +30,7 @@
   --rvr-border-color-teal-disabled: var(--rvr-border-color-primary-disabled);
 
   /* SECONDARY */
-  --rvr-color-secondary: var(--rvr-blue);
+  --rvr-color-secondary: var(--rvr-light-blue);
   --rvr-bg-color-secondary: var(--rvr-white);
   --rvr-border-color-secondary: var(--rvr-color-secondary);
 

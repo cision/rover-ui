@@ -1,8 +1,8 @@
 {
   "name": "@cision/rover-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publishConfig": {
-    "tag": "v1.0.0"
+    "tag": "v1.0.1"
   },
   "description": "UI Component Library",
   "author": "Matthew Wells (https://github.com/mdespuits)",
@@ -63,8 +63,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^5.0.6",
@@ -108,8 +108,9 @@
     "postcss-calc": "^7.0.1",
     "postcss-custom-properties": "^8.0.9",
     "prettier": "^1.16.4",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "prop-types": "^15.5.4",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-scripts": "^1.1.4",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
