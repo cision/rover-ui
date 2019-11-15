@@ -25,6 +25,8 @@ import Business from './icons/Business';
 import Calendar from './icons/Calendar';
 import Campaign from './icons/Campaign';
 import Chevron from './icons/Chevron';
+import ChartArea from './icons/ChartArea';
+import ChartBarsHorz from './icons/ChartBarsHorz';
 import EllipsisV from './icons/EllipsisV';
 import TimesCircle from './icons/TimesCircle';
 import Trash from './icons/Trash';
@@ -74,6 +76,8 @@ export const iconsMap = {
   calendar: Calendar,
   campaign: Campaign,
   chevron: Chevron,
+  'chart-area': ChartArea,
+  'chart-bars-horz': ChartBarsHorz,
   'times-circle': TimesCircle,
   trash: Trash,
   'ellipsis-v': EllipsisV,
