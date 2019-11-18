@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import iconColorsMap from './colors';
 
-const Calendar = ({ fill, ...props }) => (
+const Campaign = ({ fill, ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -20,7 +20,7 @@ const Calendar = ({ fill, ...props }) => (
     <use fill={fill} xlinkHref="#a" />
   </svg>
 );
-Calendar.propTypes = { fill: PropTypes.string };
-Calendar.defaultProps = { fill: iconColorsMap.mainicon };
+Campaign.propTypes = { fill: PropTypes.string };
+Campaign.defaultProps = { fill: iconColorsMap.mainicon };
 
-export default Calendar;
+export default Campaign;
