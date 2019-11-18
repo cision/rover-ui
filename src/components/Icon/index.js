@@ -28,7 +28,7 @@ import ChartArea from './icons/ChartArea';
 import ChartBarsHorz from './icons/ChartBarsHorz';
 import ChartBarsStacked from './icons/ChartBarsStacked';
 import ChartBarsVert from './icons/ChartBarsVert';
-import ChartBars2 from './icons/ChartBars2';
+import ChartBarsBorder from './icons/ChartBarsBorder';
 import ChartBubble from './icons/ChartBubble';
 import ChartDonut from './icons/ChartDonut';
 import ChartPie from './icons/ChartPie';
@@ -96,7 +96,7 @@ export const iconsMap = {
   'chart-bars-horz': ChartBarsHorz,
   'chart-bars-stacked': ChartBarsStacked,
   'chart-bars-vert': ChartBarsVert,
-  'chart-bars-2': ChartBars2,
+  'chart-bars-border': ChartBarsBorder,
   'chart-bubble': ChartBubble,
   'chart-donut': ChartDonut,
   'chart-pie': ChartPie,
