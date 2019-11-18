@@ -1,0 +1,63 @@
+.Callout {
+  --rvr-callout-bg: var(--rvr-blue-lite-2);
+  --rvr-callout-border-color: var(--rvr-blue);
+  --rvr-callou-color: var(--rvr-gray-80);
+
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: flex;
+  padding: 20px;
+  position: relative;
+  background-color: var(--rvr-callout-bg);
+  border-bottom-color: var(--rvr-callout-border-color);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: var(--rvr-callout-color);
+}
+
+.success {
+  --rvr-callout-bg: var(--rvr-green-lite-2);
+  --rvr-callout-border-color: var(--rvr-green);
+}
+
+.danger {
+  --rvr-callout-bg: var(--rvr-salmon-lite-2);
+  --rvr-callout-border-color: var(--rvr-salmon);
+}
+
+.warning {
+  --rvr-callout-bg: var(--rvr-yellow-lite-2);
+  --rvr-callout-border-color: var(--rvr-yellow);
+}
+
+.borderless {
+  box-shadow: none;
+  border-bottom-width: 0;
+}
+
+.compact {
+  padding: 10px;
+}
+
+.cancelable {
+  padding-right: 60px;
+}
+
+.cancelButton {
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.compact .cancelButton {
+  top: 10px;
+  right: 10px;
+}

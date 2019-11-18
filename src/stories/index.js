@@ -27,6 +27,7 @@ import '../components/Avatar/story';
  */
 
 import '../components/Bar/story';
+import '../components/Callout/story';
 import '../components/Collapse/story';
 import '../components/Dropdown/story';
 import '../components/Dropdown/Menu/story';
