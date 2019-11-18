@@ -22,7 +22,7 @@
 }
 
 .active {
-  color: var(--rvr-gray);
-  font-weight: 700;
+  color: var(--rvr-gray-90);
+  font-weight: 800;
   border-bottom-color: var(--rvr-blue);
 }
