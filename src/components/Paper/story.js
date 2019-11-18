@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import styled from 'styled-components';
 import { margin } from 'styled-system';
+import { boolean, text, object, color } from '@storybook/addon-knobs';
 
 import Paper from './';
 import PaperReadme from './README.md';
@@ -20,6 +21,12 @@ const SampleText = (
   </span>
 );
 
+const DefaultPaperStyle = {
+  style: {
+    marginBottom: '10px',
+  },
+};
+
 storiesOf('Planets/Paper', module)
   .addParameters({
     readme: {
@@ -28,37 +35,70 @@ storiesOf('Planets/Paper', module)
   })
   .add(
     'Overview',
+    () => {
+      const paperText = text(
+        'Content',
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+      );
+
+      const isFlat = boolean('Flat', false);
+      const isSquared = boolean('Squared', false);
+      const background = color('Background', 'var(--rvr-white)');
+      const textColor = color('Color', 'var(--rvr-gray)');
+      const stylesValue = object('Styles', { ...DefaultPaperStyle.style });
+      const styles = {
+        ...stylesValue,
+        color: textColor,
+        backgroundColor: background,
+      };
+
+      return (
+        <div>
+          <Wrap m="lg">
+            <Paper squared={isSquared} flat={isFlat} style={styles}>
+              {paperText}
+            </Paper>
+          </Wrap>
+        </div>
+      );
+    },
+    {
+      info: {
+        inline: true,
+        source: true,
+      },
+    }
+  )
+  .add(
+    'Examples',
     () => (
       <div>
         <Wrap>
           <h2>Padding Examples</h2>
-
-          <Paper mb="lg" p={0}>
-            {SampleText}
-          </Paper>
-          <Paper mb="lg" p="xs">
-            {SampleText}
-          </Paper>
-          <Paper mb="lg" p="sm">
-            {SampleText}
-          </Paper>
-          <Paper mb="lg" p="lg">
-            {SampleText}
-          </Paper>
-          <Paper mb="lg" p="2xl">
-            {SampleText}
-          </Paper>
-          <Paper mb="lg" p="3xl">
-            {SampleText}
-          </Paper>
+          <Paper {...DefaultPaperStyle}>{SampleText}</Paper>
         </Wrap>
         <Wrap>
           <h3>Complex Nesting</h3>
-          <Paper p="lg" bg="gray" color="white">
-            <Paper borderRadius={0} p="4xl">
+          <Paper {...DefaultPaperStyle}>
+            <Paper
+              {...DefaultPaperStyle}
+              style={{
+                ...DefaultPaperStyle.style,
+                padding: '32px',
+              }}
+            >
               {SampleText}
             </Paper>
-            <Paper borderRadius={0} bg="green" color="white">
+            <Paper
+              {...DefaultPaperStyle}
+              flat
+              squared
+              style={{
+                ...DefaultPaperStyle.style,
+                backgroundColor: 'var(--rvr-green)',
+                color: 'var(--rvr-white)',
+              }}
+            >
               {SampleText}
             </Paper>
           </Paper>

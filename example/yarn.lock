@@ -6460,14 +6460,25 @@ promise@8.0.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.2, prop-types@^15.7.2:
-  version "15.7.2"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
-  integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
-  dependencies:
-    loose-envify "^1.4.0"
-    object-assign "^4.1.1"
-    react-is "^16.8.1"
+prop-types@^15.5.10:
+  version "0.0.0"
+  uid ""
+
+prop-types@^15.5.4:
+  version "0.0.0"
+  uid ""
+
+prop-types@^15.6.2:
+  version "0.0.0"
+  uid ""
+
+prop-types@^15.7.2:
+  version "0.0.0"
+  uid ""
+
+"prop-types@link:../node_modules/prop-types":
+  version "0.0.0"
+  uid ""
 
 proxy-addr@~2.0.5:
   version "2.0.5"
@@ -6645,15 +6656,9 @@ react-dev-utils@^5.0.2:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^16.8.0:
-  version "16.10.2"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react-dom/-/react-dom-16.10.2.tgz#4840bce5409176bc3a1f2bd8cb10b92db452fda6"
-  integrity sha1-SEC85UCRdrw6HyvYyxC5LbRS/aY=
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.16.2"
+"react-dom@link:../node_modules/react-dom":
+  version "0.0.0"
+  uid ""
 
 react-error-overlay@^4.0.1:
   version "4.0.1"
@@ -6665,51 +6670,9 @@ react-is@^16.6.0, react-is@^16.8.1:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react-is/-/react-is-16.10.2.tgz#984120fd4d16800e9a738208ab1fba422d23b5ab"
   integrity sha1-mEEg/U0WgA6ac4IIqx+6Qi0jtas=
 
-react-scripts@^1.1.4:
-  version "1.1.5"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/react-scripts/-/react-scripts-1.1.5.tgz#3041610ab0826736b52197711a4c4e3756e97768"
-  integrity sha1-MEFhCrCCZza1IZdxGkxON1bpd2g=
-  dependencies:
-    autoprefixer "7.1.6"
-    babel-core "6.26.0"
-    babel-eslint "7.2.3"
-    babel-jest "20.0.3"
-    babel-loader "7.1.2"
-    babel-preset-react-app "^3.1.2"
-    babel-runtime "6.26.0"
-    case-sensitive-paths-webpack-plugin "2.1.1"
-    chalk "1.1.3"
-    css-loader "0.28.7"
-    dotenv "4.0.0"
-    dotenv-expand "4.2.0"
-    eslint "4.10.0"
-    eslint-config-react-app "^2.1.0"
-    eslint-loader "1.9.0"
-    eslint-plugin-flowtype "2.39.1"
-    eslint-plugin-import "2.8.0"
-    eslint-plugin-jsx-a11y "5.1.1"
-    eslint-plugin-react "7.4.0"
-    extract-text-webpack-plugin "3.0.2"
-    file-loader "1.1.5"
-    fs-extra "3.0.1"
-    html-webpack-plugin "2.29.0"
-    jest "20.0.4"
-    object-assign "4.1.1"
-    postcss-flexbugs-fixes "3.2.0"
-    postcss-loader "2.0.8"
-    promise "8.0.1"
-    raf "3.4.0"
-    react-dev-utils "^5.0.2"
-    resolve "1.6.0"
-    style-loader "0.19.0"
-    sw-precache-webpack-plugin "0.11.4"
-    url-loader "0.6.2"
-    webpack "3.8.1"
-    webpack-dev-server "2.11.3"
-    webpack-manifest-plugin "1.3.2"
-    whatwg-fetch "2.0.3"
-  optionalDependencies:
-    fsevents "^1.1.3"
+"react-scripts@link:../node_modules/react-scripts":
+  version "0.0.0"
+  uid ""
 
 "react@link:../node_modules/react":
   version "0.0.0"
@@ -7151,10 +7114,10 @@ sax@^1.2.1, sax@^1.2.4, sax@~1.2.1:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
 
-scheduler@^0.16.2:
-  version "0.16.2"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/scheduler/-/scheduler-0.16.2.tgz#f74cd9d33eff6fc554edfb79864868e4819132c1"
-  integrity sha1-90zZ0z7/b8VU7ft5hkho5IGRMsE=
+scheduler@^0.17.0:
+  version "0.17.0"
+  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/scheduler/-/scheduler-0.17.0.tgz#7c9c673e4ec781fac853927916d1c426b6f3ddfe"
+  integrity sha1-fJxnPk7HgfrIU5J5FtHEJrbz3f4=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

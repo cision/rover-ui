@@ -23,4 +23,22 @@ describe('Avatar', () => {
     expect(wrapper.prop('style')).toHaveProperty('width', '67px');
     expect(wrapper.prop('style')).toHaveProperty('height', '67px');
   });
+
+  it('renders initials of the image url results in non-200 response', () => {
+    const wrapper = shallow(
+      <Avatar name="Helter Skelter" imageUrl="https://picsum.photos/wrong" />
+    );
+    expect(wrapper.text()).toEqual('HS');
+  });
+
+  it('renders an image in bg assuming valid url', () => {
+    const wrapper = shallow(
+      <Avatar name="Helter Skelter" imageUrl="https://picsum.photos/60" />
+    );
+    expect(wrapper.text()).toEqual('');
+    expect(wrapper.prop('style')).toHaveProperty(
+      'backgroundImage',
+      'url(https://picsum.photos/60)'
+    );
+  });
 });

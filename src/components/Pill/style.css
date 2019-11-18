@@ -21,18 +21,18 @@
 }
 
 .Pill:hover {
-  background-color: var(--rvr-rvr-light-blue-hover);
+  background-color: var(--rvr-light-blue-hover);
   color: var(--rvr-white);
 }
 
-.Pill.checked {
+.checked {
   background-color: #ebfffe;
   border-color: var(--rvr-light-teal);
   color: var(--rvr-gray-80);
   box-shadow: none;
 }
 
-.Pill.checked:hover {
+.checked:hover {
   background-color: #d5f5f3;
   border-color: var(--rvr-light-teal-hover);
   color: var(--rvr-gray-90);
@@ -62,14 +62,14 @@
   margin-inline-start: 0;
 }
 
+.checked .actionInline {
+  color: var(--rvr-light-teal);
+}
+
 .Pill:hover .actionInline {
   color: var(--rvr-white);
 }
 
-.Pill.checked .actionInline {
-  color: var(--rvr-light-teal);
-}
-
-.Pill.checked:hover .actionInline {
+.checked:hover .actionInline {
   color: var(--rvr-light-teal-hover);
 }

@@ -1,9 +1,16 @@
 .Paper {
-  background: var(--rvr-white);
+  background-color: var(--rvr-white);
   border-radius: 2px;
   box-shadow: var(--rvr-box-shadow);
+  color: var(--rvr-gray);
+  margin: 0;
+  padding: var(--rvr-space-lg);
 }
 
-.dark {
-  background-color: #414c52;
+.flat {
+  box-shadow: none;
+}
+
+.squared {
+  border-radius: 0;
 }

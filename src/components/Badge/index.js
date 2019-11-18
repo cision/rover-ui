@@ -1,29 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import includes from 'lodash/includes';
+import classNames from 'classnames';
 
-import StyledBadge from './styled.js';
-
-const Badge = ({ variant, bg, ...props }) => {
-  let background = bg || variant;
-  let { color: badgeColor } = props;
-
-  if (variant === 'dark') {
-    background = 'rgba(0, 0, 0, 0.2)';
-  }
-
-  if (!includes(['warning', ''], variant)) {
-    badgeColor = 'white';
-  }
-
-  const defaultProps = {
-    ...props,
-    bg: background,
-    color: badgeColor,
-  };
-
-  return <StyledBadge {...defaultProps} />;
-};
+import styles from './style.css';
+import { propTypes } from '../../shared/models/tag';
 
 export const variants = [
   'dark',
@@ -35,15 +15,34 @@ export const variants = [
   '',
 ];
 
+const buildVariantClasses = (list, variant) =>
+  list.reduce((acc, item) => {
+    acc[styles[item]] = variant === item;
+    return acc;
+  }, {});
+
+const Badge = ({ className, tag: Tag, round, variant, ...rest }) => {
+  const classes = classNames(
+    className,
+    styles.Badge,
+    { [styles.round]: round },
+    buildVariantClasses(variants, variant)
+  );
+
+  return <Tag {...rest} className={classes} />;
+};
+
 Badge.defaultProps = {
-  bg: null,
-  color: null,
+  className: '',
+  tag: 'span',
+  round: false,
   variant: '',
 };
 
 Badge.propTypes = {
-  bg: PropTypes.string,
-  color: PropTypes.string,
+  className: PropTypes.string,
+  tag: propTypes,
+  round: PropTypes.bool,
   variant: PropTypes.oneOf(variants),
 };
 
