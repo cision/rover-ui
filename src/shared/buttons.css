@@ -74,6 +74,36 @@
   --rvr-bg-color-tertiary-disabled: var(--rvr-bg-color-secondary-disabled);
   --rvr-border-color-tertiary-disabled: var(--rvr-border-color-secondary-disabled);
 
+  /* LINK */
+  --rvr-color-link: var(--rvr-light-blue);
+  --rvr-bg-color-link: transparent;
+  --rvr-border-color-link: var(--rvr-bg-color-link);
+
+  /* Active */
+  --rvr-color-link-active: var(--rvr-light-blue-hover);
+  --rvr-bg-color-link-active: var(--rvr-bg-color-link);
+  --rvr-border-color-link-active: var(--rvr-bg-color-link-active);
+
+  /* Disabled */
+  --rvr-color-link-disabled: var(--rvr-gray-40);
+  --rvr-bg-color-link-disabled: var(--rvr-bg-color-link);
+  --rvr-border-color-link-disabled: var(--rvr-bg-color-link-disabled);
+
+  /* TEXT */
+  --rvr-color-text: var(--rvr-gray-80);
+  --rvr-bg-color-text: transparent;
+  --rvr-border-color-text: var(--rvr-bg-color-text);
+
+  /* Active */
+  --rvr-color-text-active: var(--rvr-gray-90);
+  --rvr-bg-color-text-active: var(--rvr-bg-color-text);
+  --rvr-border-color-text-active: var(--rvr-bg-color-text-active);
+
+  /* Disabled */
+  --rvr-color-text-disabled: var(--rvr-gray-40);
+  --rvr-bg-color-text-disabled: var(--rvr-bg-color-text);
+  --rvr-border-color-text-disabled: var(--rvr-bg-color-text-disabled);
+
   /* DARK MODE */
   --rvr-color-darkMode: var(--rvr-white);
   --rvr-bg-color-darkMode: transparent;

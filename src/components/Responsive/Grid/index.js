@@ -33,7 +33,7 @@ const Grid = ({ breakpoints, children, columns, gutter, ...passedProps }) => {
             a child, use the breakpoint's colSpan for that child
           */
           responsiveChildren = React.Children.map(children, child => {
-            const childProps = child.props || {};
+            const childProps = (child && child.props) || {};
             const { clear = false, colSpan = 1, offset = 0 } = childProps;
             let { breakpoints: childBreakpoints } = childProps;
             childBreakpoints = childBreakpoints || {};

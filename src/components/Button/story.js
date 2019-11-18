@@ -5,12 +5,9 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import Button from './';
+import Button, { levels, sizes } from './';
 import ButtonReadme from './README.md';
 import AddonReadme from './Addon/README.md';
-
-const levels = ['tertiary', 'teal', 'secondary', 'primary'];
-const sizes = ['sm', 'md', 'lg'];
 
 const MyComponent = props => (
   <button {...props} className={classNames(props.className, 'MyComponent')} />
@@ -31,6 +28,7 @@ storiesOf('Planets/Button', module)
     'Overview',
     () => (
       <Button
+        active={boolean('active', false)}
         className={text('className', '')}
         darkMode={boolean('darkMode', false)}
         disabled={boolean('disabled', false)}
@@ -47,6 +45,102 @@ storiesOf('Planets/Button', module)
         {text('children', 'Click me!')}
       </Button>
     ),
+    {
+      info: {
+        inline: false,
+        source: true,
+      },
+    }
+  )
+  .add(
+    'Examples',
+    () => {
+      const sections = levels.map(level => {
+        return (
+          <div>
+            <h2>{level}</h2>
+            {sizes.map(size => {
+              return (
+                <div style={{ marginBottom: '20px' }}>
+                  <span style={{ marginRight: '20px' }}>{size}</span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button level={level} onClick={() => {}} size={size}>
+                      Normal
+                    </Button>
+                  </span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button level={level} onClick={() => {}} size={size}>
+                      <Button.Addon>
+                        <span role="img" aria-label="Rocket">
+                          🚀
+                        </span>
+                      </Button.Addon>
+                      With addon
+                    </Button>
+                  </span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button active level={level} onClick={() => {}} size={size}>
+                      Hover
+                    </Button>
+                  </span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button
+                      disabled
+                      level={level}
+                      onClick={() => {}}
+                      size={size}
+                    >
+                      Disabled
+                    </Button>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        );
+      });
+
+      return (
+        <div>
+          {sections}
+          <div style={{ background: 'black', color: 'white', padding: '1em' }}>
+            <h2>darkMode</h2>
+            {sizes.map(size => {
+              return (
+                <div style={{ marginBottom: '20px' }}>
+                  <span style={{ marginRight: '20px' }}>{size}</span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button darkMode onClick={() => {}} size={size}>
+                      Normal
+                    </Button>
+                  </span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button darkMode onClick={() => {}} size={size}>
+                      <Button.Addon>
+                        <span role="img" aria-label="Rocket">
+                          🚀
+                        </span>
+                      </Button.Addon>
+                      With addon
+                    </Button>
+                  </span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button active darkMode onClick={() => {}} size={size}>
+                      Hover
+                    </Button>
+                  </span>
+                  <span style={{ marginRight: '20px' }}>
+                    <Button darkMode disabled onClick={() => {}} size={size}>
+                      Disabled
+                    </Button>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      );
+    },
     {
       info: {
         inline: false,

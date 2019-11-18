@@ -10,6 +10,7 @@ import style from './style.css';
 
 const Button = props => {
   const {
+    active,
     children: initChildren,
     className: passedClassName,
     darkMode,
@@ -28,6 +29,7 @@ const Button = props => {
     style[size],
     {
       [style.darkMode]: darkMode,
+      [style.active]: active,
     }
   );
 
@@ -56,23 +58,38 @@ const Button = props => {
   );
 };
 
+export const levels = [
+  'primary',
+  'secondary',
+  'success',
+  'teal',
+  'tertiary',
+  'link',
+  'text',
+];
+
+export const states = [
+  'checked',
+  'active',
+  'disabled',
+  'hover',
+  'focus',
+];
+
+export const sizes = ['sm', 'md', 'lg'];
+
 Button.propTypes = {
+  active: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
   darkMode: PropTypes.bool,
-  level: PropTypes.oneOf([
-    'primary',
-    'teal',
-    'secondary',
-    'success',
-    'tertiary',
-    'teal',
-  ]),
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  level: PropTypes.oneOf(levels),
+  size: PropTypes.oneOf(sizes),
   tag: tagPropTypes,
 };
 
 Button.defaultProps = {
+  active: false,
   children: null,
   className: '',
   darkMode: false,
