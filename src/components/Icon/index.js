@@ -24,11 +24,28 @@ import Bookmark from './icons/Bookmark';
 import Business from './icons/Business';
 import Calendar from './icons/Calendar';
 import Campaign from './icons/Campaign';
-import Chevron from './icons/Chevron';
 import ChartArea from './icons/ChartArea';
 import ChartBarsHorz from './icons/ChartBarsHorz';
+import ChartBarsStacked from './icons/ChartBarsStacked';
+import ChartBarsVert from './icons/ChartBarsVert';
+import ChartBars2 from './icons/ChartBars2';
+import ChartBubble from './icons/ChartBubble';
+import ChartDonut from './icons/ChartDonut';
+import ChartPie from './icons/ChartPie';
+import ChartSparkAndBar from './icons/ChartSparkAndBar';
+import ChartSparkline from './icons/ChartSparkline';
+import Chat from './icons/Chat';
+import Check from './icons/Check';
+import Chevron from './icons/Chevron';
+import ChevronLeft from './icons/ChevronLeft';
+import ChevronRight from './icons/ChevronRight';
+import Clear from './icons/Clear';
+import Clock from './icons/Clock';
+import Close from './icons/Close';
+import Coffee from './icons/Coffee';
+import ContactList from './icons/ContactList';
+import Copy from './icons/Copy';
 import EllipsisV from './icons/EllipsisV';
-import TimesCircle from './icons/TimesCircle';
 import Trash from './icons/Trash';
 
 /* Logo Icons */
@@ -75,10 +92,27 @@ export const iconsMap = {
   business: Business,
   calendar: Calendar,
   campaign: Campaign,
-  chevron: Chevron,
   'chart-area': ChartArea,
   'chart-bars-horz': ChartBarsHorz,
-  'times-circle': TimesCircle,
+  'chart-bars-stacked': ChartBarsStacked,
+  'chart-bars-vert': ChartBarsVert,
+  'chart-bars-2': ChartBars2,
+  'chart-bubble': ChartBubble,
+  'chart-donut': ChartDonut,
+  'chart-pie': ChartPie,
+  'chart-spark-and-bar': ChartSparkAndBar,
+  'chart-sparkline': ChartSparkline,
+  chat: Chat,
+  check: Check,
+  chevron: Chevron,
+  'chevron-left': ChevronLeft,
+  'chevron-right': ChevronRight,
+  clear: Clear,
+  clock: Clock,
+  close: Close,
+  coffee: Coffee,
+  'contact-list': ContactList,
+  copy: Copy,
   trash: Trash,
   'ellipsis-v': EllipsisV,
   facebook: Facebook,
