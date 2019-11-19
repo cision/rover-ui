@@ -31,6 +31,10 @@
   border-radius: 0;
 }
 
+.activeButton {
+  font-weight: bold;
+}
+
 .xsTextSize { font-size: var(--rvr-font-size-sm); }
 .smTextSize { font-size: var(--rvr-font-size-md); }
 .mdTextSize { font-size: var(--rvr-font-size-h4); }
