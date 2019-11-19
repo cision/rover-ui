@@ -27,16 +27,20 @@ TabMenu.defaultProps = {
 };
 
 export const EasyTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
-  const inner = classNames(style.itemPadding, style[`${size}TextSize`]);
   return (
     <TabMenu {...props}>
-      {tabs.map(tab => (
-        <Item key={tab.key} active={tab.key === activeTab}>
-          <button className={inner} onClick={tab.onClick}>
-            {tab.label}
-          </button>
-        </Item>
-      ))}
+      {tabs.map(tab => {
+        const inner = classNames(style.itemPadding, style[`${size}TextSize`], {
+          [style.activeButton]: tab.key === activeTab,
+        });
+        return (
+          <Item key={tab.key} active={tab.key === activeTab}>
+            <button className={inner} onClick={tab.onClick}>
+              {tab.label}
+            </button>
+          </Item>
+        );
+      })}
     </TabMenu>
   );
 };
