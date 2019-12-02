@@ -39,14 +39,26 @@ import Check from './icons/Check';
 import Chevron from './icons/Chevron';
 import ChevronLeft from './icons/ChevronLeft';
 import ChevronRight from './icons/ChevronRight';
+import ChevronUp from './icons/ChevronUp';
 import Clear from './icons/Clear';
 import Clock from './icons/Clock';
 import Close from './icons/Close';
 import Coffee from './icons/Coffee';
 import ContactList from './icons/ContactList';
 import Copy from './icons/Copy';
+import Dashboard from './icons/Dashboard';
+import Delete from './icons/Delete';
+import Download from './icons/Download';
+import Dinner from './icons/Dinner';
+import Drinks from './icons/Drinks';
+import Edit from './icons/Edit';
 import EllipsisV from './icons/EllipsisV';
-import Trash from './icons/Trash';
+import Enlarge from './icons/Enlarge';
+import Filter from './icons/Filter';
+import Flag from './icons/Flag';
+import Folder from './icons/Folder';
+import FolderOpen from './icons/FolderOpen';
+import Paper from './icons/Paper';
 
 /* Logo Icons */
 import Exchange from './icons/Exchange';
@@ -73,7 +85,7 @@ export const iconsMap = {
   'ad-equiv': AdEquiv,
   add: Add,
   'add-circle': AddCircle,
-  'add-document': AddDocument,
+  'add-Paper': AddDocument,
   'add-to-group': AddToGroup,
   'arrow-back': ArrowBack,
   'arrow-down': ArrowDown,
@@ -104,17 +116,29 @@ export const iconsMap = {
   'chart-sparkline': ChartSparkline,
   chat: Chat,
   check: Check,
-  chevron: Chevron,
+  'chevron-down': Chevron,
   'chevron-left': ChevronLeft,
   'chevron-right': ChevronRight,
+  'chevron-up': ChevronUp,
   clear: Clear,
   clock: Clock,
   close: Close,
   coffee: Coffee,
   'contact-list': ContactList,
   copy: Copy,
-  trash: Trash,
+  dashbord: Dashboard,
+  delete: Delete,
+  dinner: Dinner,
+  drinks: Drinks,
+  download: Download,
+  edit: Edit,
   'ellipsis-v': EllipsisV,
+  enlarge: Enlarge,
+  filter: Filter,
+  flag: Flag,
+  folder: Folder,
+  'folder-open': FolderOpen,
+  paper: Paper,
   facebook: Facebook,
   instagram: Instagram,
   linkedin: LinkedIn,
