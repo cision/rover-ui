@@ -58,6 +58,16 @@ import Filter from './icons/Filter';
 import Flag from './icons/Flag';
 import Folder from './icons/Folder';
 import FolderOpen from './icons/FolderOpen';
+import FormatBold from './icons/FormatBold';
+import FormatBulletNumbered from './icons/FormatBulletNumbered';
+import FormatBulletPlain from './icons/FormatBulletPlain';
+import FormatClear from './icons/FormatClear';
+import FormatCode from './icons/FormatCode';
+import FormatItalic from './icons/FormatItalic';
+import FormatParagraphCenter from './icons/FormatParagraphCenter';
+import FormatParagraphJustify from './icons/FormatParagraphJustify';
+import FormatParagraphLeft from './icons/FormatParagraphLeft';
+import FormatParagraphRight from './icons/FormatParagraphRight';
 import Paper from './icons/Paper';
 
 /* Logo Icons */
@@ -138,6 +148,16 @@ export const iconsMap = {
   flag: Flag,
   folder: Folder,
   'folder-open': FolderOpen,
+  'format-bold': FormatBold,
+  'format-bullet-numbered': FormatBulletNumbered,
+  'format-bullet-plain': FormatBulletPlain,
+  'format-clear': FormatClear,
+  'format-code': FormatCode,
+  'format-italic': FormatItalic,
+  'format-paragraph-center': FormatParagraphCenter,
+  'format-paragraph-justify': FormatParagraphJustify,
+  'format-paragraph-left': FormatParagraphLeft,
+  'format-paragraph-right': FormatParagraphRight,
   paper: Paper,
   facebook: Facebook,
   instagram: Instagram,
