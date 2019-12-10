@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import iconColorsMap from './colors';
 
-const Chevron = ({ fill, ...props }) => (
+const ChevronUp = ({ fill, ...props }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -11,10 +11,10 @@ const Chevron = ({ fill, ...props }) => (
     fill={fill}
     {...props}
   >
-    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
   </svg>
 );
-Chevron.propTypes = { fill: PropTypes.string };
-Chevron.defaultProps = { fill: iconColorsMap.mainicon };
+ChevronUp.propTypes = { fill: PropTypes.string };
+ChevronUp.defaultProps = { fill: iconColorsMap.mainicon };
 
-export default Chevron;
+export default ChevronUp;
