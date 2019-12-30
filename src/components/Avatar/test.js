@@ -33,12 +33,12 @@ describe('Avatar', () => {
 
   it('renders an image in bg assuming valid url', () => {
     const wrapper = shallow(
-      <Avatar name="Helter Skelter" imageUrl="https://picsum.photos/60" />
+      <Avatar name="Helter Skelter" imageUrl="http://placekitten.com/60/60" />
     );
     expect(wrapper.text()).toEqual('');
     expect(wrapper.prop('style')).toHaveProperty(
       'backgroundImage',
-      'url(https://picsum.photos/60)'
+      'url(http://placekitten.com/60/60)'
     );
   });
 });
