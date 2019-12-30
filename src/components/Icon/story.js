@@ -4,6 +4,7 @@ import { select } from '@storybook/addon-knobs';
 
 import Icon, { iconsMap } from './';
 import IconReadme from './README.md';
+import style from './style.css';
 
 const iconNames = Object.keys(iconsMap);
 
@@ -17,9 +18,9 @@ storiesOf('Planets/Icon', module)
     <Icon name={select('name', iconNames, 'times-circle')} />
   ))
   .add('Examples', () => (
-    <dl>
+    <dl className={style.Iconorder}>
       {iconNames.map(iconName => (
-        <div key={iconName}>
+        <div key={iconName} className={style.icons}>
           <dt>{iconName}</dt>
           <dd
             key={iconName}

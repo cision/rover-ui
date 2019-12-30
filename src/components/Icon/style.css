@@ -1,0 +1,10 @@
+.Iconorder {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.icons {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
