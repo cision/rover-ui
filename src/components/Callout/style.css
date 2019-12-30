@@ -1,33 +1,29 @@
 .Callout {
-  --rvr-callout-bg: var(--rvr-blue-lite-2);
-  --rvr-callout-border-color: var(--rvr-blue);
-  --rvr-callou-color: var(--rvr-gray-80);
-
   border-radius: 2px;
   box-sizing: border-box;
   display: flex;
   padding: 20px;
   position: relative;
-  background-color: var(--rvr-callout-bg);
-  border-bottom-color: var(--rvr-callout-border-color);
+  background-color: var(--rvr-blue-lite-2);
+  border-bottom-color: var(--rvr-blue);
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  color: var(--rvr-callout-color);
+  color: var(--rvr-gray-80);
 }
 
 .success {
-  --rvr-callout-bg: var(--rvr-green-lite-2);
-  --rvr-callout-border-color: var(--rvr-green);
+  background-color: var(--rvr-green-lite-2);
+  border-bottom-color: var(--rvr-green);
 }
 
 .danger {
-  --rvr-callout-bg: var(--rvr-salmon-lite-2);
-  --rvr-callout-border-color: var(--rvr-salmon);
+  background-color: var(--rvr-salmon-lite-2);
+  border-bottom-color: var(--rvr-salmon);
 }
 
 .warning {
-  --rvr-callout-bg: var(--rvr-yellow-lite-2);
-  --rvr-callout-border-color: var(--rvr-yellow);
+  background-color: var(--rvr-yellow-lite-2);
+  border-bottom-color: var(--rvr-yellow);
 }
 
 .borderless {
