@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContainerQuery } from 'react-container-query';
+import { ContainerQuery } from '@cision/react-container-query';
 import Context from '../Context';
 
 const defaultBreakpoints = [
@@ -61,7 +61,7 @@ const Container = ({ children, customBreakpoints, ...passedProps }) => {
 
   return (
     <ContainerQuery query={query}>
-      {params => {
+      {(params, ref) => {
         const responsiveValue = Object.keys(params).reduce(
           (result, paramKey) => {
             if (params[paramKey]) {
@@ -73,7 +73,7 @@ const Container = ({ children, customBreakpoints, ...passedProps }) => {
         );
 
         return (
-          <div {...passedProps}>
+          <div {...passedProps} ref={ref}>
             <Context.Provider value={responsiveValue}>
               {children}
             </Context.Provider>
