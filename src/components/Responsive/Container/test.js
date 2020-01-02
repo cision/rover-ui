@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import { ContainerQuery } from 'react-container-query';
+import { ContainerQuery } from '@cision/react-container-query';
 
 import { TestComponent } from '../../../setupTests';
 
