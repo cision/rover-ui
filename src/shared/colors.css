@@ -10,6 +10,9 @@
   --rvr-green: #63bf52;
   --rvr-green-lite-1: #69cc58;
   --rvr-green-lite-2: #e9fcf6;
+  --rvr-red: #de4543;
+  --rvr-red-lite-1: #fa6866;
+  --rvr-red-lite-2: #fa6866; /* Unused */
   --rvr-teal: #44c0c2;
   --rvr-teal-lite-1: #47cacc;
   --rvr-salmon: #f76764;
@@ -38,8 +41,8 @@
   --rvr-bg-color-neutral: var(--rvr-gray-lite-6);
 
   /* Danger */
-  --rvr-color-danger: var(--rvr-salmon);
-  --rvr-bg-color-danger: var(--rvr-salmon-lite-2);
+  --rvr-color-danger: var(--rvr-red);
+  --rvr-bg-color-danger: var(--rvr-red-lite-2);
 
   /* Warning */
   --rvr-color-warning: var(--rvr-yellow);

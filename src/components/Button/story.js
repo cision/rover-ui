@@ -5,7 +5,8 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import Button, { levels, sizes } from './';
+import Icon from '../Icon';
+import Button, { levels, sizes, states } from './';
 import ButtonReadme from './README.md';
 import AddonReadme from './Addon/README.md';
 
@@ -30,7 +31,8 @@ storiesOf('Planets/Button', module)
       <Button
         active={boolean('active', false)}
         className={text('className', '')}
-        darkMode={boolean('darkMode', false)}
+        circle={boolean('circle', false)}
+        hollow={boolean('hollow', false)}
         disabled={boolean('disabled', false)}
         href={select('tag', tags, 'button') === 'a' ? '#' : null}
         level={select('level', levels, 'secondary')}
@@ -55,88 +57,152 @@ storiesOf('Planets/Button', module)
   .add(
     'Examples',
     () => {
-      const sections = levels.map(level => {
-        return (
-          <div>
-            <h2>{level}</h2>
-            {sizes.map(size => {
-              return (
-                <div style={{ marginBottom: '20px' }}>
-                  <span style={{ marginRight: '20px' }}>{size}</span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button level={level} onClick={() => {}} size={size}>
-                      Normal
-                    </Button>
-                  </span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button level={level} onClick={() => {}} size={size}>
-                      <Button.Addon>
-                        <span role="img" aria-label="Rocket">
-                          🚀
-                        </span>
-                      </Button.Addon>
-                      With addon
-                    </Button>
-                  </span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button active level={level} onClick={() => {}} size={size}>
-                      Hover
-                    </Button>
-                  </span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button
-                      disabled
-                      level={level}
-                      onClick={() => {}}
-                      size={size}
-                    >
-                      Disabled
-                    </Button>
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        );
-      });
-
       return (
         <div>
-          {sections}
-          <div style={{ background: 'black', color: 'white', padding: '1em' }}>
-            <h2>darkMode</h2>
-            {sizes.map(size => {
-              return (
+          <h2>Sizes</h2>
+          <div style={{ marginBottom: '20px' }}>
+            {sizes.map(size => (
+              <span
+                key={size}
+                style={{
+                  display: 'inline-block',
+                  marginRight: '20px',
+                  marginBottom: '10px',
+                }}
+              >
+                <Button size={size}>
+                  {size !== Button.defaultProps.size
+                    ? size
+                    : `${size} (default)`}
+                </Button>
+              </span>
+            ))}
+          </div>
+          <hr />
+          <h2>Tags</h2>
+          <div style={{ marginBottom: '20px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button href="#" tag="a">
+                a
+              </Button>
+            </span>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button tag="button">button (default)</Button>
+            </span>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button tag="input" type="button" value="input" />
+            </span>
+          </div>
+          <hr />
+          <h2>Add-ons</h2>
+          <div style={{ marginBottom: '20px' }}>
+            <Button>
+              <Button.Addon>
+                <Icon
+                  fill="currentColor"
+                  height="16"
+                  name="check"
+                  style={{ display: 'block' }}
+                  width="16"
+                />
+              </Button.Addon>
+              With left addon
+            </Button>
+          </div>
+          <hr />
+          <h2>Circle</h2>
+          <div style={{ marginBottom: '20px' }}>
+            {sizes.map(size => (
+              <span
+                key={size}
+                style={{
+                  display: 'inline-block',
+                  marginRight: '20px',
+                  marginBottom: '10px',
+                }}
+              >
+                <Button circle size={size}>
+                  <Icon
+                    fill="currentColor"
+                    height="16"
+                    name="check"
+                    style={{ display: 'block' }}
+                    width="16"
+                  />
+                </Button>
+              </span>
+            ))}
+          </div>
+          <hr />
+          <h2>Levels</h2>
+          {levels.map(level => {
+            return (
+              <div key={level}>
+                <h3>{level}</h3>
                 <div style={{ marginBottom: '20px' }}>
-                  <span style={{ marginRight: '20px' }}>{size}</span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button darkMode onClick={() => {}} size={size}>
-                      Normal
-                    </Button>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      marginRight: '20px',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    <Button level={level}>default</Button>
                   </span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button darkMode onClick={() => {}} size={size}>
-                      <Button.Addon>
-                        <span role="img" aria-label="Rocket">
-                          🚀
-                        </span>
-                      </Button.Addon>
-                      With addon
-                    </Button>
-                  </span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button active darkMode onClick={() => {}} size={size}>
-                      Hover
-                    </Button>
-                  </span>
-                  <span style={{ marginRight: '20px' }}>
-                    <Button darkMode disabled onClick={() => {}} size={size}>
-                      Disabled
-                    </Button>
-                  </span>
+                  {states.map(state => (
+                    <span key={state} style={{ marginRight: '20px' }}>
+                      <Button level={level} {...{ [state]: true }}>
+                        {state}
+                      </Button>
+                    </span>
+                  ))}
                 </div>
-              );
-            })}
+              </div>
+            );
+          })}
+          <hr />
+          <h2>Hollow</h2>
+          <div
+            style={{
+              background: 'black',
+              padding: '20px',
+              marginBottom: '20px',
+            }}
+          >
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button hollow>(default)</Button>
+            </span>
+            {states.map(state => (
+              <span key={state} style={{ marginRight: '20px' }}>
+                <Button hollow {...{ [state]: true }}>
+                  {state}
+                </Button>
+              </span>
+            ))}
           </div>
         </div>
       );
