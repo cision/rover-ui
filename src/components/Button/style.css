@@ -2,6 +2,8 @@
   -webkit-appearance: none;
   background: transparent none;
   border: var(--rvr-border-width-md) solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
   font-size: var(--rvr-font-size-md);
   line-height: var(--rvr-line-height-sm);
   transition: 0.2s linear background-color, 0.2s linear border-color, 0.2s linear color;
@@ -9,6 +11,12 @@
   flex-flow: row nowrap;
   align-content: center;
   text-decoration: none;
+}
+
+.Button.disabled,
+.Button:disabled,
+.Button[disabled] {
+  cursor: default;
 }
 
 /* Sizes */
@@ -28,144 +36,276 @@
   border-radius: calc(var(--rvr-space-bordered-lg) + (var(--rvr-line-height-md) / 2));
 }
 
+/* Circle */
+.circle {
+  display: inline-block;
+  text-align: center;
+}
+
+.sm.circle {
+  height: calc(var(--rvr-space-bordered-xs) * 2 + var(--rvr-line-height-md));
+  width: calc(var(--rvr-space-bordered-xs) * 2 + var(--rvr-line-height-md));
+  padding: var(--rvr-space-bordered-xs);
+  border-radius: calc(var(--rvr-space-bordered-sm) + (var(--rvr-line-height-md) / 2));
+}
+
+.md.circle {
+  height: calc(var(--rvr-space-bordered-sm) * 2 + var(--rvr-line-height-md));
+  width: calc(var(--rvr-space-bordered-sm) * 2 + var(--rvr-line-height-md));
+  padding: var(--rvr-space-bordered-sm);
+  border-radius: calc(var(--rvr-space-bordered-md) + (var(--rvr-line-height-md) / 2));
+}
+
+.lg.circle {
+  height: calc(var(--rvr-space-bordered-md) * 2 + var(--rvr-line-height-md));
+  width: calc(var(--rvr-space-bordered-md) * 2 + var(--rvr-line-height-md));
+  padding: var(--rvr-space-bordered-md);
+  border-radius: calc(var(--rvr-space-bordered-md) + (var(--rvr-line-height-md) / 2));
+}
+
 /* Button level colors */
 
 .primary,
 .primary:link,
 .primary:visited {
-  color: var(--rvr-color-primary);
-  background-color: var(--rvr-bg-color-primary);
-  border-color: var(--rvr-border-color-primary);
+  color: var(--rvr-btn-color-primary);
+  background-color: var(--rvr-btn-bg-color-primary);
+  border-color: var(--rvr-btn-border-color-primary);
 }
 
+.primary.active,
 .primary:active,
+.primary.hover,
 .primary:hover,
+.primary.focus,
 .primary:focus {
-  color: var(--rvr-color-primary-active);
-  background-color: var(--rvr-bg-color-primary-active);
-  border-color: var(--rvr-border-color-primary-active);
+  color: var(--rvr-btn-color-primary-active);
+  background-color: var(--rvr-btn-bg-color-primary-active);
+  border-color: var(--rvr-btn-border-color-primary-active);
 }
 
+.primary.disabled,
 .primary:disabled,
 .primary[disabled] {
-  color: var(--rvr-color-primary-disabled);
-  background-color: var(--rvr-bg-color-primary-disabled);
-  border-color: var(--rvr-border-color-primary-disabled);
+  color: var(--rvr-btn-color-primary-disabled);
+  background-color: var(--rvr-btn-bg-color-primary-disabled);
+  border-color: var(--rvr-btn-border-color-primary-disabled);
 }
 
-.teal,
-.teal:link,
-.teal:visited {
-  color: var(--rvr-color-teal);
-  background-color: var(--rvr-bg-color-teal);
-  border-color: var(--rvr-border-color-teal);
+.primary-alt,
+.primary-alt:link,
+.primary-alt:visited {
+  color: var(--rvr-btn-color-primary-alt);
+  background-color: var(--rvr-btn-bg-color-primary-alt);
+  border-color: var(--rvr-btn-border-color-primary-alt);
 }
 
-.teal:active,
-.teal:hover,
-.teal:focus {
-  color: var(--rvr-color-teal-active);
-  background-color: var(--rvr-bg-color-teal-active);
-  border-color: var(--rvr-border-color-teal-active);
+.primary-alt.active,
+.primary-alt:active,
+.primary-alt.hover,
+.primary-alt:hover,
+.primary-alt.focus,
+.primary-alt:focus {
+  color: var(--rvr-btn-color-primary-alt-active);
+  background-color: var(--rvr-btn-bg-color-primary-alt-active);
+  border-color: var(--rvr-btn-border-color-primary-alt-active);
 }
 
-.teal:disabled,
-.teal[disabled] {
-  color: var(--rvr-color-teal-disabled);
-  background-color: var(--rvr-bg-color-teal-disabled);
-  border-color: var(--rvr-border-color-teal-disabled);
+.primary-alt.disabled,
+.primary-alt:disabled,
+.primary-alt[disabled] {
+  color: var(--rvr-btn-color-primary-alt-disabled);
+  background-color: var(--rvr-btn-bg-color-primary-alt-disabled);
+  border-color: var(--rvr-btn-border-color-primary-alt-disabled);
 }
 
 .secondary,
 .secondary:link,
 .secondary:visited {
-  color: var(--rvr-color-secondary);
-  background-color: var(--rvr-bg-color-secondary);
-  border-color: var(--rvr-border-color-secondary);
+  color: var(--rvr-btn-color-secondary);
+  background-color: var(--rvr-btn-bg-color-secondary);
+  border-color: var(--rvr-btn-border-color-secondary);
 }
 
+.secondary.active,
 .secondary:active,
+.secondary.hover,
 .secondary:hover,
+.secondary.focus,
 .secondary:focus {
-  color: var(--rvr-color-secondary-active);
-  background-color: var(--rvr-bg-color-secondary-active);
-  border-color: var(--rvr-border-color-secondary-active);
+  color: var(--rvr-btn-color-secondary-active);
+  background-color: var(--rvr-btn-bg-color-secondary-active);
+  border-color: var(--rvr-btn-border-color-secondary-active);
 }
 
+.secondary.disabled,
 .secondary:disabled,
 .secondary[disabled] {
-  color: var(--rvr-color-secondary-disabled);
-  background-color: var(--rvr-bg-color-secondary-disabled);
-  border-color: var(--rvr-border-color-secondary-disabled);
-}
-
-.success,
-.success:link,
-.success:visited {
-  color: var(--rvr-color-success);
-  background-color: var(--rvr-bg-color-success);
-  border-color: var(--rvr-border-color-success);
-}
-
-.success:active,
-.success:hover,
-.success:focus {
-  color: var(--rvr-color-success-active);
-  background-color: var(--rvr-bg-color-success-active);
-  border-color: var(--rvr-border-color-success-active);
-}
-
-.success:disabled,
-.success[disabled] {
-  color: var(--rvr-color-success-disabled);
-  background-color: var(--rvr-bg-color-success-disabled);
-  border-color: var(--rvr-border-color-success-disabled);
+  color: var(--rvr-btn-color-secondary-disabled);
+  background-color: var(--rvr-btn-bg-color-secondary-disabled);
+  border-color: var(--rvr-btn-border-color-secondary-disabled);
 }
 
 .tertiary,
 .tertiary:link,
 .tertiary:visited {
-  color: var(--rvr-color-tertiary);
-  background-color: var(--rvr-bg-color-tertiary);
-  border-color: var(--rvr-border-color-tertiary);
+  color: var(--rvr-btn-color-tertiary);
+  background-color: var(--rvr-btn-bg-color-tertiary);
+  border-color: var(--rvr-btn-border-color-tertiary);
 }
 
+.tertiary.active,
 .tertiary:active,
+.tertiary.hover,
 .tertiary:hover,
+.tertiary.focus,
 .tertiary:focus {
-  color: var(--rvr-color-tertiary-active);
-  background-color: var(--rvr-bg-color-tertiary-active);
-  border-color: var(--rvr-border-color-tertiary-active);
+  color: var(--rvr-btn-color-tertiary-active);
+  background-color: var(--rvr-btn-bg-color-tertiary-active);
+  border-color: var(--rvr-btn-border-color-tertiary-active);
 }
 
+.tertiary.disabled,
 .tertiary:disabled,
 .tertiary[disabled] {
-  color: var(--rvr-color-tertiary-disabled);
-  background-color: var(--rvr-bg-color-tertiary-disabled);
-  border-color: var(--rvr-border-color-tertiary-disabled);
+  color: var(--rvr-btn-color-tertiary-disabled);
+  background-color: var(--rvr-btn-bg-color-tertiary-disabled);
+  border-color: var(--rvr-btn-border-color-tertiary-disabled);
 }
 
-/* Dark mode */
-
-.darkMode,
-.darkMode:link,
-.darkMode:visited {
-  color: var(--rvr-color-darkMode);
-  background-color: var(--rvr-bg-color-darkMode);
-  border-color: var(--rvr-border-color-darkMode);
+.success,
+.success:link,
+.success:visited {
+  color: var(--rvr-btn-color-success);
+  background-color: var(--rvr-btn-bg-color-success);
+  border-color: var(--rvr-btn-border-color-success);
 }
 
-.darkMode:active,
-.darkMode:hover,
-.darkMode:focus {
-  color: var(--rvr-color-darkMode-active);
-  background-color: var(--rvr-bg-color-darkMode-active);
-  border-color: var(--rvr-border-color-darkMode-active);
+.success.active,
+.success:active,
+.success.hover,
+.success:hover,
+.success.focus,
+.success:focus {
+  color: var(--rvr-btn-color-success-active);
+  background-color: var(--rvr-btn-bg-color-success-active);
+  border-color: var(--rvr-btn-border-color-success-active);
 }
 
-.darkMode:disabled,
-.darkMode[disabled] {
-  color: var(--rvr-color-darkMode-disabled);
-  background-color: var(--rvr-bg-color-darkMode-disabled);
-  border-color: var(--rvr-border-color-darkMode-disabled);
+.success.disabled,
+.success:disabled,
+.success[disabled] {
+  color: var(--rvr-btn-color-primary-alt-disabled);
+  background-color: var(--rvr-btn-bg-color-primary-alt-disabled);
+  border-color: var(--rvr-btn-border-color-primary-alt-disabled);
+}
+
+.danger,
+.danger:link,
+.danger:visited {
+  color: var(--rvr-btn-color-danger);
+  background-color: var(--rvr-btn-bg-color-danger);
+  border-color: var(--rvr-btn-border-color-danger);
+}
+
+.danger.active,
+.danger:active,
+.danger.hover,
+.danger:hover,
+.danger.focus,
+.danger:focus {
+  color: var(--rvr-btn-color-danger-active);
+  background-color: var(--rvr-btn-bg-color-danger-active);
+  border-color: var(--rvr-btn-border-color-danger-active);
+}
+
+.danger.disabled,
+.danger:disabled,
+.danger[disabled] {
+  color: var(--rvr-btn-color-primary-alt-disabled);
+  background-color: var(--rvr-btn-bg-color-primary-alt-disabled);
+  border-color: var(--rvr-btn-border-color-primary-alt-disabled);
+}
+
+.link,
+.link:link,
+.link:visited {
+  color: var(--rvr-btn-color-link);
+  background-color: var(--rvr-btn-bg-color-link);
+  border-color: var(--rvr-btn-border-color-link);
+}
+
+.link.active,
+.link:active,
+.link.hover,
+.link:hover,
+.link.focus,
+.link:focus {
+  color: var(--rvr-btn-color-link-active);
+  background-color: var(--rvr-btn-bg-color-link-active);
+  border-color: var(--rvr-btn-border-color-link-active);
+}
+
+.link.disabled,
+.link:disabled,
+.link[disabled] {
+  color: var(--rvr-btn-color-link-disabled);
+  background-color: var(--rvr-btn-bg-color-link-disabled);
+  border-color: var(--rvr-btn-border-color-link-disabled);
+}
+
+.text,
+.text:link,
+.text:visited {
+  color: var(--rvr-btn-color-text);
+  background-color: var(--rvr-btn-bg-color-text);
+  border-color: var(--rvr-btn-border-color-text);
+}
+
+.text.active,
+.text:active,
+.text.hover,
+.text:hover,
+.text.focus,
+.text:focus {
+  color: var(--rvr-btn-color-text-active);
+  background-color: var(--rvr-btn-bg-color-text-active);
+  border-color: var(--rvr-btn-border-color-text-active);
+}
+
+.text.disabled,
+.text:disabled,
+.text[disabled] {
+  color: var(--rvr-btn-color-text-disabled);
+  background-color: var(--rvr-btn-bg-color-text-disabled);
+  border-color: var(--rvr-btn-border-color-text-disabled);
+}
+
+/* Hollow */
+
+.hollow,
+.hollow:link,
+.hollow:visited {
+  color: var(--rvr-btn-color-hollow);
+  background-color: var(--rvr-btn-bg-color-hollow);
+  border-color: var(--rvr-btn-border-color-hollow);
+}
+
+.hollow.active,
+.hollow:active,
+.hollow.hover,
+.hollow:hover,
+.hollow.focus,
+.hollow:focus {
+  color: var(--rvr-btn-color-hollow-active);
+  background-color: var(--rvr-btn-bg-color-hollow-active);
+  border-color: var(--rvr-btn-border-color-hollow-active);
+}
+
+.hollow.disabled,
+.hollow:disabled,
+.hollow[disabled] {
+  color: var(--rvr-btn-color-hollow-disabled);
+  background-color: var(--rvr-btn-bg-color-hollow-disabled);
+  border-color: var(--rvr-btn-border-color-hollow-disabled);
 }

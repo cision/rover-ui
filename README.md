@@ -55,6 +55,18 @@ It's _not_ a repository for all shared components. Don't try to add components t
 9. From the `example/` directory, run `yarn start`.
 10. That should open a new tab in your browser with an example page that imports the compiled components.
 
+### Testing another project using local RoverUI
+
+For simple projects, you should be able to use [`npm link`](https://docs.npmjs.com/cli/link.html) or [`yarn link`](https://yarnpkg.com/lang/en/docs/cli/link/) to temporarily and invisibly load your local copy of RoverUI as a dependency in another project. These tools both have caveats, though. They may fail on peer dependencies, and their symlinking strategy can introduce bugs in monorepos with multiple workspaces.
+
+**Experimental**
+
+You can use [yalc](https://github.com/whitecolor/yalc) to test a local project. It copies files instead of symlinking them.
+
+1. In the RoverUI project directory, use `yalc publish --force`. Using `--force` is important because it skips the publish scripts, so it won't try to connect to npm.
+2. In the target project directory, use `yalc add @cision/rover-ui --no-pure`. Using `--no-pure-` seems to be important if you're working in a monorepo with multiple workspaces, but _it will edit your consuming project's `package.json` file and add a `.yalc` folder and `yalc.lock`. **Don't forget to revert those changes when you're finished.**_
+3. You should be able to import RoverUI components in your target project normally now.
+
 ## Publishing a new version
 
 To publish the npm package, you'll need a free account on npmjs.com, and you'll need to be added to the list of maintainers by one of the current RoverUI maintainers.

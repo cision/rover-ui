@@ -8,7 +8,7 @@
     "prop-types": "link:../node_modules/prop-types",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
-    "react-scripts": "link:../node_modules/react-scripts",
+    "react-scripts": "^1.1.4",
     "@cision/rover-ui": "link:../"
   },
   "scripts": {

@@ -34,11 +34,11 @@ describe('Button', () => {
     });
   });
 
-  describe('props.darkMode', () => {
+  describe('props.hollow', () => {
     // Our current test build doesn't do css modules, so this won't work
-    // it('adds darkMode className', () => {
-    //   const wrapper = shallow(<Button darkMode />);
-    //   expect(wrapper.hasClass(style.darkMode)).toEqual(true);
+    // it('adds hollow className', () => {
+    //   const wrapper = shallow(<Button hollow />);
+    //   expect(wrapper.hasClass(style.hollow)).toEqual(true);
     // });
   });
 

@@ -10,6 +10,9 @@
   --rvr-green: #63bf52;
   --rvr-green-lite-1: #69cc58;
   --rvr-green-lite-2: #e9fcf6;
+  --rvr-red: #de4543;
+  --rvr-red-lite-1: #fa6866;
+  --rvr-red-lite-2: #fa6866; /* Unused */
   --rvr-teal: #44c0c2;
   --rvr-teal-lite-1: #47cacc;
   --rvr-salmon: #f76764;
@@ -38,8 +41,8 @@
   --rvr-bg-color-neutral: var(--rvr-gray-lite-6);
 
   /* Danger */
-  --rvr-color-danger: var(--rvr-salmon);
-  --rvr-bg-color-danger: var(--rvr-salmon-lite-2);
+  --rvr-color-danger: var(--rvr-red);
+  --rvr-bg-color-danger: var(--rvr-red-lite-2);
 
   /* Warning */
   --rvr-color-warning: var(--rvr-yellow);
@@ -111,7 +114,10 @@
   --charting-magenta-light: #ffa4de;
   --teal-hover: #00a19b;
   --info-light: #e3f6fc;
-  --gray-40: #cccfd2;
+  */
+  --rvr-gray-40: #cccfd2;
+
+  /*
   --charting-purple-light: #b5ade1;
   --medium-blue-hover: #007499;
   --aqua-marine-two: #47cacc; */
