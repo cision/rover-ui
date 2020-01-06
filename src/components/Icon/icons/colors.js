@@ -1,5 +1,5 @@
 const iconColorsMap = {
-  mainicon: '#677078',
+  mainicon: 'currentColor',
   exchange: '#0071BB',
   facebook: '#3B579D',
   googleblue: '#4285F4',
