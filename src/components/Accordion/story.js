@@ -80,7 +80,7 @@ storiesOf('Galaxies/Accordion', module)
           <Accordion style={style}>
             <ExpansionPanel>
               <ExpansionPanel.Header
-                expandIcon={<Icon name="chevron" />}
+                expandIcon={<Icon name="chevron-down" />}
                 style={headerStyle}
               >
                 Header 1
@@ -92,7 +92,7 @@ storiesOf('Galaxies/Accordion', module)
             </ExpansionPanel>
             <ExpansionPanel>
               <ExpansionPanel.Header
-                expandIcon={<Icon name="chevron" />}
+                expandIcon={<Icon name="chevron-down" />}
                 style={headerStyle}
               >
                 Header 2
@@ -104,7 +104,7 @@ storiesOf('Galaxies/Accordion', module)
             </ExpansionPanel>
             <ExpansionPanel>
               <ExpansionPanel.Header
-                expandIcon={<Icon name="chevron" />}
+                expandIcon={<Icon name="chevron-down" />}
                 style={headerStyle}
               >
                 Header 3

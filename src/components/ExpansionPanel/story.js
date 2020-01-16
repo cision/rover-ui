@@ -65,7 +65,7 @@ storiesOf('Galaxies/ExpansionPanel', module)
           <h2>Custom styling</h2>
           <ExpansionPanel defaultExpanded={false} style={style}>
             <ExpansionPanel.Header
-              expandIcon={<Icon name="chevron" />}
+              expandIcon={<Icon name="chevron-down" />}
               style={headerStyle}
             >
               Click me!

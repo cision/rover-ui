@@ -35,7 +35,7 @@ storiesOf('Galaxies/ExpansionPanel/Header', module)
           <h2>Expand icon</h2>
           <Header
             expanded={boolean('expanded', false)}
-            expandIcon={<Icon name="chevron" />}
+            expandIcon={<Icon name="chevron-down" />}
           >
             Header
           </Header>
@@ -48,14 +48,14 @@ storiesOf('Galaxies/ExpansionPanel/Header', module)
           <h2>Children as render prop</h2>
           <Header
             expanded={boolean('expanded', false)}
-            expandIcon={<Icon name="chevron" />}
+            expandIcon={<Icon name="chevron-down" />}
           >
             {expandIcon => <span>{expandIcon} Header</span>}
           </Header>
           <h2>Custom styling</h2>
           <Header
             expanded={boolean('expanded', false)}
-            expandIcon={<Icon name="chevron" />}
+            expandIcon={<Icon name="chevron-down" />}
             style={style}
           >
             Header
