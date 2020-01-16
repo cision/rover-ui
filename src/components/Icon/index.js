@@ -216,12 +216,10 @@ export const iconsMap = {
   chat: Chat,
   check: Check,
   'chevron-down': Chevron,
-  chevron: Chevron, //for backwards compatibility
   'chevron-left': ChevronLeft,
   'chevron-right': ChevronRight,
   'chevron-up': ChevronUp,
   clear: Clear,
-  'times-circle': Clear, // for backwards compatibility
   clock: Clock,
   close: Close,
   coffee: Coffee,
@@ -229,7 +227,6 @@ export const iconsMap = {
   copy: Copy,
   dashbord: Dashboard,
   delete: Delete,
-  trash: Delete, // for backwards compatibility
   dinner: Dinner,
   drinks: Drinks,
   download: Download,
