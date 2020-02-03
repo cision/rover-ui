@@ -100,6 +100,26 @@ storiesOf('Galaxies/EasyDropdown', module)
             menuItems={[{ label: 'Click me!', onClick: () => {} }]}
             defaultIsOpen={false}
           >
+            Button with addon
+            <Button.Addon>→</Button.Addon>
+          </EasyDropdown>
+          <br />
+          <br />
+          <EasyDropdown
+            menuItems={[{ label: 'Click me!', onClick: () => {} }]}
+            defaultIsOpen={false}
+            style={{ width: '100%' }}
+            toggleProps={{ style: { width: '100%' } }}
+          >
+            Full-width dropdown
+            <Button.Addon>→</Button.Addon>
+          </EasyDropdown>
+          <br />
+          <br />
+          <EasyDropdown
+            menuItems={[{ label: 'Click me!', onClick: () => {} }]}
+            defaultIsOpen={false}
+          >
             <button type="button" onClick={action('Custom toggle onClick')}>
               Custom toggle
             </button>
@@ -112,7 +132,7 @@ storiesOf('Galaxies/EasyDropdown', module)
                 label: 'Custom menu item',
                 children: (
                   <Button
-                    level="teal"
+                    level="primary-alt"
                     style={{
                       display: 'block',
                       borderRadius: '0',
