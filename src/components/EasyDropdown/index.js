@@ -53,21 +53,28 @@ const EasyDropdown = ({
   );
 
   const children = useMemo(() => {
-    return typeof initChildren === 'string' ? (
-      <Button
-        className={classNames(toggleProps.className, style.toggle)}
-        data-is-open={isOpen}
-        onClick={onToggle}
-      >
+    const childrenArray = React.Children.toArray(initChildren);
+    const hasStringChildren = childrenArray.reduce(
+      (result, child) => result || typeof child === 'string',
+      false
+    );
+
+    /*
+      If any children are raw strings, wrap all the children in a <Button />
+      Otherwise, assume there's a custom toggle component, and clone it with
+      added props for behavior.
+    */
+    return hasStringChildren ? (
+      <Button {...toggleProps} data-is-open={isOpen} onClick={onToggle}>
         {initChildren}
       </Button>
     ) : (
       React.Children.map(initChildren, child =>
         React.cloneElement(child, {
+          ...toggleProps,
           className: classNames(
             child && child.props && child.props.className,
-            toggleProps.className,
-            style.toggle
+            toggleProps.className
           ),
           'data-is-open': isOpen,
           onClick: event => {
@@ -155,7 +162,9 @@ EasyDropdown.propTypes = {
   menuProps: PropTypes.shape({ ...Menu.propTypes }),
   /** Without `defaultIsOpen`, `onToggle` is the only way to set state. With it, it's a convenience callback. */
   onToggle: PropTypes.func,
-  toggleProps: PropTypes.object,
+  toggleProps: PropTypes.shape({
+    className: PropTypes.string,
+  }),
 };
 
 EasyDropdown.defaultProps = {
@@ -169,7 +178,9 @@ EasyDropdown.defaultProps = {
     position: 'bottomRight',
   },
   onToggle: () => {},
-  toggleProps: {},
+  toggleProps: {
+    className: '',
+  },
 };
 
 export default EasyDropdown;

@@ -19,6 +19,11 @@
   cursor: default;
 }
 
+.buttonBody {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 /* Sizes */
 
 .sm {
@@ -280,8 +285,6 @@
   background-color: var(--rvr-btn-bg-color-text-disabled);
   border-color: var(--rvr-btn-border-color-text-disabled);
 }
-
-/* Hollow */
 
 .hollow,
 .hollow:link,

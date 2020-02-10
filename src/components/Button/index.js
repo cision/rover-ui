@@ -111,7 +111,7 @@ const Button = props => {
       }
 
       if (typeof child === 'string') {
-        return <span>{child}</span>;
+        return <span className={styles.buttonBody}>{child}</span>;
       }
 
       return child;
