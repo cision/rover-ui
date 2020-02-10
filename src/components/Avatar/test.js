@@ -1,7 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 
 import Avatar from './';
+
+jest.useFakeTimers();
 
 describe('Avatar', () => {
   it('renders', () => {
@@ -46,5 +49,51 @@ describe('Avatar', () => {
       'backgroundImage',
       `url(${imageUrl})`
     );
+  });
+
+  it("doesn't suffer from race condition problems", () => {
+    const firstImageUrl = `http://some.url/first-image.png`;
+    const secondImageUrl = `http://some.url/second-image.png`;
+    const imageOnLoad = jest.fn();
+    const firstImageCleanupFunction = jest.fn();
+    const timeout = 500;
+    const slowImageFetcher = ({ onLoad, src }) => {
+      let shouldExecute = true;
+      setTimeout(() => shouldExecute && onLoad(src), timeout);
+
+      // Cleanup function
+      return () => {
+        shouldExecute = false;
+        firstImageCleanupFunction();
+      };
+    };
+    const fastImageFetcher = ({ onLoad, src }) => {
+      let shouldExecute = true;
+      setTimeout(() => shouldExecute && onLoad(src), timeout / 2);
+
+      // Cleanup function
+      return () => {
+        shouldExecute = false;
+      };
+    };
+    const wrapper = mount(
+      <Avatar
+        name="Helter Skelter"
+        imageUrl={firstImageUrl}
+        imageFetcher={slowImageFetcher}
+        onLoad={imageOnLoad}
+      />
+    );
+
+    wrapper.setProps({
+      imageUrl: secondImageUrl,
+      imageFetcher: fastImageFetcher,
+    });
+    act(() => {
+      jest.runTimersToTime(timeout);
+    });
+    expect(firstImageCleanupFunction).toHaveBeenCalled();
+    expect(imageOnLoad).not.toHaveBeenCalledWith(firstImageUrl);
+    expect(imageOnLoad).toHaveBeenCalledWith(secondImageUrl);
   });
 });

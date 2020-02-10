@@ -12,6 +12,35 @@ const semanticSizes = {
   large: sizeBase * 12,
 };
 
+// This function will be used in a useEffect so make sure it returns a cleanup function
+function defaultImageFetcher({ onLoad, onError, src }) {
+  const img = new Image();
+  img.onload = function() {
+    if ('naturalHeight' in this) {
+      if (this.naturalHeight + this.naturalWidth === 0) {
+        onError(new Error('Invalid Image'));
+        return;
+      }
+    } else if (this.width + this.height === 0) {
+      onError(new Error('Invalid Image'));
+      return;
+    }
+
+    onLoad(src);
+  };
+  img.onerror = function(e) {
+    onError(e);
+  };
+  img.src = src;
+
+  return () => {
+    img.onload = () => {};
+    img.onerror = () => {};
+    // Not cancelling the request by setting img.src to null so image can
+    // be cached for future usage
+  };
+}
+
 const Avatar = ({
   size,
   loading,
@@ -20,6 +49,9 @@ const Avatar = ({
   disabled,
   className,
   children,
+  onLoad,
+  onError,
+  imageFetcher,
   ...rest
 }) => {
   const mainClassName = classNames(style.Avatar, className, {
@@ -53,30 +85,19 @@ const Avatar = ({
     if (!imageUrl) return () => {};
 
     setLoaded(false);
-
-    const img = new Image();
-    img.onload = function() {
-      if ('naturalHeight' in this) {
-        if (this.naturalHeight + this.naturalWidth === 0) {
-          return;
-        }
-      } else if (this.width + this.height === 0) {
-        return;
-      }
-
-      setLoaded(imageUrl);
-    };
-    img.onerror = function() {
+    const handleLoad = src => {
       setLoaded(true);
+      onLoad(src);
     };
-    img.src = imageUrl;
-
-    return () => {
-      img.onload = () => {};
-      img.onerror = () => {};
-      // Not cancelling the request by setting img.src to null so image can
-      // be cached for future usage
+    const handleError = e => {
+      setLoaded(false);
+      onError(e);
     };
+    return imageFetcher({
+      onLoad: handleLoad,
+      onError: handleError,
+      src: imageUrl,
+    });
   }, [imageUrl]);
 
   const mainStyle = {
@@ -112,6 +133,9 @@ Avatar.propTypes = {
   imageUrl: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
+  imageFetcher: PropTypes.func,
 };
 
 Avatar.defaultProps = {
@@ -122,6 +146,9 @@ Avatar.defaultProps = {
   name: '',
   imageUrl: '',
   children: null,
+  onLoad: () => {},
+  onError: () => {},
+  imageFetcher: defaultImageFetcher,
 };
 
 export default Avatar;
