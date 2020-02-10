@@ -37,7 +37,7 @@ const Avatar = ({
     };
   }, [size]);
 
-  const [loadedImageUrl, setLoadedImageUrl] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
   const initials = useMemo(() => {
     if (!name) return '';
@@ -52,7 +52,7 @@ const Avatar = ({
   useEffect(() => {
     if (!imageUrl) return () => {};
 
-    setLoadedImageUrl(null);
+    setLoaded(false);
 
     const img = new Image();
     img.onload = function() {
@@ -64,10 +64,10 @@ const Avatar = ({
         return;
       }
 
-      setLoadedImageUrl(imageUrl);
+      setLoaded(imageUrl);
     };
     img.onerror = function() {
-      setLoadedImageUrl(null);
+      setLoaded(true);
     };
     img.src = imageUrl;
 
@@ -81,8 +81,7 @@ const Avatar = ({
 
   const mainStyle = {
     ...sizes,
-    backgroundImage:
-      loadedImageUrl && !loading ? `url(${loadedImageUrl})` : undefined,
+    backgroundImage: loaded && !loading ? `url(${imageUrl})` : undefined,
     ...rest.style,
   };
 
@@ -94,7 +93,7 @@ const Avatar = ({
       {...rest}
       style={mainStyle}
     >
-      {!loading && !loadedImageUrl && initials}
+      {!loading && !loaded && initials}
       {children}
     </div>
   );
