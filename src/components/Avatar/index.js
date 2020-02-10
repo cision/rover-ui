@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -37,6 +37,8 @@ const Avatar = ({
     };
   }, [size]);
 
+  const [loadedImageUrl, setLoadedImageUrl] = useState(null);
+
   const initials = useMemo(() => {
     if (!name) return '';
     const nameParts = name.split(' ', 2);
@@ -47,22 +49,40 @@ const Avatar = ({
     return returnInitials.slice(0, 2);
   }, [name]);
 
-  const image = useMemo(() => {
-    if (!imageUrl) return null;
-    // Only load the image if the url response is 200
-    try {
-      const http = new XMLHttpRequest();
-      http.open('HEAD', imageUrl, false);
-      http.send();
-      return http.status === 200 ? imageUrl : null;
-    } catch (e) {
-      return null;
-    }
+  useEffect(() => {
+    if (!imageUrl) return () => {};
+
+    setLoadedImageUrl(null);
+
+    const img = new Image();
+    img.onload = function() {
+      if ('naturalHeight' in this) {
+        if (this.naturalHeight + this.naturalWidth === 0) {
+          return;
+        }
+      } else if (this.width + this.height === 0) {
+        return;
+      }
+
+      setLoadedImageUrl(imageUrl);
+    };
+    img.onerror = function() {
+      setLoadedImageUrl(null);
+    };
+    img.src = imageUrl;
+
+    return () => {
+      img.onload = () => {};
+      img.onerror = () => {};
+      // Not cancelling the request by setting img.src to null so image can
+      // be cached for future usage
+    };
   }, [imageUrl]);
 
   const mainStyle = {
     ...sizes,
-    backgroundImage: image && !loading ? `url(${image})` : undefined,
+    backgroundImage:
+      loadedImageUrl && !loading ? `url(${loadedImageUrl})` : undefined,
     ...rest.style,
   };
 
@@ -74,7 +94,7 @@ const Avatar = ({
       {...rest}
       style={mainStyle}
     >
-      {!loading && !image && initials}
+      {!loading && !loadedImageUrl && initials}
       {children}
     </div>
   );

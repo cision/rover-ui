@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import Avatar from './';
 
@@ -25,20 +25,26 @@ describe('Avatar', () => {
   });
 
   it('renders initials of the image url results in non-200 response', () => {
+    const imageUrl = 'http://some.url/not-image';
+    Object.defineProperty(HTMLImageElement.prototype, 'naturalHeight', {
+      get: () => 0,
+    });
     const wrapper = shallow(
-      <Avatar name="Helter Skelter" imageUrl="https://picsum.photos/wrong" />
+      <Avatar name="Helter Skelter" imageUrl={imageUrl} />
     );
     expect(wrapper.text()).toEqual('HS');
   });
 
   it('renders an image in bg assuming valid url', () => {
-    const wrapper = shallow(
-      <Avatar name="Helter Skelter" imageUrl="http://placekitten.com/60/60" />
-    );
+    const imageUrl = `http://some.url/image.png`;
+    Object.defineProperty(HTMLImageElement.prototype, 'naturalHeight', {
+      get: () => 120,
+    });
+    const wrapper = mount(<Avatar name="Helter Skelter" imageUrl={imageUrl} />);
     expect(wrapper.text()).toEqual('');
-    expect(wrapper.prop('style')).toHaveProperty(
+    expect(wrapper.children().prop('style')).toHaveProperty(
       'backgroundImage',
-      'url(http://placekitten.com/60/60)'
+      `url(${imageUrl})`
     );
   });
 });
