@@ -8,7 +8,6 @@
   display: block;
   box-sizing: border-box;
   width: 100%;
-  font-family: var(--rvr-base-font-family);
   font-size: var(--rvr-font-size-md);
   line-height: var(--rvr-line-height-sm);
   color: var(--rvr-gray-90);
