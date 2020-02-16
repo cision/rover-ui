@@ -9,7 +9,6 @@
   background-color: var(--rvr-white);
   border: solid var(--rvr-border-width-base) transparent;
   border-radius: calc(var(--rvr-line-height-sm) / 2 + var(--rvr-space-sm) - var(--rvr-border-width-base));
-  font-family: var(--rvr-base-font-family);
   font-size: var(--rvr-font-size-base);
   line-height: var(--rvr-line-height-sm);
   color: var(--rvr-light-blue);
