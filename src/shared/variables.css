@@ -4,6 +4,7 @@
 
   /* Fonts */
   --rvr-base-font-color: #58666e;
+  --rvr-base-font-family: 'Proxima Nova', sans-serif;
   --rvr-font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Transitions */
