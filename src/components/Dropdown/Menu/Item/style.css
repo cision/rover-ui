@@ -27,6 +27,7 @@
 .link {
   cursor: pointer;
   color: var(--rvr-gray-90);
+  text-decoration: none;
 }
 
 .link:hover,
