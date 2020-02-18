@@ -15,6 +15,8 @@ const semanticSizes = {
 // This function will be used in a useEffect so make sure it returns a cleanup function
 function defaultImageFetcher({ onLoad, onError, src }) {
   const img = new Image();
+  img.referrerPolicy = 'no-referrer';
+  img.crossOrigin = 'Anonymous';
   img.onload = function() {
     if ('naturalHeight' in this) {
       if (this.naturalHeight + this.naturalWidth === 0) {
