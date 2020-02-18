@@ -1,7 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 
 import Avatar from './';
+
+jest.useFakeTimers();
 
 describe('Avatar', () => {
   it('renders', () => {
@@ -25,20 +28,72 @@ describe('Avatar', () => {
   });
 
   it('renders initials of the image url results in non-200 response', () => {
+    const imageUrl = 'http://some.url/not-image';
+    Object.defineProperty(HTMLImageElement.prototype, 'naturalHeight', {
+      get: () => 0,
+    });
     const wrapper = shallow(
-      <Avatar name="Helter Skelter" imageUrl="https://picsum.photos/wrong" />
+      <Avatar name="Helter Skelter" imageUrl={imageUrl} />
     );
     expect(wrapper.text()).toEqual('HS');
   });
 
   it('renders an image in bg assuming valid url', () => {
-    const wrapper = shallow(
-      <Avatar name="Helter Skelter" imageUrl="http://placekitten.com/60/60" />
-    );
+    const imageUrl = `http://some.url/image.png`;
+    Object.defineProperty(HTMLImageElement.prototype, 'naturalHeight', {
+      get: () => 120,
+    });
+    const wrapper = mount(<Avatar name="Helter Skelter" imageUrl={imageUrl} />);
     expect(wrapper.text()).toEqual('');
-    expect(wrapper.prop('style')).toHaveProperty(
+    expect(wrapper.children().prop('style')).toHaveProperty(
       'backgroundImage',
-      'url(http://placekitten.com/60/60)'
+      `url(${imageUrl})`
     );
+  });
+
+  it("doesn't suffer from race condition problems", () => {
+    const firstImageUrl = `http://some.url/first-image.png`;
+    const secondImageUrl = `http://some.url/second-image.png`;
+    const imageOnLoad = jest.fn();
+    const firstImageCleanupFunction = jest.fn();
+    const timeout = 500;
+    const slowImageFetcher = ({ onLoad, src }) => {
+      let shouldExecute = true;
+      setTimeout(() => shouldExecute && onLoad(src), timeout);
+
+      // Cleanup function
+      return () => {
+        shouldExecute = false;
+        firstImageCleanupFunction();
+      };
+    };
+    const fastImageFetcher = ({ onLoad, src }) => {
+      let shouldExecute = true;
+      setTimeout(() => shouldExecute && onLoad(src), timeout / 2);
+
+      // Cleanup function
+      return () => {
+        shouldExecute = false;
+      };
+    };
+    const wrapper = mount(
+      <Avatar
+        name="Helter Skelter"
+        imageUrl={firstImageUrl}
+        imageFetcher={slowImageFetcher}
+        onLoad={imageOnLoad}
+      />
+    );
+
+    wrapper.setProps({
+      imageUrl: secondImageUrl,
+      imageFetcher: fastImageFetcher,
+    });
+    act(() => {
+      jest.runTimersToTime(timeout);
+    });
+    expect(firstImageCleanupFunction).toHaveBeenCalled();
+    expect(imageOnLoad).not.toHaveBeenCalledWith(firstImageUrl);
+    expect(imageOnLoad).toHaveBeenCalledWith(secondImageUrl);
   });
 });

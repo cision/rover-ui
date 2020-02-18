@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -12,6 +12,37 @@ const semanticSizes = {
   large: sizeBase * 12,
 };
 
+// This function will be used in a useEffect so make sure it returns a cleanup function
+function defaultImageFetcher({ onLoad, onError, src }) {
+  const img = new Image();
+  img.referrerPolicy = 'no-referrer';
+  img.crossOrigin = 'Anonymous';
+  img.onload = function() {
+    if ('naturalHeight' in this) {
+      if (this.naturalHeight + this.naturalWidth === 0) {
+        onError(new Error('Invalid Image'));
+        return;
+      }
+    } else if (this.width + this.height === 0) {
+      onError(new Error('Invalid Image'));
+      return;
+    }
+
+    onLoad(src);
+  };
+  img.onerror = function(e) {
+    onError(e);
+  };
+  img.src = src;
+
+  return () => {
+    img.onload = () => {};
+    img.onerror = () => {};
+    // Not cancelling the request by setting img.src to null so image can
+    // be cached for future usage
+  };
+}
+
 const Avatar = ({
   size,
   loading,
@@ -20,6 +51,9 @@ const Avatar = ({
   disabled,
   className,
   children,
+  onLoad,
+  onError,
+  imageFetcher,
   ...rest
 }) => {
   const mainClassName = classNames(style.Avatar, className, {
@@ -37,6 +71,8 @@ const Avatar = ({
     };
   }, [size]);
 
+  const [loaded, setLoaded] = useState(false);
+
   const initials = useMemo(() => {
     if (!name) return '';
     const nameParts = name.split(' ', 2);
@@ -47,22 +83,28 @@ const Avatar = ({
     return returnInitials.slice(0, 2);
   }, [name]);
 
-  const image = useMemo(() => {
-    if (!imageUrl) return null;
-    // Only load the image if the url response is 200
-    try {
-      const http = new XMLHttpRequest();
-      http.open('HEAD', imageUrl, false);
-      http.send();
-      return http.status === 200 ? imageUrl : null;
-    } catch (e) {
-      return null;
-    }
+  useEffect(() => {
+    if (!imageUrl) return () => {};
+
+    setLoaded(false);
+    const handleLoad = src => {
+      setLoaded(true);
+      onLoad(src);
+    };
+    const handleError = e => {
+      setLoaded(false);
+      onError(e);
+    };
+    return imageFetcher({
+      onLoad: handleLoad,
+      onError: handleError,
+      src: imageUrl,
+    });
   }, [imageUrl]);
 
   const mainStyle = {
     ...sizes,
-    backgroundImage: image && !loading ? `url(${image})` : undefined,
+    backgroundImage: loaded && !loading ? `url(${imageUrl})` : undefined,
     ...rest.style,
   };
 
@@ -74,7 +116,7 @@ const Avatar = ({
       {...rest}
       style={mainStyle}
     >
-      {!loading && !image && initials}
+      {!loading && !loaded && initials}
       {children}
     </div>
   );
@@ -93,6 +135,9 @@ Avatar.propTypes = {
   imageUrl: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
+  onLoad: PropTypes.func,
+  onError: PropTypes.func,
+  imageFetcher: PropTypes.func,
 };
 
 Avatar.defaultProps = {
@@ -103,6 +148,9 @@ Avatar.defaultProps = {
   name: '',
   imageUrl: '',
   children: null,
+  onLoad: () => {},
+  onError: () => {},
+  imageFetcher: defaultImageFetcher,
 };
 
 export default Avatar;
