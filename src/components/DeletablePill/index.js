@@ -17,7 +17,7 @@ export const DeletablePill = ({ children, onDelete, ...passedProps }) => {
           role="button"
           tabIndex={0}
         >
-          <Icon name="times-circle" style={{ display: 'block' }} />
+          <Icon name="clear" style={{ display: 'block' }} />
         </Pill.Addon>
       )}
     </Pill>

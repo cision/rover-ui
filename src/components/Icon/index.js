@@ -216,7 +216,6 @@ export const iconsMap = {
   chat: Chat,
   check: Check,
   'chevron-down': Chevron,
-  chevron: Chevron, //for backwards compatibility
   'chevron-left': ChevronLeft,
   'chevron-right': ChevronRight,
   'chevron-up': ChevronUp,
