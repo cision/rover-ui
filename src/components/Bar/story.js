@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { number, select } from '@storybook/addon-knobs';
+import { number, select, boolean } from '@storybook/addon-knobs';
 import styled from 'styled-components';
 import { fontFamily, fontSize, margin, space } from 'styled-system';
 
-import { Bar, Fill } from './';
+import Bar from './';
 import Paper from '../Paper';
 import BarStatReadme from './README.md';
 import withDefaultTheme from '../withDefaultTheme';
@@ -53,6 +53,7 @@ storiesOf('Star Systems/Bar', module)
   })
   .add('Overview', () => {
     const value = number('Percent', 25, options);
+    const rounded = boolean('Rounded', true);
     const background = select(
       'Background',
       colorOptions,
@@ -62,8 +63,8 @@ storiesOf('Star Systems/Bar', module)
 
     return (
       <Paper mx="lg">
-        <Bar bg={background}>
-          <Fill bg={fill} width={`${value}%`} />
+        <Bar rounded={rounded} fill={background}>
+          <Bar.Fill fill={fill} width={`${value}%`} />
         </Bar>
         <Label>Percent: {value}</Label>
       </Paper>
@@ -71,55 +72,71 @@ storiesOf('Star Systems/Bar', module)
   })
   .add('Examples', () => (
     <Wrap>
-      <Paper mb="sm">
+      <Paper>
         <h3>Default Bar</h3>
         <Bar>
-          <Fill width="73%" />
+          <Bar.Fill width="73%" />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Spacer />
+
+      <Paper>
         <h3>Custom Wrapper and Fill</h3>
-        <Bar bg="loblolly">
-          <Fill bg="salmon" width="50%" />
+        <Bar>
+          <Bar.Fill fill="salmon" width="50%" />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Spacer />
+
+      <Paper>
+        <h3>Custom Height</h3>
+        <Bar style={{ height: '25px' }}>
+          <Bar.Fill fill="rebeccapurple" width="83%" />
+        </Bar>
+      </Paper>
+
+      <Spacer />
+      <Paper>
         <h3>Wrapper Width</h3>
         <Bar width="25%">
-          <Fill bg="salmon" width="50%" />
+          <Bar.Fill fill="salmon" width="50%" />
         </Bar>
         <Spacer />
         <Bar width="50%">
-          <Fill bg="green" width="50%" />
+          <Bar.Fill fill="green" width="50%" />
         </Bar>
         <Spacer />
         <Bar width="75%">
-          <Fill bg="blue" width="50%" />
+          <Bar.Fill fill="orange" width="50%" />
         </Bar>
         <Spacer />
         <Bar width="100%">
-          <Fill bg="teal" width="50%" />
+          <Bar.Fill fill="teal" width="50%" />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Spacer />
+
+      <Paper>
         <h3>Bars with multiple colors</h3>
         <Bar width="100%">
-          <Fill bg="green" width="25%" />
-          <Fill bg="brandColor" width="10%" />
-          <Fill bg="loblolly" width="10%" />
+          <Bar.Fill fill="green" width="25%" />
+          <Bar.Fill fill="rebeccapurple" width="10%" />
+          <Bar.Fill fill="orange" width="10%" />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Spacer />
+
+      <Paper>
         <h3>At various fill widths...</h3>
         {[0, 10, 20, 50, 99, 100].map(percent => (
           <div key={`${percent}`.toString()}>
             <Spacer />
             <Bar width="100%">
-              <Fill bg="green" width={`${percent || 0}%`} />
+              <Bar.Fill fill="#3398db" width={`${percent || 0}%`} />
             </Bar>
             <Label>Percent: {percent || 0}%</Label>
           </div>

@@ -2,18 +2,30 @@
   display: flex;
 }
 
-.bar {
-  background-color: var(--rvr-gray-lite-5);
-  height: 10px;
-  margin: 5px 20px 5px 0;
-  width: 100%;
-  flex-grow: 1;
+.Bar,
+.Fill {
+  display: flex;
 }
 
-.fill {
+.Bar {
+  background-color: var(--rvr-gray-lite-5);
+  flex-grow: 1;
+  height: 10px;
+  margin: 5px 20px 5px 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.Fill {
   background-color: var(--rvr-gray-lite-2);
   height: 100%;
+  flex-grow: 0;
   transition: width 1s ease;
+  margin: 0;
+}
+
+.rounded {
+  border-radius: 999px;
 }
 
 .label {
