@@ -44,7 +44,7 @@ storiesOf('Planets/Paper', module)
       const isFlat = boolean('Flat', false);
       const isSquared = boolean('Squared', false);
       const background = color('Background', 'var(--rvr-white)');
-      const textColor = color('Color', 'var(--rvr-gray)');
+      const textColor = color('Color', 'var(--rvr-color-font)');
       const stylesValue = object('Styles', { ...DefaultPaperStyle.style });
       const styles = {
         ...stylesValue,

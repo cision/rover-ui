@@ -4,6 +4,7 @@ import '../shared/buttons.css';
 import '../shared/variables.css';
 
 import './rover-ui';
+import './colors/colors';
 
 /*
  * PLANETS

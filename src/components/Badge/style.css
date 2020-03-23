@@ -2,7 +2,7 @@
   background-color: var(--rvr-white);
   border-radius: 2px;
   box-sizing: border-box;
-  color: var(--rvr-gray);
+  color: var(--rvr-color-font-dark);
   display: inline-block;
   font-size: var(--rvr-font-size-sm);
   line-height: 1.5;
@@ -24,13 +24,13 @@
 }
 
 .notify {
-  background-color: var(--rvr-color-notify);
+  background-color: var(--rvr-color-notification);
   color: var(--rvr-white);
 }
 
 .warning {
-  background-color: var(--rvr-yellow);
-  color: var(--rvr-gray);
+  background-color: var(--rvr-color-warning);
+  color: var(--rvr-color-font-dark);
 }
 
 .info {
@@ -39,6 +39,6 @@
 }
 
 .success {
-  background-color: var(--rvr-bg-color-success);
+  background-color: var(--rvr-color-success);
   color: var(--rvr-white);
 }
