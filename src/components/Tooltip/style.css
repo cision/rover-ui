@@ -57,6 +57,12 @@
   width: 100%;
 }
 
+.textContent {
+  white-space: nowrap;
+  word-wrap: none;
+  text-align: center;
+}
+
 .tooltipClose {
   background-color: transparent;
   border: none;
@@ -73,6 +79,7 @@
 
 .Tooltip.bottom {
   left: 50%;
+  top: calc(100% + var(--rvr-tooltip-offset));
   transform: translateX(-50%);
 }
 
@@ -113,6 +120,7 @@
 
 .Tooltip.top {
   left: 50%;
+  bottom: calc(100% + var(--rvr-tooltip-offset));
   transform: translateX(-50%);
 }
 
@@ -152,7 +160,7 @@
 }
 
 .Tooltip.left {
-  transform: translateY(-50%);
+  right: calc(100% + var(--rvr-tooltip-offset));
 }
 
 .Tooltip.left::before,
@@ -173,12 +181,12 @@
     calc(
       var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size)
     );
-  filter: blur(2px);
+  filter: blur(1px);
   margin-left:
     calc(
       (var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size))
     );
-  transform: translate(calc(var(--rvr-tooltip-arrow-size) * -1), 2%);
+  transform: translate(calc(var(--rvr-tooltip-arrow-size) * -1), -48%);
   z-index: -1;
 }
 
@@ -187,14 +195,13 @@
   border-left-color: var(--rvr-white);
   border-width: var(--rvr-tooltip-arrow-size);
   margin-left: calc(var(--rvr-tooltip-arrow-size));
-  transform: translate(calc(var(--rvr-tooltip-arrow-size) * -1), 2%);
+  transform: translate(calc(var(--rvr-tooltip-arrow-size) * -1), -50%);
   z-index: 2;
 }
 
 .Tooltip.right {
   top: 0;
-  left: calc(100% + 20px);
-  transform: translateY(-50%);
+  left: calc(100% + var(--rvr-tooltip-offset));
 }
 
 .Tooltip.right::before,
@@ -220,7 +227,7 @@
     calc(
       (var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size))
     );
-  transform: translate(calc(var(--rvr-tooltip-arrow-size)), 2%);
+  transform: translate(calc(var(--rvr-tooltip-arrow-size)), -50%);
   z-index: -1;
 }
 
@@ -229,6 +236,6 @@
   border-right-color: var(--rvr-white);
   border-width: var(--rvr-tooltip-arrow-size);
   margin-right: calc(var(--rvr-tooltip-arrow-size));
-  transform: translate(calc(var(--rvr-tooltip-arrow-size)), 2%);
+  transform: translate(calc(var(--rvr-tooltip-arrow-size)), -50%);
   z-index: 2;
 }

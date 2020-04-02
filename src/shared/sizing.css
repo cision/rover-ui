@@ -37,13 +37,14 @@
   /* TYPE */
 
   /* Tooltip */
-  --rvr-tooltip-arrow-size: 12px;
+  --rvr-tooltip-arrow-size: 6px;
   --rvr-tooltip-border-size: 1px;
   --rvr-tooltip-box-shadow:
     0 1px 2px 0 rgba(0, 0, 0, 0.2),
     0 5px 10px 0 rgba(0, 0, 0, 0.1);
   --rvr-tooltip-base-z-index: 900;
   --rvr-tooltip-border-radius: 3px;
+  --rvr-tooltip-offset: 20px;
 
   /* font-size */
   --rvr-font-size-base: 14px;
