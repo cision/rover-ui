@@ -1,5 +1,5 @@
 .Item {
-  color: var(--rvr-gray-lite-1);
+  color: var(--rvr-color-font);
   font-weight: normal;
   padding: 0;
   margin: 0 12px;
@@ -17,12 +17,12 @@
 }
 
 .Item:hover {
-  color: var(--rvr-gray);
+  color: var(--rvr-color-font-dark);
   cursor: pointer;
 }
 
 .active {
-  color: var(--rvr-gray-90);
+  color: var(--rvr-color-font-dark);
   font-weight: 800;
-  border-bottom-color: var(--rvr-blue);
+  border-bottom-color: var(--rvr-color-primary);
 }

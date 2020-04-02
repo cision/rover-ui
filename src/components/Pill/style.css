@@ -12,7 +12,7 @@
   font-family: var(--rvr-base-font-family);
   font-size: var(--rvr-font-size-base);
   line-height: var(--rvr-line-height-sm);
-  color: var(--rvr-light-blue);
+  color: var(--rvr-blue);
   box-shadow: var(--rvr-box-shadow);
   transition:
     background-color 0.2s var(--rvr-easeInOutQuad),
@@ -21,20 +21,20 @@
 }
 
 .Pill:hover {
-  background-color: var(--rvr-light-blue-hover);
+  background-color: var(--rvr-blue-lite-1);
   color: var(--rvr-white);
 }
 
 .checked {
   background-color: #ebfffe;
-  border-color: var(--rvr-light-teal);
+  border-color: var(--rvr-color-teal-alt);
   color: var(--rvr-gray-80);
   box-shadow: none;
 }
 
 .checked:hover {
   background-color: #d5f5f3;
-  border-color: var(--rvr-light-teal-hover);
+  border-color: var(--rvr-color-teal-alt-hover);
   color: var(--rvr-gray-90);
 }
 
@@ -46,7 +46,7 @@
   flex: 0 0 auto;
   align-self: center;
   margin: 0 var(--rvr-space-sm);
-  color: var(--rvr-light-blue);
+  color: var(--rvr-blue);
   transition: color 0.2s var(--rvr-easeInOutQuad);
 }
 
@@ -63,7 +63,7 @@
 }
 
 .checked .actionInline {
-  color: var(--rvr-light-teal);
+  color: var(--rvr-color-teal-alt);
 }
 
 .Pill:hover .actionInline {
@@ -71,5 +71,5 @@
 }
 
 .checked:hover .actionInline {
-  color: var(--rvr-light-teal-hover);
+  color: var(--rvr-color-teal-alt-hover);
 }

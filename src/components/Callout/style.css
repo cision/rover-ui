@@ -4,26 +4,26 @@
   display: flex;
   padding: 20px;
   position: relative;
-  background-color: var(--rvr-blue-lite-2);
-  border-bottom-color: var(--rvr-blue);
+  background-color: var(--rvr-color-info-lite);
+  border-bottom-color: var(--rvr-color-info);
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  color: var(--rvr-gray-80);
+  color: var(--rvr-color-font);
 }
 
 .success {
-  background-color: var(--rvr-green-lite-2);
-  border-bottom-color: var(--rvr-green);
+  background-color: var(--rvr-color-success-lite);
+  border-bottom-color: var(--rvr-color-success);
 }
 
 .danger {
-  background-color: var(--rvr-salmon-lite-2);
-  border-bottom-color: var(--rvr-salmon);
+  background-color: var(--rvr-color-danger-lite);
+  border-bottom-color: var(--rvr-color-danger);
 }
 
 .warning {
-  background-color: var(--rvr-yellow-lite-2);
-  border-bottom-color: var(--rvr-yellow);
+  background-color: var(--rvr-color-warning-lite);
+  border-bottom-color: var(--rvr-color-warning);
 }
 
 .borderless {

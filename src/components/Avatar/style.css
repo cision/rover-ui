@@ -28,7 +28,7 @@
 
 .disabledNoImage {
   opacity: 1;
-  background-color: var(--rvr-gray-lite-3);
+  background-color: var(--rvr-gray-40);
 }
 
 .AvatarBadge {

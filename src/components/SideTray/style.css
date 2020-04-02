@@ -45,14 +45,14 @@
 
 .header {
   padding: 12px;
-  border-bottom: 1px solid var(--rvr-gray-lite-5);
+  border-bottom: 1px solid var(--rvr-gray-20);
   flex: 0 0 auto;
   min-height: 0;
 }
 
 .footer {
   padding: 12px;
-  border-top: 1px solid var(--rvr-gray-lite-5);
+  border-top: 1px solid var(--rvr-gray-20);
   flex: 0 0 auto;
   min-height: 0;
 }
