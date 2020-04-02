@@ -74,7 +74,6 @@ const Tooltip = ({
     style: {
       width: (tooltipStyle && tooltipStyle.width) || width,
       ...offsets,
-      ...(tooltipOpts.style || {}),
     },
     className: tooltipClassNames,
   };
