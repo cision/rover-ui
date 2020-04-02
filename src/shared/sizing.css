@@ -6,20 +6,44 @@
   --rvr-border-width-md: var(--rvr-border-width-base);
 
   /* SPACING */
-  --rvr-space-xs: calc(var(--rvr-baseSize) / 2);   /* 4px */
-  --rvr-space-sm: calc(var(--rvr-baseSize));       /* 8px */
+  --rvr-space-xs: calc(var(--rvr-baseSize) / 2); /* 4px */
+  --rvr-space-sm: calc(var(--rvr-baseSize)); /* 8px */
   --rvr-space-md: calc(var(--rvr-baseSize) * 1.5); /* 12px */
-  --rvr-space-lg: calc(var(--rvr-baseSize) * 2);   /* 16px */
-  --rvr-space-xl: calc(var(--rvr-baseSize) * 3);   /* 24px */
+  --rvr-space-lg: calc(var(--rvr-baseSize) * 2); /* 16px */
+  --rvr-space-xl: calc(var(--rvr-baseSize) * 3); /* 24px */
 
   /* BORDERED SPACING */
-  --rvr-space-bordered-xs: calc(var(--rvr-space-xs) - var(--rvr-border-width-md));
-  --rvr-space-bordered-sm: calc(var(--rvr-space-sm) - var(--rvr-border-width-md));
-  --rvr-space-bordered-md: calc(var(--rvr-space-md) - var(--rvr-border-width-md));
-  --rvr-space-bordered-lg: calc(var(--rvr-space-lg) - var(--rvr-border-width-md));
-  --rvr-space-bordered-xl: calc(var(--rvr-space-xl) - var(--rvr-border-width-md));
+  --rvr-space-bordered-xs:
+    calc(
+      var(--rvr-space-xs) - var(--rvr-border-width-md)
+    );
+  --rvr-space-bordered-sm:
+    calc(
+      var(--rvr-space-sm) - var(--rvr-border-width-md)
+    );
+  --rvr-space-bordered-md:
+    calc(
+      var(--rvr-space-md) - var(--rvr-border-width-md)
+    );
+  --rvr-space-bordered-lg:
+    calc(
+      var(--rvr-space-lg) - var(--rvr-border-width-md)
+    );
+  --rvr-space-bordered-xl:
+    calc(
+      var(--rvr-space-xl) - var(--rvr-border-width-md)
+    );
 
   /* TYPE */
+
+  /* Tooltip */
+  --rvr-tooltip-arrow-size: 12px;
+  --rvr-tooltip-border-size: 1px;
+  --rvr-tooltip-box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 5px 10px 0 rgba(0, 0, 0, 0.1);
+  --rvr-tooltip-base-z-index: 900;
+  --rvr-tooltip-border-radius: 3px;
 
   /* font-size */
   --rvr-font-size-base: 14px;
@@ -31,6 +55,6 @@
   --rvr-font-size-sm: 12px;
 
   /* line-height */
-  --rvr-line-height-sm: calc(var(--rvr-baseSize) * 2);    /* 16px */
-  --rvr-line-height-md: calc(var(--rvr-baseSize) * 2.5);  /* 20px */
+  --rvr-line-height-sm: calc(var(--rvr-baseSize) * 2); /* 16px */
+  --rvr-line-height-md: calc(var(--rvr-baseSize) * 2.5); /* 20px */
 }

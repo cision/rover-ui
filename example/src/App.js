@@ -20,6 +20,7 @@ import {
   EasyDropdown,
   Collapse,
   ExpansionPanel,
+  Tooltip,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -349,6 +350,10 @@ const App = () => {
       <section>
         <h1>Avatar</h1>
         <Avatar size="medium" imageUrl="https://picsum.photos/60" />
+      </section>
+      <section>
+        <h1>Tooltip</h1>
+        <Tooltip />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
