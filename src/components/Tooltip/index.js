@@ -43,7 +43,7 @@ const Tooltip = ({
   });
 
   const {
-    style,
+    style: tooltipStyle,
     className: tooltipClassName,
     ...tooltipOpts
   } = tooltipOptsProp;
@@ -72,7 +72,7 @@ const Tooltip = ({
   const tooltipProps = {
     ...tooltipOpts,
     style: {
-      width: (style && style.width) || width,
+      width: (tooltipStyle && tooltipStyle.width) || width,
       ...offsets,
       ...(tooltipOpts.style || {}),
     },
@@ -81,7 +81,7 @@ const Tooltip = ({
 
   const TooltipContent = (text || tooltipContent) && (
     <div ref={tooltipRef} {...tooltipProps}>
-      <div style={style} className={styles.tooltipInnerWrapper}>
+      <div style={tooltipStyle} className={styles.tooltipInnerWrapper}>
         {closeable && (
           <button className={styles.tooltipClose} onClick={onClose}>
             <Icon name={closeIcon} />
