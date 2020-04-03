@@ -88,7 +88,7 @@ const Overview = () => {
     <FlexWrapper>
       <Element>
         <Tooltip
-          text={text('Tooltip Text', 'Hi there!', 'text')}
+          content={text('Tooltip Text', 'Hi there!', 'text')}
           showOnHover={textHover}
           direction={direction}
           isOpen={boolean('Open', false, 'text')}
@@ -141,7 +141,7 @@ storiesOf('Planets/Tooltip', module)
               style={{ marginRight: '20px' }}
               showOnHover
               isOpen
-              text="Hello, I'm on top!"
+              content="Hello, I'm on top!"
             >
               <div>Hover on the top</div>
             </Tooltip>
@@ -151,7 +151,7 @@ storiesOf('Planets/Tooltip', module)
               style={{ marginRight: '20px' }}
               showOnHover
               direction="bottom"
-              text="...and I'm on the bottom!"
+              content="...and I'm on the bottom!"
             >
               <div>Hover on the bottom</div>
             </Tooltip>
@@ -160,7 +160,7 @@ storiesOf('Planets/Tooltip', module)
             <Tooltip
               showOnHover
               direction="left"
-              text="...and I'm on the left!"
+              content="...and I'm on the left!"
             >
               <div>Hover on the left</div>
             </Tooltip>
@@ -169,7 +169,7 @@ storiesOf('Planets/Tooltip', module)
             <Tooltip
               showOnHover
               direction="right"
-              text="...and I'm on the right!"
+              content="...and I'm on the right!"
             >
               <div>Hover on the right</div>
             </Tooltip>

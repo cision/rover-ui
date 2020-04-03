@@ -21,7 +21,6 @@ const Tooltip = ({
   direction,
   isOpen,
   showOnHover,
-  text,
   tooltipOpts: tooltipOptsProp,
   tooltipWidth,
   ...rest
@@ -75,6 +74,8 @@ const Tooltip = ({
     return {};
   });
 
+  const isText = typeof tooltipContent === 'string';
+
   const tooltipProps = {
     ...tooltipOpts,
     style: {
@@ -84,7 +85,7 @@ const Tooltip = ({
     className: tooltipClassNames,
   };
 
-  const TooltipContent = (text || tooltipContent) && (
+  const TooltipContent = tooltipContent && (
     <div ref={tooltipRef} {...tooltipProps}>
       <div style={tooltipStyle} className={styles.tooltipInnerWrapper}>
         {!!closeable && (
@@ -93,16 +94,10 @@ const Tooltip = ({
           </button>
         )}
 
-        {text ? (
-          <div
-            className={classNames({
-              [styles.textContent]: text,
-            })}
-          >
-            {text}
-          </div>
+        {isText ? (
+          <div className={styles.textContent}>{tooltipContent}</div>
         ) : (
-          tooltipContent
+          <div>{tooltipContent}</div>
         )}
       </div>
     </div>
@@ -130,7 +125,6 @@ Tooltip.propTypes = {
   direction: PropTypes.oneOf(directions),
   showOnHover: PropTypes.bool,
   isOpen: PropTypes.bool,
-  text: PropTypes.string,
   tooltipOpts: PropTypes.shape({
     className: PropTypes.string,
     style: PropTypes.object,
@@ -144,7 +138,6 @@ Tooltip.defaultProps = {
   direction: 'top',
   showOnHover: false,
   isOpen: false,
-  text: null,
   tooltipOpts: {},
   tooltipWidth: null,
 };
