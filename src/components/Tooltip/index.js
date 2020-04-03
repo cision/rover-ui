@@ -25,12 +25,10 @@ const Tooltip = ({
   tooltipWidth,
   ...rest
 }) => {
-  const childrenRef = useRef(null);
   const tooltipRef = useRef(null);
 
   const [hovered, setHovered] = useState(false);
   const [tooltipHeight, setTooltipHeight] = useState(0);
-  const [childrenHeight, setChildrenHeight] = useState(0);
 
   const closeFunc = useCallback(closeable || function() {}, []);
 
@@ -43,9 +41,8 @@ const Tooltip = ({
   useEffect(() => {
     if (tooltipRef.current) {
       setTooltipHeight(tooltipRef.current.offsetHeight);
-      setChildrenHeight(childrenRef.current.offsetHeight);
     }
-  }, []);
+  }, []); // empty deps ensure this only gets called once
 
   const {
     style: tooltipStyle,
@@ -67,7 +64,7 @@ const Tooltip = ({
     // of the actual element we are attaching the tooltip.
     if (direction === 'left' || direction === 'right') {
       return {
-        top: (childrenHeight - tooltipHeight) / 2,
+        marginTop: -(tooltipHeight / 2),
       };
     }
 
@@ -107,7 +104,6 @@ const Tooltip = ({
     <div className={styles.wrapper} {...rest}>
       {TooltipContent}
       <div
-        ref={childrenRef}
         onMouseEnter={handleSetHover(true)}
         onMouseLeave={handleSetHover(false)}
         className={styles.original}

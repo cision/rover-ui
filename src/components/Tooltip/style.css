@@ -160,6 +160,7 @@
 }
 
 .Tooltip.left {
+  top: 50%;
   right: calc(100% + var(--rvr-tooltip-offset));
 }
 
@@ -200,7 +201,7 @@
 }
 
 .Tooltip.right {
-  top: 0;
+  top: 50%;
   left: calc(100% + var(--rvr-tooltip-offset));
 }
 
