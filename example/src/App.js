@@ -29,6 +29,18 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('ONE');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isEasyPillChecked, setIsEasyPillChecked] = useState(false);
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const toggleTooltip = function() {
+    setTooltipOpen(prev => !prev);
+  };
+
+  const TooltipContent = (
+    <React.Fragment>
+      <h3>I have extra content</h3>
+      <p>It can take any form you want!</p>
+    </React.Fragment>
+  );
 
   return (
     <div>
@@ -351,9 +363,24 @@ const App = () => {
         <h1>Avatar</h1>
         <Avatar size="medium" imageUrl="https://picsum.photos/60" />
       </section>
-      <section>
+      <section style={{ width: '100%', margin: '30px 0' }}>
         <h1>Tooltip</h1>
-        <Tooltip />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ marginRight: '50px' }}>
+            <Tooltip hover direction="top" text="Hello there!">
+              <Button>I show a tooltip when you hover over me</Button>
+            </Tooltip>
+          </div>
+          <Tooltip
+            open={tooltipOpen}
+            closeable={toggleTooltip}
+            direction="right"
+            width="300px"
+            content={TooltipContent}
+          >
+            <Button onClick={toggleTooltip}>Button</Button>
+          </Tooltip>
+        </div>
       </section>
       {/** USAGE_INJECTOR */}
     </div>
