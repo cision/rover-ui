@@ -21,7 +21,7 @@ const Tooltip = ({
   direction,
   isOpen,
   showOnHover,
-  tooltipOpts: tooltipOptsProp,
+  tooltipProps: tooltipOptsProp,
   tooltipWidth,
   ...rest
 }) => {
@@ -73,8 +73,7 @@ const Tooltip = ({
 
   const isText = typeof tooltipContent === 'string';
 
-  const tooltipProps = {
-    ...tooltipOpts,
+  const tooltipWrapperProps = {
     style: {
       width: (tooltipStyle && tooltipStyle.width) || tooltipWidth,
       ...offsets,
@@ -83,8 +82,12 @@ const Tooltip = ({
   };
 
   const TooltipContent = tooltipContent && (
-    <div ref={tooltipRef} {...tooltipProps}>
-      <div style={tooltipStyle} className={styles.tooltipInnerWrapper}>
+    <div ref={tooltipRef} {...tooltipWrapperProps}>
+      <div
+        style={tooltipStyle}
+        className={styles.tooltipInnerWrapper}
+        {...tooltipOpts}
+      >
         {!!closeable && (
           <button className={styles.tooltipClose} onClick={closeFunc}>
             <Icon name="close" />
@@ -121,7 +124,7 @@ Tooltip.propTypes = {
   direction: PropTypes.oneOf(directions),
   showOnHover: PropTypes.bool,
   isOpen: PropTypes.bool,
-  tooltipOpts: PropTypes.shape({
+  tooltipProps: PropTypes.shape({
     className: PropTypes.string,
     style: PropTypes.object,
   }),
@@ -134,7 +137,7 @@ Tooltip.defaultProps = {
   direction: 'top',
   showOnHover: false,
   isOpen: false,
-  tooltipOpts: {},
+  tooltipProps: {},
   tooltipWidth: null,
 };
 

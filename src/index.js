@@ -29,4 +29,4 @@ export { default as Collapse } from './components/Collapse';
 export { default as ExpansionPanel } from './components/ExpansionPanel';
 export { default as Accordion } from './components/Accordion';
 export { default as Avatar } from './components/Avatar';
-export { default as Tooltip } from './components/Tooltip';
+export { default as Tooltip, UncontrolledTooltip } from './components/Tooltip';
