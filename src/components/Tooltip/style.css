@@ -39,6 +39,11 @@
 .Tooltip::before,
 .Tooltip::after {
   pointer-events: none;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
 }
 
 .open {
@@ -87,11 +92,6 @@
 .Tooltip.bottom::after {
   bottom: 100%;
   left: 50%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
 }
 
 .Tooltip.bottom::before {
@@ -128,11 +128,6 @@
 .Tooltip.top::after {
   top: 100%;
   left: 50%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
 }
 
 .Tooltip.top::before {
@@ -168,11 +163,6 @@
 .Tooltip.left::after {
   top: 50%;
   left: 100%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
 }
 
 .Tooltip.left::before {
@@ -209,11 +199,6 @@
 .Tooltip.right::after {
   top: 50%;
   right: 100%;
-  border: solid transparent;
-  content: '';
-  height: 0;
-  width: 0;
-  position: absolute;
 }
 
 .Tooltip.right::before {
