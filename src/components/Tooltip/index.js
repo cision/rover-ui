@@ -97,7 +97,7 @@ const Tooltip = ({
         {isText ? (
           <div className={styles.textContent}>{tooltipContent}</div>
         ) : (
-          <div>{tooltipContent}</div>
+          tooltipContent
         )}
       </div>
     </div>
