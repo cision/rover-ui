@@ -24,15 +24,15 @@ const TooltipContent = (
 );
 
 // eslint-disable-next-line react/prop-types
-const SBTooltip = ({ children, onClose, ...rest }) => {
+const SBTooltip = ({ children, closeable, ...rest }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <Tooltip
       open={open}
-      onClose={() => {
+      closeable={() => {
         setOpen(false);
-        onClose();
+        closeable();
       }}
       {...rest}
     >
@@ -106,8 +106,7 @@ storiesOf('Planets/Tooltip', module)
       <FlexWrapper>
         <SBTooltip
           content={TooltipContent}
-          onClose={action('closing tooltip on bottom')}
-          closeable
+          closeable={action('closing tooltip on bottom')}
           direction="bottom"
           width="225px"
         >
@@ -115,8 +114,7 @@ storiesOf('Planets/Tooltip', module)
         </SBTooltip>
         <SBTooltip
           content={TooltipContent}
-          onClose={action('closing tooltip on top')}
-          closeable
+          closeable={action('closing tooltip on top')}
           direction="top"
           width="700px"
         >
@@ -124,8 +122,7 @@ storiesOf('Planets/Tooltip', module)
         </SBTooltip>
         <SBTooltip
           content={TooltipContent}
-          onClose={action('closing tooltip on right')}
-          closeable
+          closeable={action('closing tooltip on right')}
           direction="right"
           width="225px"
         >
@@ -133,8 +130,7 @@ storiesOf('Planets/Tooltip', module)
         </SBTooltip>
         <SBTooltip
           content={TooltipContent}
-          onClose={action('closing tooltip on left')}
-          closeable
+          closeable={action('closing tooltip on left')}
           direction="left"
           width="400px"
         >

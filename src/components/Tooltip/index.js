@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -17,7 +23,6 @@ const Tooltip = ({
   hover,
   tooltipOpts: tooltipOptsProp,
   open,
-  onClose,
   text,
   width,
   ...rest
@@ -28,6 +33,8 @@ const Tooltip = ({
   const [hovered, setHovered] = useState(false);
   const [tooltipHeight, setTooltipHeight] = useState(0);
   const [childrenHeight, setChildrenHeight] = useState(0);
+
+  const closeFunc = useCallback(closeable || function() {}, []);
 
   const handleSetHover = value => () => {
     if (hover) {
@@ -40,7 +47,7 @@ const Tooltip = ({
       setTooltipHeight(tooltipRef.current.offsetHeight);
       setChildrenHeight(childrenRef.current.offsetHeight);
     }
-  });
+  }, []);
 
   const {
     style: tooltipStyle,
@@ -81,8 +88,8 @@ const Tooltip = ({
   const TooltipContent = (text || tooltipContent) && (
     <div ref={tooltipRef} {...tooltipProps}>
       <div style={tooltipStyle} className={styles.tooltipInnerWrapper}>
-        {closeable && (
-          <button className={styles.tooltipClose} onClick={onClose}>
+        {!!closeable && (
+          <button className={styles.tooltipClose} onClick={closeFunc}>
             <Icon name={closeIcon} />
           </button>
         )}
@@ -114,7 +121,7 @@ const Tooltip = ({
 
 Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
-  closeable: PropTypes.bool,
+  closeable: PropTypes.func,
   closeIcon: PropTypes.string,
   content: PropTypes.oneOfType([
     PropTypes.node,
@@ -123,7 +130,6 @@ Tooltip.propTypes = {
   ]),
   direction: PropTypes.oneOf(directions),
   hover: PropTypes.bool,
-  onClose: PropTypes.func,
   open: PropTypes.bool,
   text: PropTypes.string,
   tooltipOpts: PropTypes.shape({
@@ -135,11 +141,10 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   content: null,
-  closeable: false,
+  closeable: null,
   closeIcon: 'close',
   direction: 'top',
   hover: false,
-  onClose: () => {},
   open: false,
   text: null,
   tooltipOpts: {},
