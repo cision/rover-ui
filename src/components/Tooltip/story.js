@@ -5,6 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 import Tooltip from './';
 import Button from '../Button';
+import Readme from './README.md';
 
 export default {
   title: 'Planets/Tooltip',
@@ -60,6 +61,11 @@ const FlexWrapper = props => (
 const Element = props => <div style={{ marginRight: 20 }} {...props} />;
 
 storiesOf('Planets/Tooltip', module)
+  .addParameters({
+    readme: {
+      sidebar: Readme,
+    },
+  })
   .add(
     'Hoverable',
     () => {
