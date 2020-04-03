@@ -17,14 +17,13 @@ export const directions = ['top', 'left', 'right', 'bottom'];
 const Tooltip = ({
   children,
   closeable,
-  closeIcon,
   content: tooltipContent,
   direction,
-  hover,
-  tooltipOpts: tooltipOptsProp,
-  open,
+  isOpen,
+  showOnHover,
   text,
-  width,
+  tooltipOpts: tooltipOptsProp,
+  tooltipWidth,
   ...rest
 }) => {
   const childrenRef = useRef(null);
@@ -37,7 +36,7 @@ const Tooltip = ({
   const closeFunc = useCallback(closeable || function() {}, []);
 
   const handleSetHover = value => () => {
-    if (hover) {
+    if (showOnHover) {
       setHovered(value);
     }
   };
@@ -60,7 +59,7 @@ const Tooltip = ({
     styles[direction],
     tooltipClassName,
     {
-      [styles.open]: open || hovered,
+      [styles.open]: isOpen || hovered,
     }
   );
 
@@ -79,7 +78,7 @@ const Tooltip = ({
   const tooltipProps = {
     ...tooltipOpts,
     style: {
-      width: (tooltipStyle && tooltipStyle.width) || width,
+      width: (tooltipStyle && tooltipStyle.width) || tooltipWidth,
       ...offsets,
     },
     className: tooltipClassNames,
@@ -90,16 +89,21 @@ const Tooltip = ({
       <div style={tooltipStyle} className={styles.tooltipInnerWrapper}>
         {!!closeable && (
           <button className={styles.tooltipClose} onClick={closeFunc}>
-            <Icon name={closeIcon} />
+            <Icon name="close" />
           </button>
         )}
-        <div
-          className={classNames({
-            [styles.textContent]: text,
-          })}
-        >
-          {text || tooltipContent}
-        </div>
+
+        {text ? (
+          <div
+            className={classNames({
+              [styles.textContent]: text,
+            })}
+          >
+            {text}
+          </div>
+        ) : (
+          tooltipContent
+        )}
       </div>
     </div>
   );
@@ -122,33 +126,27 @@ const Tooltip = ({
 Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
   closeable: PropTypes.func,
-  closeIcon: PropTypes.string,
-  content: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.string,
-    PropTypes.element,
-  ]),
+  content: PropTypes.node,
   direction: PropTypes.oneOf(directions),
-  hover: PropTypes.bool,
-  open: PropTypes.bool,
+  showOnHover: PropTypes.bool,
+  isOpen: PropTypes.bool,
   text: PropTypes.string,
   tooltipOpts: PropTypes.shape({
     className: PropTypes.string,
     style: PropTypes.object,
   }),
-  width: PropTypes.string,
+  tooltipWidth: PropTypes.string,
 };
 
 Tooltip.defaultProps = {
   content: null,
   closeable: null,
-  closeIcon: 'close',
   direction: 'top',
-  hover: false,
-  open: false,
+  showOnHover: false,
+  isOpen: false,
   text: null,
   tooltipOpts: {},
-  width: null,
+  tooltipWidth: null,
 };
 
 export default Tooltip;

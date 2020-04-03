@@ -2,8 +2,14 @@
 import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import {
+  boolean,
+  number,
+  optionsKnob as options,
+  text,
+} from '@storybook/addon-knobs';
 
-import Tooltip from './';
+import Tooltip, { directions } from './';
 import Button from '../Button';
 import Readme from './README.md';
 
@@ -30,7 +36,7 @@ const SBTooltip = ({ children, closeable, ...rest }) => {
 
   return (
     <Tooltip
-      open={open}
+      isOpen={open}
       closeable={() => {
         setOpen(false);
         closeable();
@@ -60,12 +66,71 @@ const FlexWrapper = props => (
 
 const Element = props => <div style={{ marginRight: 20 }} {...props} />;
 
+const Overview = () => {
+  const [open, setOpen] = useState(false);
+
+  const toggle = () => {
+    setOpen(prev => !prev);
+  };
+
+  const direction = options(
+    'Direction',
+    directions,
+    directions[0],
+    {
+      display: 'inline-radio',
+    },
+    'all'
+  );
+  const textHover = boolean('Show on hover', true, 'text');
+
+  return (
+    <FlexWrapper>
+      <Element>
+        <Tooltip
+          text={text('Tooltip Text', 'Hi there!', 'text')}
+          showOnHover={textHover}
+          direction={direction}
+          isOpen={boolean('Open', false, 'text')}
+        >
+          <Button>{text('Main Content', 'With Text', 'text')}</Button>
+        </Tooltip>
+      </Element>
+      <Tooltip
+        isOpen={open}
+        showOnHover={boolean('Show on hover', false, 'content')}
+        direction={direction}
+        closeable={toggle}
+        tooltipWidth={`${number(
+          'Width',
+          300,
+          { min: 10, max: 1000, step: 5 },
+          'content'
+        )}px`}
+        content={
+          <div>
+            <h3 style={{ margin: '0 0 1em' }}>Article Reach</h3>
+            <p style={{ margin: 0 }}>
+              The expected readership (UVPM) of the next article they write,
+              based on the average readership of the articles they&apos;ve
+              written over the last 90 days.
+            </p>
+          </div>
+        }
+      >
+        <Button onClick={toggle}>With content</Button>
+      </Tooltip>
+    </FlexWrapper>
+  );
+};
+
 storiesOf('Planets/Tooltip', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
+  .add('Overview', () => <Overview />)
   .add(
     'Hoverable',
     () => {
@@ -74,8 +139,8 @@ storiesOf('Planets/Tooltip', module)
           <Element>
             <Tooltip
               style={{ marginRight: '20px' }}
-              hover
-              open
+              showOnHover
+              isOpen
               text="Hello, I'm on top!"
             >
               <div>Hover on the top</div>
@@ -84,7 +149,7 @@ storiesOf('Planets/Tooltip', module)
           <Element>
             <Tooltip
               style={{ marginRight: '20px' }}
-              hover
+              showOnHover
               direction="bottom"
               text="...and I'm on the bottom!"
             >
@@ -92,12 +157,20 @@ storiesOf('Planets/Tooltip', module)
             </Tooltip>
           </Element>
           <Element>
-            <Tooltip hover direction="left" text="...and I'm on the left!">
+            <Tooltip
+              showOnHover
+              direction="left"
+              text="...and I'm on the left!"
+            >
               <div>Hover on the left</div>
             </Tooltip>
           </Element>
           <Element>
-            <Tooltip hover direction="right" text="...and I'm on the right!">
+            <Tooltip
+              showOnHover
+              direction="right"
+              text="...and I'm on the right!"
+            >
               <div>Hover on the right</div>
             </Tooltip>
           </Element>
@@ -114,7 +187,7 @@ storiesOf('Planets/Tooltip', module)
           content={TooltipContent}
           closeable={action('closing tooltip on bottom')}
           direction="bottom"
-          width="225px"
+          tooltipWidth="225px"
         >
           Tooltip to Bottom
         </SBTooltip>
@@ -122,7 +195,7 @@ storiesOf('Planets/Tooltip', module)
           content={TooltipContent}
           closeable={action('closing tooltip on top')}
           direction="top"
-          width="700px"
+          tooltipWidth="700px"
         >
           Tooltip to Top
         </SBTooltip>
@@ -130,7 +203,7 @@ storiesOf('Planets/Tooltip', module)
           content={TooltipContent}
           closeable={action('closing tooltip on right')}
           direction="right"
-          width="225px"
+          tooltipWidth="225px"
         >
           Tooltip to Right
         </SBTooltip>
@@ -138,7 +211,7 @@ storiesOf('Planets/Tooltip', module)
           content={TooltipContent}
           closeable={action('closing tooltip on left')}
           direction="left"
-          width="400px"
+          tooltipWidth="400px"
         >
           Tooltip to Left
         </SBTooltip>
