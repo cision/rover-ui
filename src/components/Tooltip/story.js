@@ -45,6 +45,10 @@ const SBTooltip = ({ children, closeable, ...rest }) => {
   );
 };
 
+SBTooltip.propTypes = {
+  ...Tooltip.propTypes,
+};
+
 const FlexWrapper = props => (
   <div
     style={{
@@ -205,6 +209,7 @@ storiesOf('Planets/Tooltip', module)
         <SBTooltip
           content={TooltipContent}
           closeable={action('closing tooltip on left')}
+          closeOnEscape={false}
           direction="left"
           tooltipWidth="400px"
         >

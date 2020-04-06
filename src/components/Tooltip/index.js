@@ -17,6 +17,7 @@ export const directions = ['top', 'left', 'right', 'bottom'];
 const Tooltip = ({
   children,
   closeable,
+  closeOnEscape,
   content: tooltipContent,
   direction,
   isOpen,
@@ -25,6 +26,9 @@ const Tooltip = ({
   tooltipWidth,
   ...rest
 }) => {
+  const [tooltipId] = useState(
+    `tooltip-${Date.now() * Math.floor(100 * Math.random())}`
+  );
   const tooltipRef = useRef(null);
 
   const [hovered, setHovered] = useState(false);
@@ -45,11 +49,15 @@ const Tooltip = ({
   };
 
   useEffect(() => {
-    document.addEventListener('keydown', handleEscape);
+    if (closeOnEscape) {
+      document.addEventListener('keydown', handleEscape);
 
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+      };
+    }
+
+    return () => {};
   }, []);
 
   useEffect(() => {
@@ -96,7 +104,12 @@ const Tooltip = ({
   };
 
   const TooltipContent = tooltipContent && (
-    <div ref={tooltipRef} {...tooltipWrapperProps}>
+    <div
+      id={tooltipId}
+      aria-hidden={isOpen}
+      ref={tooltipRef}
+      {...tooltipWrapperProps}
+    >
       <div
         style={tooltipStyle}
         className={styles.tooltipInnerWrapper}
@@ -121,6 +134,7 @@ const Tooltip = ({
     <div className={styles.wrapper} {...rest}>
       {TooltipContent}
       <div
+        aria-describedby={tooltipId}
         onMouseEnter={handleSetHover(true)}
         onMouseLeave={handleSetHover(false)}
         className={styles.original}
@@ -134,6 +148,7 @@ const Tooltip = ({
 Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
   closeable: PropTypes.func,
+  closeOnEscape: PropTypes.bool,
   content: PropTypes.node,
   direction: PropTypes.oneOf(directions),
   showOnHover: PropTypes.bool,
@@ -148,6 +163,7 @@ Tooltip.propTypes = {
 Tooltip.defaultProps = {
   content: null,
   closeable: null,
+  closeOnEscape: true,
   direction: 'top',
   showOnHover: false,
   isOpen: false,
