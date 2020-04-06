@@ -38,6 +38,20 @@ const Tooltip = ({
     }
   };
 
+  const handleEscape = e => {
+    if (closeable && e.key === 'Escape') {
+      closeable();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
   useEffect(() => {
     if (tooltipRef.current) {
       setTooltipHeight(tooltipRef.current.offsetHeight);

@@ -13,11 +13,6 @@ import Tooltip, { directions } from './';
 import Button from '../Button';
 import Readme from './README.md';
 
-export default {
-  title: 'Planets/Tooltip',
-  component: Tooltip,
-};
-
 const TooltipContent = (
   <Fragment>
     <h3 style={{ margin: 0 }}>Hallo there!</h3>
