@@ -90,7 +90,7 @@ const Overview = () => {
         isOpen={open}
         showOnHover={boolean('Show on hover', false, 'content')}
         direction={direction}
-        closeable={toggle}
+        onClose={toggle}
         tooltipWidth={`${number(
           'Width',
           300,
@@ -214,7 +214,7 @@ storiesOf('Planets/Tooltip', module)
       <FlexWrapper>
         <RichTooltip
           content={TooltipContent}
-          closeable={action('closing tooltip on bottom')}
+          onClose={action('closing tooltip on bottom')}
           direction="bottom"
           tooltipWidth="225px"
         >
@@ -222,7 +222,7 @@ storiesOf('Planets/Tooltip', module)
         </RichTooltip>
         <RichTooltip
           content={TooltipContent}
-          closeable={action('closing tooltip on top')}
+          onClose={action('closing tooltip on top')}
           direction="top"
           tooltipWidth="700px"
         >
@@ -230,7 +230,7 @@ storiesOf('Planets/Tooltip', module)
         </RichTooltip>
         <RichTooltip
           content={TooltipContent}
-          closeable={action('closing tooltip on right')}
+          onClose={action('closing tooltip on right')}
           direction="right"
           tooltipWidth="225px"
         >
@@ -238,7 +238,7 @@ storiesOf('Planets/Tooltip', module)
         </RichTooltip>
         <RichTooltip
           content={TooltipContent}
-          closeable={action('closing tooltip on left')}
+          onClose={action('closing tooltip on left')}
           closeOnEscape={false}
           direction="left"
           tooltipWidth="400px"

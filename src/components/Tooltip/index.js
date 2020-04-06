@@ -16,11 +16,11 @@ export const directions = ['top', 'left', 'right', 'bottom'];
 
 const Tooltip = ({
   children,
-  closeable,
   closeOnEscape,
   content: tooltipContent,
   direction,
   isOpen,
+  onClose,
   showOnHover,
   tooltipProps: tooltipOptsProp,
   tooltipWidth,
@@ -34,7 +34,7 @@ const Tooltip = ({
   const [hovered, setHovered] = useState(false);
   const [tooltipHeight, setTooltipHeight] = useState(0);
 
-  const closeFunc = useCallback(closeable || function() {}, []);
+  const closeFunc = useCallback(onClose || function() {}, []);
 
   const handleSetHover = value => () => {
     if (showOnHover) {
@@ -43,8 +43,8 @@ const Tooltip = ({
   };
 
   const handleEscape = e => {
-    if (closeable && e.key === 'Escape') {
-      closeable();
+    if (onClose && e.key === 'Escape') {
+      onClose();
     }
   };
 
@@ -115,7 +115,7 @@ const Tooltip = ({
         className={styles.tooltipInnerWrapper}
         {...tooltipOpts}
       >
-        {!!closeable && (
+        {!!onClose && (
           <button className={styles.tooltipClose} onClick={closeFunc}>
             <Icon name="close" />
           </button>
@@ -147,12 +147,12 @@ const Tooltip = ({
 
 Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
-  closeable: PropTypes.func,
   closeOnEscape: PropTypes.bool,
   content: PropTypes.node,
   direction: PropTypes.oneOf(directions),
-  showOnHover: PropTypes.bool,
   isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  showOnHover: PropTypes.bool,
   tooltipProps: PropTypes.shape({
     className: PropTypes.string,
     style: PropTypes.object,
@@ -161,19 +161,19 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  content: null,
-  closeable: null,
   closeOnEscape: true,
+  content: null,
   direction: 'top',
-  showOnHover: false,
   isOpen: false,
+  onClose: null,
+  showOnHover: false,
   tooltipProps: {},
   tooltipWidth: null,
 };
 
 export default Tooltip;
 
-export const EasyRichTooltip = ({ closeable, children, ...props }) => {
+export const EasyRichTooltip = ({ onClose, children, ...props }) => {
   const [isOpen, setOpen] = useState(false);
 
   const open = () => setOpen(true);
@@ -183,9 +183,9 @@ export const EasyRichTooltip = ({ closeable, children, ...props }) => {
   return (
     <Tooltip
       isOpen={isOpen}
-      closeable={() => {
-        if (closeable) {
-          closeable();
+      onClose={() => {
+        if (onClose) {
+          onClose();
         }
         setOpen(false);
       }}

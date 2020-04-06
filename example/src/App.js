@@ -373,7 +373,7 @@ const App = () => {
           </div>
           <Tooltip
             open={tooltipOpen}
-            closeable={toggleTooltip}
+            onClose={toggleTooltip}
             direction="right"
             width="300px"
             content={TooltipContent}

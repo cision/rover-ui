@@ -35,9 +35,9 @@ const OtherComponent = () => {
 </Tooltip>
 ```
 
-### `isOpen` and `closeable`
+### `isOpen` and `onClose`
 
-The final key property is the `closeable` prop. This prop takes a _function_ in order to activate. You will also need to control the tooltip's visibility with the `isOpen` property.
+The final key property is the `onClose` prop. This prop takes a _function_ in order to activate. You will also need to control the tooltip's visibility with the `isOpen` property.
 
 ```jsx
 const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -45,7 +45,7 @@ const toggle = () => { setTooltipOpen(prev => !prev)}};
 <Tooltip
   isOpen={tooltipOpen}
   tooltipWidth="400px"
-  closeable={toggle}
+  onClose={toggle}
   content={<OtherComponent />}
 >
   I'm showing more complex content... and I can be closed!
