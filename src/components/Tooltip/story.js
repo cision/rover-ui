@@ -9,7 +9,7 @@ import {
   text,
 } from '@storybook/addon-knobs';
 
-import Tooltip, { directions } from './';
+import Tooltip, { EasyRichTooltip, directions } from './';
 import Button from '../Button';
 import Readme from './README.md';
 
@@ -25,27 +25,17 @@ const TooltipContent = (
   </Fragment>
 );
 
-// eslint-disable-next-line react/prop-types
-const SBTooltip = ({ children, closeable, ...rest }) => {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <Tooltip
-      isOpen={open}
-      closeable={() => {
-        setOpen(false);
-        closeable();
-      }}
-      {...rest}
-    >
-      <Button style={{ marginRight: 10 }} onClick={() => setOpen(true)}>
+const RichTooltip = ({ children, ...rest }) => (
+  <EasyRichTooltip {...rest}>
+    {({ toggle }) => (
+      <Button onClick={toggle} style={{ marginRight: 10 }}>
         {children}
       </Button>
-    </Tooltip>
-  );
-};
+    )}
+  </EasyRichTooltip>
+);
 
-SBTooltip.propTypes = {
+RichTooltip.propTypes = {
   ...Tooltip.propTypes,
 };
 
@@ -182,31 +172,31 @@ storiesOf('Planets/Tooltip', module)
     'Closeable',
     () => (
       <FlexWrapper>
-        <SBTooltip
+        <RichTooltip
           content={TooltipContent}
           closeable={action('closing tooltip on bottom')}
           direction="bottom"
           tooltipWidth="225px"
         >
           Tooltip to Bottom
-        </SBTooltip>
-        <SBTooltip
+        </RichTooltip>
+        <RichTooltip
           content={TooltipContent}
           closeable={action('closing tooltip on top')}
           direction="top"
           tooltipWidth="700px"
         >
           Tooltip to Top
-        </SBTooltip>
-        <SBTooltip
+        </RichTooltip>
+        <RichTooltip
           content={TooltipContent}
           closeable={action('closing tooltip on right')}
           direction="right"
           tooltipWidth="225px"
         >
           Tooltip to Right
-        </SBTooltip>
-        <SBTooltip
+        </RichTooltip>
+        <RichTooltip
           content={TooltipContent}
           closeable={action('closing tooltip on left')}
           closeOnEscape={false}
@@ -214,7 +204,7 @@ storiesOf('Planets/Tooltip', module)
           tooltipWidth="400px"
         >
           Tooltip to Left
-        </SBTooltip>
+        </RichTooltip>
       </FlexWrapper>
     ),
     {}

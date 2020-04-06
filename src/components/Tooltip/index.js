@@ -172,3 +172,30 @@ Tooltip.defaultProps = {
 };
 
 export default Tooltip;
+
+export const EasyRichTooltip = ({ closeable, children, ...props }) => {
+  const [isOpen, setOpen] = useState(false);
+
+  const open = () => setOpen(true);
+  const close = () => setOpen(false);
+  const toggle = () => setOpen(prev => !prev);
+
+  return (
+    <Tooltip
+      isOpen={isOpen}
+      closeable={() => {
+        if (closeable) {
+          closeable();
+        }
+        setOpen(false);
+      }}
+      {...props}
+    >
+      {children({ open, close, toggle })}
+    </Tooltip>
+  );
+};
+
+EasyRichTooltip.propTypes = {
+  ...Tooltip.propTypes,
+};
