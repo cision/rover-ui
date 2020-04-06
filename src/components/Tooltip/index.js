@@ -198,4 +198,5 @@ export const EasyRichTooltip = ({ closeable, children, ...props }) => {
 
 EasyRichTooltip.propTypes = {
   ...Tooltip.propTypes,
+  children: PropTypes.func.isRequired,
 };

@@ -51,3 +51,19 @@ const toggle = () => { setTooltipOpen(prev => !prev)}};
   I'm showing more complex content... and I can be closed!
 </Tooltip>
 ```
+
+## EasyRichTooltip
+
+If you have rich content (i.e. more than just simple text), you will probably find yourself defining a lot of props to make a Tooltip work. Typically, this just sets default values, but since we are having to handle toggling visibility of an element from within the Tooltip's children, we can use the
+returned function to `open`, `close`, or `toggle` the tooltip.
+
+```jsx
+/* This is so much nicer! */
+<EasyRichTooltip content={<TooltipContent />} tooltipWidth="300px">
+  {({ toggle, open, close }) => (
+    <Button onClick={toggle}>Toggle the tooltip!</Button>
+    <Button onClick={open}> Will only open the tooltip</BUtton>
+    <Button onClick={close}> Will only close the tooltip</BUtton>
+  )}
+</EasyRichTooltip>
+```

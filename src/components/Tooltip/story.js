@@ -25,15 +25,16 @@ const TooltipContent = (
   </Fragment>
 );
 
-const RichTooltip = ({ children, ...rest }) => (
-  <EasyRichTooltip {...rest}>
-    {({ toggle }) => (
-      <Button onClick={toggle} style={{ marginRight: 10 }}>
-        {children}
-      </Button>
-    )}
-  </EasyRichTooltip>
-);
+const RichTooltip = ({ children, ...rest }) => {
+  // eslint-disable-next-line react/prop-types
+  const render = ({ toggle }) => (
+    <Button onClick={toggle} style={{ marginRight: 10 }}>
+      {children}
+    </Button>
+  );
+
+  return <EasyRichTooltip {...rest}>{render}</EasyRichTooltip>;
+};
 
 RichTooltip.propTypes = {
   ...Tooltip.propTypes,
@@ -163,6 +164,45 @@ storiesOf('Planets/Tooltip', module)
               <div>Hover on the right</div>
             </Tooltip>
           </Element>
+        </FlexWrapper>
+      );
+    },
+    {}
+  )
+
+  .add(
+    'EasyRichTooltip',
+    () => {
+      const Content = (
+        <img
+          alt=""
+          width="300"
+          height="300"
+          src="https://placekitten.com/300/300"
+        />
+      );
+
+      return (
+        <FlexWrapper>
+          <EasyRichTooltip
+            content={Content}
+            direction="bottom"
+            tooltipWidth="325px"
+          >
+            {({ toggle, open, close }) => (
+              <React.Fragment>
+                <Button style={{ marginRight: 10 }} onClick={toggle}>
+                  I toggle the tooltip
+                </Button>
+                <Button style={{ marginRight: 10 }} onClick={open}>
+                  I only open the tooltip
+                </Button>
+                <Button style={{ marginRight: 10 }} onClick={close}>
+                  I only close the tooltip
+                </Button>
+              </React.Fragment>
+            )}
+          </EasyRichTooltip>
         </FlexWrapper>
       );
     },
