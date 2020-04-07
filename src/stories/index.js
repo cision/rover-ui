@@ -69,4 +69,5 @@ import '../components/Responsive/Visible/story';
  * NEW & UNCATEGORIZED
  * Move these to a section above before committing
  */
+import '../components/Tooltip/story';
 /** INJECTOR */
