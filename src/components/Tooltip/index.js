@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -33,8 +27,6 @@ const Tooltip = ({
 
   const [hovered, setHovered] = useState(false);
   const [tooltipHeight, setTooltipHeight] = useState(0);
-
-  const closeFunc = useCallback(onClose || function() {}, []);
 
   const handleSetHover = value => () => {
     if (showOnHover) {
@@ -116,7 +108,7 @@ const Tooltip = ({
         {...tooltipOpts}
       >
         {!!onClose && (
-          <button className={styles.tooltipClose} onClick={closeFunc}>
+          <button className={styles.tooltipClose} onClick={onClose}>
             <Icon name="close" />
           </button>
         )}
