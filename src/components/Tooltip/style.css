@@ -12,6 +12,7 @@
   border-radius: var(--rvr-tooltip-border-radius);
   box-shadow: var(--rvr-tooltip-box-shadow);
   box-sizing: border-box;
+  font-family: var(--rvr-base-font-family);
   font-size: 14px;
   position: absolute;
 
