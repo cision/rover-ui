@@ -40,13 +40,13 @@ const Tooltip = ({
     }
   };
 
-  const handleEscape = e => {
-    if (onClose && e.key === 'Escape') {
-      onClose();
-    }
-  };
-
   useEffect(() => {
+    const handleEscape = e => {
+      if (onClose && e.key === 'Escape') {
+        onClose();
+      }
+    };
+
     if (closeOnEscape) {
       document.addEventListener('keydown', handleEscape);
 
