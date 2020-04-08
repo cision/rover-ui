@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { includes, isFunction } from 'lodash';
+import includes from 'lodash/includes';
+import isFunction from 'lodash/isFunction';
 
 import styles from './style.css';
 

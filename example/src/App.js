@@ -21,6 +21,7 @@ import {
   Collapse,
   ExpansionPanel,
   Tooltip,
+  Callout,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -381,6 +382,13 @@ const App = () => {
             <Button onClick={toggleTooltip}>Button</Button>
           </Tooltip>
         </div>
+      </section>
+      <section>
+        <h1>Callout</h1>
+        <Callout>
+          Oh, man, this is really a callout now, bro. You&apos;re going to want
+          to pay attention to this one, bro.
+        </Callout>
       </section>
       {/** USAGE_INJECTOR */}
     </div>
