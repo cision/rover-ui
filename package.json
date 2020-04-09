@@ -1,8 +1,8 @@
 {
   "name": "@cision/rover-ui",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "publishConfig": {
-    "tag": "v1.4.0"
+    "tag": "v1.4.1"
   },
   "description": "UI Component Library",
   "author": "Matthew Wells (https://github.com/mdespuits)",
@@ -127,9 +127,9 @@
     "dist"
   ],
   "dependencies": {
-    "classnames": "^2.2.6",
-    "lodash": "^4.17.11",
     "@cision/react-container-query": "1.0.0-alpha.3",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.15",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0"
   }

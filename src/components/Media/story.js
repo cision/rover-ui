@@ -1,5 +1,5 @@
 import React from 'react';
-import { times } from 'lodash';
+import times from 'lodash/times';
 import { storiesOf } from '@storybook/react';
 import { number, text, select } from '@storybook/addon-knobs';
 
