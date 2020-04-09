@@ -5,6 +5,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
+import typescript from '@rollup/plugin-typescript';
 import svgr from '@svgr/rollup';
 
 import postcssCustomProperties from 'postcss-custom-properties';
@@ -13,7 +14,7 @@ import postcssCalc from 'postcss-calc';
 import pkg from './package.json';
 
 export default {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.main,
@@ -55,6 +56,7 @@ export default {
         moduleDirectory: 'node_modules',
       },
     }),
+    typescript(),
     commonjs({
       include: 'node_modules/**',
       // left-hand side can be an absolute path, a path
