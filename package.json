@@ -44,7 +44,7 @@
   "scripts": {
     "eslint:commit": "read -r CHANGES <<< `git diff-index --name-only HEAD | grep '\\(src\\|test\\)/.\\+\\.js$' | tr '\\n' ' '`; if [[ $CHANGES ]]; then yarn eslint ${CHANGES}; fi;",
     "pre-commit": "yarn lint-staged && yarn check-types && yarn test",
-    "check-types": "tsc",
+    "check-types": "yarn tsc",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
