@@ -3,6 +3,7 @@
 > UI Component Library used at Cision
 
 [![NPM](https://img.shields.io/npm/v/@cision/rover-ui.svg)](https://www.npmjs.com/package/@cision/rover-ui)
+[![](https://github.com/cision/rover-ui/workflows/Tests/badge.svg)](https://github.com/cision/rover-ui#install)
 
 RoverUI is a collection of UI components originally built for and by Cision. These components should help the Cision team build applications that look hot, in React, quickly.
 
