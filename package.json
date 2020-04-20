@@ -43,7 +43,8 @@
   },
   "scripts": {
     "eslint:commit": "read -r CHANGES <<< `git diff-index --name-only HEAD | grep '\\(src\\|test\\)/.\\+\\.js$' | tr '\\n' ' '`; if [[ $CHANGES ]]; then yarn eslint ${CHANGES}; fi;",
-    "pre-commit": "yarn lint-staged && yarn test",
+    "pre-commit": "yarn lint-staged && yarn check-types && yarn test",
+    "check-types": "yarn tsc",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
@@ -67,6 +68,7 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^4.0.0",
     "@storybook/addon-a11y": "^5.0.6",
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-backgrounds": "^5.0.6",
@@ -122,7 +124,8 @@
     "rollup-plugin-url": "^1.4.0",
     "storybook-readme": "^5.0.2",
     "stylelint": "^9.10.1",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "typescript": "^3.8.3"
   },
   "files": [
     "dist"
