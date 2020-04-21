@@ -31,7 +31,7 @@
 
 .checked {
   background-color: #ebfffe;
-  border-color: var(--rvr-teal-alt);
+  border-color: var(--rvr-color-brand-teal-alt);
   color: var(--rvr-gray-80);
   box-shadow: none;
 }
