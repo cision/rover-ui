@@ -3,10 +3,11 @@
 
 name: Deploy Github Pages
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
+# on:
+#   push:
+#     branches:
+#       - master
 
 jobs:
   deploy-gh-pages:
@@ -24,8 +25,12 @@ jobs:
           yarn build-storybook
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: docs # The folder the action should deploy.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+        # uses: JamesIves/github-pages-deploy-action@releases/v3
+        # with:
+        #   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        #   BRANCH: gh-pages # The branch the action should deploy to.
+        #   FOLDER: docs # The folder the action should deploy.
