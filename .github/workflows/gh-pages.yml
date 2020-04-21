@@ -3,7 +3,10 @@
 
 name: Deploy Github Pages
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   deploy-gh-pages:
