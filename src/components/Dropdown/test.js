@@ -1,9 +1,10 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Dropdown, { isOpenContext } from './';
+import Dropdown from './';
+import { isOpenContext } from './context';
 
-describe('Dropdown', () => {
+describe('Dropdow;n', () => {
   it('renders children', () => {
     shallow(<Dropdown onToggle={() => {}}>Boom</Dropdown>);
   });

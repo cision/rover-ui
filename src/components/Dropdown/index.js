@@ -6,7 +6,7 @@ import style from './style.css';
 
 import MenuMoon from './Menu';
 
-export const isOpenContext = React.createContext(false);
+import { isOpenContext } from './context';
 
 const Dropdown = ({
   children,

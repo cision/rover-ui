@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 
-import { isOpenContext } from '../';
+import { isOpenContext } from '../context';
 import style from './style.css';
 import ItemMoon from './Item';
 
