@@ -18,7 +18,14 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Deploy Github Pages 🚀
+      - name: Install and Build 🔧
         run: |
           yarn install
-          yarn deploy:storybook
+          yarn build-storybook
+
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          commit_message: "Storybook 🚀: Triggered from ${{ github.sha }}"
