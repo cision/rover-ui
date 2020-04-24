@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { ContainerQuery } from '@cision/react-container-query';
 import Context from '../Context';
@@ -62,14 +62,15 @@ const Container = ({ children, customBreakpoints, ...passedProps }) => {
   return (
     <ContainerQuery query={query}>
       {(params, ref) => {
-        const responsiveValue = Object.keys(params).reduce(
-          (result, paramKey) => {
-            if (params[paramKey]) {
-              result.push(paramKey);
-            }
-            return result;
-          },
-          []
+        const responsiveValue = useMemo(
+          () =>
+            Object.keys(params).reduce((result, paramKey) => {
+              if (params[paramKey]) {
+                result.push(paramKey);
+              }
+              return result;
+            }, []),
+          [params]
         );
 
         return (
