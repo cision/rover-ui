@@ -42,7 +42,12 @@ export default {
         }),
         postcssCalc(),
       ],
-      modules: true,
+      minimize: true,
+      modules: {
+        getJSON() {},
+        generateScopedName: 'rvr-[sha256:hash:base64:3]',
+        hashPrefix: 'prefix',
+      },
       sourceMap: true,
     }),
     url(),
