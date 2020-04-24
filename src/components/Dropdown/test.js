@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import Dropdown from './';
 import { isOpenContext } from './context';
 
-describe('Dropdow;n', () => {
+describe('Dropdown', () => {
   it('renders children', () => {
     shallow(<Dropdown onToggle={() => {}}>Boom</Dropdown>);
   });
