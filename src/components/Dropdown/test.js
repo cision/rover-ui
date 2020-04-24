@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Dropdown, { isOpenContext } from './';
+import Dropdown from './';
+import { isOpenContext } from './context';
 
 describe('Dropdown', () => {
   it('renders children', () => {
