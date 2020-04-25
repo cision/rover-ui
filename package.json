@@ -57,10 +57,11 @@
     "prepare": "",
     "prepublish": "in-publish && yarn test && yarn build || not-in-publish",
     "predeploy": "cd example && yarn install && yarn run build",
-    "postpublish": "git tag v$npm_package_version && git push --tags && echo \"Successfully released version $npm_package_version!\" && yarn deploy:storybook",
+    "postpublish": "git tag v$npm_package_version && git push --tags && echo \"Successfully released version $npm_package_version!\"",
     "release": "yarn publish --no-git-tag-version",
     "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook -o docs"
+    "build-storybook": "build-storybook -o docs",
+    "update-changelog": "auto-changelog --commit-limit false --package"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -78,6 +79,7 @@
     "@storybook/addons": "^5.0.6",
     "@storybook/react": "^5.0.6",
     "@svgr/rollup": "^2.4.1",
+    "auto-changelog": "^2.0.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
     "babel-loader": "^7.1.5",
