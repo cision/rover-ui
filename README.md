@@ -3,7 +3,7 @@
 > UI Component Library used at Cision
 
 [![NPM](https://img.shields.io/npm/v/@cision/rover-ui.svg)](https://www.npmjs.com/package/@cision/rover-ui)
-[![](https://github.com/cision/rover-ui/workflows/Tests/badge.svg)](https://github.com/cision/rover-ui#install)
+[![Tests](https://github.com/cision/rover-ui/workflows/Tests/badge.svg)](#install)
 
 RoverUI is a collection of UI components originally built for and by Cision. These components should help the Cision team build applications that look hot, in React, quickly.
 
@@ -11,12 +11,12 @@ RoverUI is a collection of UI components originally built for and by Cision. The
 
 ```bash
 # yarn
-yarn add rover-ui
+yarn add @cision/rover-ui
 ```
 
 ```bash
 # npm
-npm install --save rover-ui
+npm install --save @cision/rover-ui
 ```
 
 For more instructions on installing and using the RoverUI package in your app, see the [docs in Storybook](https://cision.github.io/rover-ui)
@@ -28,11 +28,15 @@ To install and develop or run locally, you're in the right place.
 ```jsx
 import React, { Component } from 'react';
 
-import MyComponent from 'rover-ui';
+import { Media } from '@cision/rover-ui';
 
 class Example extends Component {
   render() {
-    return <MyComponent />;
+    return (
+      <Media>
+        <Media.Item>👋🏻</Media.Item>
+      </Media>
+    );
   }
 }
 ```
@@ -80,6 +84,14 @@ To publish the npm package, you'll need a free account on npmjs.com, and you'll 
 4. After merging to master, from your local machine, run `yarn release` in the root. You'll be prompted for the publish version, which should match the package version.
 
 If you don't have write access to the repo, one of the admins can do steps 3 and 4 for you.
+
+## Publishing Storybook
+
+By default, our Storybook docs are published automatically using ![Github Actions](.github/workflows/gh-pages.yml). If there is an issue with this release or you need to publish this manually, use the following command:
+
+```sh
+$ yarn storybook:deploy
+```
 
 ## Reporting issues
 
