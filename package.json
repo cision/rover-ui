@@ -1,9 +1,6 @@
 {
   "name": "@cision/rover-ui",
   "version": "1.4.4",
-  "publishConfig": {
-    "tag": "v1.4.4"
-  },
   "description": "UI Component Library",
   "author": "Matthew Wells (https://github.com/mdespuits)",
   "contributors": [
@@ -55,13 +52,16 @@
     "hygen": "hygen",
     "generate-component": "hygen component new",
     "prepare": "",
-    "prepublish": "in-publish && yarn test && yarn build || not-in-publish",
     "predeploy": "cd example && yarn install && yarn run build",
-    "postpublish": "git tag v$npm_package_version && git push --tags && echo \"Successfully released version $npm_package_version!\"",
-    "release": "yarn publish --no-git-tag-version",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook -o docs",
-    "update-changelog": "auto-changelog --commit-limit false --package"
+    "update-changelog": "auto-changelog --commit-limit false --package",
+    "-- VERSION --": "",
+    "preversion": "yarn test",
+    "version": "yarn build && yarn update-changelog && git add CHANGELOG.md",
+    "prepublish": "in-publish && yarn test && yarn build || not-in-publish",
+    "postpublish": "git tag v$npm_package_version && git push --tags && echo \"Successfully released version $npm_package_version!\"",
+    "release": "yarn publish --no-git-tag-version"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
