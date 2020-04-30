@@ -42,7 +42,9 @@ export default {
         }),
         postcssCalc(),
       ],
-      minimize: true,
+      minimize: {
+        zindex: false,
+      },
       modules: {
         getJSON() {},
         generateScopedName: 'rvr-[sha256:hash:base64:3]',
