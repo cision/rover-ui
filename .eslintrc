@@ -1,30 +1,28 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "airbnb",
-    "prettier"
-  ],
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb-typescript", "prettier"],
   "env": {
     "es6": true,
     "jest": true,
     "browser": true
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "import"
-  ],
+  "plugins": ["@typescript-eslint", "react", "prettier", "import"],
   "parserOptions": {
-    "sourceType": "module"
+    "project": "./tsconfig.json"
   },
   "rules": {
+    "react/jsx-props-no-spreading": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-named-as-default": "off",
     "func-names": 0,
     "no-param-reassign": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "react/forbid-prop-types": [1, { "forbid": ["any"] }],
     "react/prefer-stateless-function": "off",
     "react/jsx-indent": [2, 2],
@@ -32,6 +30,7 @@
     "spaced-comment": "off",
     "no-prototype-builtins": "off",
     "import/no-anonymous-default-export": "error",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "@typescript-eslint/space-before-function-paren": "off"
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { withKnobs } from '@storybook/addon-knobs';
@@ -14,12 +13,16 @@ addDecorator(
 addDecorator(addReadme);
 
 addParameters({
+  readme: {
+    codeTheme: 'github',
+  },
   backgrounds: [
     { name: 'Light gray (default)', value: '#f6f8f8', default: true },
     { name: 'White', value: 'white' },
     { name: 'Black', value: 'black' },
   ],
   options: {
+    showPanel: true,
     panelPosition: 'right',
   },
 });
