@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "extends": ["airbnb-typescript", "prettier"],
+  "extends": ["airbnb-typescript", "prettier", "prettier/@typescript-eslint"],
   "env": {
     "es6": true,
     "jest": true,
