@@ -52,8 +52,8 @@ export const Grid = withDefaultTheme(
         {...passedProps}
         className={classNames(style.Grid, customClassName)}
       >
-        <div className={style.Columns} style={{ margin: inverseGutter }}>
-          {entries.map(child => (
+        <div className={style.gridColumns} style={{ margin: inverseGutter }}>
+          {entries.map((child) => (
             <Entry
               entryPercentWidth={entryPercentWidth}
               gutter={safeGutter}

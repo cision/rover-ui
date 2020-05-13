@@ -29,9 +29,16 @@
     "no-param-reassign": 0,
     "react/jsx-filename-extension": [
       1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
     ],
-    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": ["any"]
+      }
+    ],
     "react/prefer-stateless-function": "off",
     "react/jsx-indent": [2, 2],
     "class-methods-use-this": "off",

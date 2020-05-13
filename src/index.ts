@@ -1,4 +1,3 @@
-// Global CSS variables
 import './shared/buttons.css';
 import './shared/colors.css';
 import './shared/sizing.css';
