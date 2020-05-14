@@ -30,7 +30,7 @@ const Slack = ({ fill, ...props }) => (
     </g>
   </svg>
 );
-Slack.propTypes = { fill: PropTypes.arrray };
+Slack.propTypes = { fill: PropTypes.array };
 Slack.defaultProps = {
   fill: [
     iconColorsMap.slackred,

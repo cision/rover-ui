@@ -31,7 +31,7 @@ const Google = ({ fill, ...props }) => (
   </svg>
 );
 
-Google.propTypes = { fill: PropTypes.arrray };
+Google.propTypes = { fill: PropTypes.array };
 Google.defaultProps = {
   fill: [
     iconColorsMap.googleblue,
