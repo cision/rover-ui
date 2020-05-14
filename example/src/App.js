@@ -10,6 +10,7 @@ import {
   Paper,
   Grid,
   Icon,
+  iconsMap,
   Responsive,
   SideTray,
   EasyTabMenu,
@@ -72,9 +73,11 @@ const App = () => {
           <Media.Body>Media.Body</Media.Body>
         </Media>
       </Section>
+
       <Section title="Paper">
         <Paper>Paper</Paper>
       </Section>
+
       <Section title="Grid">
         <Grid columns={4} gutter="md">
           <Paper>Grid entry 1</Paper>
@@ -187,25 +190,16 @@ const App = () => {
           />
         </div>
       </Section>
+
       <Section title="Icon">
         <div className="flex flex-row flex-wrap">
-          <Icon className="w-8" name="times-circle" />
-          <Icon className="w-8" name="facebook" />
-          <Icon className="w-8" name="googleplus" />
-          <Icon className="w-8" name="instagram" />
-          <Icon className="w-8" name="linkedin" />
-          <Icon className="w-8" name="reddit" />
-          <Icon className="w-8" name="twitch" />
-          <Icon className="w-8" name="twitter" />
-          <Icon className="w-8" name="youtube" />
-          <Icon className="w-8" name="facebook" fill="#ffffff" />
-          <Icon className="w-8" name="googleplus" fill="#ffffff" />
-          <Icon className="w-8" name="instagram" fill="#ffffff" />
-          <Icon className="w-8" name="linkedin" fill="#ffffff" />
-          <Icon className="w-8" name="reddit" fill={['#fff', '#fff']} />
-          <Icon className="w-8" name="twitch" fill="#ffffff" />
-          <Icon className="w-8" name="twitter" fill="#ffffff" />
-          <Icon className="w-8" name="youtube" fill="#ffffff" />
+          {Object.keys(iconsMap).map((icon) => (
+            <div key={icon} className="p-3">
+              <Tooltip showOnHover content={icon}>
+                <Icon name={icon} />
+              </Tooltip>
+            </div>
+          ))}
         </div>
       </Section>
 
@@ -254,7 +248,7 @@ const App = () => {
         </EasyPill>
       </Section>
 
-      <Section title="dropdown">
+      <Section title="Dropdown">
         <Dropdown
           isOpen={isDropdownOpen}
           onToggle={() => {
