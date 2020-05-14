@@ -1,6 +1,4 @@
 body {
-  background: lightgray;
-  margin: 0;
-  padding: 40px;
-  font-family: sans-serif;
+  /* Keeps stylelint off my back */
+  visibility: visible;
 }

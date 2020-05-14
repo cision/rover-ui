@@ -17,7 +17,7 @@ export { default as EasyDropdown } from './components/EasyDropdown';
 export { default as EasyPill } from './components/EasyPill';
 export { default as ExpansionPanel } from './components/ExpansionPanel';
 export { default as Grid } from './components/Grid';
-export { default as Icon } from './components/Icon';
+export { default as Icon, iconsMap } from './components/Icon';
 export { default as Media } from './components/Media';
 export { default as Paper } from './components/Paper';
 export { default as Pill } from './components/Pill';
