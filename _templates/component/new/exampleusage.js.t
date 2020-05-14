@@ -6,4 +6,4 @@ skip_if: <h1><%= h.changeCase.pascal(name) %></h1>
 ---
       <Section title="<%= h.changeCase.pascal(name) %>">
         <<%= h.changeCase.pascal(name) %> />
-      </section>
+      </Section>
