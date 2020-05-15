@@ -22,16 +22,21 @@ It's _not_ a repository for all shared components. Don't try to add components t
 We use [`hygen`](http://www.hygen.io/) templates to make adding component boilerplate much simpler.
 
 ```sh
-# rover-ui
-$ yarn hygen component new Dropdown
+$ yarn hygen component new Select
+$ /Users/mwells/code/github.com/cision/rover-ui/node_modules/.bin/hygen component new Select
 
 Loaded templates: _templates
-       added: src/components/Dropdown/index.js
-      inject: src/index.js
-       added: src/components/Dropdown/README.md
-       added: src/components/Dropdown/story.js
+       added: src/components/Select/Select.css
+       added: src/components/Select/Select.tsx
+      inject: example/src/App.js
+      inject: example/src/App.js
+       added: src/components/Select/index.ts
+      inject: src/index.ts
+       added: src/components/Select/README.md
+       added: src/components/Select/story.js
       inject: src/stories/index.js
-       added: src/components/Dropdown/test.js
+       added: src/components/Select/test.js
+✨  Done in 0.77s.
 ```
 
 At any time you can see what generators we have configured using `hygen help`.
