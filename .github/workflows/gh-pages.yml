@@ -5,8 +5,7 @@ name: Deploy Github Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   deploy-gh-pages:
@@ -21,11 +20,10 @@ jobs:
       - name: Install and Build 🔧
         run: |
           yarn install
-          yarn build-storybook
+          yarn storybook:build
 
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          commit_message: "Storybook 🚀: Triggered from ${{ github.sha }}"
