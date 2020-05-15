@@ -1,37 +1,60 @@
 {
-  "parser": "babel-eslint",
+  "root": true,
+  "parser": "@typescript-eslint/parser",
   "extends": [
-    "airbnb",
-    "prettier"
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint"
   ],
   "env": {
     "es6": true,
     "jest": true,
     "browser": true
   },
-  "plugins": [
-    "react",
-    "prettier",
-    "import"
-  ],
+  "plugins": ["@typescript-eslint", "react", "prettier", "import"],
   "parserOptions": {
-    "sourceType": "module"
+    "project": "./tsconfig.json"
   },
   "rules": {
+    "react/jsx-props-no-spreading": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
     "import/no-named-as-default": "off",
     "func-names": 0,
     "no-param-reassign": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": [1, { "forbid": ["any"] }],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react/forbid-prop-types": [
+      1,
+      {
+        "forbid": ["any"]
+      }
+    ],
     "react/prefer-stateless-function": "off",
     "react/jsx-indent": [2, 2],
     "class-methods-use-this": "off",
     "spaced-comment": "off",
     "no-prototype-builtins": "off",
     "import/no-anonymous-default-export": "error",
-    "prettier/prettier": "error"
-  }
+    "prettier/prettier": "error",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["error"]
+      }
+    }
+  ]
 }
