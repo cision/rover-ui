@@ -61,7 +61,7 @@ To publish the npm package, you'll need a free account on npmjs.com, and you'll 
 
 1. In `package.json`, bump the `version` and `publishConfig.tag` properties _using [semver](https://semver.org/)_. `publishConfig.tag` should start with a "v", but otherwise be identical to `version`.
 2. If all tests look good (`yarn test`), submit a pull-request against the master branch through GitHub.
-3. Once you have at least one PR approval from a champion and no pending requests for changes, you can merge in to master.
+3. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
 4. After merging to master, from your local machine, run `yarn release` in the root. You'll be prompted for the publish version, which should match the package version.
 
 If you don't have write access to the repo, one of the admins can do steps 3 and 4 for you.
