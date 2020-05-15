@@ -43,7 +43,7 @@
   },
   "scripts": {
     "eslint:commit": "read -r CHANGES <<< `git diff-index --name-only HEAD | grep '\\(src\\|test\\)/.\\+\\.js$' | tr '\\n' ' '`; if [[ $CHANGES ]]; then yarn eslint ${CHANGES}; fi;",
-    "pre-commit": "run-p pre-commit:*",
+    "pre-commit": "run-p -l pre-commit:*",
     "pre-commit:lint": "yarn lint-staged",
     "pre-commit:types": "yarn tsc",
     "pre-commit:test": "yarn test",

@@ -5,7 +5,7 @@ unless_exists: true
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import <%= h.changeCase.pascal(name) %> from './';
+import <%= h.changeCase.pascal(name) %> from '.';
 
 describe('<%= h.changeCase.pascal(name) %>', () => {
   it('reminds you to write some tests', () => {

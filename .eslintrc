@@ -1,6 +1,5 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
   "extends": [
     "airbnb-typescript",
     "airbnb/hooks",
@@ -53,6 +52,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
+        "react/prop-types": "off",
         "@typescript-eslint/explicit-function-return-type": ["error"]
       }
     }
