@@ -53,6 +53,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
+        "react/prop-types": "off",
         "@typescript-eslint/explicit-function-return-type": ["error"]
       }
     }

@@ -12,12 +12,14 @@ Instead, write components with generic objects in mind, like people, media, acti
 
 Component js, style, test, and story should be siblings. If they're in their own directory, provide an `index.js` file.
 
-```
+```sh
+$ tree src/components/Modal
 Modal/
-|-- index.js   # Core component file, imports style.css
-|-- style.css  # Styles, as CSS modules
-|-- test.js    # Used with an npm command
-`-- story.js  # Used by storybook, separate npm command
+|-- index.ts          # Re-exports from Modal.tsx
+|-- Modal.tsx         # Core component file, imports Modal.css
+|-- Modal.module.css  # Styles, as CSS modules
+|-- test.js           # Used with an npm command
+|-- story.js          # Used by storybook, separate npm command
 ```
 
 ### Sub-components
@@ -28,47 +30,40 @@ Expose the components with `.` notation, as `Modal.Header`, etc.
 
 Sub-components have the same structure/naming conventions as top-level components, but they live in nested folders under the parents.
 
-```
+```sh
+$ tree src/components/Modal
 Modal/
-|-- index.js
-|-- style.css
+|-- index.ts
+|-- Modal.tsx
+|-- Modal.module.css
 |-- test.js
 |-- story.js
-`-- Header/
-    |-- index.js
-    |-- style.css
+|-- Header/
+    |-- index.ts
+    |-- Header.tsx
+    |-- Header.module.css
     |-- test.js
-    `-- story.js
+    |-- story.js
 ```
 
 Generally, if a component has sub-components, you shouldn't render anything else at the component's top-level. Also, those sub-components should not be rendered anywhere outside of the parent.
 
-```
+```jsx
 // Bad
 return (
   <Modal>
-    <Modal.Header>
-      Title
-    </Modal.Header>
+    <Modal.Header>Title</Modal.Header>
     This text should be wrapped in a sub-component.
   </Modal>
 );
 
-return (
-  <Modal.Header>
-    This header shouldn't be outside a Modal.
-  </Modal.Header>
-);
+return <Modal.Header>This header shouldn't be outside a Modal.</Modal.Header>;
 
 // Good
 return (
   <Modal>
-    <Modal.Header>
-      Title
-    </Modal.Header>
-    <Modal.Footer>
-      ...buttons, maybe?
-    </Modal.Footer>
+    <Modal.Header>Title</Modal.Header>
+    <Modal.Footer>...buttons, maybe?</Modal.Footer>
   </Modal>
 );
 ```
@@ -97,13 +92,19 @@ Sometimes, there's good reason to include local state, e.g. to handle clearing a
 
 We run linters pre-commit to enforce code conventions. It is useful to have your editor automatically fix issues before you attempt to commit. Here are direct links to help you setup each of these linters for your preferred editor.
 
+### ESLint
+
 - [ESLint](https://eslint.org/) to lint JS
 - Configuration: [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb) (modified)
 - [Editor integrations](https://eslint.org/docs/user-guide/integrations#editors)
 
-* [stylelint](https://github.com/stylelint/stylelint) to lint stylesheets
-* Configuration: [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
-* [Editor integrations](https://stylelint.io/user-guide/complementary-tools/#editor-plugins)
+### Stylelint
+
+- [stylelint](https://github.com/stylelint/stylelint) to lint stylesheets
+- Configuration: [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
+- [Editor integrations](https://stylelint.io/user-guide/complementary-tools/#editor-plugins)
+
+### Prettier
 
 - [Prettier](https://prettier.io/) to format stylesheets
 - [Editor integrations](https://prettier.io/docs/en/editors.html)
@@ -115,5 +116,4 @@ All code changes should be in branches and should be reviewed and approved by at
 Currently, the champions are:
 
 - [@mdespuits](https://github.com/mdespuits)
-- [@chelshaw](https://github.com/chelshaw)
 - [@pixelbandito](https://github.com/pixelbandito)

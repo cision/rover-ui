@@ -10,6 +10,7 @@ import {
   Paper,
   Grid,
   Icon,
+  iconsMap,
   Responsive,
   SideTray,
   EasyTabMenu,
@@ -25,6 +26,8 @@ import {
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
+import Section from './Section';
+
 const App = () => {
   const [isSideTrayOpen, setIsSideTrayOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('ONE');
@@ -32,8 +35,8 @@ const App = () => {
   const [isEasyPillChecked, setIsEasyPillChecked] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
 
-  const toggleTooltip = function() {
-    setTooltipOpen(prev => !prev);
+  const toggleTooltip = function () {
+    setTooltipOpen((prev) => !prev);
   };
 
   const TooltipContent = (
@@ -44,23 +47,19 @@ const App = () => {
   );
 
   return (
-    <div>
-      <section>
-        <h1>Badge</h1>
+    <div className="p-8 bg-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Section title="Badge">
         <Badge variant="info">Badge</Badge>
-      </section>
-      <section>
-        <h1>Bar</h1>
+      </Section>
+      <Section title="Bar">
         <Bar.Bar>
           <Bar.Fill width="50%" />
         </Bar.Bar>
-      </section>
-      <section>
-        <h1>Button</h1>
+      </Section>
+      <Section title="Button">
         <Button>Button</Button>
-      </section>
-      <section>
-        <h1>Media</h1>
+      </Section>
+      <Section title="Media">
         <Media>
           <Media.Item mr="md">
             <small>
@@ -73,32 +72,25 @@ const App = () => {
           </Media.Item>
           <Media.Body>Media.Body</Media.Body>
         </Media>
-      </section>
-      <section>
-        <h1>Paper</h1>
+      </Section>
+
+      <Section title="Paper">
         <Paper>Paper</Paper>
-      </section>
-      <section>
-        <h1>Grid</h1>
+      </Section>
+
+      <Section title="Grid">
         <Grid columns={4} gutter="md">
           <Paper>Grid entry 1</Paper>
           <Paper>Grid entry 2</Paper>
           <Paper>Grid entry 3</Paper>
           <Paper>Grid entry 4</Paper>
         </Grid>
-      </section>
-      <section>
-        <h1>Responsive</h1>
-        <hr />
-        <h1>Responsive.Grid</h1>
-        <div
-          style={{
-            border: '1px solid black',
-            padding: '20px',
-            resize: 'horizontal',
-            overflowX: 'hidden',
-          }}
-        >
+      </Section>
+
+      <Section title="Responsive">
+        <h3 className="text-xl mb-3">Responsive.Grid</h3>
+
+        <div className="border p-5 resize-y overflow-x-hidden mb-4">
           <Responsive.Container>
             <Responsive.Grid
               breakpoints={{
@@ -112,41 +104,31 @@ const App = () => {
                 },
               }}
             >
-              <Paper>Grid entry 1</Paper>
-              <Paper>Grid entry 2</Paper>
-              <Paper>Grid entry 3</Paper>
-              <Paper>Grid entry 4</Paper>
+              <div className="p-4 text-xl bg-red-300">Grid entry 1</div>
+              <div className="p-4 text-xl bg-red-300">Grid entry 2</div>
+              <div className="p-4 text-xl bg-red-300">Grid entry 3</div>
+              <div className="p-4 text-xl bg-red-300">Grid entry 4</div>
             </Responsive.Grid>
           </Responsive.Container>
         </div>
+
         <hr />
-        <h1>Responsive.Hidden</h1>
-        <div
-          style={{
-            border: '1px solid black',
-            padding: '20px',
-            resize: 'horizontal',
-            overflowX: 'hidden',
-          }}
-        >
+
+        <h3 className="text-xl mb-3">Responsive.Hidden</h3>
+
+        <div className="border p-5 resize-y overflow-x-hidden mb-4">
           <Responsive.Container>
-            <div>
-              <Responsive.Hidden breakpoints={['container-xs-down']}>
-                I hide on small pages.
-              </Responsive.Hidden>
-            </div>
+            <Responsive.Hidden breakpoints={['container-xs-down']}>
+              I hide on small pages.
+            </Responsive.Hidden>
           </Responsive.Container>
         </div>
+
         <hr />
-        <h1>Responsive.Visible</h1>
-        <div
-          style={{
-            border: '1px solid black',
-            padding: '20px',
-            resize: 'horizontal',
-            overflowX: 'hidden',
-          }}
-        >
+
+        <h3 className="text-xl mb-3">Responsive.Hidden</h3>
+
+        <div className="border p-5 resize-y overflow-x-hidden mb-4">
           <Responsive.Container>
             <div>
               <Responsive.Visible breakpoints={['container-xs-down']}>
@@ -155,41 +137,37 @@ const App = () => {
             </div>
           </Responsive.Container>
         </div>
-      </section>
-      <section>
-        <h1>SideTray</h1>
-        <div>
-          <button onClick={() => setIsSideTrayOpen(true)} type="button">
-            Open SideTray
-          </button>
-          <SideTray
-            visible={isSideTrayOpen}
-            onClose={() => setIsSideTrayOpen(false)}
-          >
-            <SideTray.Header>Header</SideTray.Header>
-            <SideTray.Body>
-              <div style={{ padding: '20px' }}>
-                <p>Side Tray Content!</p>
-                <p>
-                  You can close me by clicking outside, clicking this{' '}
-                  <button onClick={() => setIsSideTrayOpen(false)}>
-                    button
-                  </button>
-                  , or clicking the &apos;esc&apos; key
-                </p>
-                <p style={{ padding: '250px 0' }}>More content</p>
-                <p style={{ padding: '250px 0' }}>More content</p>
-                <p style={{ padding: '250px 0' }}>More content</p>
-                <p style={{ padding: '250px 0' }}>More content</p>
-              </div>
-            </SideTray.Body>
-            <SideTray.Footer>Footer</SideTray.Footer>
-          </SideTray>
-        </div>
-      </section>
-      <section>
-        <h1>EasyTabMenu</h1>
-        <div style={{ background: 'white', padding: '0 20px' }}>
+      </Section>
+
+      <Section title="SideTray">
+        <button onClick={() => setIsSideTrayOpen(true)} type="button">
+          Open SideTray
+        </button>
+        <SideTray
+          visible={isSideTrayOpen}
+          onClose={() => setIsSideTrayOpen(false)}
+        >
+          <SideTray.Header>Header</SideTray.Header>
+          <SideTray.Body>
+            <div style={{ padding: '20px' }}>
+              <p>Side Tray Content!</p>
+              <p>
+                You can close me by clicking outside, clicking this{' '}
+                <button onClick={() => setIsSideTrayOpen(false)}>button</button>
+                , or clicking the &apos;esc&apos; key
+              </p>
+              <p style={{ padding: '250px 0' }}>More content</p>
+              <p style={{ padding: '250px 0' }}>More content</p>
+              <p style={{ padding: '250px 0' }}>More content</p>
+              <p style={{ padding: '250px 0' }}>More content</p>
+            </div>
+          </SideTray.Body>
+          <SideTray.Footer>Footer</SideTray.Footer>
+        </SideTray>
+      </Section>
+
+      <Section title="EasyTabMenu">
+        <div className="bg-white px-4">
           <EasyTabMenu
             tabs={[
               {
@@ -211,42 +189,34 @@ const App = () => {
             activeTab={activeTab}
           />
         </div>
-      </section>
-      <section>
-        <h1>Icon</h1>
-        <Icon name="times-circle" />
-        <Icon name="facebook" />
-        <Icon name="googleplus" />
-        <Icon name="instagram" />
-        <Icon name="linkedin" />
-        <Icon name="reddit" />
-        <Icon name="twitch" />
-        <Icon name="twitter" />
-        <Icon name="youtube" />
-        <Icon name="facebook" fill="#ffffff" />
-        <Icon name="googleplus" fill="#ffffff" />
-        <Icon name="instagram" fill="#ffffff" />
-        <Icon name="linkedin" fill="#ffffff" />
-        <Icon name="reddit" fill="#ffffff" />
-        <Icon name="twitch" fill="#ffffff" />
-        <Icon name="twitter" fill="#ffffff" />
-        <Icon name="youtube" fill="#ffffff" />
-      </section>
-      <section>
-        <h1>Pill</h1>
+      </Section>
+
+      <Section title="Icon">
+        <div className="flex flex-row flex-wrap">
+          {Object.keys(iconsMap).map((icon) => (
+            <div key={icon} className="p-3">
+              <Tooltip showOnHover content={icon}>
+                <Icon name={icon} />
+              </Tooltip>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Pill">
         <Pill onClick={() => {}} checked>
           Pill with addon
           <Pill.Addon onClick={() => {}}>✓</Pill.Addon>
         </Pill>
-      </section>
-      <section>
-        <h1>DeletablePill</h1>
+      </Section>
+
+      <Section title="DeletablePill">
         <DeletablePill onDelete={() => {}} checked>
           DeletablePill
         </DeletablePill>
-      </section>
-      <section>
-        <h1>EasyPill</h1>
+      </Section>
+
+      <Section title="EasyPill">
         <EasyPill
           actions={[
             {
@@ -276,9 +246,9 @@ const App = () => {
         >
           EasyPill checked
         </EasyPill>
-      </section>
-      <section>
-        <h1>Dropdown</h1>
+      </Section>
+
+      <Section title="Dropdown">
         <Dropdown
           isOpen={isDropdownOpen}
           onToggle={() => {
@@ -300,9 +270,9 @@ const App = () => {
             Menu
           </Dropdown.Menu>
         </Dropdown>
-      </section>
-      <section>
-        <h1>EasyDropdown</h1>
+      </Section>
+
+      <Section title="EasyDropdown">
         <EasyDropdown
           menuItems={[
             { label: 'I do nothing!' },
@@ -315,9 +285,9 @@ const App = () => {
         >
           Simple config
         </EasyDropdown>
-      </section>
-      <section>
-        <h1>EasyPill</h1>
+      </Section>
+
+      <Section title="EasyPill">
         <EasyPill
           actions={[
             {
@@ -335,20 +305,20 @@ const App = () => {
         >
           With actions and onDelete
         </EasyPill>
-      </section>
-      <section>
-        <h1>Collapse</h1>
+      </Section>
+
+      <Section title="Collapse">
         <Collapse isOpen>Collapse content</Collapse>
-      </section>
-      <section>
-        <h1>ExpansionPanel</h1>
+      </Section>
+
+      <Section title="ExpansionPanel">
         <ExpansionPanel defaultExpanded={false}>
           <ExpansionPanel.Header>Click me!</ExpansionPanel.Header>
           <ExpansionPanel.Body>├── Body</ExpansionPanel.Body>
         </ExpansionPanel>
-      </section>
-      <section>
-        <h1>Accordion</h1>
+      </Section>
+
+      <Section title="Accordion">
         <Accordion>
           <ExpansionPanel>
             <ExpansionPanel.Header>Header 1</ExpansionPanel.Header>
@@ -359,37 +329,38 @@ const App = () => {
             <ExpansionPanel.Body>Body 2</ExpansionPanel.Body>
           </ExpansionPanel>
         </Accordion>
-      </section>
-      <section>
-        <h1>Avatar</h1>
+      </Section>
+
+      <Section title="Avatar">
         <Avatar size="medium" imageUrl="https://picsum.photos/60" />
-      </section>
-      <section style={{ width: '100%', margin: '30px 0' }}>
-        <h1>Tooltip</h1>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div style={{ marginRight: '50px' }}>
-            <Tooltip hover direction="top" text="Hello there!">
+      </Section>
+
+      <Section title="Tooltip">
+        <div className="flex items-center">
+          <div className="mr-8">
+            <Tooltip showOnHover direction="top" content="Hello there!">
               <Button>I show a tooltip when you hover over me</Button>
             </Tooltip>
           </div>
+
           <Tooltip
-            open={tooltipOpen}
+            isOpen={tooltipOpen}
             onClose={toggleTooltip}
-            direction="right"
-            width="300px"
+            direction="top"
+            tooltipWidth="300px"
             content={TooltipContent}
           >
             <Button onClick={toggleTooltip}>Button</Button>
           </Tooltip>
         </div>
-      </section>
-      <section>
-        <h1>Callout</h1>
+      </Section>
+
+      <Section title="Callout">
         <Callout>
           Oh, man, this is really a callout now, bro. You&apos;re going to want
           to pay attention to this one, bro.
         </Callout>
-      </section>
+      </Section>
       {/** USAGE_INJECTOR */}
     </div>
   );

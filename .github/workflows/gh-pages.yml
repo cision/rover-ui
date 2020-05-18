@@ -5,8 +5,7 @@ name: Deploy Github Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   deploy-gh-pages:
@@ -21,7 +20,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           yarn install
-          yarn build-storybook
+          yarn storybook:build
 
       - name: Deploy 🚀
         uses: peaceiris/actions-gh-pages@v3
