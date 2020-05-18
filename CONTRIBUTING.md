@@ -22,11 +22,11 @@ It's _not_ a repository for all shared components. Don't try to add components t
 We use [`hygen`](http://www.hygen.io/) templates to make adding component boilerplate much simpler.
 
 ```sh
-$ yarn hygen component new Select
+$ yarn generate-component Select
 $ /Users/mwells/code/github.com/cision/rover-ui/node_modules/.bin/hygen component new Select
 
 Loaded templates: _templates
-       added: src/components/Select/Select.css
+       added: src/components/Select/Select.module.css
        added: src/components/Select/Select.tsx
       inject: example/src/App.js
       inject: example/src/App.js

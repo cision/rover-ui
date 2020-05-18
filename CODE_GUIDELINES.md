@@ -15,11 +15,11 @@ Component js, style, test, and story should be siblings. If they're in their own
 ```sh
 $ tree src/components/Modal
 Modal/
-|-- index.ts  # Re-exports from Modal.tsx
-|-- Modal.tsx # Core component file, imports Modal.css
-|-- Modal.css # Styles, as CSS modules
-|-- test.js   # Used with an npm command
-|-- story.js  # Used by storybook, separate npm command
+|-- index.ts          # Re-exports from Modal.tsx
+|-- Modal.tsx         # Core component file, imports Modal.css
+|-- Modal.module.css  # Styles, as CSS modules
+|-- test.js           # Used with an npm command
+|-- story.js          # Used by storybook, separate npm command
 ```
 
 ### Sub-components
@@ -35,13 +35,13 @@ $ tree src/components/Modal
 Modal/
 |-- index.ts
 |-- Modal.tsx
-|-- Modal.css
+|-- Modal.module.css
 |-- test.js
 |-- story.js
 |-- Header/
     |-- index.ts
     |-- Header.tsx
-    |-- Header.css
+    |-- Header.module.css
     |-- test.js
     |-- story.js
 ```

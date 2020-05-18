@@ -7,7 +7,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { ClassValue } from 'classnames/types';
 
-import styles from './<%= PascalName %>.css';
+import styles from './<%= PascalName %>.module.css';
 
 interface <%= PascalName %>Props {
   className?: ClassValue;
