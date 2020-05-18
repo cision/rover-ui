@@ -2,8 +2,7 @@
 to: src/components/<%= h.changeCase.pascal(name) %>/<%= h.changeCase.pascal(name) %>.tsx
 unless_exists: true
 ---
-<% PascalName = h.changeCase.pascal(name) %>
-import React from 'react';
+<% PascalName = h.changeCase.pascal(name) %>import React from 'react';
 import classNames from 'classnames';
 import { ClassValue } from 'classnames/types';
 

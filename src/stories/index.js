@@ -70,4 +70,5 @@ import '../components/Responsive/Visible/story';
  * Move these to a section above before committing
  */
 import '../components/Tooltip/story';
+import '../components/Form/Input/story';
 /** INJECTOR */

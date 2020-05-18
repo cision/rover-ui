@@ -1,0 +1,36 @@
+.Input {
+  background: var(--rvr-white);
+  border-radius: 4px;
+  border: 2px solid var(--rvr-gray-60);
+  box-sizing: border-box;
+  color: var(--rvr-gray-90);
+  font-size: 14px;
+  outline: none;
+  padding: calc(14px * 0.6);
+}
+
+.Input::placeholder {
+  color: var(--rvr-gray-60);
+}
+
+.Input:focus {
+  border-color: var(--rvr-blue);
+  box-shadow: 0 0 4px var(--rvr-blue);
+}
+
+.Input[disabled] {
+  border-color: var(--rvr-gray-40);
+  color: var(--rvr-gray-40);
+  pointer-events: none;
+}
+
+.error {
+  background-color: var(--rvr-red-lite-2);
+  border-color: currentColor;
+  color: var(--rvr-red);
+}
+
+.error:focus {
+  border-color: currentColor;
+  box-shadow: 0 0 4px var(--rvr-red-lite-1);
+}

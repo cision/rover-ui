@@ -1,5 +1,5 @@
 ---
-to: src/components/<%= h.changeCase.pascal(name) %>/test.js
+to: src/components/<%= h.changeCase.pascal(name) %>/<%= h.changeCase.pascal(name) %>.test.tsx
 unless_exists: true
 ---
 import React from 'react';
