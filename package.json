@@ -91,7 +91,7 @@
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "auto-changelog": "^2.0.0",
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-es2017-object-entries": "^0.0.5",
