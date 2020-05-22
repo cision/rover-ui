@@ -14,9 +14,9 @@ const semanticSizes = {
 
 type TOnErrorArgs = Error | Event | string | null;
 type ImageFetcherArgs = {
-  onLoad: (src: string) => void;
+  onLoad: (src: string | null) => void;
   onError: (e: TOnErrorArgs) => void;
-  src: string;
+  src: string | null;
 };
 
 // This function will be used in a useEffect so make sure it returns a cleanup function
@@ -45,7 +45,7 @@ function defaultImageFetcher({
   img.onerror = function(e) {
     onError(e);
   };
-  img.src = src;
+  if (src) img.src = src;
 
   return () => {
     img.onload = () => {};
@@ -64,7 +64,7 @@ interface AvatarProps
   name?: string;
   imageUrl?: string;
   className?: string;
-  onLoad?: (src: string) => void;
+  onLoad?: (src: string | null) => void;
   onError?: (e: TOnErrorArgs) => void;
   imageFetcher?: (
     opts: ImageFetcherArgs
@@ -119,7 +119,7 @@ const Avatar: AvatarType = ({
     if (!imageUrl) return () => {};
 
     setLoaded(false);
-    const handleLoad = (src: string) => {
+    const handleLoad = (src: string | null) => {
       setLoaded(true);
       if (onLoad) onLoad(src);
     };
