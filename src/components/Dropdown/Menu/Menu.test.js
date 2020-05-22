@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { isOpenContext } from '../context';
-import Menu from './';
+import Menu from '.';
 
 describe('Menu', () => {
   it('renders', () => {

@@ -4,12 +4,12 @@ import { ContainerQuery } from '@cision/react-container-query';
 
 import { TestComponent } from '../../../setupTests';
 
-import Container from './';
+import Container from '.';
 import Context from '../Context';
 
-const TestComponentWithContext = props => (
+const TestComponentWithContext = (props) => (
   <Context.Consumer>
-    {context => {
+    {(context) => {
       return <TestComponent {...props} testcontext={context} />;
     }}
   </Context.Consumer>

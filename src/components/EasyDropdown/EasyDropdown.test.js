@@ -5,7 +5,7 @@ import { act } from 'react-dom/test-utils';
 import Button from '../Button';
 
 import { Menu } from '../Dropdown';
-import EasyDropdown from './';
+import EasyDropdown from '.';
 
 describe('EasyDropdown', () => {
   it('renders', () => {

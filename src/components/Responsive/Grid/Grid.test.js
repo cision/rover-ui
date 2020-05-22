@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Context from '../Context';
-import Grid from './';
+import Grid from '.';
 import BaseGrid from '../../Grid';
 
 describe('<Grid />', () => {
