@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ExpansionPanel from '../ExpansionPanel';
-import Accordion from './';
+import Accordion from '.';
 
 describe('Accordion', () => {
   it('renders its children', () => {
@@ -39,7 +39,7 @@ describe('Accordion', () => {
         </ExpansionPanel>
       </Accordion>
     );
-    wrapper.children().forEach((panel) => {
+    wrapper.children().forEach(panel => {
       expect(panel.prop('expanded')).toBe(false);
     });
   });
@@ -57,7 +57,7 @@ describe('Accordion', () => {
         </ExpansionPanel>
       </Accordion>
     );
-    wrapper.children().forEach((panel) => {
+    wrapper.children().forEach(panel => {
       expect(panel.prop('expanded')).toBe(false);
     });
   });
@@ -82,7 +82,11 @@ describe('Accordion', () => {
 
   it('should keep only an expanded panel at the same time', () => {
     const togglePanelAndValidate = (wrapper, panelIndex, validateFn) => {
-      wrapper.childAt(panelIndex).shallow().childAt(0).simulate('click');
+      wrapper
+        .childAt(panelIndex)
+        .shallow()
+        .childAt(0)
+        .simulate('click');
       wrapper.children().forEach((panel, index) => {
         expect(panel.prop('expanded')).toBe(validateFn(index));
       });
@@ -101,8 +105,8 @@ describe('Accordion', () => {
       </Accordion>
     );
 
-    togglePanelAndValidate(wrapper, 0, (index) => index === 0);
-    togglePanelAndValidate(wrapper, 1, (index) => index === 1);
+    togglePanelAndValidate(wrapper, 0, index => index === 0);
+    togglePanelAndValidate(wrapper, 1, index => index === 1);
     togglePanelAndValidate(wrapper, 1, () => false);
   });
 
@@ -118,7 +122,11 @@ describe('Accordion', () => {
       </Accordion>
     );
 
-    wrapper.childAt(0).shallow().childAt(0).simulate('click', {});
+    wrapper
+      .childAt(0)
+      .shallow()
+      .childAt(0)
+      .simulate('click', {});
     expect(handleToggle).toHaveBeenCalledWith({}, true);
   });
 });
