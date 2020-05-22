@@ -2,7 +2,7 @@ import { storiesOf } from '@storybook/react';
 import roverUiReadme from './ROVER_UI.md';
 import darkMatterReadme from './DARK_MATTER.md';
 import responsivenessReadme from './RESPONSIVENESS.md';
-import changelog from '../../CHANGELOG.md';
+import changelog from './CHANGELOG.md';
 
 storiesOf('/RoverUI', module)
   .add('Introduction', () => null, {

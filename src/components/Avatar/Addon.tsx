@@ -2,9 +2,20 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './Avatar.module.css';
+import styles from './Avatar.module.css';
 
-const Addon = ({ position, offset, ...rest }) => {
+export interface AddonProps extends React.HTMLAttributes<HTMLDivElement> {
+  position?: string;
+  offset?: number;
+}
+
+const Addon: React.FC<AddonProps> = ({
+  position = 'bottom-right',
+  offset = 0,
+  className = '',
+  style = {},
+  ...rest
+}) => {
   const positions = useMemo(() => {
     const p = position.split('-');
     return {
@@ -13,12 +24,12 @@ const Addon = ({ position, offset, ...rest }) => {
     };
   }, [position, offset]);
 
-  const badgeClassNames = classNames(style.AvatarBadge, rest.className);
+  const badgeClassNames = classNames(styles.AvatarBadge, className);
   return (
     <div
       {...rest}
       className={badgeClassNames}
-      style={{ ...positions, ...rest.style }}
+      style={{ ...positions, ...style }}
     />
   );
 };
