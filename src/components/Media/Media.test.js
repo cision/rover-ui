@@ -6,7 +6,7 @@ import Media from './';
 const TestWrapper = () => {
   const [val, setVal] = useState('');
 
-  const handleOnChange = e => {
+  const handleOnChange = (e) => {
     setVal(e.target.value);
   };
 

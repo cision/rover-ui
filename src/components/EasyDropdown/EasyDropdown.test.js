@@ -15,12 +15,7 @@ describe('EasyDropdown', () => {
   describe('props', () => {
     it('renders children', () => {
       const wrapper = shallow(<EasyDropdown>Boom</EasyDropdown>);
-      expect(
-        wrapper
-          .find(Button)
-          .dive()
-          .text()
-      ).toEqual('Boom');
+      expect(wrapper.find(Button).dive().text()).toEqual('Boom');
     });
 
     it('renders custom className', () => {
@@ -34,10 +29,7 @@ describe('EasyDropdown', () => {
         const wrapper = mount(<EasyDropdown defaultIsOpen>Boom</EasyDropdown>);
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('true');
       });
 
@@ -47,10 +39,7 @@ describe('EasyDropdown', () => {
         );
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('false');
       });
 
@@ -60,10 +49,7 @@ describe('EasyDropdown', () => {
         wrapper.setProps({ isOpen: false });
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('true');
       });
 
@@ -85,20 +71,14 @@ describe('EasyDropdown', () => {
           </EasyDropdown>
         );
 
-        const menuItem = wrapper
-          .find('.item-foo')
-          .first()
-          .parent(Menu.Item);
+        const menuItem = wrapper.find('.item-foo').first().parent(Menu.Item);
 
         act(() => menuItem.props().onClick('Pretend event!'));
 
         expect(onClickMenuItemSpy.mock.calls[0][0]).toEqual('Pretend event!');
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('false');
       });
     });
@@ -108,10 +88,7 @@ describe('EasyDropdown', () => {
         const wrapper = mount(<EasyDropdown isOpen>Boom</EasyDropdown>);
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('true');
       });
 
@@ -119,10 +96,7 @@ describe('EasyDropdown', () => {
         const wrapper = mount(<EasyDropdown isOpen={false}>Boom</EasyDropdown>);
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('false');
       });
 
@@ -132,10 +106,7 @@ describe('EasyDropdown', () => {
         wrapper.setProps({ isOpen: false });
 
         expect(
-          wrapper
-            .find(Button)
-            .getDOMNode()
-            .getAttribute('data-is-open')
+          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
         ).toEqual('false');
       });
     });

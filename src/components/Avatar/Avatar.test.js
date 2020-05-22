@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
-import Avatar from './';
+import Avatar from '.';
 
 jest.useFakeTimers();
 
@@ -39,11 +39,19 @@ describe('Avatar', () => {
   });
 
   it('renders an image in bg assuming valid url', () => {
-    const imageUrl = `http://some.url/image.png`;
+    const imageUrl = `https://via.placeholder.com/350x150`;
     Object.defineProperty(HTMLImageElement.prototype, 'naturalHeight', {
       get: () => 120,
     });
-    const wrapper = mount(<Avatar name="Helter Skelter" imageUrl={imageUrl} />);
+    const wrapper = mount(
+      <Avatar
+        name="Helter Skelter"
+        imageUrl={imageUrl}
+        imageFetcher={({ onLoad, src }) => {
+          onLoad(src);
+        }}
+      />
+    );
     expect(wrapper.text()).toEqual('');
     expect(wrapper.children().prop('style')).toHaveProperty(
       'backgroundImage',
