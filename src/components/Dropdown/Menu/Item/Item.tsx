@@ -4,24 +4,37 @@ import classNames from 'classnames';
 
 import styles from './Item.module.css';
 
-const Item = ({ className, ...passedProps }) => {
-  if (passedProps.href) {
+export interface ItemProps {
+  className?: string;
+  href?: string;
+  onClick?: () => void;
+}
+
+const Item: React.FC<ItemProps> = ({
+  className = '',
+  href = null,
+  onClick = null,
+  ...passedProps
+}) => {
+  if (href) {
     // The anchor's content is provided by passedProps
     /* eslint-disable jsx-a11y/anchor-has-content */
     return (
       <a
         className={classNames(styles.Item, styles.link, className)}
+        href={href}
         {...passedProps}
       />
     );
     /* eslint-enable jsx-a11y/anchor-has-content */
   }
 
-  if (passedProps.onClick) {
+  if (onClick) {
     return (
       <button
         className={classNames(styles.Item, styles.button, className)}
         type="button"
+        onClick={onClick}
         {...passedProps}
       />
     );
