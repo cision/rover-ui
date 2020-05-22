@@ -77,7 +77,7 @@ Callout.propTypes = {
   /* Only renders exit button if function is set */
   onCancel: PropTypes.func,
   compact: PropTypes.bool,
-  variant: PropTypes.oneOf<'info' | 'warning' | 'success' | 'danger'>(variants),
+  variant: PropTypes.oneOf(variants),
 };
 
 export default Callout;
