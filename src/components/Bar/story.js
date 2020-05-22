@@ -4,7 +4,7 @@ import { number, select } from '@storybook/addon-knobs';
 import styled from 'styled-components';
 import { fontFamily, fontSize, margin, space } from 'styled-system';
 
-import { Bar, Fill } from './';
+import Bar from './Bar';
 import Paper from '../Paper';
 import BarStatReadme from './README.md';
 import withDefaultTheme from '../withDefaultTheme';
@@ -61,9 +61,9 @@ storiesOf('Star Systems/Bar', module)
     const fill = select('Fill', colorOptions, theme.colors.blue);
 
     return (
-      <Paper mx="lg">
-        <Bar bg={background}>
-          <Fill bg={fill} width={`${value}%`} />
+      <Paper style={{ marginBottom: '10px' }}>
+        <Bar style={{ backgroundColor: background }}>
+          <Bar.Fill style={{ backgroundColor: fill, width: `${value}%` }} />
         </Bar>
         <Label>Percent: {value}</Label>
       </Paper>
@@ -71,55 +71,64 @@ storiesOf('Star Systems/Bar', module)
   })
   .add('Examples', () => (
     <Wrap>
-      <Paper mb="sm">
+      <Paper style={{ marginBottom: '10px' }}>
         <h3>Default Bar</h3>
         <Bar>
-          <Fill width="73%" />
+          <Bar.Fill style={{ width: '73%' }} />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Paper style={{ marginBottom: '10px' }}>
         <h3>Custom Wrapper and Fill</h3>
-        <Bar bg="loblolly">
-          <Fill bg="salmon" width="50%" />
+        <Bar style={{ background: theme.colors.loblolly }}>
+          <Bar.Fill style={{ background: theme.colors.salmon, width: '50%' }} />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Paper style={{ marginBottom: '10px' }}>
         <h3>Wrapper Width</h3>
-        <Bar width="25%">
-          <Fill bg="salmon" width="50%" />
+        <Bar style={{ width: '25%' }}>
+          <Bar.Fill style={{ background: theme.colors.salmon, width: '50%' }} />
         </Bar>
         <Spacer />
-        <Bar width="50%">
-          <Fill bg="green" width="50%" />
+        <Bar style={{ width: '50%' }}>
+          <Bar.Fill style={{ background: theme.colors.green, width: '50%' }} />
         </Bar>
         <Spacer />
-        <Bar width="75%">
-          <Fill bg="blue" width="50%" />
+        <Bar style={{ width: '75%' }}>
+          <Bar.Fill style={{ background: theme.colors.blue, width: '50%' }} />
         </Bar>
         <Spacer />
-        <Bar width="100%">
-          <Fill bg="teal" width="50%" />
+        <Bar style={{ width: '100%' }}>
+          <Bar.Fill style={{ background: theme.colors.teal, width: '50%' }} />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Paper style={{ marginBottom: '10px' }}>
         <h3>Bars with multiple colors</h3>
-        <Bar width="100%">
-          <Fill bg="green" width="25%" />
-          <Fill bg="brandColor" width="10%" />
-          <Fill bg="loblolly" width="10%" />
+        <Bar style={{ width: '100%' }}>
+          <Bar.Fill style={{ background: theme.colors.green, width: '25%' }} />
+          <Bar.Fill
+            style={{ background: theme.colors.brandColor, width: '10%' }}
+          />
+          <Bar.Fill
+            style={{ background: theme.colors.loblolly, width: '10%' }}
+          />
         </Bar>
       </Paper>
 
-      <Paper mb="sm">
+      <Paper style={{ marginBottom: '10px' }}>
         <h3>At various fill widths...</h3>
         {[0, 10, 20, 50, 99, 100].map(percent => (
-          <div key={`${percent}`.toString()}>
+          <div key={percent.toString()}>
             <Spacer />
-            <Bar width="100%">
-              <Fill bg="green" width={`${percent || 0}%`} />
+            <Bar style={{ width: '100%' }}>
+              <Bar.Fill
+                style={{
+                  background: theme.colors.green,
+                  width: `${percent || 0}%`,
+                }}
+              />
             </Bar>
             <Label>Percent: {percent || 0}%</Label>
           </div>

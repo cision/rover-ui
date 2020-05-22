@@ -2,16 +2,20 @@
   display: flex;
 }
 
-.bar {
+.Bar {
   background-color: var(--rvr-gray-20);
+  border-radius: 9999px;
+  display: flex;
   height: 10px;
   margin: 5px 20px 5px 0;
+  overflow: hidden;
   width: 100%;
   flex-grow: 1;
 }
 
-.fill {
+.Fill {
   background-color: var(--rvr-gray-40);
+  border-radius: 0;
   height: 100%;
   transition: width 1s ease;
 }
