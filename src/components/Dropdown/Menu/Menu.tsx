@@ -24,13 +24,13 @@ const Menu: MenuType = ({
 }) => {
   return (
     <isOpenContext.Consumer>
-      {(isOpen) => (
+      {isOpen => (
         <Transition
           in={customIsOpen === undefined ? isOpen : customIsOpen}
           timeout={200}
           unmountOnExit
         >
-          {(transitionState) => (
+          {transitionState => (
             <div
               {...passedProps}
               className={classNames(

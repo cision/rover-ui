@@ -19,7 +19,7 @@ type MediaType = MediaItemType & {
 // Since all three are very basic and use basically the same basis
 // underneath, we can construct these components programatically.
 const MediaGenerator = (name: string, cssClass) => {
-  const MediaComponent: MediaItemType = (props) => {
+  const MediaComponent: MediaItemType = props => {
     const { className = '', ...rest } = props;
     return <FlexSpacer {...rest} className={classNames(cssClass, className)} />;
   };

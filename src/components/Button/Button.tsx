@@ -89,7 +89,7 @@ const Button: ButtonType = ({
 
   // For future ref
   const truthyStateKeys = useMemo(
-    () => states.filter((state) => !!passedProps[state]),
+    () => states.filter(state => !!passedProps[state]),
     [passedProps]
   );
 
@@ -127,18 +127,18 @@ const Button: ButtonType = ({
           'disabled', 'active', etc. so consumers can force appearance on
           elements easily
         */
-        truthyStateKeys.map((truthyStateKey) => styles[truthyStateKey])
+        truthyStateKeys.map(truthyStateKey => styles[truthyStateKey])
       ),
     [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
   );
 
-  const addonChildren = React.Children.toArray(initChildren).filter((child) => {
+  const addonChildren = React.Children.toArray(initChildren).filter(child => {
     const c = child as React.ReactElement & { type: { displayName?: string } };
     return c?.type?.displayName === Addon.displayName;
   });
 
   if (addonChildren.length) {
-    children = React.Children.map(initChildren, (child) => {
+    children = React.Children.map(initChildren, child => {
       const c = child as React.ReactElement & {
         type: { displayName?: string };
       };
