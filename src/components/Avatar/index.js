@@ -17,7 +17,7 @@ function defaultImageFetcher({ onLoad, onError, src }) {
   const img = new Image();
   img.referrerPolicy = 'no-referrer';
   img.crossOrigin = 'Anonymous';
-  img.onload = function () {
+  img.onload = function() {
     if ('naturalHeight' in this) {
       if (this.naturalHeight + this.naturalWidth === 0) {
         onError(new Error('Invalid Image'));
@@ -30,7 +30,7 @@ function defaultImageFetcher({ onLoad, onError, src }) {
 
     onLoad(src);
   };
-  img.onerror = function (e) {
+  img.onerror = function(e) {
     onError(e);
   };
   img.src = src;
@@ -77,7 +77,7 @@ const Avatar = ({
     if (!name) return '';
     const nameParts = name.split(' ', 2);
     let returnInitials = '';
-    nameParts.forEach((part) => {
+    nameParts.forEach(part => {
       returnInitials += part[0];
     });
     return returnInitials.slice(0, 2);
@@ -87,11 +87,11 @@ const Avatar = ({
     if (!imageUrl) return () => {};
 
     setLoaded(false);
-    const handleLoad = (src) => {
+    const handleLoad = src => {
       setLoaded(true);
       onLoad(src);
     };
-    const handleError = (e) => {
+    const handleError = e => {
       setLoaded(false);
       onError(e);
     };

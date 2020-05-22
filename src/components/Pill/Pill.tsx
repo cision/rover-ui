@@ -39,7 +39,7 @@ const Pill: PillType = ({
   //
   // For now, I'm casting the child as a very rudimentary object that will
   // work for checking, but will not be used in execution
-  children = React.Children.map(initChildren, (child) => {
+  children = React.Children.map(initChildren, child => {
     const c = child as React.ReactElement & { type: { displayName?: string } };
     return c?.type?.displayName === Addon.displayName ? (
       <div className={style.actionInline}>

@@ -63,9 +63,12 @@ export const getBreakpointsQuery = (breakpoints: RoverQuery[]): Query =>
   media-query-like strings available to child components via a
   <Context.Consumer/>
 */
-const Container: React.FC<
-  ContainerProps & React.HTMLAttributes<HTMLDivElement>
-> = ({ children, customBreakpoints = defaultBreakpoints, ...passedProps }) => {
+const Container: React.FC<ContainerProps &
+  React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  customBreakpoints = defaultBreakpoints,
+  ...passedProps
+}) => {
   let query: Query;
 
   if (customBreakpoints) {

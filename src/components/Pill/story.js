@@ -51,7 +51,7 @@ storiesOf('Star Systems/Pill', module)
         >
           Checked, with Pill.Addon (text)
           <Pill.Addon
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               action('onClickEdit')(e);
             }}
@@ -66,7 +66,7 @@ storiesOf('Star Systems/Pill', module)
         >
           With Pill.Addon (icon)
           <Pill.Addon
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               action('onClickClear')(e);
             }}
