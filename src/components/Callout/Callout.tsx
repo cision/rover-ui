@@ -8,16 +8,25 @@ import styles from './Callout.module.css';
 
 import Icon from '../Icon';
 
-export const variants = ['info', 'danger', 'warning', 'success'];
+type TVariant = 'info' | 'danger' | 'warning' | 'success';
+export const variants: TVariant[] = ['info', 'danger', 'warning', 'success'];
 
-const Callout = ({
-  borderless,
-  className,
+interface CalloutProps extends React.HTMLAttributes<HTMLDivElement> {
+  borderless?: boolean;
+  compact?: boolean;
+  onCancel?: () => void | null;
+  variant?: TVariant;
+  iconProps?: {};
+}
+
+const Callout: React.FC<CalloutProps> = ({
+  borderless = false,
+  className = '',
   children,
-  onCancel,
-  compact,
-  variant,
-  iconProps,
+  onCancel = null,
+  compact = false,
+  variant = 'info',
+  iconProps = {},
   ...props
 }) => {
   const baseClass = styles.Callout;
@@ -56,7 +65,7 @@ Callout.defaultProps = {
   className: '',
   compact: false,
   iconProps: {},
-  onCancel: null,
+  onCancel: undefined,
   variant: 'info',
 };
 
@@ -68,7 +77,7 @@ Callout.propTypes = {
   /* Only renders exit button if function is set */
   onCancel: PropTypes.func,
   compact: PropTypes.bool,
-  variant: PropTypes.oneOf(variants),
+  variant: PropTypes.oneOf<'info' | 'warning' | 'success' | 'danger'>(variants),
 };
 
 export default Callout;
