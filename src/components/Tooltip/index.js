@@ -8,7 +8,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './style.css';
+import styles from './Tooltip.module.css';
 
 import Icon from '../Icon';
 
@@ -34,14 +34,14 @@ const Tooltip = ({
   const [hovered, setHovered] = useState(false);
   const [tooltipHeight, setTooltipHeight] = useState(0);
 
-  const handleSetHover = value => () => {
+  const handleSetHover = (value) => () => {
     if (showOnHover) {
       setHovered(value);
     }
   };
 
   useEffect(() => {
-    const handleEscape = e => {
+    const handleEscape = (e) => {
       if (onClose && e.key === 'Escape') {
         onClose();
       }
@@ -56,7 +56,7 @@ const Tooltip = ({
     }
 
     return () => {};
-  }, []);
+  }, [closeOnEscape, onClose]);
 
   useLayoutEffect(() => {
     if (tooltipRef.current) {
@@ -89,7 +89,7 @@ const Tooltip = ({
     }
 
     return {};
-  });
+  }, [direction, tooltipHeight]);
 
   const isText = typeof tooltipContent === 'string';
 
@@ -114,7 +114,11 @@ const Tooltip = ({
         {...tooltipOpts}
       >
         {!!onClose && (
-          <button className={styles.tooltipClose} onClick={onClose}>
+          <button
+            type="button"
+            className={styles.tooltipClose}
+            onClick={onClose}
+          >
             <Icon name="close" />
           </button>
         )}
@@ -176,7 +180,7 @@ export const EasyRichTooltip = ({ onClose, children, ...props }) => {
 
   const open = () => setOpen(true);
   const close = () => setOpen(false);
-  const toggle = () => setOpen(prev => !prev);
+  const toggle = () => setOpen((prev) => !prev);
 
   return (
     <Tooltip

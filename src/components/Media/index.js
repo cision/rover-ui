@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styled from 'styled-components';
 import { alignSelf, space, flex } from 'styled-system';
 
-import styles from './style.css';
+import styles from './Media.module.css';
 import withDefaultTheme from '../withDefaultTheme';
 
 const FlexSpacer = withDefaultTheme(styled.div(alignSelf, flex, space));
@@ -13,11 +13,9 @@ const FlexSpacer = withDefaultTheme(styled.div(alignSelf, flex, space));
 // Since all three are very basic and use basically the same basis
 // underneath, we can construct these components programatically.
 const MediaGenerator = (name, cssClass) => {
-  const MediaComponent = props => {
+  const MediaComponent = (props) => {
     const { className, ...rest } = props;
-    return (
-      <FlexSpacer {...rest} className={classNames(cssClass, props.className)} />
-    );
+    return <FlexSpacer {...rest} className={classNames(cssClass, className)} />;
   };
 
   MediaComponent.propTypes = {

@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './style.css';
+import styles from './Paper.module.css';
 
 import { propTypes } from '../../shared/models/tag';
 
-const Paper = props => {
+const Paper = (props) => {
   const { className, flat, squared, tag: Tag, ...rest } = props;
   const classname = classNames(styles.Paper, className, {
     [styles.flat]: flat,

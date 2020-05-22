@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './style.css';
+import style from './Avatar.module.css';
 
 const Addon = ({ position, offset, ...rest }) => {
   const positions = useMemo(() => {

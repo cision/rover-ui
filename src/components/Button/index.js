@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { propTypes as tagPropTypes } from '../../shared/models/tag';
 
 import Addon from './Addon';
-import styles from './style.css';
+import styles from './Button.module.css';
 
 /*
   These 2 variants are in design docs but might not be "Buttons" in a strict sense.
@@ -40,7 +40,7 @@ export const sizes = [
   'lg', // "Large"
 ];
 
-const Button = props => {
+const Button = (props) => {
   const {
     children: initChildren,
     circle,
@@ -57,7 +57,7 @@ const Button = props => {
 
   // For future ref
   const truthyStateKeys = useMemo(
-    () => states.filter(state => !!passedProps[state]),
+    () => states.filter((state) => !!passedProps[state]),
     [passedProps]
   );
 
@@ -95,17 +95,18 @@ const Button = props => {
           'disabled', 'active', etc. so consumers can force appearance on
           elements easily
         */
-        truthyStateKeys.map(truthyStateKey => styles[truthyStateKey])
+        truthyStateKeys.map((truthyStateKey) => styles[truthyStateKey])
       ),
     [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
   );
 
   const addonChildren = React.Children.toArray(initChildren).filter(
-    child => child && child.type && child.type.displayName === Addon.displayName
+    (child) =>
+      child && child.type && child.type.displayName === Addon.displayName
   );
 
   if (addonChildren.length) {
-    children = React.Children.map(initChildren, child => {
+    children = React.Children.map(initChildren, (child) => {
       if (child && child.type && child.type.displayName === Addon.displayName) {
         return React.cloneElement(child, { ...child.props, size });
       }

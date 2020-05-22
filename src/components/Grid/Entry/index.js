@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import style from './style.css';
+import style from './Entry.module.css';
 
 /**
   This component should only be used by the Grid component.
@@ -35,10 +35,10 @@ const Entry = ({ children, entryPercentWidth, gutter, ...passedProps }) => {
 
   if (clear) {
     return (
-      <Fragment>
+      <>
         <div className={style.Clear} />
         {entry}
-      </Fragment>
+      </>
     );
   }
 

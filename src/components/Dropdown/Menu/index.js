@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 
 import { isOpenContext } from '../context';
-import style from './style.css';
+import style from './Menu.module.css';
 import ItemMoon from './Item';
 
 const Menu = ({
@@ -15,13 +15,13 @@ const Menu = ({
 }) => {
   return (
     <isOpenContext.Consumer>
-      {isOpen => (
+      {(isOpen) => (
         <Transition
           in={customIsOpen === undefined ? isOpen : customIsOpen}
           timeout={200}
           unmountOnExit
         >
-          {transitionState => (
+          {(transitionState) => (
             <div
               {...passedProps}
               className={classNames(
