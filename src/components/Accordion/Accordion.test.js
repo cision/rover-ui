@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ExpansionPanel from '../ExpansionPanel';
-import Accordion from './';
+import Accordion from '.';
 
 describe('Accordion', () => {
   it('renders its children', () => {

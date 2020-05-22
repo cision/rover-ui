@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { parseCssSize } from '../../shared/css-utils';
 
 // This component's dependencies
-import style from './style.css';
+import style from './SideTray.module.css';
 
 const SideTray = ({
   children,
@@ -21,7 +21,7 @@ const SideTray = ({
   useEffect(() => {
     // TODO: Hitting "Escape" should only close the active tray
     // TODO: Hitting "Escape" in a text field shouldn't close the tray
-    const handleEscape = e => {
+    const handleEscape = (e) => {
       if (visible && e.keyCode === 27) {
         onClose(e);
       }
@@ -43,7 +43,8 @@ const SideTray = ({
   // Handle clicking backdrop to close tray
   // TODO: Click and drag from inside to outside the tray shouldn't close it
   const clickOffBackdrop = visible ? (
-    <button className={style.backdrop} onClick={onClose} />
+    // eslint-disable-next-line jsx-a11y/control-has-associated-label
+    <button type="button" className={style.backdrop} onClick={onClose} />
   ) : null;
 
   // Handle custom widths / heights / directions
@@ -81,7 +82,7 @@ const SideTray = ({
   }
 
   return (
-    <React.Fragment>
+    <>
       <div
         {...passedProps}
         style={{
@@ -94,7 +95,7 @@ const SideTray = ({
         <div className={style.container}>{children}</div>
       </div>
       {clickOffBackdrop}
-    </React.Fragment>
+    </>
   );
 };
 
@@ -118,8 +119,8 @@ SideTray.defaultProps = {
   width: '400px',
 };
 
-const Header = props => (
-  <div {...props} className={`${style.header} ${props.className}`} />
+const Header = ({ className, ...props }) => (
+  <div {...props} className={`${style.header} ${className}`} />
 );
 Header.propTypes = {
   children: PropTypes.node.isRequired,
@@ -127,8 +128,8 @@ Header.propTypes = {
 };
 Header.defaultProps = { className: '' };
 
-const Footer = props => (
-  <div {...props} className={`${style.footer} ${props.className}`} />
+const Footer = ({ className, ...props }) => (
+  <div {...props} className={`${style.footer} ${className}`} />
 );
 Footer.propTypes = {
   children: PropTypes.node.isRequired,
@@ -136,8 +137,8 @@ Footer.propTypes = {
 };
 Footer.defaultProps = { className: '' };
 
-const Body = props => (
-  <div {...props} className={`${style.body} ${props.className}`} />
+const Body = ({ className, ...props }) => (
+  <div {...props} className={`${style.body} ${className}`} />
 );
 Body.propTypes = {
   children: PropTypes.node.isRequired,

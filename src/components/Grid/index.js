@@ -9,7 +9,7 @@ import { parseCssSize } from '../../shared/css-utils';
 import withDefaultTheme from '../withDefaultTheme';
 
 // This component's dependencies
-import style from './style.css';
+import style from './Grid.module.css';
 import Entry from './Entry';
 
 const StyledGrid = styled.div(margin);

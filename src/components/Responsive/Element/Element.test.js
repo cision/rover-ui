@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { TestComponent } from '../../../setupTests';
 import Container from '../Container';
-import Element from './';
+import Element from '.';
 
 describe('<Element />', () => {
   it('renders without error', () => {

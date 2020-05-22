@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import isNull from 'lodash/isNull';
 
-import style from './style.css';
+import style from './Collapse.module.css';
 
 const Collapse = ({
   children,
@@ -36,7 +36,7 @@ const Collapse = ({
   );
 
   const handleExit = useCallback(
-    node => {
+    (node) => {
       setHeight(node.scrollHeight);
       onExit(node);
     },
@@ -44,9 +44,9 @@ const Collapse = ({
   );
 
   const handleExiting = useCallback(
-    node => {
-      /* eslint-disable no-unused-expressions */
-      node.offsetHeight; // getting this variable triggers a reflow
+    (node) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      // node.offsetHeight; // getting this variable triggers a reflow
       setHeight(0);
       node.style.transitionDuration = `${timeout}ms`;
       onExiting(node);
@@ -55,7 +55,7 @@ const Collapse = ({
   );
 
   const handleExited = useCallback(
-    node => {
+    (node) => {
       setHeight(null);
       onExited(node);
     },
@@ -73,7 +73,7 @@ const Collapse = ({
       onExiting={handleExiting}
       onExited={handleExited}
     >
-      {transitionState => {
+      {(transitionState) => {
         const styleHeight = isNull(height) ? null : { height };
         return (
           <div style={styleHeight} className={style[transitionState]}>

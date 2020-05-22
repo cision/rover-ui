@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Item from './Item';
-import style from './style.css';
+import style from './TabMenu.module.css';
 
 const TabMenu = ({ align, className, ...props }) => {
   const tabMenuClass = classNames(
@@ -15,7 +15,7 @@ const TabMenu = ({ align, className, ...props }) => {
 };
 
 TabMenu.Item = Item;
-export const itemPadding = style.itemPadding;
+export const { itemPadding } = style;
 
 TabMenu.propTypes = {
   align: PropTypes.oneOf(['left', 'center', 'right']),
@@ -29,13 +29,13 @@ TabMenu.defaultProps = {
 export const EasyTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
   return (
     <TabMenu {...props}>
-      {tabs.map(tab => {
+      {tabs.map((tab) => {
         const inner = classNames(style.itemPadding, style[`${size}TextSize`], {
           [style.activeButton]: tab.key === activeTab,
         });
         return (
           <Item key={tab.key} active={tab.key === activeTab}>
-            <button className={inner} onClick={tab.onClick}>
+            <button type="button" className={inner} onClick={tab.onClick}>
               {tab.label}
             </button>
           </Item>

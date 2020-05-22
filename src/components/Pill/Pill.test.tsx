@@ -1,23 +1,23 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Pill from './';
+import Pill from '.';
 
 describe('Pill', () => {
   it('renders', () => {
-    shallow(<Pill onClick={() => {}}>Pill</Pill>);
+    shallow(<Pill>Pill</Pill>);
   });
 
   describe('with non-Addon children', () => {
     it('renders its children', () => {
-      const wrapper = mount(<Pill onClick={() => {}}>Pill 1</Pill>);
+      const wrapper = mount(<Pill>Pill 1</Pill>);
 
       expect(wrapper.children()).toHaveLength(1);
       expect(wrapper.text()).toEqual('Pill 1');
     });
 
     it('wraps children', () => {
-      const wrapper = mount(<Pill onClick={() => {}}>Pill 1</Pill>);
+      const wrapper = mount(<Pill>Pill 1</Pill>);
       // Should use css modules selector, but our version of react-scripts doesn't support it.
       const content = wrapper.find('span');
 

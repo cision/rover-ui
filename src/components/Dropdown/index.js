@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './style.css';
+import style from './Dropdown.module.css';
 
 import MenuMoon from './Menu';
 
@@ -19,7 +19,7 @@ const Dropdown = ({
   const dropdown = React.createRef();
 
   const handleDocumentClick = React.useCallback(
-    event => {
+    (event) => {
       const dropdownEl = dropdown && dropdown.current;
 
       // If the click was inside the dropdown, don't close it
@@ -32,17 +32,17 @@ const Dropdown = ({
 
       onToggle(event);
     },
-    [dropdown]
+    [dropdown, onToggle]
   );
 
   const handleKeyUp = React.useCallback(
-    event => {
+    (event) => {
       // Escape key closes the dropdown
       if (event.key === 'Escape') {
         onToggle(event);
       }
     },
-    [dropdown]
+    [onToggle]
   );
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const Dropdown = ({
       document.removeEventListener('click', handleDocumentClick, true);
       document.removeEventListener('keyup', handleKeyUp);
     };
-  }, [isOpen, onToggle]);
+  }, [disabled, handleDocumentClick, handleKeyUp, isOpen, onToggle]);
 
   return (
     <div
@@ -81,8 +81,8 @@ Dropdown.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  isOpen: PropTypes.bool.isRequired,
-  onToggle: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool,
+  onToggle: PropTypes.func,
 };
 
 Dropdown.defaultProps = {

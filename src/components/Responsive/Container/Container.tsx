@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ContainerQuery } from '@cision/react-container-query';
+import {
+  ContainerQueries as ReactContainerQueries,
+  Query,
+} from '@cision/react-container-query/lib/interfaces';
 import Context from '../Context';
 
-const defaultBreakpoints = [
+const defaultBreakpoints: RoverQuery[] = [
   {
     name: 'xs',
     minWidth: 0,
@@ -26,7 +30,16 @@ const defaultBreakpoints = [
   },
 ];
 
-export const getBreakpointsQuery = breakpoints =>
+interface RoverQuery extends ReactContainerQueries {
+  name: string;
+  minWidth: number;
+}
+
+interface ContainerProps {
+  customBreakpoints?: RoverQuery[];
+}
+
+export const getBreakpointsQuery = (breakpoints: RoverQuery[]): Query =>
   breakpoints.reduce((result, breakpoint, index) => {
     const { minWidth = 0, name } = breakpoint;
     const nextBreakpoint = breakpoints[index + 1] || null;
@@ -50,8 +63,13 @@ export const getBreakpointsQuery = breakpoints =>
   media-query-like strings available to child components via a
   <Context.Consumer/>
 */
-const Container = ({ children, customBreakpoints, ...passedProps }) => {
-  let query;
+const Container: React.FC<ContainerProps &
+  React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  customBreakpoints = defaultBreakpoints,
+  ...passedProps
+}) => {
+  let query: Query;
 
   if (customBreakpoints) {
     query = getBreakpointsQuery(customBreakpoints);
@@ -62,7 +80,7 @@ const Container = ({ children, customBreakpoints, ...passedProps }) => {
   return (
     <ContainerQuery query={query}>
       {(params, ref) => {
-        const responsiveValue = Object.keys(params).reduce(
+        const responsiveValue = Object.keys(params).reduce<string[]>(
           (result, paramKey) => {
             if (params[paramKey]) {
               result.push(paramKey);
@@ -91,10 +109,10 @@ Container.propTypes = {
   customBreakpoints: PropTypes.arrayOf(
     PropTypes.shape({
       /** A text name for this width range (used in responsive modifier names) */
-      name: PropTypes.string,
+      name: PropTypes.string.isRequired,
       /** These should be the minimum width of the named range */
-      minWidth: PropTypes.number,
-    })
+      minWidth: PropTypes.number.isRequired,
+    }).isRequired
   ),
 };
 

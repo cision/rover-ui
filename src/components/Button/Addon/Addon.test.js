@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Addon from './';
+import Addon from '.';
 
 describe('Addon', () => {
   describe('Main component', () => {

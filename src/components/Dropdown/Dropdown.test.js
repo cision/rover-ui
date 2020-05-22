@@ -15,7 +15,7 @@ describe('Dropdown', () => {
         const wrapper = mount(
           <Dropdown isOpen onToggle={() => {}}>
             <isOpenContext.Consumer>
-              {isOpen => `isOpen: ${JSON.stringify(isOpen)}`}
+              {(isOpen) => `isOpen: ${JSON.stringify(isOpen)}`}
             </isOpenContext.Consumer>
           </Dropdown>
         );
@@ -29,7 +29,7 @@ describe('Dropdown', () => {
         const wrapper = mount(
           <Dropdown disabled isOpen onToggle={() => {}}>
             <isOpenContext.Consumer>
-              {isOpen => `isOpen: ${JSON.stringify(isOpen)}`}
+              {(isOpen) => `isOpen: ${JSON.stringify(isOpen)}`}
             </isOpenContext.Consumer>
           </Dropdown>
         );
@@ -44,7 +44,7 @@ describe('Dropdown', () => {
       const wrapper = mount(
         <Dropdown onToggle={() => {}}>
           <isOpenContext.Consumer>
-            {isOpen => `isOpen: ${JSON.stringify(isOpen)}`}
+            {(isOpen) => `isOpen: ${JSON.stringify(isOpen)}`}
           </isOpenContext.Consumer>
         </Dropdown>
       );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Addon = props => <div {...props} />;
+const Addon: React.FC = props => <div {...props} />;
 
 Addon.displayName = 'PillAddon';
 

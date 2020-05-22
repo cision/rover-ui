@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Button from '../Button';
 import Dropdown, { Menu } from '../Dropdown';
 
-import style from './style.css';
+import style from './EasyDropdown.module.css';
 
 const EasyDropdown = ({
   children: initChildren,
@@ -42,14 +42,14 @@ const EasyDropdown = ({
   );
 
   const onToggle = useCallback(
-    event => {
+    (event) => {
       if (!isControlled) {
         setUncontrolledIsOpen(!uncontrolledIsOpen);
       }
 
       parentOnToggle(event);
     },
-    [defaultIsOpen, parentOnToggle, setUncontrolledIsOpen, uncontrolledIsOpen]
+    [isControlled, parentOnToggle, uncontrolledIsOpen]
   );
 
   const children = useMemo(() => {
@@ -69,7 +69,7 @@ const EasyDropdown = ({
         {initChildren}
       </Button>
     ) : (
-      React.Children.map(initChildren, child =>
+      React.Children.map(initChildren, (child) =>
         React.cloneElement(child, {
           ...toggleProps,
           className: classNames(
@@ -77,7 +77,7 @@ const EasyDropdown = ({
             toggleProps.className
           ),
           'data-is-open': isOpen,
-          onClick: event => {
+          onClick: (event) => {
             onToggle(event);
 
             if (child && child.props && child.props.onClick) {
@@ -87,7 +87,7 @@ const EasyDropdown = ({
         })
       )
     );
-  }, [initChildren, isOpen, onToggle]);
+  }, [initChildren, isOpen, onToggle, toggleProps]);
 
   return (
     <Dropdown
@@ -99,7 +99,7 @@ const EasyDropdown = ({
       {children}
       {!!menuItems.length && (
         <Menu {...menuProps}>
-          {Object.keys(menuItemGroups).map(group => {
+          {Object.keys(menuItemGroups).map((group) => {
             return (
               <div
                 className={classNames({
@@ -113,7 +113,7 @@ const EasyDropdown = ({
                     <Menu.Item
                       {...itemProps}
                       key={label}
-                      onClick={event => {
+                      onClick={(event) => {
                         // Clicking a menu item has the side effect of closing the menu
                         if (!isControlled) {
                           setUncontrolledIsOpen(false);
@@ -139,7 +139,7 @@ const EasyDropdown = ({
 
 EasyDropdown.propTypes = {
   /** Pass a custom node if you want to control the toggle fully. */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /** Totally optional, for additional styling */
   className: PropTypes.string,
   /** If defaultIsOpen is provided, the component will run in "uncontrolled" mode */

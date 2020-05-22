@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import styles from './style.css';
+import styles from './Badge.module.css';
 import { propTypes } from '../../shared/models/tag';
 
 export const variants = [

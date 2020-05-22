@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import includes from 'lodash/includes';
 import isFunction from 'lodash/isFunction';
 
-import styles from './style.css';
+import styles from './Callout.module.css';
 
 import Icon from '../Icon';
 
@@ -35,7 +35,7 @@ const Callout = ({
       {children}
       {onCancel && isFunction(onCancel) && (
         <div className={styles.cancel}>
-          <button className={styles.cancelButton}>
+          <button type="button" className={styles.cancelButton}>
             <Icon
               name="close"
               className={styles.cancelIcon}

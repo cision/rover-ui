@@ -31,7 +31,9 @@ describe('ExpansionPanel.Header', () => {
 
     const expandIcon = <span>ExpandIcon</span>;
     wrapper = shallow(
-      <Header expandIcon={expandIcon}>{icon => <div>{icon}Hello</div>}</Header>
+      <Header expandIcon={expandIcon}>
+        {(icon) => <div>{icon}Hello</div>}
+      </Header>
     );
     expect(wrapper.text()).toEqual('ExpandIconHello');
   });

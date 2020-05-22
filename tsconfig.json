@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "allowJs": true /* Allow javascript files to be compiled. */,
-    // "checkJs": true /* Report errors in .js files. */,
+    "allowJs": true,
+    "checkJs": false,
     "outDir": "dist",
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "jsx": "react",
-    "sourceMap": true /* Generates corresponding '.map' file. */,
-    "removeComments": true /* Do not emit comments to output. */,
-    "strict": true /* Enable all strict type-checking options. */,
-    "moduleResolution": "node" /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */,
-    "allowSyntheticDefaultImports": true /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */,
-    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
+    "sourceMap": true,
+    "removeComments": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "esModuleInterop": true,
     "noEmit": true,
@@ -21,7 +21,11 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "example"]

@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 
 import Icon from '../Icon';
-import Pill from './';
+import Pill from '.';
 import Readme from './README.md';
 
 storiesOf('Star Systems/Pill', module)
@@ -34,7 +34,7 @@ storiesOf('Star Systems/Pill', module)
   .add(
     'Examples',
     () => (
-      <React.Fragment>
+      <>
         <Pill
           id="pill-1"
           onClick={() => action('onClick')('pill-1')}
@@ -74,7 +74,7 @@ storiesOf('Star Systems/Pill', module)
             <Icon name="clear" />
           </Pill.Addon>
         </Pill>
-      </React.Fragment>
+      </>
     ),
     {
       info: {

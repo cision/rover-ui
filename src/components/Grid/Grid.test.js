@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { TestComponent } from '../../setupTests';
-import Grid from './';
+import Grid from '.';
 
 describe('<Grid />', () => {
   it('renders', () => {

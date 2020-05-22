@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 
-import style from './style.css';
+import style from './Header.module.css';
 
 const Header = ({
   className,
@@ -24,10 +24,10 @@ const Header = ({
       {isFunction(children) ? (
         children(expandIcon)
       ) : (
-        <Fragment>
+        <>
           {children}
           {expandIcon}
-        </Fragment>
+        </>
       )}
     </div>
   );

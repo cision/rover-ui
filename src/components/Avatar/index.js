@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Addon from './Addon';
-import style from './style.css';
+import style from './Avatar.module.css';
 import { sizeBase } from '../../shared/sizing';
 
 const semanticSizes = {
@@ -100,7 +100,7 @@ const Avatar = ({
       onError: handleError,
       src: imageUrl,
     });
-  }, [imageUrl]);
+  }, [imageFetcher, imageUrl, onError, onLoad]);
 
   const mainStyle = {
     ...sizes,
