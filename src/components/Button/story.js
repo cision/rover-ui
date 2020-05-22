@@ -6,12 +6,16 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
-import Button, { levels, sizes, states } from './';
+import Button, { levels, sizes, states } from './Button';
 import ButtonReadme from './README.md';
 import AddonReadme from './Addon/README.md';
 
-const MyComponent = props => (
-  <button {...props} className={classNames(props.className, 'MyComponent')} />
+const MyComponent = ({ className = '', ...props }) => (
+  <button
+    type="button"
+    className={classNames(className, 'MyComponent')}
+    {...props}
+  />
 );
 
 MyComponent.propTypes = { className: PropTypes.string };
@@ -61,7 +65,7 @@ storiesOf('Planets/Button', module)
         <div>
           <h2>Sizes</h2>
           <div style={{ marginBottom: '20px' }}>
-            {sizes.map(size => (
+            {sizes.map((size) => (
               <span
                 key={size}
                 style={{
@@ -130,7 +134,7 @@ storiesOf('Planets/Button', module)
           <hr />
           <h2>Circle</h2>
           <div style={{ marginBottom: '20px' }}>
-            {sizes.map(size => (
+            {sizes.map((size) => (
               <span
                 key={size}
                 style={{
@@ -153,7 +157,7 @@ storiesOf('Planets/Button', module)
           </div>
           <hr />
           <h2>Levels</h2>
-          {levels.map(level => {
+          {levels.map((level) => {
             return (
               <div key={level}>
                 <h3>{level}</h3>
@@ -167,7 +171,7 @@ storiesOf('Planets/Button', module)
                   >
                     <Button level={level}>default</Button>
                   </span>
-                  {states.map(state => (
+                  {states.map((state) => (
                     <span key={state} style={{ marginRight: '20px' }}>
                       <Button level={level} {...{ [state]: true }}>
                         {state}
@@ -196,7 +200,7 @@ storiesOf('Planets/Button', module)
             >
               <Button hollow>(default)</Button>
             </span>
-            {states.map(state => (
+            {states.map((state) => (
               <span key={state} style={{ marginRight: '20px' }}>
                 <Button hollow {...{ [state]: true }}>
                   {state}

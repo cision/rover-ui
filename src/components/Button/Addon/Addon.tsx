@@ -4,17 +4,28 @@ import classNames from 'classnames';
 
 import style from './Addon.module.css';
 
-const Addon = ({ className, size, ...passedProps }) => (
+const propTypes = {
+  className: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+};
+
+export interface AddonProps {
+  className?: string;
+  size?: string;
+}
+
+const Addon: React.FC<AddonProps> = ({
+  className = '',
+  size = 'md',
+  ...passedProps
+}) => (
   <div
     {...passedProps}
     className={classNames(className, style.Addon, style[size])}
   />
 );
 
-Addon.propTypes = {
-  className: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-};
+Addon.propTypes = propTypes;
 
 Addon.defaultProps = {
   className: '',

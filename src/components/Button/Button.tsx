@@ -2,9 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { propTypes as tagPropTypes } from '../../shared/models/tag';
-
-import Addon from './Addon';
+import Addon, { AddonProps } from './Addon/Addon';
 import styles from './Button.module.css';
 
 /*
@@ -13,8 +11,43 @@ import styles from './Button.module.css';
   Select (-> These might be better served as a different component)
 */
 
+type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonState = 'hover' | 'focus' | 'active' | 'disabled' | 'checked';
+type ButtonLevel =
+  | 'primary'
+  | 'primary-alt'
+  | 'secondary'
+  | 'tertiary'
+  | 'success'
+  | 'danger'
+  | 'link'
+  | 'teal'
+  | 'text';
+
+interface ButtonProps {
+  circle?: boolean;
+  className?: string;
+  darkMode?: boolean;
+  hollow?: boolean;
+  level?: ButtonLevel;
+  onClick?: () => void;
+  size?: ButtonSize;
+  tag?: keyof JSX.IntrinsicElements;
+
+  // States
+  hover?: boolean;
+  active?: boolean;
+  disabled?: boolean;
+  checked?: boolean;
+  focus?: boolean;
+}
+
+type ButtonType = React.FC<ButtonProps> & {
+  Addon: React.FC<AddonProps>;
+};
+
 // Design doc names in comments
-export const levels = [
+export const levels: ButtonLevel[] = [
   'primary', // "Primary"
   'primary-alt', // "Teal"
   'secondary', // "Secondary"
@@ -26,7 +59,7 @@ export const levels = [
 ];
 
 // These states are each their own boolean prop
-export const states = [
+export const states: ButtonState[] = [
   'hover', // "Hover"
   'focus', // "Focus"
   'active', // "Pressed"
@@ -34,25 +67,24 @@ export const states = [
   'checked', // "Active"
 ];
 
-export const sizes = [
+export const sizes: ButtonSize[] = [
   'sm', // ""
   'md', // "Medium"
   'lg', // "Large"
 ];
 
-const Button = (props) => {
-  const {
-    children: initChildren,
-    circle,
-    className: passedClassName,
-    darkMode,
-    hollow,
-    level,
-    size,
-    tag: Tag,
-    ...passedProps
-  } = props;
-
+const Button: ButtonType = ({
+  children: initChildren = null,
+  circle = undefined,
+  className: passedClassName = '',
+  onClick = () => {},
+  darkMode = false,
+  hollow = false,
+  level = 'secondary',
+  size = 'lg',
+  tag: Tag = 'button',
+  ...passedProps
+}) => {
   let children = initChildren;
 
   // For future ref
@@ -100,15 +132,22 @@ const Button = (props) => {
     [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
   );
 
-  const addonChildren = React.Children.toArray(initChildren).filter(
-    (child) =>
-      child && child.type && child.type.displayName === Addon.displayName
-  );
+  const addonChildren = React.Children.toArray(initChildren).filter((child) => {
+    const c = child as React.ReactElement & { type: { displayName?: string } };
+    return c?.type?.displayName === Addon.displayName;
+  });
 
   if (addonChildren.length) {
     children = React.Children.map(initChildren, (child) => {
-      if (child && child.type && child.type.displayName === Addon.displayName) {
-        return React.cloneElement(child, { ...child.props, size });
+      const c = child as React.ReactElement & {
+        type: { displayName?: string };
+      };
+
+      if (c?.type?.displayName === Addon.displayName) {
+        return React.cloneElement(child as React.ReactElement, {
+          ...((child as React.ReactElement)?.props || {}),
+          size,
+        });
       }
 
       if (typeof child === 'string') {
@@ -120,7 +159,7 @@ const Button = (props) => {
   }
 
   return (
-    <Tag {...safePassedProps} className={className}>
+    <Tag {...safePassedProps} onClick={onClick} className={className}>
       {children}
     </Tag>
   );
@@ -128,7 +167,6 @@ const Button = (props) => {
 
 Button.propTypes = {
   active: PropTypes.bool,
-  children: PropTypes.node,
   /** `circle` buttons have a fixed width === height */
   circle: PropTypes.bool,
   className: PropTypes.string,
@@ -137,8 +175,8 @@ Button.propTypes = {
   /** `hollow` buttons have an outline style, and are suitable for dark backgrounds */
   hollow: PropTypes.bool,
   level: PropTypes.oneOf(levels),
+  onClick: PropTypes.func,
   size: PropTypes.oneOf(sizes),
-  tag: tagPropTypes,
   ...states.reduce(
     (result, stateKey) => ({
       ...result,
@@ -149,15 +187,14 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  active: false,
-  children: null,
-  circle: undefined,
+  active: undefined,
+  circle: false,
   className: '',
   darkMode: false,
   hollow: false,
   level: 'secondary',
+  onClick: () => {},
   size: 'lg',
-  tag: 'button',
   ...states.reduce(
     (result, stateKey) => ({
       ...result,

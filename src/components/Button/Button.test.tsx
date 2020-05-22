@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Button from './';
+import Button from '.';
 
 describe('Button', () => {
   it('renders a `button` tag without error', () => {
@@ -76,7 +76,7 @@ describe('Button', () => {
 
   describe('props.tag', () => {
     it('renders a different html tag', () => {
-      const wrapper = mount(<Button tag="span" />);
+      const wrapper = mount(<Button tag="span" onClick={() => {}} />);
       const inner = wrapper.childAt(0);
       expect(inner.name()).toEqual('span');
     });
