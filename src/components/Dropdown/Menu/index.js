@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 
 import { isOpenContext } from '../context';
-import style from './Menu.module.css';
+import styles from './Menu.module.css';
 import ItemMoon from './Item';
 
 const Menu = ({
@@ -25,10 +25,10 @@ const Menu = ({
             <div
               {...passedProps}
               className={classNames(
-                style.Menu,
+                styles.Menu,
                 className,
-                style[position],
-                style[transitionState]
+                styles[position],
+                styles[transitionState]
               )}
             />
           )}

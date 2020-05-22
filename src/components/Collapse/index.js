@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import isNull from 'lodash/isNull';
 
-import style from './Collapse.module.css';
+import styles from './Collapse.module.css';
 
 const Collapse = ({
   children,
@@ -76,7 +76,7 @@ const Collapse = ({
       {(transitionState) => {
         const styleHeight = isNull(height) ? null : { height };
         return (
-          <div style={styleHeight} className={style[transitionState]}>
+          <div style={styleHeight} className={styles[transitionState]}>
             {children}
           </div>
         );

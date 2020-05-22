@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './Addon.module.css';
+import styles from './Addon.module.css';
 
 const propTypes = {
   className: PropTypes.string,
@@ -21,7 +21,7 @@ const Addon: React.FC<AddonProps> = ({
 }) => (
   <div
     {...passedProps}
-    className={classNames(className, style.Addon, style[size])}
+    className={classNames(className, styles.Addon, styles[size])}
   />
 );
 

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { ClassValue } from 'classnames/types';
 import Addon from './Addon';
 
-import style from './Pill.module.css';
+import styles from './Pill.module.css';
 
 export interface PillProps
   extends Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'onClick'> {
@@ -42,11 +42,11 @@ const Pill: PillType = ({
   children = React.Children.map(initChildren, child => {
     const c = child as React.ReactElement & { type: { displayName?: string } };
     return c?.type?.displayName === Addon.displayName ? (
-      <div className={style.actionInline}>
+      <div className={styles.actionInline}>
         {React.cloneElement(child as React.ReactElement, { checked })}
       </div>
     ) : (
-      child && <span className={style.content}>{child}</span>
+      child && <span className={styles.content}>{child}</span>
     );
   });
 
@@ -62,8 +62,8 @@ const Pill: PillType = ({
     <div
       {...passedProps}
       {...clickableProps}
-      className={classNames(style.Pill, className, {
-        [style.checked]: checked,
+      className={classNames(styles.Pill, className, {
+        [styles.checked]: checked,
       })}
     >
       {children}

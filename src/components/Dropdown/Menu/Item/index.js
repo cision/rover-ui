@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './style.css';
+import styles from './Item.module.css';
 
 const Item = ({ className, ...passedProps }) => {
   if (passedProps.href) {
@@ -10,7 +10,7 @@ const Item = ({ className, ...passedProps }) => {
     /* eslint-disable jsx-a11y/anchor-has-content */
     return (
       <a
-        className={classNames(style.Item, style.link, className)}
+        className={classNames(styles.Item, styles.link, className)}
         {...passedProps}
       />
     );
@@ -20,7 +20,7 @@ const Item = ({ className, ...passedProps }) => {
   if (passedProps.onClick) {
     return (
       <button
-        className={classNames(style.Item, style.button, className)}
+        className={classNames(styles.Item, styles.button, className)}
         type="button"
         {...passedProps}
       />
@@ -29,7 +29,7 @@ const Item = ({ className, ...passedProps }) => {
 
   return (
     <div
-      className={classNames(style.Item, style.content, className)}
+      className={classNames(styles.Item, styles.content, className)}
       {...passedProps}
     />
   );
