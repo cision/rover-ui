@@ -3,9 +3,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './Badge.module.css';
-import { propTypes } from '../../shared/models/tag';
 
-export const variants = [
+type BadgeVariant =
+  | 'dark'
+  | 'danger'
+  | 'notify'
+  | 'warning'
+  | 'info'
+  | 'success'
+  | '';
+
+export const variants: BadgeVariant[] = [
   'dark',
   'danger',
   'notify',
@@ -15,17 +23,40 @@ export const variants = [
   '',
 ];
 
-const buildVariantClasses = (list, variant) =>
+const buildVariantClasses = (list: BadgeVariant[], variant: BadgeVariant) =>
   list.reduce((acc, item) => {
     acc[styles[item]] = variant === item;
     return acc;
   }, {});
 
-const Badge = ({ className, tag: Tag, round, variant, ...rest }) => {
+interface BadgeProps
+  extends React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
+  className?: string;
+  tag?: keyof Pick<JSX.IntrinsicElements, 'div' | 'span'>;
+  variant?: BadgeVariant;
+  round?: boolean | null;
+  isRound?: boolean | null;
+}
+
+const Badge: React.FC<BadgeProps> = ({
+  className = '',
+  tag: Tag = 'span',
+  round = null,
+  isRound = null,
+  variant = '',
+  ...rest
+}) => {
+  if (isRound === null && round !== null) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "<Badge> prop 'round' is deprecated. Prefer to use 'isRound' in the same way."
+    );
+  }
+
   const classes = classNames(
     className,
     styles.Badge,
-    { [styles.round]: round },
+    { [styles.round]: isRound ?? round },
     buildVariantClasses(variants, variant)
   );
 
@@ -34,16 +65,16 @@ const Badge = ({ className, tag: Tag, round, variant, ...rest }) => {
 
 Badge.defaultProps = {
   className: '',
-  tag: 'span',
-  round: false,
+  round: null,
+  isRound: null,
   variant: '',
 };
 
 Badge.propTypes = {
   className: PropTypes.string,
-  tag: propTypes,
   round: PropTypes.bool,
-  variant: PropTypes.oneOf(variants),
+  isRound: PropTypes.bool,
+  variant: PropTypes.oneOf<BadgeVariant>(variants),
 };
 
 export default Badge;

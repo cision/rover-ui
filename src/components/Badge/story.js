@@ -5,7 +5,7 @@ import { boolean, select, text } from '@storybook/addon-knobs';
 import styled from 'styled-components';
 import { alignSelf, justifyContent, flex, space } from 'styled-system';
 
-import Badge, { variants } from './';
+import Badge, { variants } from './Badge';
 import Readme from './README.md';
 import Paper from '../Paper';
 
@@ -46,10 +46,8 @@ storiesOf('Planets/Badge', module)
   .add(
     'Overview',
     () => {
-      const colorOptions = variants;
-
       const fontSize = select('Font size', fontSizes, 'sm');
-      const variant = select('Variant', colorOptions, '');
+      const variant = select('Variant', variants, '');
       const isRound = boolean('Round', false);
 
       const styles = { fontSize };
@@ -69,7 +67,7 @@ storiesOf('Planets/Badge', module)
     }
   )
   .add('Examples', () => (
-    <React.Fragment>
+    <>
       <Box>
         <Badge>My Badge</Badge>
         <Badge ml="sm" bg="geyser" color="gray">
@@ -127,5 +125,5 @@ storiesOf('Planets/Badge', module)
           </Badge>
         </Flex>
       </Box>
-    </React.Fragment>
+    </>
   ));
