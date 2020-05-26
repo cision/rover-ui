@@ -76,7 +76,7 @@ describe('Button', () => {
 
   describe('props.tag', () => {
     it('renders a different html tag', () => {
-      const wrapper = mount(<Button tag="span" onClick={() => {}} />);
+      const wrapper = mount(<Button tag="span" />);
       const inner = wrapper.childAt(0);
       expect(inner.name()).toEqual('span');
     });

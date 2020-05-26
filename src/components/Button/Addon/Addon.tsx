@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './Addon.module.css';
-
-type TAddonSize = 'sm' | 'md' | 'lg';
+import { TButtonSize } from '../types';
 
 export interface AddonProps {
   className?: string;
-  size?: TAddonSize;
+  size?: TButtonSize;
 }
 
 const Addon: React.FC<AddonProps> = ({

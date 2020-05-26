@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Addon, { AddonProps } from './Addon/Addon';
 import styles from './Button.module.css';
+import { TButtonLevel, TButtonSize, TButtonState } from './types';
 
 /*
   These 2 variants are in design docs but might not be "Buttons" in a strict sense.
@@ -11,28 +12,15 @@ import styles from './Button.module.css';
   Select (-> These might be better served as a different component)
 */
 
-type ButtonSize = 'sm' | 'md' | 'lg';
-type ButtonState = 'hover' | 'focus' | 'active' | 'disabled' | 'checked';
-type ButtonLevel =
-  | 'primary'
-  | 'primary-alt'
-  | 'secondary'
-  | 'tertiary'
-  | 'success'
-  | 'danger'
-  | 'link'
-  | 'teal'
-  | 'text';
-
 interface ButtonProps {
   circle?: boolean;
   className?: string;
   darkMode?: boolean;
   hollow?: boolean;
-  level?: ButtonLevel;
+  level?: TButtonLevel;
   onClick?: () => void;
-  size?: ButtonSize;
-  tag?: keyof JSX.IntrinsicElements;
+  size?: TButtonSize;
+  tag?: keyof Pick<JSX.IntrinsicElements, 'a' | 'button'> | React.ElementType;
 
   // States
   hover?: boolean;
@@ -47,7 +35,7 @@ type ButtonType = React.FC<ButtonProps> & {
 };
 
 // Design doc names in comments
-export const levels: ButtonLevel[] = [
+export const levels: TButtonLevel[] = [
   'primary', // "Primary"
   'primary-alt', // "Teal"
   'secondary', // "Secondary"
@@ -59,7 +47,7 @@ export const levels: ButtonLevel[] = [
 ];
 
 // These states are each their own boolean prop
-export const states: ButtonState[] = [
+export const states: TButtonState[] = [
   'hover', // "Hover"
   'focus', // "Focus"
   'active', // "Pressed"
@@ -67,7 +55,7 @@ export const states: ButtonState[] = [
   'checked', // "Active"
 ];
 
-export const sizes: ButtonSize[] = [
+export const sizes: TButtonSize[] = [
   'sm', // ""
   'md', // "Medium"
   'lg', // "Large"
