@@ -4,14 +4,11 @@ import classNames from 'classnames';
 
 import styles from './Addon.module.css';
 
-const propTypes = {
-  className: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-};
+type TAddonSize = 'sm' | 'md' | 'lg';
 
 export interface AddonProps {
   className?: string;
-  size?: string;
+  size?: TAddonSize;
 }
 
 const Addon: React.FC<AddonProps> = ({
@@ -25,7 +22,10 @@ const Addon: React.FC<AddonProps> = ({
   />
 );
 
-Addon.propTypes = propTypes;
+Addon.propTypes = {
+  className: PropTypes.string,
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+};
 
 Addon.defaultProps = {
   className: '',
