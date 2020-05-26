@@ -1,11 +1,10 @@
 import React, { CSSProperties } from 'react';
-import CSS from 'csstype';
 import classNames from 'classnames';
 
 import styles from './Bar.module.css';
 
 type BarProps = React.HTMLAttributes<HTMLDivElement> & {
-  width?: string | number | null;
+  width?: string | number;
 };
 
 type BarType = React.FC<BarProps> & {
@@ -18,20 +17,17 @@ const BarGenerator = (
 ): React.FC<BarProps> => {
   const GeneratedBar: React.FC<BarProps> = ({
     className = '',
-    width: widthProp = null,
+    width: widthProp = undefined,
     style: styleProp = {},
     ...props
   }) => {
     let width = widthProp;
 
     if (widthProp) {
-      width =
-        typeof widthProp === 'number'
-          ? `${widthProp}px`
-          : (widthProp as CSS.WidthProperty<string | number>);
+      width = typeof widthProp === 'number' ? `${widthProp}px` : widthProp;
     }
 
-    const style: Omit<CSSProperties, 'width'> = {
+    const style: CSSProperties = {
       width,
       ...styleProp,
     };
