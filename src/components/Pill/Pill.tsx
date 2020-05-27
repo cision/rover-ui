@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { ClassValue } from 'classnames/types';
@@ -7,7 +7,7 @@ import Addon from './Addon';
 import styles from './Pill.module.css';
 
 export interface PillProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'onClick'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'onClick'> {
   checked?: boolean;
   className?: ClassValue;
   onClick?: (() => void) | null;
@@ -20,7 +20,7 @@ const defaultProps = {
 };
 
 type PillType = React.FC<PillProps> & {
-  Addon: React.FC;
+  Addon: typeof Addon;
 };
 
 const Pill: PillType = ({
@@ -39,7 +39,7 @@ const Pill: PillType = ({
   //
   // For now, I'm casting the child as a very rudimentary object that will
   // work for checking, but will not be used in execution
-  children = React.Children.map(initChildren, child => {
+  children = React.Children.map(initChildren, (child) => {
     const c = child as React.ReactElement & { type: { displayName?: string } };
     return c?.type?.displayName === Addon.displayName ? (
       <div className={styles.actionInline}>
