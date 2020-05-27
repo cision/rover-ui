@@ -9,16 +9,19 @@ import Badge, { variants } from './Badge';
 import Readme from './README.md';
 import Paper from '../Paper';
 
-const Flex = styled.div({ display: 'flex' }, flex, space);
+const FlexBase = styled.div({ display: 'flex' }, flex, space);
 
-Flex.defaultProps = {
-  justifyContent: 'flex-start',
-  flex: '1 0 auto',
-  p: 'md',
-  mb: 0,
+const Flex = (props) => {
+  return (
+    <FlexBase
+      justifyContent="flex-start"
+      flex="1 0 atuo"
+      p="md"
+      mb={0}
+      {...props}
+    />
+  );
 };
-
-Flex.displayName = 'Flex';
 
 const Box = styled(Paper)(space, alignSelf, justifyContent);
 
@@ -47,14 +50,14 @@ storiesOf('Planets/Badge', module)
     'Overview',
     () => {
       const fontSize = select('Font size', fontSizes, 'sm');
-      const variant = select('Variant', variants, '');
-      const isRound = boolean('Round', false);
+      const variant = select('variant', variants, '');
+      const round = boolean('round', false);
 
       const styles = { fontSize };
 
       return (
         <Box style={{ marginBottom: '10px' }} p="2xl">
-          <Badge round={isRound} style={styles} variant={variant}>
+          <Badge round={round} style={styles} variant={variant}>
             {text('Children', 'My Badge')}
           </Badge>
         </Box>
@@ -70,9 +73,7 @@ storiesOf('Planets/Badge', module)
     <>
       <Box>
         <Badge>My Badge</Badge>
-        <Badge ml="sm" bg="geyser" color="gray">
-          Other
-        </Badge>
+        <Badge>Other</Badge>
       </Box>
       <Box bg="#414c52">
         <Badge variant="dark">Dark Badge</Badge>
@@ -87,12 +88,8 @@ storiesOf('Planets/Badge', module)
         <Badge variant="info">Info Badge</Badge>
       </Box>
       <Box>
-        <Badge mr="sm" variant="warning">
-          Warning Badge
-        </Badge>
-        <Badge bg="shuttle-gray" color="success">
-          Different text color and font-size
-        </Badge>
+        <Badge variant="warning">Warning Badge</Badge>
+        <Badge variant="success">Different text color and font-size</Badge>
       </Box>
       <Box>
         <Badge variant="success">Success Badge</Badge>
