@@ -40,6 +40,7 @@
       }
     ],
     "react/prefer-stateless-function": "off",
+    "react/prop-types": "off",
     "react/jsx-indent": [2, 2],
     "class-methods-use-this": "off",
     "spaced-comment": "off",
