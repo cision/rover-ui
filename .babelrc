@@ -12,7 +12,7 @@
     [
       "@babel/plugin-transform-react-jsx",
       {
-        "pragmaFrag": "React.Fragment" // default is React.Fragment
+        "pragmaFrag": "React.Fragment"
       }
     ],
     [
