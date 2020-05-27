@@ -89,7 +89,7 @@ const Button: ButtonType = ({
 
   // For future ref
   const truthyStateKeys = useMemo(
-    () => states.filter(state => !!passedProps[state]),
+    () => states.filter((state) => !!passedProps[state]),
     [passedProps]
   );
 
@@ -127,7 +127,7 @@ const Button: ButtonType = ({
           'disabled', 'active', etc. so consumers can force appearance on
           elements easily
         */
-        truthyStateKeys.map(truthyStateKey => styles[truthyStateKey])
+        truthyStateKeys.map((truthyStateKey) => styles[truthyStateKey])
       ),
     [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
   );
