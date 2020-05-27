@@ -50,7 +50,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "compile": "microbundle-crl --raw --format modern,cjs --no-compress --css-modules 'rvr-[local]-[sha256:hash:base64:3]' && mv dist/index.css dist/rover-ui.css",
+    "compile": "microbundle-crl --raw --format modern,cjs --no-compress --css-modules 'rvr-[local]__[hash:base64:3]' && mv dist/index.css dist/rover-ui.css",
     "build": "yarn compile",
     "start": "yarn compile --watch",
     "generate-component": "yarn hygen component new",
@@ -71,6 +71,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
+    "@babel/plugin-proposal-optional-chaining": "^7.10.0",
+    "@babel/plugin-transform-react-jsx": "^7.9.4",
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@storybook/addon-a11y": "^5.3.18",
