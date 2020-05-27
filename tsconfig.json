@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "checkJs": false,
     "outDir": "dist",
     "module": "esnext",
@@ -27,6 +27,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "example"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "example",
+    "src/**/story.tsx",
+    "src/**/*.story.tsx",
+    "src/**/*.test.tsx"
+  ]
 }
