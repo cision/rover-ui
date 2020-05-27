@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Addon, { AddonProps } from './Addon/Addon';
@@ -12,15 +11,13 @@ import { TButtonLevel, TButtonSize, TButtonState } from './types';
   Select (-> These might be better served as a different component)
 */
 
-interface ButtonProps {
+interface BaseButtonProps {
   circle?: boolean;
   className?: string;
   darkMode?: boolean;
   hollow?: boolean;
   level?: TButtonLevel;
-  onClick?: () => void;
   size?: TButtonSize;
-  tag?: keyof Pick<JSX.IntrinsicElements, 'a' | 'button'> | React.ElementType;
 
   // States
   hover?: boolean;
@@ -30,9 +27,26 @@ interface ButtonProps {
   focus?: boolean;
 }
 
-type ButtonType = React.FC<ButtonProps> & {
+// Button props
+type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  BaseButtonProps & {
+    href?: undefined;
+  };
+
+// Anchor props
+type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  BaseButtonProps & {
+    href?: string;
+  };
+
+type ButtonType = React.FC<ButtonElementProps | AnchorElementProps> & {
   Addon: React.FC<AddonProps>;
 };
+
+// Guard to check if href exists in props
+const hasHref = (
+  props: ButtonElementProps | AnchorElementProps
+): props is AnchorElementProps => 'href' in props && props.href !== undefined;
 
 // Design doc names in comments
 export const levels: TButtonLevel[] = [
@@ -65,15 +79,13 @@ const Button: ButtonType = ({
   children: initChildren = null,
   circle = undefined,
   className: passedClassName = '',
-  onClick = () => {},
   darkMode = false,
   hollow = false,
   level = 'secondary',
   size = 'lg',
-  tag: Tag = 'button',
   ...passedProps
-}) => {
-  let children = initChildren;
+}: ButtonElementProps | AnchorElementProps) => {
+  const children = initChildren;
 
   // For future ref
   const truthyStateKeys = useMemo(
@@ -82,21 +94,21 @@ const Button: ButtonType = ({
   );
 
   // Filter out undefined passedProps and `active` from DOM element tags
-  const safePassedProps = useMemo(
-    () =>
-      Object.entries(passedProps).reduce((result, [key, value]) => {
-        if (value === undefined) {
-          return result;
-        }
+  // const safePassedProps = useMemo(
+  //   () =>
+  //     Object.entries(passedProps).reduce((result, [key, value]) => {
+  //       if (value === undefined) {
+  //         return result;
+  //       }
 
-        if (typeof Tag === 'string' && key === 'active') {
-          return result;
-        }
+  //       if (typeof Tag === 'string' && key === 'active') {
+  //         return result;
+  //       }
 
-        return { ...result, [key]: value };
-      }, {}),
-    [passedProps, Tag]
-  );
+  //       return { ...result, [key]: value };
+  //     }, {}),
+  //   [passedProps, Tag]
+  // );
 
   const className = useMemo(
     () =>
@@ -120,76 +132,24 @@ const Button: ButtonType = ({
     [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
   );
 
-  const addonChildren = React.Children.toArray(initChildren).filter(child => {
-    const c = child as React.ReactElement & { type: { displayName?: string } };
-    return c?.type?.displayName === Addon.displayName;
-  });
-
-  if (addonChildren.length) {
-    children = React.Children.map(initChildren, child => {
-      const c = child as React.ReactElement & {
-        type: { displayName?: string };
-      };
-
-      if (c?.type?.displayName === Addon.displayName) {
-        return React.cloneElement(child as React.ReactElement, {
-          ...((child as React.ReactElement)?.props || {}),
-          size,
-        });
-      }
-
-      if (typeof child === 'string') {
-        return <span className={styles.buttonBody}>{child}</span>;
-      }
-
-      return child;
-    });
+  if (hasHref(passedProps)) {
+    return (
+      <a {...passedProps} className={className}>
+        {children}
+      </a>
+    );
   }
 
+  // button render
   return (
-    <Tag {...safePassedProps} onClick={onClick} className={className}>
+    <button
+      {...(passedProps as ButtonElementProps)}
+      type="button"
+      className={className}
+    >
       {children}
-    </Tag>
+    </button>
   );
-};
-
-Button.propTypes = {
-  active: PropTypes.bool,
-  /** `circle` buttons have a fixed width === height */
-  circle: PropTypes.bool,
-  className: PropTypes.string,
-  /** `darkMode` is deprecated in favor of `hollow` */
-  darkMode: PropTypes.bool,
-  /** `hollow` buttons have an outline style, and are suitable for dark backgrounds */
-  hollow: PropTypes.bool,
-  level: PropTypes.oneOf(levels),
-  onClick: PropTypes.func,
-  size: PropTypes.oneOf(sizes),
-  ...states.reduce(
-    (result, stateKey) => ({
-      ...result,
-      [stateKey]: PropTypes.bool,
-    }),
-    {}
-  ),
-};
-
-Button.defaultProps = {
-  active: undefined,
-  circle: false,
-  className: '',
-  darkMode: false,
-  hollow: false,
-  level: 'secondary',
-  onClick: () => {},
-  size: 'lg',
-  ...states.reduce(
-    (result, stateKey) => ({
-      ...result,
-      [stateKey]: undefined,
-    }),
-    {}
-  ),
 };
 
 Button.Addon = Addon;

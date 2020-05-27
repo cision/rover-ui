@@ -51,34 +51,35 @@ describe('Button', () => {
   });
 
   describe('props.size', () => {
-    // Our current test build doesn't do css modules, so this doesn't work
-    // it('adds "md" size className', () => {
-    //   const wrapper = shallow(<Button size="md" />);
-    //   expect(wrapper.hasClass(style.md)).toEqual(true);
-    // });
-
-    it('passes size prop to `Addon` children', () => {
+    it('does not pass size prop to `Addon` children', () => {
       const wrapper = mount(
         <Button size="md">
-          <Button.Addon />
+          <Button.Addon size="md" />
         </Button>
       );
       let addon = wrapper.find(Button.Addon);
       expect(addon.props().size).toEqual('md');
       wrapper.setProps({ size: 'sm' });
       addon = wrapper.find(Button.Addon);
-      expect(addon.props().size).toEqual('sm');
+      expect(addon.props().size).toEqual('md');
       wrapper.setProps({ size: 'lg' });
       addon = wrapper.find(Button.Addon);
-      expect(addon.props().size).toEqual('lg');
+      expect(addon.props().size).toEqual('md');
     });
   });
 
-  describe('props.tag', () => {
-    it('renders a different html tag', () => {
-      const wrapper = mount(<Button tag="span" />);
+  describe('props.href', () => {
+    it('renders an anchor tag when there is an href', () => {
+      const wrapper = mount(<Button href="#example" />);
       const inner = wrapper.childAt(0);
-      expect(inner.name()).toEqual('span');
+      expect(inner.name()).toEqual('a');
+    });
+
+    it('renders a button tag when there is not href', () => {
+      const callback = jest.fn();
+      const wrapper = mount(<Button onClick={callback} />);
+      const inner = wrapper.childAt(0);
+      expect(inner.name()).toEqual('button');
     });
   });
 });

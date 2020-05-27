@@ -21,8 +21,6 @@ const MyComponent = ({ className = '', ...props }) => (
 MyComponent.propTypes = { className: PropTypes.string };
 MyComponent.defaultProps = { className: '' };
 
-const tags = ['a', 'button', '<MyComponent />'];
-
 storiesOf('Planets/Button', module)
   .addParameters({
     readme: {
@@ -38,15 +36,10 @@ storiesOf('Planets/Button', module)
         circle={boolean('circle', false)}
         hollow={boolean('hollow', false)}
         disabled={boolean('disabled', false)}
-        href={select('tag', tags, 'button') === 'a' ? '#' : null}
+        href={text('href', '') || undefined}
         level={select('level', levels, 'secondary')}
         onClick={action('Button clicked')}
         size={select('size', sizes, 'lg')}
-        tag={
-          select('tag', tags, 'button') === '&lt;MyComponent /&gt;'
-            ? MyComponent
-            : select('tag', tags, 'button')
-        }
       >
         {text('children', 'Click me!')}
       </Button>
@@ -65,7 +58,7 @@ storiesOf('Planets/Button', module)
         <div>
           <h2>Sizes</h2>
           <div style={{ marginBottom: '20px' }}>
-            {sizes.map((size) => (
+            {sizes.map(size => (
               <span
                 key={size}
                 style={{
@@ -75,9 +68,7 @@ storiesOf('Planets/Button', module)
                 }}
               >
                 <Button size={size}>
-                  {size !== Button.defaultProps.size
-                    ? size
-                    : `${size} (default)`}
+                  {size !== 'lg' ? size : `${size} (default)`}
                 </Button>
               </span>
             ))}
@@ -92,9 +83,7 @@ storiesOf('Planets/Button', module)
                 marginBottom: '10px',
               }}
             >
-              <Button href="#" tag="a">
-                a
-              </Button>
+              <Button href="#">a</Button>
             </span>
             <span
               style={{
@@ -103,16 +92,7 @@ storiesOf('Planets/Button', module)
                 marginBottom: '10px',
               }}
             >
-              <Button tag="button">button (default)</Button>
-            </span>
-            <span
-              style={{
-                display: 'inline-block',
-                marginRight: '20px',
-                marginBottom: '10px',
-              }}
-            >
-              <Button tag="input" type="button" value="input" />
+              <Button>button (default)</Button>
             </span>
           </div>
           <hr />
@@ -134,7 +114,7 @@ storiesOf('Planets/Button', module)
           <hr />
           <h2>Circle</h2>
           <div style={{ marginBottom: '20px' }}>
-            {sizes.map((size) => (
+            {sizes.map(size => (
               <span
                 key={size}
                 style={{
@@ -157,7 +137,7 @@ storiesOf('Planets/Button', module)
           </div>
           <hr />
           <h2>Levels</h2>
-          {levels.map((level) => {
+          {levels.map(level => {
             return (
               <div key={level}>
                 <h3>{level}</h3>
@@ -171,7 +151,7 @@ storiesOf('Planets/Button', module)
                   >
                     <Button level={level}>default</Button>
                   </span>
-                  {states.map((state) => (
+                  {states.map(state => (
                     <span key={state} style={{ marginRight: '20px' }}>
                       <Button level={level} {...{ [state]: true }}>
                         {state}
@@ -200,7 +180,7 @@ storiesOf('Planets/Button', module)
             >
               <Button hollow>(default)</Button>
             </span>
-            {states.map((state) => (
+            {states.map(state => (
               <span key={state} style={{ marginRight: '20px' }}>
                 <Button hollow {...{ [state]: true }}>
                   {state}
