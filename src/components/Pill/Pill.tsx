@@ -20,7 +20,7 @@ const defaultProps = {
 };
 
 type PillType = React.FC<PillProps> & {
-  Addon: React.FC<React.HTMLAttributes<HTMLDivElement>>;
+  Addon: typeof Addon;
 };
 
 const Pill: PillType = ({
