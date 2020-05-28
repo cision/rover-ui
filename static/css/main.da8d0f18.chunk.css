@@ -422,7 +422,7 @@
   line-height: var(--rvr-line-height-sm);
   transition:
     0.2s linear background-color,
- 0.2s linear border-color,
+    0.2s linear border-color,
     0.2s linear color;
   display: inline-flex;
   flex-flow: row nowrap;
@@ -1525,4 +1525,4 @@ a .Avatar_Avatar__2_adr {
 }
 
 
-/*# sourceMappingURL=main.080f0022.chunk.css.map*/
+/*# sourceMappingURL=main.da8d0f18.chunk.css.map*/
