@@ -100,7 +100,7 @@ storiesOf('Star Systems/Bar', module)
 
       <Wrap>
         <Title>At various fill widths...</Title>
-        {[0, 10, 20, 50, 99, 100].map(percent => (
+        {[0, 10, 20, 50, 99, 100].map((percent) => (
           <div key={percent.toString()}>
             <Spacer />
             <Bar style={{ width: '100%' }}>

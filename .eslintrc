@@ -16,9 +16,6 @@
     "browser": true
   },
   "plugins": ["@typescript-eslint", "react", "prettier", "import"],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "rules": {
     "react/jsx-props-no-spreading": "off",
     "import/no-unresolved": "off",

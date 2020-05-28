@@ -41,7 +41,7 @@ storiesOf('Planets/Icon', module)
             },
           }}
         >
-          {iconNames.map(iconName => (
+          {iconNames.map((iconName) => (
             <Wrap key={iconName}>
               <dd
                 key={iconName}

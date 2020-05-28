@@ -28,7 +28,7 @@ function defaultImageFetcher({
   const img = new Image();
   img.referrerPolicy = 'no-referrer';
   img.crossOrigin = 'Anonymous';
-  img.onload = function() {
+  img.onload = function () {
     const image = this as HTMLImageElement;
     if ('naturalHeight' in this) {
       if (image.naturalHeight + image.naturalWidth === 0) {
@@ -42,7 +42,7 @@ function defaultImageFetcher({
 
     onLoad(src);
   };
-  img.onerror = function(e) {
+  img.onerror = function (e) {
     onError(e);
   };
   if (src) img.src = src;
@@ -62,13 +62,11 @@ interface AvatarProps
   loading?: boolean;
   disabled?: boolean;
   name?: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   className?: string;
   onLoad?: (src: string | null) => void;
   onError?: (e: TOnErrorArgs) => void;
-  imageFetcher?: (
-    opts: ImageFetcherArgs
-  ) => ReturnType<typeof defaultImageFetcher>;
+  imageFetcher?: (opts: ImageFetcherArgs) => void;
 }
 
 type AvatarType = React.FC<AvatarProps> & {
@@ -109,7 +107,7 @@ const Avatar: AvatarType = ({
     if (!name) return '';
     const nameParts = name.split(' ', 2);
     let returnInitials = '';
-    nameParts.forEach(part => {
+    nameParts.forEach((part) => {
       returnInitials += part[0];
     });
     return returnInitials.slice(0, 2);
