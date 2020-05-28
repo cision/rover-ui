@@ -62,13 +62,11 @@ interface AvatarProps
   loading?: boolean;
   disabled?: boolean;
   name?: string;
-  imageUrl?: string;
+  imageUrl?: string | null;
   className?: string;
   onLoad?: (src: string | null) => void;
   onError?: (e: TOnErrorArgs) => void;
-  imageFetcher?: (
-    opts: ImageFetcherArgs
-  ) => ReturnType<typeof defaultImageFetcher>;
+  imageFetcher?: (opts: ImageFetcherArgs) => void;
 }
 
 type AvatarType = React.FC<AvatarProps> & {
