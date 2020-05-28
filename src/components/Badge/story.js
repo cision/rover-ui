@@ -2,30 +2,13 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import styled from 'styled-components';
-import { alignSelf, justifyContent, flex, space } from 'styled-system';
+import { BuildHelper, Wrap } from '../../stories/storybook-helpers';
 
-import Badge, { variants } from './';
+import Badge, { variants } from '.';
 import Readme from './README.md';
-import Paper from '../Paper';
 
-const Flex = styled.div({ display: 'flex' }, flex, space);
-
-Flex.defaultProps = {
-  justifyContent: 'flex-start',
-  flex: '1 0 auto',
-  p: 'md',
-  mb: 0,
-};
-
-Flex.displayName = 'Flex';
-
-const Box = styled(Paper)(space, alignSelf, justifyContent);
-
-Box.displayName = 'Box';
-Box.defaultProps = {
-  mb: '15px',
-};
+const Flex = BuildHelper('Flex', 'flex justify-start mb-0 justify-start');
+const Box = Wrap;
 
 const fontSizes = {
   base: 'var(--rvr-font-size-base)',
@@ -69,7 +52,7 @@ storiesOf('Planets/Badge', module)
     }
   )
   .add('Examples', () => (
-    <React.Fragment>
+    <>
       <Box>
         <Badge>My Badge</Badge>
         <Badge ml="sm" bg="geyser" color="gray">
@@ -114,7 +97,7 @@ storiesOf('Planets/Badge', module)
         </Flex>
       </Box>
       <Box>
-        <Flex m={0} p={0}>
+        <Flex>
           <Badge>Article</Badge>
           <Badge round style={{ marginLeft: '10px' }} variant="info">
             Print
@@ -127,5 +110,5 @@ storiesOf('Planets/Badge', module)
           </Badge>
         </Flex>
       </Box>
-    </React.Fragment>
+    </>
   ));

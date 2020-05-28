@@ -9,7 +9,7 @@ import { parseCssSize } from '../../shared/css-utils';
 import withDefaultTheme from '../withDefaultTheme';
 
 // This component's dependencies
-import style from './Grid.module.css';
+import styles from './Grid.module.css';
 import Entry from './Entry';
 
 const StyledGrid = styled.div(margin);
@@ -50,9 +50,9 @@ export const Grid = withDefaultTheme(
     return (
       <StyledGrid
         {...passedProps}
-        className={classNames(style.Grid, customClassName)}
+        className={classNames(styles.Grid, customClassName)}
       >
-        <div className={style.gridColumns} style={{ margin: inverseGutter }}>
+        <div className={styles.gridColumns} style={{ margin: inverseGutter }}>
           {entries.map((child) => (
             <Entry
               entryPercentWidth={entryPercentWidth}

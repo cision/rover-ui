@@ -2,8 +2,8 @@ import React, { useMemo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Addon from './Addon';
-import style from './Avatar.module.css';
+import Addon, { AddonProps } from './Addon';
+import styles from './Avatar.module.css';
 import { sizeBase } from '../../shared/sizing';
 
 const semanticSizes = {
@@ -12,18 +12,30 @@ const semanticSizes = {
   large: sizeBase * 12,
 };
 
+type TOnErrorArgs = Error | Event | string | null;
+type ImageFetcherArgs = {
+  onLoad: (src: string | null) => void;
+  onError: (e: TOnErrorArgs) => void;
+  src: string | null;
+};
+
 // This function will be used in a useEffect so make sure it returns a cleanup function
-function defaultImageFetcher({ onLoad, onError, src }) {
+function defaultImageFetcher({
+  onLoad,
+  onError,
+  src,
+}: ImageFetcherArgs): () => void {
   const img = new Image();
   img.referrerPolicy = 'no-referrer';
   img.crossOrigin = 'Anonymous';
   img.onload = function() {
+    const image = this as HTMLImageElement;
     if ('naturalHeight' in this) {
-      if (this.naturalHeight + this.naturalWidth === 0) {
+      if (image.naturalHeight + image.naturalWidth === 0) {
         onError(new Error('Invalid Image'));
         return;
       }
-    } else if (this.width + this.height === 0) {
+    } else if (image.width + image.height === 0) {
       onError(new Error('Invalid Image'));
       return;
     }
@@ -33,7 +45,7 @@ function defaultImageFetcher({ onLoad, onError, src }) {
   img.onerror = function(e) {
     onError(e);
   };
-  img.src = src;
+  if (src) img.src = src;
 
   return () => {
     img.onload = () => {};
@@ -43,27 +55,47 @@ function defaultImageFetcher({ onLoad, onError, src }) {
   };
 }
 
-const Avatar = ({
-  size,
-  loading,
-  name,
-  imageUrl,
-  disabled,
-  className,
-  children,
-  onLoad,
-  onError,
-  imageFetcher,
+interface AvatarProps
+  extends Pick<React.HTMLAttributes<HTMLDivElement>, 'style'> {
+  size?: number | string | 'small' | 'medium' | 'large' | null | undefined;
+  children?: React.ReactNode;
+  loading?: boolean;
+  disabled?: boolean;
+  name?: string;
+  imageUrl?: string;
+  className?: string;
+  onLoad?: (src: string | null) => void;
+  onError?: (e: TOnErrorArgs) => void;
+  imageFetcher?: (
+    opts: ImageFetcherArgs
+  ) => ReturnType<typeof defaultImageFetcher>;
+}
+
+type AvatarType = React.FC<AvatarProps> & {
+  Addon: React.FC<AddonProps>;
+};
+
+const Avatar: AvatarType = ({
+  size = 'small',
+  loading = false,
+  name = '',
+  imageUrl = '',
+  disabled = false,
+  className = '',
+  children = null,
+  onLoad = null,
+  onError = null,
+  imageFetcher = defaultImageFetcher,
   ...rest
 }) => {
-  const mainClassName = classNames(style.Avatar, className, {
-    [style.loading]: loading,
-    [style.disabled]: disabled && imageUrl,
-    [style.disabledNoImage]: disabled && !imageUrl,
+  const mainClassName = classNames(styles.Avatar, className, {
+    [styles.loading]: loading,
+    [styles.disabled]: disabled && imageUrl,
+    [styles.disabledNoImage]: disabled && !imageUrl,
   });
 
   const sizes = useMemo(() => {
-    const pixelSize = semanticSizes[size] || size;
+    const pixelSize = size ? semanticSizes[size] || size : semanticSizes.small;
     return {
       width: `${pixelSize}px`,
       height: `${pixelSize}px`,
@@ -87,14 +119,16 @@ const Avatar = ({
     if (!imageUrl) return () => {};
 
     setLoaded(false);
-    const handleLoad = src => {
+    const handleLoad = (src: string | null) => {
       setLoaded(true);
-      onLoad(src);
+      if (onLoad) onLoad(src);
     };
-    const handleError = e => {
+
+    const handleError = (e: TOnErrorArgs) => {
       setLoaded(false);
-      onError(e);
+      if (onError) onError(e);
     };
+
     return imageFetcher({
       onLoad: handleLoad,
       onError: handleError,
@@ -125,32 +159,32 @@ const Avatar = ({
 Avatar.Addon = Addon;
 
 Avatar.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  imageFetcher: PropTypes.func,
+  imageUrl: PropTypes.string,
+  loading: PropTypes.bool,
+  name: PropTypes.string,
+  onError: PropTypes.func,
+  onLoad: PropTypes.func,
   size: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.oneOf(['small', 'medium', 'large']),
   ]),
-  loading: PropTypes.bool,
-  disabled: PropTypes.bool,
-  name: PropTypes.string,
-  imageUrl: PropTypes.string,
-  className: PropTypes.string,
-  children: PropTypes.node,
-  onLoad: PropTypes.func,
-  onError: PropTypes.func,
-  imageFetcher: PropTypes.func,
 };
 
 Avatar.defaultProps = {
-  loading: false,
-  className: '',
-  size: 'small',
-  disabled: false,
-  name: '',
-  imageUrl: '',
   children: null,
-  onLoad: () => {},
-  onError: () => {},
+  className: '',
+  disabled: false,
   imageFetcher: defaultImageFetcher,
+  imageUrl: '',
+  loading: false,
+  name: '',
+  onError: () => {},
+  onLoad: () => {},
+  size: 'small',
 };
 
 export default Avatar;

@@ -6,18 +6,20 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
-import Button, { levels, sizes, states } from './';
+import Button, { levels, sizes, states } from './Button';
 import ButtonReadme from './README.md';
 import AddonReadme from './Addon/README.md';
 
-const MyComponent = props => (
-  <button {...props} className={classNames(props.className, 'MyComponent')} />
+const MyComponent = ({ className = '', ...props }) => (
+  <button
+    type="button"
+    className={classNames(className, 'MyComponent')}
+    {...props}
+  />
 );
 
 MyComponent.propTypes = { className: PropTypes.string };
 MyComponent.defaultProps = { className: '' };
-
-const tags = ['a', 'button', '<MyComponent />'];
 
 storiesOf('Planets/Button', module)
   .addParameters({
@@ -34,15 +36,10 @@ storiesOf('Planets/Button', module)
         circle={boolean('circle', false)}
         hollow={boolean('hollow', false)}
         disabled={boolean('disabled', false)}
-        href={select('tag', tags, 'button') === 'a' ? '#' : null}
+        href={text('href', '') || undefined}
         level={select('level', levels, 'secondary')}
         onClick={action('Button clicked')}
         size={select('size', sizes, 'lg')}
-        tag={
-          select('tag', tags, 'button') === '&lt;MyComponent /&gt;'
-            ? MyComponent
-            : select('tag', tags, 'button')
-        }
       >
         {text('children', 'Click me!')}
       </Button>
@@ -71,9 +68,7 @@ storiesOf('Planets/Button', module)
                 }}
               >
                 <Button size={size}>
-                  {size !== Button.defaultProps.size
-                    ? size
-                    : `${size} (default)`}
+                  {size !== 'lg' ? size : `${size} (default)`}
                 </Button>
               </span>
             ))}
@@ -88,9 +83,7 @@ storiesOf('Planets/Button', module)
                 marginBottom: '10px',
               }}
             >
-              <Button href="#" tag="a">
-                a
-              </Button>
+              <Button href="#">a</Button>
             </span>
             <span
               style={{
@@ -99,16 +92,7 @@ storiesOf('Planets/Button', module)
                 marginBottom: '10px',
               }}
             >
-              <Button tag="button">button (default)</Button>
-            </span>
-            <span
-              style={{
-                display: 'inline-block',
-                marginRight: '20px',
-                marginBottom: '10px',
-              }}
-            >
-              <Button tag="input" type="button" value="input" />
+              <Button>button (default)</Button>
             </span>
           </div>
           <hr />

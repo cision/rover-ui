@@ -4,31 +4,40 @@ import classNames from 'classnames';
 import { Transition } from 'react-transition-group';
 
 import { isOpenContext } from '../context';
-import style from './Menu.module.css';
-import ItemMoon from './Item';
+import styles from './Menu.module.css';
+import ItemMoon, { ItemProps } from './Item/Item';
 
-const Menu = ({
+interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
+  isOpen?: boolean;
+  position?: 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft';
+}
+
+type MenuType = React.FC<MenuProps> & {
+  Item: React.FC<ItemProps>;
+};
+
+const Menu: MenuType = ({
   className,
-  isOpen: customIsOpen,
-  position,
+  isOpen: customIsOpen = undefined,
+  position = 'bottomRight',
   ...passedProps
 }) => {
   return (
     <isOpenContext.Consumer>
-      {(isOpen) => (
+      {isOpen => (
         <Transition
           in={customIsOpen === undefined ? isOpen : customIsOpen}
           timeout={200}
           unmountOnExit
         >
-          {(transitionState) => (
+          {transitionState => (
             <div
               {...passedProps}
               className={classNames(
-                style.Menu,
+                styles.Menu,
                 className,
-                style[position],
-                style[transitionState]
+                styles[position],
+                styles[transitionState]
               )}
             />
           )}
@@ -55,7 +64,6 @@ Menu.defaultProps = {
   position: 'bottomRight',
 };
 
-export const Item = ItemMoon;
-Menu.Item = Item;
+Menu.Item = ItemMoon;
 
 export default Menu;

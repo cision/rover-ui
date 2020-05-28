@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import style from './Item.module.css';
+import styles from './Item.module.css';
 
 const Item = ({ className: customClassName, active, children, ...props }) => {
   const isChildActive = (child) => {
@@ -12,8 +12,8 @@ const Item = ({ className: customClassName, active, children, ...props }) => {
     return false;
   };
 
-  const className = classNames(style.Item, customClassName, {
-    [style.active]: active || isChildActive(children),
+  const className = classNames(styles.Item, customClassName, {
+    [styles.active]: active || isChildActive(children),
   });
   return (
     <li className={className} {...props}>

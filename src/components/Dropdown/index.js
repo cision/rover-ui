@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './Dropdown.module.css';
+import styles from './Dropdown.module.css';
 
 import MenuMoon from './Menu';
 
@@ -65,8 +65,8 @@ const Dropdown = ({
   return (
     <div
       {...passedProps}
-      className={classNames(style.Dropdown, className, {
-        [style.isOpen]: isOpen,
+      className={classNames(styles.Dropdown, className, {
+        [styles.isOpen]: isOpen,
       })}
       ref={dropdown}
     >

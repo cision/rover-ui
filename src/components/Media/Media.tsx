@@ -9,12 +9,18 @@ import withDefaultTheme from '../withDefaultTheme';
 
 const FlexSpacer = withDefaultTheme(styled.div(alignSelf, flex, space));
 
+type MediaItemType = React.FC<React.HTMLAttributes<HTMLDivElement>>;
+type MediaType = MediaItemType & {
+  Body: MediaItemType;
+  Item: MediaItemType;
+};
+
 // Factory to build the components for the Media component
 // Since all three are very basic and use basically the same basis
 // underneath, we can construct these components programatically.
-const MediaGenerator = (name, cssClass) => {
-  const MediaComponent = (props) => {
-    const { className, ...rest } = props;
+const MediaGenerator = (name: string, cssClass) => {
+  const MediaComponent: MediaItemType = props => {
+    const { className = '', ...rest } = props;
     return <FlexSpacer {...rest} className={classNames(cssClass, className)} />;
   };
 
@@ -30,7 +36,7 @@ const MediaGenerator = (name, cssClass) => {
   return MediaComponent;
 };
 
-const Media = MediaGenerator('Media', styles.Media);
+const Media = MediaGenerator('Media', styles.Media) as MediaType;
 const Body = MediaGenerator('Media.Body', styles.Body);
 const Item = MediaGenerator('Media.Item', styles.Item);
 
