@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { parseCssSize } from '../../shared/css-utils';
 
 // This component's dependencies
-import style from './SideTray.module.css';
+import styles from './SideTray.module.css';
 
 const SideTray = ({
   children,
@@ -44,7 +44,7 @@ const SideTray = ({
   // TODO: Click and drag from inside to outside the tray shouldn't close it
   const clickOffBackdrop = visible ? (
     // eslint-disable-next-line jsx-a11y/control-has-associated-label
-    <button type="button" className={style.backdrop} onClick={onClose} />
+    <button type="button" className={styles.backdrop} onClick={onClose} />
   ) : null;
 
   // Handle custom widths / heights / directions
@@ -90,9 +90,9 @@ const SideTray = ({
           ...(!visible ? { transform: hideTransformStyle } : {}),
           ...passedProps.style,
         }}
-        className={`${style.SideTray} ${className}`}
+        className={`${styles.SideTray} ${className}`}
       >
-        <div className={style.container}>{children}</div>
+        <div className={styles.container}>{children}</div>
       </div>
       {clickOffBackdrop}
     </>
@@ -120,7 +120,7 @@ SideTray.defaultProps = {
 };
 
 const Header = ({ className, ...props }) => (
-  <div {...props} className={`${style.header} ${className}`} />
+  <div {...props} className={`${styles.header} ${className}`} />
 );
 Header.propTypes = {
   children: PropTypes.node.isRequired,
@@ -129,7 +129,7 @@ Header.propTypes = {
 Header.defaultProps = { className: '' };
 
 const Footer = ({ className, ...props }) => (
-  <div {...props} className={`${style.footer} ${className}`} />
+  <div {...props} className={`${styles.footer} ${className}`} />
 );
 Footer.propTypes = {
   children: PropTypes.node.isRequired,
@@ -138,7 +138,7 @@ Footer.propTypes = {
 Footer.defaultProps = { className: '' };
 
 const Body = ({ className, ...props }) => (
-  <div {...props} className={`${style.body} ${className}`} />
+  <div {...props} className={`${styles.body} ${className}`} />
 );
 Body.propTypes = {
   children: PropTypes.node.isRequired,

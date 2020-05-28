@@ -2,33 +2,13 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
-import styled from 'styled-components';
-import { alignSelf, justifyContent, flex, space } from 'styled-system';
+import { BuildHelper, Wrap } from '../../stories/storybook-helpers';
 
 import Badge, { variants } from './Badge';
 import Readme from './README.md';
-import Paper from '../Paper';
 
-const FlexBase = styled.div({ display: 'flex' }, flex, space);
-
-const Flex = (props) => {
-  return (
-    <FlexBase
-      justifyContent="flex-start"
-      flex="1 0 atuo"
-      p="md"
-      mb={0}
-      {...props}
-    />
-  );
-};
-
-const Box = styled(Paper)(space, alignSelf, justifyContent);
-
-Box.displayName = 'Box';
-Box.defaultProps = {
-  mb: '15px',
-};
+const Flex = BuildHelper('Flex', 'flex justify-start mb-0 justify-start');
+const Box = Wrap;
 
 const fontSizes = {
   base: 'var(--rvr-font-size-base)',
@@ -109,7 +89,7 @@ storiesOf('Planets/Badge', module)
         </Flex>
       </Box>
       <Box>
-        <Flex m={0} p={0}>
+        <Flex>
           <Badge>Article</Badge>
           <Badge round style={{ marginLeft: '10px' }} variant="info">
             Print

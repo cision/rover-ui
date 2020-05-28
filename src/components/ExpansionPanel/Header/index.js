@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 
-import style from './Header.module.css';
+import styles from './Header.module.css';
 
 const Header = ({
   className,
@@ -16,11 +16,11 @@ const Header = ({
     expandIconProp &&
     React.cloneElement(expandIconProp, {
       ...expandIconProp.props,
-      className: classNames(style.expandIcon, { [style.expanded]: expanded }),
+      className: classNames(styles.expandIcon, { [styles.expanded]: expanded }),
     });
 
   return (
-    <div {...passedProps} className={classNames(className, style.Header)}>
+    <div {...passedProps} className={classNames(className, styles.Header)}>
       {isFunction(children) ? (
         children(expandIcon)
       ) : (

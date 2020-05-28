@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Button from '../Button';
 import Dropdown, { Menu } from '../Dropdown';
 
-import style from './EasyDropdown.module.css';
+import styles from './EasyDropdown.module.css';
 
 const EasyDropdown = ({
   children: initChildren,
@@ -92,7 +92,7 @@ const EasyDropdown = ({
   return (
     <Dropdown
       {...passedProps}
-      className={classNames(className, style.EasyDropdown)}
+      className={classNames(className, styles.EasyDropdown)}
       isOpen={isOpen}
       onToggle={onToggle}
     >
@@ -103,8 +103,8 @@ const EasyDropdown = ({
             return (
               <div
                 className={classNames({
-                  [style.group]: group.indexOf('_ungrouped-') !== 0,
-                  [style.single]: group.indexOf('_ungrouped-') === 0,
+                  [styles.group]: group.indexOf('_ungrouped-') !== 0,
+                  [styles.single]: group.indexOf('_ungrouped-') === 0,
                 })}
                 key={group}
               >

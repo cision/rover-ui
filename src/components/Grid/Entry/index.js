@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import style from './Entry.module.css';
+import styles from './Entry.module.css';
 
 /**
   This component should only be used by the Grid component.
@@ -17,7 +17,7 @@ const Entry = ({ children, entryPercentWidth, gutter, ...passedProps }) => {
   const entry = (
     <div
       {...passedProps}
-      className={style.Entry}
+      className={styles.Entry}
       style={{
         flexBasis: `${entryPercentWidth * colSpan}%`,
         marginInlineStart: `${entryPercentWidth * offset}%`,
@@ -36,7 +36,7 @@ const Entry = ({ children, entryPercentWidth, gutter, ...passedProps }) => {
   if (clear) {
     return (
       <>
-        <div className={style.Clear} />
+        <div className={styles.Clear} />
         {entry}
       </>
     );

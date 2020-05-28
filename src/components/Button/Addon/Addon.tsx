@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import style from './Addon.module.css';
+import styles from './Addon.module.css';
+import { TButtonSize } from '../types';
 
-const Addon = ({ className, size, ...passedProps }) => (
+export interface AddonProps {
+  className?: string;
+  size?: TButtonSize;
+}
+
+const Addon: React.FC<AddonProps> = ({
+  className = '',
+  size = 'md',
+  ...passedProps
+}) => (
   <div
     {...passedProps}
-    className={classNames(className, style.Addon, style[size])}
+    className={classNames(className, styles.Addon, styles[size])}
   />
 );
 

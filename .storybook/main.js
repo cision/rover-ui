@@ -8,6 +8,6 @@ module.exports = {
     '@storybook/addon-a11y/register',
     '@storybook/addon-links/register',
     '@storybook/addon-backgrounds/register',
-    '@storybook/preset-typescript',
+    '@storybook/preset-create-react-app',
   ],
 };
