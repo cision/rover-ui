@@ -21,6 +21,11 @@ describe('Avatar', () => {
     expect(wrapper.text()).toEqual('HS');
   });
 
+  it('renders initials of name with emojis if no image url', () => {
+    const wrapper = shallow(<Avatar name="Helter 🔥" />);
+    expect(wrapper.text()).toEqual('H🔥');
+  });
+
   it('Is the size specified', () => {
     const wrapper = shallow(<Avatar name="Helter Skelter" size={67} />);
     expect(wrapper.prop('style')).toHaveProperty('width', '67px');

@@ -106,11 +106,15 @@ const Avatar: AvatarType = ({
   const initials = useMemo(() => {
     if (!name) return '';
     const nameParts = name.split(' ', 2);
-    let returnInitials = '';
-    nameParts.forEach((part) => {
-      returnInitials += part[0];
-    });
-    return returnInitials.slice(0, 2);
+    return nameParts
+      .map((part) => {
+        const char = part.codePointAt(0);
+        if (char === undefined) {
+          return '';
+        }
+        return String.fromCodePoint(char);
+      })
+      .join('');
   }, [name]);
 
   useEffect(() => {

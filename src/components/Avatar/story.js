@@ -73,6 +73,10 @@ storiesOf('Planets/Avatar', module)
           <Avatar name="Helter Skelter" />
         </Paper>
         <Paper style={{ marginBottom: '10px' }}>
+          <h1>Name with Emoji, no image</h1>
+          <Avatar name="Helter ❤️" />
+        </Paper>
+        <Paper style={{ marginBottom: '10px' }}>
           <h1>Name and image</h1>
           <Avatar name="Helter Skelter" imageUrl="https://picsum.photos/40" />
         </Paper>
