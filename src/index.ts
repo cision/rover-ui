@@ -31,3 +31,4 @@ export {
 } from './components/TabMenu';
 
 export { default as Tooltip, EasyRichTooltip } from './components/Tooltip';
+export { default as Input } from './components/Input';

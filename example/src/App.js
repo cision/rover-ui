@@ -22,6 +22,7 @@ import {
   ExpansionPanel,
   Tooltip,
   Callout,
+  Input,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -31,6 +32,7 @@ const App = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isEasyPillChecked, setIsEasyPillChecked] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
   const toggleTooltip = function() {
     setTooltipOpen(prev => !prev);
@@ -389,6 +391,13 @@ const App = () => {
           Oh, man, this is really a callout now, bro. You&apos;re going to want
           to pay attention to this one, bro.
         </Callout>
+      </section>
+      <section>
+        <h1>Input</h1>
+        <Input
+          onChange={e => setInputValue(e.target.value)}
+          value={inputValue}
+        />
       </section>
       {/** USAGE_INJECTOR */}
     </div>
