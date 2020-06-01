@@ -1,6 +1,6 @@
 ---
 inject: true
-to: src/index.js
+to: src/index.ts
 append: true
 skip_if: ./components/<%= h.changeCase.pascal(name) %>
 ---
