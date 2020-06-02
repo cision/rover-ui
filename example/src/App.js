@@ -54,9 +54,9 @@ const App = () => {
         <Badge variant="info">Badge</Badge>
       </Section>
       <Section title="Bar">
-        <Bar.Bar>
+        <Bar>
           <Bar.Fill width="50%" />
-        </Bar.Bar>
+        </Bar>
       </Section>
       <Section title="Button">
         <Button>Button</Button>
@@ -364,13 +364,13 @@ const App = () => {
         </Callout>
       </Section>
 
-      <section>
+      <Section>
         <h1>Input</h1>
         <Input
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
         />
-      </section>
+      </Section>
 
       {/** USAGE_INJECTOR */}
     </div>
