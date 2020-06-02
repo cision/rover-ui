@@ -58,4 +58,5 @@
   /* line-height */
   --rvr-line-height-sm: calc(var(--rvr-baseSize) * 2); /* 16px */
   --rvr-line-height-md: calc(var(--rvr-baseSize) * 2.5); /* 20px */
+  --rvr-line-height-lg: calc(var(--rvr-baseSize) * 3); /* 24px */
 }
