@@ -59,7 +59,7 @@ Please tread carefully, and add any issues or suggestions on the [GitHub issue t
 
 To publish the npm package, you'll need a free account on npmjs.com, and you'll need to be added to the list of maintainers by one of the current RoverUI maintainers.
 
-1. In `package.json`, bump the `version` and `publishConfig.tag` properties _using [semver](https://semver.org/)_. `publishConfig.tag` should start with a "v", but otherwise be identical to `version`.
+1. In `package.json`, bump the `version` property _using [semver](https://semver.org/)_.
 2. If all tests look good (`yarn test`), submit a pull-request against the master branch through GitHub.
 3. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
 4. After merging to master, from your local machine, run `yarn release` in the root. You'll be prompted for the publish version, which should match the package version.
