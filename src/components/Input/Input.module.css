@@ -4,27 +4,15 @@
   border: var(--rvr-border-width-md) solid var(--rvr-gray-60);
   color: var(--rvr-gray-90);
   font-family: var(--rvr-base-font-family);
-  font-size: var(--rvr-font-size-md);
   line-height: var(--rvr-line-height-lg);
+  outline: none;
   padding: var(--rvr-space-bordered-sm);
-  transition:
-    100ms linear background-color,
-    100ms linear border-color,
-    100ms linear box-shadow,
-    100ms linear color;
+  transition: 100ms linear background-color, 100ms linear border-color,
+    100ms linear box-shadow, 100ms linear color;
 }
 
 .Input::placeholder {
   color: var(--rvr-gray-60);
-}
-
-.Input:hover {
-  background-color: var(--rvr-gray-10);
-  border-color: var(--rvr-gray-80);
-}
-
-.Input:hover::placeholder {
-  color: var(--rvr-gray-80);
 }
 
 .Input:focus {
@@ -49,14 +37,28 @@
   cursor: default;
 }
 
-.Input:disabled::placeholder,
-.Input.disabled::placeholder {
-  color: var(--rvr-gray-60);
-}
-
 .Input:invalid,
 .Input.invalid {
   background-color: var(--rvr-color-danger-lite);
   border-color: var(--rvr-color-danger);
   color: var(--rvr-color-danger);
+}
+
+.Input:disabled:hover,
+.Input.disabled:hover {
+  background-color: var(--rvr-white);
+}
+
+.Input:disabled::placeholder,
+.Input.disabled::placeholder {
+  color: var(--rvr-gray-20);
+}
+
+.Input:not(:focus):not(:disabled):hover {
+  background-color: var(--rvr-gray-10);
+  border-color: var(--rvr-gray-80);
+}
+
+.Input:not(:focus):hover::placeholder {
+  color: var(--rvr-gray-80);
 }
