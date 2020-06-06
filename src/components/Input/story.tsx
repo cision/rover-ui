@@ -6,7 +6,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import Input from '.';
 import Readme from './README.md';
 
-import { Wrap, Label } from '../../stories/storybook-helpers';
+import { Wrap } from '../../stories/storybook-helpers';
 
 const InteractiveInput: React.FC<React.InputHTMLAttributes<
   HTMLInputElement
@@ -57,23 +57,23 @@ storiesOf('Planets/Input', module)
     () => (
       <Wrap>
         <h2 className="text-2xl leading-snug">Basic Input Examples</h2>
-        <div className="w-1/3 mt-6">
+        <div className="w-full md:w-1/3 mt-6">
           <InteractiveInput className="w-full" placeholder="Type here" />
         </div>
-        <div className="w-1/3 mt-6">
+        <div className="w-full md:w-1/3 mt-6">
           <Input
             className="w-full"
             autoFocus
             value="focus (using 'autoFocus')"
           />
         </div>
-        <div className="w-1/3 mt-6">
-          <Input className="w-full" pattern="" value="Invalid" />
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" pattern="\d+" value="Invalid" />
         </div>
-        <div className="w-1/3 mt-6">
+        <div className="w-full md:w-1/3 mt-6">
           <Input className="w-full" disabled value="Disabled" />
         </div>
-        <div className="w-1/3 mt-6">
+        <div className="w-full md:w-1/3 mt-6">
           <Input className="w-full" fauxDisabled value="fauxDisabled" />
         </div>
       </Wrap>
