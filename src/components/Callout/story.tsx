@@ -3,12 +3,12 @@ import { storiesOf } from '@storybook/react';
 import { select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
-import Callout, { variants } from './';
+import Callout, { variants } from './Callout';
 
 import README from './README.md';
 import Icon from '../Icon';
 
-const Div = props => <div style={{ marginBottom: '15px' }} {...props} />;
+const Div = (props) => <div style={{ marginBottom: '15px' }} {...props} />;
 
 storiesOf('Star Systems/Callout', module)
   .addParameters({

@@ -21,6 +21,7 @@ storiesOf('Star Systems/TabMenu', module)
           <TabMenu.Item>
             <a
               className={itemPadding}
+              href="#nothing"
               onClick={action()}
               role="button"
               tabIndex={0}
@@ -31,6 +32,7 @@ storiesOf('Star Systems/TabMenu', module)
           <TabMenu.Item>
             <a
               className={`${itemPadding} active`}
+              href="#nothing"
               onClick={action()}
               role="button"
               tabIndex={0}
@@ -41,6 +43,7 @@ storiesOf('Star Systems/TabMenu', module)
           <TabMenu.Item>
             <a
               className={itemPadding}
+              href="#nothing"
               onClick={action()}
               role="button"
               tabIndex={0}
