@@ -119,8 +119,13 @@
     resize-observer-lite "0.2.3"
 
 "@cision/rover-ui@link:..":
-  version "0.0.0"
-  uid ""
+  version "2.0.1"
+  dependencies:
+    "@cision/react-container-query" "1.0.0-alpha.3"
+    classnames "^2.2.6"
+    lodash "^4.17.15"
+    styled-components "^4.2.0"
+    styled-system "^4.1.0"
 
 "@emotion/is-prop-valid@^0.8.1":
   version "0.8.6"
@@ -5056,7 +5061,7 @@ longest@^1.0.1:
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
   integrity sha1-MKCy2jj3N3DoKUoNIuZiXtd9AJc=
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=
@@ -6322,25 +6327,17 @@ promise@8.0.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10:
-  version "0.0.0"
-  uid ""
-
-prop-types@^15.5.4:
-  version "0.0.0"
-  uid ""
-
-prop-types@^15.6.2:
-  version "0.0.0"
-  uid ""
-
-prop-types@^15.7.2:
-  version "0.0.0"
-  uid ""
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.7.2:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
 
 "prop-types@link:../node_modules/prop-types":
   version "0.0.0"
-  uid ""
 
 proxy-addr@~2.0.5:
   version "2.0.5"
@@ -6512,7 +6509,6 @@ react-dev-utils@^5.0.2:
 
 "react-dom@link:../node_modules/react-dom":
   version "0.0.0"
-  uid ""
 
 react-error-overlay@^4.0.1:
   version "4.0.1"
@@ -6572,7 +6568,6 @@ react-scripts@^1.1.4:
 
 "react@link:../node_modules/react":
   version "0.0.0"
-  uid ""
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
@@ -7010,14 +7005,6 @@ sax@^1.2.1, sax@~1.2.1:
   version "1.2.4"
   resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
-
-scheduler@^0.19.1:
-  version "0.19.1"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
-  integrity sha1-Tz4u0sGn1laB9MhU+oxaHMtA8ZY=
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 schema-utils@^0.3.0:
   version "0.3.0"
@@ -8192,9 +8179,9 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://trendkite.jfrog.io/trendkite/api/npm/libs-frontend/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
-  integrity sha1-XS/yKXcAPsaHpLhwc9+7rBRszyk=
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 whatwg-encoding@^1.0.1:
   version "1.0.5"
