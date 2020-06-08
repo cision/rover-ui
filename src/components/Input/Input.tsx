@@ -1,12 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ClassValue } from 'classnames/types';
 
 import styles from './Input.module.css';
 
-interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className'> {
-  className?: ClassValue;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Applies disabled appearance without disabling. Helpful for adding tooltips on disabled field clicks. */
   fauxDisabled?: boolean;
 }
