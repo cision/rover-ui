@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './Entry.module.css';
 
 interface EntryProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode; // the `children` prop is required
   entryPercentWidth?: number;
   gutter?: number | string;
 }
