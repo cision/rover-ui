@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Entry.module.css';
@@ -46,10 +46,10 @@ const Entry: React.FC<EntryProps> = ({
 
   if (clear) {
     return (
-      <>
+      <Fragment>
         <div className={styles.Clear} />
         {entry}
-      </>
+      </Fragment>
     );
   }
 
