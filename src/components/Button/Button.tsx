@@ -18,6 +18,7 @@ interface BaseButtonProps {
   hollow?: boolean;
   level?: TButtonLevel;
   size?: TButtonSize;
+  tag?: React.ComponentType<{ [key: string]: unknown }> | null;
 
   // States
   hover?: boolean;
@@ -83,6 +84,7 @@ const Button: ButtonType = ({
   hollow = false,
   level = 'secondary',
   size = 'lg',
+  tag: Tag = null,
   ...passedProps
 }: ButtonElementProps | AnchorElementProps) => {
   const children = initChildren;
@@ -131,6 +133,14 @@ const Button: ButtonType = ({
       ),
     [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
   );
+
+  if (Tag) {
+    return (
+      <Tag {...passedProps} className={className}>
+        {children}
+      </Tag>
+    );
+  }
 
   if (hasHref(passedProps)) {
     return (
