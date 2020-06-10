@@ -13,7 +13,7 @@ import AddonReadme from './Addon/README.md';
 const MyComponent = ({ className = '', ...props }) => (
   <button
     type="button"
-    className={classNames(className, 'MyComponent')}
+    className={classNames(className, 'shadow-xl transform rotate-180')}
     {...props}
   />
 );
@@ -72,6 +72,13 @@ storiesOf('Planets/Button', module)
                 </Button>
               </span>
             ))}
+          </div>
+          <hr />
+          <h2>CustomComponent for Tag</h2>
+          <div style={{ marginBottom: '20px' }}>
+            <Button tag={MyComponent} href="#">
+              MyComponent
+            </Button>
           </div>
           <hr />
           <h2>Tags</h2>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Paper from './';
+import Paper from '.';
 
 describe('Paper', () => {
   it('renders', () => {

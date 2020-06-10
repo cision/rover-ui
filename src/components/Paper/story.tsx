@@ -1,18 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import styled from 'styled-components';
-import { margin } from 'styled-system';
 import { boolean, text, object, color } from '@storybook/addon-knobs';
 
 import Paper from './';
 import PaperReadme from './README.md';
 
-const Wrap = styled.div(margin);
-Wrap.defaultProps = {
-  m: 'md',
-};
+import { BuildHelper } from '../../stories/storybook-helpers';
 
-Wrap.displayName = 'Wrap';
+const Section = BuildHelper('Section', 'm-5 mb-0');
 
 const SampleText = (
   <span>
@@ -53,12 +48,12 @@ storiesOf('Planets/Paper', module)
       };
 
       return (
-        <div>
-          <Wrap m="lg">
+        <div className="pb-5">
+          <Section>
             <Paper squared={isSquared} flat={isFlat} style={styles}>
               {paperText}
             </Paper>
-          </Wrap>
+          </Section>
         </div>
       );
     },
@@ -72,18 +67,17 @@ storiesOf('Planets/Paper', module)
   .add(
     'Examples',
     () => (
-      <div>
-        <Wrap>
-          <h2>Padding Examples</h2>
+      <div className="pb-5">
+        <Section>
+          <h2 className="text-2xl">Padding Examples</h2>
           <Paper {...DefaultPaperStyle}>{SampleText}</Paper>
-        </Wrap>
-        <Wrap>
-          <h3>Complex Nesting</h3>
-          <Paper {...DefaultPaperStyle}>
+        </Section>
+        <Section>
+          <h2 className="text-2xl">Complex Nesting</h2>
+          <Paper>
             <Paper
-              {...DefaultPaperStyle}
+              className="mb-5"
               style={{
-                ...DefaultPaperStyle.style,
                 padding: '32px',
               }}
             >
@@ -94,7 +88,6 @@ storiesOf('Planets/Paper', module)
               flat
               squared
               style={{
-                ...DefaultPaperStyle.style,
                 backgroundColor: 'var(--rvr-green)',
                 color: 'var(--rvr-white)',
               }}
@@ -102,7 +95,7 @@ storiesOf('Planets/Paper', module)
               {SampleText}
             </Paper>
           </Paper>
-        </Wrap>
+        </Section>
       </div>
     ),
     {
