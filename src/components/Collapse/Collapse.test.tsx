@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import Collapse from './';
+import Collapse from '.';
 
 describe('Collapse', () => {
   beforeEach(() => {
@@ -23,26 +23,20 @@ describe('Collapse', () => {
     expect(wrapper.is('Transition')).toEqual(true);
   });
 
-  it('has default isOpen value', () => {
-    const wrapper = mount(<Collapse />);
-    expect(wrapper.props().isOpen).toEqual(false);
-  });
-
-  it('has default timeout value', () => {
-    const wrapper = mount(<Collapse />);
-    expect(wrapper.props().timeout).toEqual(200);
-  });
-
   it('sets transition duration when isOpen', () => {
     const wrapper = mount(<Collapse />);
     wrapper.setProps({ isOpen: true });
-    expect(wrapper.getDOMNode().style.transitionDuration).toBe('200ms');
+    expect(wrapper.getDOMNode<HTMLDivElement>().style.transitionDuration).toBe(
+      '200ms'
+    );
   });
 
   it('sets custom transition duration when custom timeout prop is passed', () => {
     const wrapper = mount(<Collapse timeout={400} />);
     wrapper.setProps({ isOpen: true });
-    expect(wrapper.getDOMNode().style.transitionDuration).toBe('400ms');
+    expect(wrapper.getDOMNode<HTMLDivElement>().style?.transitionDuration).toBe(
+      '400ms'
+    );
   });
 
   it('forwards all Transition callbacks', () => {
