@@ -15,21 +15,25 @@ storiesOf('Dark Matter/Grid', module)
   .add(
     'Overview',
     () => (
-      <Grid gutter={text('gutter', '20px')} columns={number('columns', 3)}>
+      <Grid
+        className="p-4"
+        gutter={text('gutter', '20px')}
+        columns={number('columns', 3)}
+      >
         <span
           colSpan={number('colSpan (entry 1)', 1)}
           offset={number('offset (entry 1)', 0)}
-          style={{ background: 'white' }}
+          className="bg-white shadow rounded p-6"
         >
           Sam
         </span>
         <span
-          style={{ background: 'white' }}
+          className="bg-white shadow rounded p-6"
           clear={boolean('clear (entry 2)', false)}
         >
           Pat
         </span>
-        <span style={{ background: 'white' }}>Taylor</span>
+        <span className="bg-white shadow rounded p-6">Taylor</span>
       </Grid>
     ),
     {

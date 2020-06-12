@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import { TestComponent } from '../../../setupTests';
-import Entry from './';
+import Entry from './Entry';
 
 describe('<Entry />', () => {
   it('renders', () => {

@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Entry.module.css';
+
+interface EntryProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode; // the `children` prop is required
+  entryPercentWidth?: number;
+  gutter?: number | string;
+}
 
 /**
   This component should only be used by the Grid component.
   It has no public API.
 */
-const Entry = ({ children, entryPercentWidth, gutter, ...passedProps }) => {
-  const childProps = children.props || {};
+const Entry: React.FC<EntryProps> = ({
+  children,
+  entryPercentWidth = 100,
+  gutter = 0,
+  ...passedProps
+}) => {
+  const c = children as React.ReactElement;
+  const childProps = c.props || {};
   let { clear = false, colSpan = 1, offset = 0 } = childProps;
   clear = !!clear && clear !== 'false';
   colSpan = parseInt(colSpan, 10) || 1;
@@ -25,7 +37,7 @@ const Entry = ({ children, entryPercentWidth, gutter, ...passedProps }) => {
         padding: gutter,
       }}
     >
-      {React.cloneElement(children, {
+      {React.cloneElement(c, {
         clear: undefined,
         colSpan: undefined,
         offset: undefined,
@@ -35,10 +47,10 @@ const Entry = ({ children, entryPercentWidth, gutter, ...passedProps }) => {
 
   if (clear) {
     return (
-      <>
+      <Fragment>
         <div className={styles.Clear} />
         {entry}
-      </>
+      </Fragment>
     );
   }
 
