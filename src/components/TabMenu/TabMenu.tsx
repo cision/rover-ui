@@ -1,11 +1,20 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Item from './Item';
 import styles from './TabMenu.module.css';
+import { ItemProps } from './Item/Item';
 
-const TabMenu = ({ align, className, ...props }) => {
+interface TabMenuProps extends React.HTMLAttributes<HTMLUListElement> {
+  align?: 'left' | 'center' | 'right';
+  className?: string;
+}
+
+type TabMenuType = React.FC<TabMenuProps> & {
+  Item: React.FC<ItemProps>;
+};
+
+const TabMenu: TabMenuType = ({ align = 'left', className = '', ...props }) => {
   const tabMenuClass = classNames(
     styles.TabMenu,
     className,
@@ -17,16 +26,23 @@ const TabMenu = ({ align, className, ...props }) => {
 TabMenu.Item = Item;
 export const { itemPadding } = styles;
 
-TabMenu.propTypes = {
-  align: PropTypes.oneOf(['left', 'center', 'right']),
-  className: PropTypes.string,
+export type EasyTabType = {
+  key: string;
+  label: string;
+  onClick: (e: React.SyntheticEvent) => void;
 };
-TabMenu.defaultProps = {
-  align: 'left',
-  className: '',
-};
+export interface EasyTabMenuProps extends TabMenuProps {
+  tabs?: EasyTabType[];
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+  activeTab?: string;
+}
 
-export const EasyTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
+export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
+  tabs = [],
+  activeTab = '',
+  size = 'sm',
+  ...props
+}) => {
   return (
     <TabMenu {...props}>
       {tabs.map((tab) => {
@@ -48,29 +64,5 @@ export const EasyTabMenu = ({ tabs, activeTab, size = 'sm', ...props }) => {
     </TabMenu>
   );
 };
-
-EasyTabMenu.propTypes = {
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      onClick: PropTypes.func,
-    }).isRequired
-  ),
-  activeTab: PropTypes.string,
-  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
-};
-
-EasyTabMenu.defaultProps = {
-  tabs: [],
-  activeTab: '',
-  size: 'md',
-};
-
-/*
- * SimpleComponent naming convention is deprecated due to confusion.
- * Use EasyComponent moving forward.
- */
-export const SimpleTabMenu = EasyTabMenu;
 
 export default TabMenu;

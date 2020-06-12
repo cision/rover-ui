@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import TabMenu, { EasyTabMenu } from './';
+import TabMenu, { EasyTabMenu } from '.';
 
 describe('TabMenu', () => {
   it('renders', () => {
