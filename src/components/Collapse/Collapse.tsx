@@ -1,22 +1,31 @@
 import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import isNull from 'lodash/isNull';
 
 import styles from './Collapse.module.css';
 
-const Collapse = ({
+interface CollapseProps {
+  isOpen?: boolean;
+  onEntered?: (node: React.ReactNode, isAppearing: boolean) => void;
+  onEntering?: (node: React.ReactNode, isAppearing: boolean) => void;
+  onExit?: (node: React.ReactNode) => void;
+  onExited?: (node: React.ReactNode) => void;
+  onExiting?: (node: React.ReactNode) => void;
+  timeout?: number;
+}
+
+const Collapse: React.FC<CollapseProps> = ({
   children,
-  isOpen,
-  onEntered,
-  onEntering,
-  onExit,
-  onExited,
-  onExiting,
-  timeout,
+  isOpen = false,
+  onEntered = () => {},
+  onEntering = () => {},
+  onExit = () => {},
+  onExited = () => {},
+  onExiting = () => {},
+  timeout = 200,
   ...passedProps
 }) => {
-  const [height, setHeight] = useState(null);
+  const [height, setHeight] = useState<number | null>(null);
 
   const handleEntering = useCallback(
     (node, isAppearing) => {
@@ -74,7 +83,7 @@ const Collapse = ({
       onExited={handleExited}
     >
       {(transitionState) => {
-        const styleHeight = isNull(height) ? null : { height };
+        const styleHeight = isNull(height) ? {} : { height };
         return (
           <div style={styleHeight} className={styles[transitionState]}>
             {children}
@@ -83,32 +92,6 @@ const Collapse = ({
       }}
     </Transition>
   );
-};
-
-Collapse.propTypes = {
-  ...Transition.propTypes,
-  /**
-   * The content of the expansion panel.
-   */
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  /**
-   * Whether the children is collapsed or not.
-   */
-  isOpen: PropTypes.bool,
-  /**
-   * The duration for the transition, in milliseconds.
-   */
-  timeout: PropTypes.number,
-};
-
-Collapse.defaultProps = {
-  ...Transition.defaultProps,
-  children: null,
-  isOpen: false,
-  timeout: 200,
 };
 
 export default Collapse;
