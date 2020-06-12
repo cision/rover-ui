@@ -40,7 +40,7 @@ export interface EasyTabMenuProps extends TabMenuProps {
 export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
   tabs = [],
   activeTab = '',
-  size = 'sm',
+  size = 'md',
   ...props
 }) => {
   return (
