@@ -68,7 +68,7 @@ const App = () => {
               <em>Media.Item</em>
             </small>
             <img
-              src="https://source.unsplash.com/64x64/daily"
+              src="https://source.unsplash.com/random/64x64"
               alt="Unsplash daily"
             />
           </Media.Item>
