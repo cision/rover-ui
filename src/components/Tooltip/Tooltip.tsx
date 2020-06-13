@@ -5,31 +5,48 @@ import React, {
   useState,
   useLayoutEffect,
 } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './Tooltip.module.css';
 
 import Icon from '../Icon';
 
-export const directions = ['top', 'left', 'right', 'bottom'];
+export type TooltipDirection = 'top' | 'left' | 'right' | 'bottom';
+export const directions: TooltipDirection[] = [
+  'top',
+  'left',
+  'right',
+  'bottom',
+];
 
-const Tooltip = ({
+interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  closeOnEscape?: boolean;
+  content?: React.ReactNode;
+  direction?: TooltipDirection;
+  isOpen?: boolean;
+  tooltipProps?: React.HTMLAttributes<HTMLDivElement>;
+  tooltipWidth?: string;
+  onClose?: () => void;
+  showOnHover?: boolean;
+}
+
+const Tooltip: React.FC<TooltipProps> = ({
   children,
-  closeOnEscape,
-  content: tooltipContent,
-  direction,
-  isOpen,
-  onClose,
-  showOnHover,
-  tooltipProps: tooltipOptsProp,
-  tooltipWidth,
+  className = '',
+  closeOnEscape = true,
+  content: tooltipContent = null,
+  direction = 'top',
+  isOpen = false,
+  onClose = null,
+  showOnHover = false,
+  tooltipProps: tooltipOptsProp = {},
+  tooltipWidth = null,
   ...rest
 }) => {
   const [tooltipId] = useState(
     `tooltip-${Date.now() * Math.floor(100 * Math.random())}`
   );
-  const tooltipRef = useRef(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   const [hovered, setHovered] = useState(false);
   const [tooltipHeight, setTooltipHeight] = useState(0);
@@ -97,7 +114,7 @@ const Tooltip = ({
     style: {
       width: (tooltipStyle && tooltipStyle.width) || tooltipWidth,
       ...offsets,
-    },
+    } as React.CSSProperties,
     className: tooltipClassNames,
   };
 
@@ -139,7 +156,7 @@ const Tooltip = ({
         aria-describedby={tooltipId}
         onMouseEnter={handleSetHover(true)}
         onMouseLeave={handleSetHover(false)}
-        className={styles.original}
+        className={classNames(className, styles.original)}
       >
         {children}
       </div>
@@ -147,35 +164,23 @@ const Tooltip = ({
   );
 };
 
-Tooltip.propTypes = {
-  children: PropTypes.node.isRequired,
-  closeOnEscape: PropTypes.bool,
-  content: PropTypes.node,
-  direction: PropTypes.oneOf(directions),
-  isOpen: PropTypes.bool,
-  onClose: PropTypes.func,
-  showOnHover: PropTypes.bool,
-  tooltipProps: PropTypes.shape({
-    className: PropTypes.string,
-    style: PropTypes.object,
-  }),
-  tooltipWidth: PropTypes.string,
-};
-
-Tooltip.defaultProps = {
-  closeOnEscape: true,
-  content: null,
-  direction: 'top',
-  isOpen: false,
-  onClose: null,
-  showOnHover: false,
-  tooltipProps: {},
-  tooltipWidth: null,
-};
-
 export default Tooltip;
 
-export const EasyRichTooltip = ({ onClose, children, ...props }) => {
+interface EasyTooltipChildren {
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+}
+
+interface EasyRichTooltipProps extends Omit<TooltipProps, 'children'> {
+  children: (opts: EasyTooltipChildren) => React.ReactNode;
+}
+
+export const EasyRichTooltip: React.FC<EasyRichTooltipProps> = ({
+  onClose,
+  children,
+  ...props
+}) => {
   const [isOpen, setOpen] = useState(false);
 
   const open = () => setOpen(true);
@@ -196,9 +201,4 @@ export const EasyRichTooltip = ({ onClose, children, ...props }) => {
       {children({ open, close, toggle })}
     </Tooltip>
   );
-};
-
-EasyRichTooltip.propTypes = {
-  ...Tooltip.propTypes,
-  children: PropTypes.func.isRequired,
 };
