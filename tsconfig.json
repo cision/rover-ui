@@ -28,12 +28,5 @@
     "isolatedModules": true
   },
   "include": ["src/global.d.ts", "src/**/*.ts", "src/**/*.tsx"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "example",
-    "src/**/story.tsx",
-    "src/**/*.story.tsx",
-    "src/**/*.test.tsx"
-  ]
+  "exclude": ["node_modules", "dist", "example"]
 }
