@@ -136,12 +136,7 @@ storiesOf('Planets/Tooltip', module)
       return (
         <FlexWrapper>
           <Element>
-            <Tooltip
-              className="mr-5"
-              showOnHover
-              isOpen
-              content="Hello, I'm on top!"
-            >
+            <Tooltip showOnHover isOpen content="Hello, I'm on top!">
               <div>Hover on the top</div>
             </Tooltip>
           </Element>
