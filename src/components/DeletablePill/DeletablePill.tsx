@@ -1,14 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Icon from '../Icon';
-import Pill from '../Pill';
+import Pill, { PillProps } from '../Pill/Pill';
 
-export const DeletablePill = ({ children, onDelete, ...passedProps }) => {
+interface DeletablePillProps extends PillProps {
+  onDelete: (e: React.SyntheticEvent) => void;
+}
+
+export const DeletablePill: React.FC<DeletablePillProps> = ({
+  children,
+  checked = false,
+  onDelete,
+  ...passedProps
+}) => {
   return (
-    <Pill {...passedProps}>
+    <Pill checked={checked} {...passedProps}>
       {children}
-      {passedProps.checked && (
+      {checked && (
         <Pill.Addon
           onClick={(e) => {
             e.stopPropagation();
@@ -22,16 +30,6 @@ export const DeletablePill = ({ children, onDelete, ...passedProps }) => {
       )}
     </Pill>
   );
-};
-
-DeletablePill.propTypes = {
-  checked: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  onDelete: PropTypes.func.isRequired,
-};
-
-DeletablePill.defaultProps = {
-  checked: false,
 };
 
 export default DeletablePill;
