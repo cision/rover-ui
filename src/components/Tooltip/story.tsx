@@ -9,13 +9,17 @@ import {
   text,
 } from '@storybook/addon-knobs';
 
-import Tooltip, { EasyRichTooltip, directions } from './';
+import Tooltip, {
+  EasyRichTooltip,
+  directions,
+  TooltipDirection,
+} from './Tooltip';
 import Button from '../Button';
 import Readme from './README.md';
 
 const TooltipContent = (
   <Fragment>
-    <h3 style={{ margin: 0 }}>Hallo there!</h3>
+    <h3 className="m-0">Hallo there!</h3>
     <p>
       Pellentesque habitant morbi tristique senectus et netus et malesuada fames
       ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget,
@@ -28,7 +32,7 @@ const TooltipContent = (
 const RichTooltip = ({ children, ...rest }) => {
   // eslint-disable-next-line react/prop-types
   const render = ({ toggle }) => (
-    <Button onClick={toggle} style={{ marginRight: 10 }}>
+    <Button onClick={toggle} className="mr-3">
       {children}
     </Button>
   );
@@ -40,7 +44,7 @@ RichTooltip.propTypes = {
   ...Tooltip.propTypes,
 };
 
-const FlexWrapper = props => (
+const FlexWrapper = (props) => (
   <div
     style={{
       display: 'flex',
@@ -54,18 +58,23 @@ const FlexWrapper = props => (
   />
 );
 
-const Element = props => <div style={{ marginRight: 20 }} {...props} />;
+const Element: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => (
+  <div className="mr-5" {...props} />
+);
 
 const Overview = () => {
   const [open, setOpen] = useState(false);
 
   const toggle = () => {
-    setOpen(prev => !prev);
+    setOpen((prev) => !prev);
   };
 
   const direction = options(
     'Direction',
-    directions,
+    directions.reduce<Record<string, TooltipDirection>>((acc, val) => {
+      acc[val] = val;
+      return acc;
+    }, {}),
     directions[0],
     {
       display: 'inline-radio',
@@ -128,7 +137,7 @@ storiesOf('Planets/Tooltip', module)
         <FlexWrapper>
           <Element>
             <Tooltip
-              style={{ marginRight: '20px' }}
+              className="mr-5"
               showOnHover
               isOpen
               content="Hello, I'm on top!"
@@ -138,7 +147,6 @@ storiesOf('Planets/Tooltip', module)
           </Element>
           <Element>
             <Tooltip
-              style={{ marginRight: '20px' }}
               showOnHover
               direction="bottom"
               content="...and I'm on the bottom!"
