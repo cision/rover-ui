@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import Icon from '../Icon';
-import DeletablePill from './';
+import DeletablePill from '.';
 
 describe('DeletablePill', () => {
   it('renders', () => {
