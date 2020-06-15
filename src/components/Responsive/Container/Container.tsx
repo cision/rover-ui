@@ -7,7 +7,12 @@ import {
 } from '@cision/react-container-query/lib/interfaces';
 import Context from '../Context';
 
-const defaultBreakpoints: RoverQuery[] = [
+export interface RoverQuery extends ReactContainerQueries {
+  name: string;
+  minWidth: number;
+}
+
+export const defaultBreakpoints: RoverQuery[] = [
   {
     name: 'xs',
     minWidth: 0,
@@ -30,12 +35,8 @@ const defaultBreakpoints: RoverQuery[] = [
   },
 ];
 
-interface RoverQuery extends ReactContainerQueries {
-  name: string;
-  minWidth: number;
-}
-
-interface ContainerProps {
+export interface ContainerProps
+  extends React.AllHTMLAttributes<HTMLDivElement> {
   customBreakpoints?: RoverQuery[];
 }
 
@@ -63,8 +64,7 @@ export const getBreakpointsQuery = (breakpoints: RoverQuery[]): Query =>
   media-query-like strings available to child components via a
   <Context.Consumer/>
 */
-const Container: React.FC<ContainerProps &
-  React.HTMLAttributes<HTMLDivElement>> = ({
+const Container: React.FC<ContainerProps> = ({
   children,
   customBreakpoints = defaultBreakpoints,
   ...passedProps

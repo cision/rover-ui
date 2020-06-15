@@ -1,18 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Context from '../Context';
-import Visible from '.';
+import Hidden from '.';
 
-describe('<Visible />', () => {
+describe('<Hidden />', () => {
   it('renders without error', () => {
     mount(
-      <Visible>
+      <Hidden breakpoints={[]}>
         <span>Boom</span>
-      </Visible>
+      </Hidden>
     );
   });
 
-  it('shows by breakpoint', () => {
+  it('hides by breakpoint', () => {
     const wrapper = mount(
       <Context.Provider
         value={[
@@ -22,31 +22,31 @@ describe('<Visible />', () => {
           'container-md-down',
         ]}
       >
-        <Visible breakpoints={['container-sm-down']}>
+        <Hidden breakpoints={['container-sm-down']}>
           <span>Boom</span>
-        </Visible>
-      </Context.Provider>
-    );
-
-    expect(wrapper.text()).toEqual('Boom');
-  });
-
-  it("doesn't show without breakpoint", () => {
-    const wrapper = mount(
-      <Context.Provider
-        value={[
-          'container-sm-up',
-          'container-sm-only',
-          'container-sm-down',
-          'container-md-down',
-        ]}
-      >
-        <Visible breakpoints={['container-md-up']}>
-          <span>Boom</span>
-        </Visible>
+        </Hidden>
       </Context.Provider>
     );
 
     expect(wrapper.text()).toEqual('');
+  });
+
+  it("doesn't hide without breakpoint", () => {
+    const wrapper = mount(
+      <Context.Provider
+        value={[
+          'container-sm-up',
+          'container-sm-only',
+          'container-sm-down',
+          'container-md-down',
+        ]}
+      >
+        <Hidden breakpoints={['container-md-up']}>
+          <span>Boom</span>
+        </Hidden>
+      </Context.Provider>
+    );
+
+    expect(wrapper.text()).toEqual('Boom');
   });
 });
