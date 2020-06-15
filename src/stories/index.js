@@ -71,4 +71,5 @@ import '../components/Responsive/Visible/story';
  */
 import '../components/Tooltip/story';
 import '../components/Input/story';
+import '../components/InputTime/story';
 /** INJECTOR */
