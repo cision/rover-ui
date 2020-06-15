@@ -26,7 +26,7 @@ storiesOf('Star Systems/Callout', module)
 
       const onClose = boolean('Closeable', true);
       const compact = boolean('Compact', false);
-      const onCancel = onClose ? action('closing callout') : null;
+      const onCancel = onClose ? action('closing callout') : () => {};
       const borderless = boolean('Borderless', false);
       const variant = select('Variant', variants, 'info');
 

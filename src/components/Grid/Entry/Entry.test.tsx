@@ -1,14 +1,10 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { TestComponent } from '../../../setupTests';
 import Entry from './Entry';
 
 describe('<Entry />', () => {
-  it('renders', () => {
-    shallow(<Entry />);
-  });
-
   it('renders with plain old DOM element child', () => {
     mount(
       <Entry>
