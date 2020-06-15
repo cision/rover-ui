@@ -21,12 +21,12 @@ describe('Responsive.Element', () => {
   });
 });
 
-// describe('Responsive.Grid', () => {
-//   it('renders', () => {
-//     shallow(
-//       <Responsive.Grid>
-//         <p>Hello!</p>
-//       </Responsive.Grid>
-//     );
-//   });
-// });
+describe('Responsive.Grid', () => {
+  it('renders', () => {
+    shallow(
+      <Responsive.Grid>
+        <p>Hello!</p>
+      </Responsive.Grid>
+    );
+  });
+});

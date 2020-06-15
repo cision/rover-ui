@@ -12,7 +12,7 @@ type GridDefinition = {
 };
 
 interface GridProps {
-  breakpoints: GridDefinition;
+  breakpoints?: GridDefinition;
   columns?: number;
   gutter?: GridGutter;
 }
