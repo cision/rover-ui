@@ -18,7 +18,12 @@ interface GridProps {
 }
 
 const Grid: React.FC<GridProps> = ({
-  breakpoints,
+  breakpoints = {
+    'container-xs-up': {
+      columns: 1,
+      gutter: 0,
+    },
+  },
   children = '',
   columns = 1,
   gutter = 0,
@@ -84,15 +89,6 @@ const Grid: React.FC<GridProps> = ({
       }}
     </Context.Consumer>
   );
-};
-
-Grid.defaultProps = {
-  breakpoints: {
-    'container-xs-up': {
-      columns: 1,
-      gutter: 0,
-    },
-  },
 };
 
 export default Grid;
