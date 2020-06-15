@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean } from '@storybook/addon-knobs';
 
-import DeletablePill from './';
+import DeletablePill from '.';
 import Readme from './README.md';
 
 storiesOf('Galaxies/DeletablePill', module)

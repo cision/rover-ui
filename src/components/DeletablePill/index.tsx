@@ -10,7 +10,7 @@ export const DeletablePill = ({ children, onDelete, ...passedProps }) => {
       {children}
       {passedProps.checked && (
         <Pill.Addon
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             onDelete(e);
           }}
