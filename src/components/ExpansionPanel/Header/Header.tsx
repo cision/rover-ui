@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import isFunction from 'lodash/isFunction';
 
@@ -32,10 +32,10 @@ const Header: React.FC<HeaderProps> = ({
       {isFunction(children) ? (
         children(expandIcon)
       ) : (
-        <>
+        <Fragment>
           {children}
           {expandIcon}
-        </>
+        </Fragment>
       )}
     </div>
   );

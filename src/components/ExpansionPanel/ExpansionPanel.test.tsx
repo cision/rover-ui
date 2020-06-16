@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 
-import ExpansionPanel from './';
+import ExpansionPanel from '.';
+import Collapse, { CollapseProps } from '../Collapse/Collapse';
 
 describe('ExpansionPanel', () => {
   it('is collaped by default', () => {
@@ -11,7 +12,7 @@ describe('ExpansionPanel', () => {
       </ExpansionPanel>
     );
 
-    expect(wrapper.prop('expanded')).toBe(false);
+    expect(wrapper.find(Collapse).prop('isOpen')).toBe(false);
   });
 
   it('renders header as first child', () => {
@@ -41,13 +42,13 @@ describe('ExpansionPanel', () => {
 
   it('can be fully styled', () => {
     const wrapper = shallow(
-      <ExpansionPanel className="foo" style={{ bar: 'bar' }}>
+      <ExpansionPanel className="foo" style={{ background: 'bar' }}>
         <ExpansionPanel.Header />
       </ExpansionPanel>
     );
 
     expect(wrapper.hasClass('foo')).toEqual(true);
-    expect(wrapper.props().style).toEqual({ bar: 'bar' });
+    expect(wrapper.props().style).toEqual({ background: 'bar' });
   });
 
   it('invokes onToggle when header is clicked', () => {
@@ -70,7 +71,7 @@ describe('ExpansionPanel', () => {
   });
 
   it('overrides collapse props', () => {
-    const collapseProps = { foo: 'foo', bar: 'bar' };
+    const collapseProps: CollapseProps = { isOpen: false, timeout: 500 };
 
     const wrapper = shallow(
       <ExpansionPanel collapseProps={collapseProps}>
@@ -80,8 +81,8 @@ describe('ExpansionPanel', () => {
     );
 
     const collapse = wrapper.childAt(1);
-    expect(collapse.prop('foo')).toEqual('foo');
-    expect(collapse.prop('bar')).toEqual('bar');
+    expect(collapse.prop('isOpen')).toEqual(false);
+    expect(collapse.prop('timeout')).toEqual(500);
   });
 
   describe('in uncontrolled mode', () => {
