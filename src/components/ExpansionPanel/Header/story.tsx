@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { boolean, object } from '@storybook/addon-knobs';
+import { boolean, text, object } from '@storybook/addon-knobs';
 
 import Icon from '../../Icon';
 import Header from '.';
@@ -25,6 +25,10 @@ storiesOf('Galaxies/ExpansionPanel/Header', module)
     'Examples',
     () => {
       const expanded = boolean('expanded', false);
+      const customClassnames = text(
+        'className',
+        'mb-5 py-3 px-4 border-b bg-gray-300'
+      );
 
       return (
         <>
@@ -44,11 +48,22 @@ storiesOf('Galaxies/ExpansionPanel/Header', module)
           </Wrap>
 
           <Wrap>
-            <Title>Children as render prop</Title>
+            <Title>Custom styling</Title>
             <Header
               expanded={expanded}
               expandIcon={<Icon name="chevron-down" />}
-              className="mb-5 py-3 px-4 border-b bg-gray-300"
+              className={customClassnames}
+            >
+              Header
+            </Header>
+          </Wrap>
+
+          <Wrap>
+            <Title>Children as function for further customization</Title>
+            <Header
+              expanded={expanded}
+              expandIcon={<Icon name="chevron-down" />}
+              className={customClassnames}
             >
               {(expandIcon) => (
                 <>
@@ -61,17 +76,6 @@ storiesOf('Galaxies/ExpansionPanel/Header', module)
                   {expandIcon}
                 </>
               )}
-            </Header>
-          </Wrap>
-
-          <Wrap>
-            <Title>Custom styling and function</Title>
-            <Header
-              expanded={expanded}
-              expandIcon={<Icon name="chevron-down" />}
-              className="mb-5 py-3 px-4 border-b bg-gray-300"
-            >
-              Header
             </Header>
           </Wrap>
         </>
