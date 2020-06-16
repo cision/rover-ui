@@ -1,4 +1,12 @@
-import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  Fragment,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
+
 import classNames from 'classnames';
 
 import Input, { InputProps } from '../Input';
@@ -131,7 +139,7 @@ export const InputTime: React.FC<InputTimeProps> = ({
   };
 
   return (
-    <>
+    <Fragment>
       <Input
         {...passedProps}
         value={fuzzyValue}
@@ -153,7 +161,7 @@ export const InputTime: React.FC<InputTimeProps> = ({
         tabIndex={-1}
         type="time"
       />
-    </>
+    </Fragment>
   );
 };
 
