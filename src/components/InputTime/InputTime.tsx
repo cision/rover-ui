@@ -1,11 +1,4 @@
-import React, {
-  forwardRef,
-  MutableRefObject,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { forwardRef, useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 
 import Input, { InputProps } from '../Input';
@@ -26,7 +19,6 @@ Desired features:
 */
 
 interface InputTimeProps extends Omit<InputProps, 'value' | 'max' | 'min'> {
-  forwardedRef: MutableRefObject<HTMLInputElement | null> | null;
   max?: string;
   min?: string;
   value?: string;
@@ -34,7 +26,7 @@ interface InputTimeProps extends Omit<InputProps, 'value' | 'max' | 'min'> {
 
 export const InputTime: React.FC<InputTimeProps> = ({
   className = '',
-  forwardedRef = { current: null },
+  forwardedRef = undefined,
   max,
   min,
   onChange,
@@ -42,9 +34,7 @@ export const InputTime: React.FC<InputTimeProps> = ({
   ...passedProps
 }) => {
   const mainRef = useRef<HTMLInputElement | null>(null);
-  const shadowTimeInputRef: MutableRefObject<HTMLInputElement | null> = useRef(
-    null
-  );
+  const shadowTimeInputRef = useRef<HTMLInputElement | null>(null);
 
   const syncValidity = () => {
     if (mainRef.current && shadowTimeInputRef.current) {
@@ -53,12 +43,6 @@ export const InputTime: React.FC<InputTimeProps> = ({
       );
     }
   };
-
-  useEffect(() => {
-    if (forwardedRef?.current) {
-      mainRef.current = forwardedRef.current;
-    }
-  }, [mainRef, forwardedRef]);
 
   useEffect(() => {
     syncValidity();
@@ -147,7 +131,7 @@ export const InputTime: React.FC<InputTimeProps> = ({
       <Input
         {...passedProps}
         value={fuzzyValue}
-        ref={mainRef}
+        ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
         onBlur={handleBlurFuzzyValue}
         onChange={handleChangeFuzzyValue}
         className={classNames(styles.InputTime, className)}
@@ -170,5 +154,5 @@ export const InputTime: React.FC<InputTimeProps> = ({
 };
 
 export default forwardRef<HTMLInputElement, InputTimeProps>((props, ref) => {
-  return <InputTime {...props} forwardedRef={ref} />;
+  return <InputTime {...props} forwardedRef={ref || undefined} />;
 });

@@ -1,9 +1,8 @@
 import React, { forwardRef, Ref } from 'react';
+
 import classNames from 'classnames';
 
 import styles from './Input.module.css';
-
-type InputRefType = HTMLInputElement;
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -26,13 +25,13 @@ const Input: React.FC<InputProps> = ({
         [styles.disabled]: fauxDisabled,
       })}
       readOnly={readOnly}
-      ref={ref}
+      ref={ref || undefined}
       onChange={onChange}
       {...passedProps}
     />
   );
 };
 
-export default forwardRef<InputRefType, InputProps>((props, ref) => (
-  <Input {...props} forwardedRef={ref} />
+export default forwardRef<HTMLInputElement, InputProps>((props, ref) => (
+  <Input {...props} forwardedRef={ref || undefined} />
 ));

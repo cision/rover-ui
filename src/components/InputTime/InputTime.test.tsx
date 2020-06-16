@@ -5,6 +5,6 @@ import InputTime from './InputTime';
 
 describe('InputTime', () => {
   it('renders', () => {
-    shallow(<InputTime>Boom</InputTime>);
+    shallow(<InputTime />);
   });
 });
