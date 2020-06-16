@@ -29,6 +29,7 @@ export const guessTimeFromString = (string: string) => {
   let hours = 0;
   let minutes = 0;
   let isPm = false;
+  let hasValidUserInput = false;
   let value = string.replace(invalidChars, ' ');
 
   // Get hours from fuzzy string
@@ -38,6 +39,7 @@ export const guessTimeFromString = (string: string) => {
     hours = parseInt(content, 10);
     isPm = hours >= 12;
     value = value.substring(endIndex);
+    hasValidUserInput = true;
   }
 
   // Get minutes from fuzzy string
@@ -46,6 +48,7 @@ export const guessTimeFromString = (string: string) => {
   if (content && parseInt(content, 10) < 60) {
     minutes = parseInt(content, 10);
     value = value.substring(endIndex);
+    hasValidUserInput = true;
   }
 
   // Get am/pm from fuzzy string
@@ -59,8 +62,10 @@ export const guessTimeFromString = (string: string) => {
       hours += 12;
       hours %= 24;
     }
+
+    hasValidUserInput = true;
   }
 
   const time = getShortTimeString(hours, minutes);
-  return { time, hours, minutes };
+  return hasValidUserInput ? { time, hours, minutes } : {};
 };

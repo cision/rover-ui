@@ -91,7 +91,11 @@ export const InputTime: React.FC<InputTimeProps> = ({
       // If custom step set, pass it in.
       // If auto-step set, pass it in.
 
-      if (nextModelValue !== modelValue && shadowTimeInputRef.current) {
+      if (
+        nextModelValue &&
+        nextModelValue !== modelValue &&
+        shadowTimeInputRef.current
+      ) {
         /*
           To dispatch a change programmatically from a native input,
           you have to use a native input setter. Otherwise, React swallows it.
