@@ -37,7 +37,7 @@ const ExpansionPanel: ExpansionPanelType = ({
   const [header, ...body] = React.Children.toArray(children);
 
   // @ts-ignore
-  if (header.type.displayName !== Header.displayName) {
+  if (header?.type?.displayName !== Header.displayName) {
     throw new Error(
       'The first child of an ExpansionPanel *must* be an ExpansionPanel.Header'
     );
