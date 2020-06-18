@@ -19,11 +19,9 @@ import {
 
 /*
 Desired features:
-* Fuzzy match a variety of time syntaxes, so users can type or copy/paste times naturally
-* On blur, replace fuzzy string with normal string (in local format)
-* Add an optional dropdown that lets the user select a time quickly
-* Add min/max support for both raw times (less than 10AM) and datetimes (less than 10AM June 9)
-* Add configurable steps for hour/minute/30/15/5 minutes/auto
+- Add an optional dropdown that lets the user select a time quickly
+- Add min/max support for both raw times datetimes (less than 10AM June 9)
+- Add configurable steps for hour/minute/30/15/5 minutes/auto
 */
 
 interface InputTimeProps extends Omit<InputProps, 'value' | 'max' | 'min'> {
@@ -153,11 +151,11 @@ export const InputTime: React.FC<InputTimeProps> = ({
         value (as opposed to the fuzzy value)
       */}
       <input
-        className={styles.hidden}
         max={max}
         min={min}
         onChange={handleChangeModelValue}
         ref={shadowTimeInputRef}
+        style={{ display: 'none' }}
         tabIndex={-1}
         type="time"
       />

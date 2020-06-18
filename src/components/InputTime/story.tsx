@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
 
+import { Title, Wrap } from '../../stories/storybook-helpers';
+
 import InputTime from '.';
 import Readme from './README.md';
 
@@ -57,14 +59,15 @@ storiesOf('Planets/InputTime', module)
   .add(
     'Example',
     () => (
-      <div style={{ margin: '20px' }}>
+      <Wrap>
+        <Title>With string times for max, min, and value</Title>
         <InteractiveInputTime
           max={text('max', '20:00')}
           min={text('min', '10:00')}
           onChange={action('onChange string')}
           value={`${new Date().getHours()}:${new Date().getMinutes()}`}
         />
-      </div>
+      </Wrap>
     ),
     {
       info: {
