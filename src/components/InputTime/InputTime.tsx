@@ -251,7 +251,7 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
         ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
         onBlur={handleBlurFuzzyValue}
         onChange={handleChangeFuzzyValue}
-        className={classNames(styles.InputTimeString, className)}
+        className={classNames(styles.InputTime, className)}
       />
       {/*
         Shadow input for storing and dispatching change events to model
