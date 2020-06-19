@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 
 type HelperTags = keyof Pick<
@@ -19,6 +19,34 @@ export const BuildHelper = (
 
   HelperComp.displayName = name;
   return HelperComp;
+};
+
+export const Tailwind = () => {
+  const ID = 'tailwind-link';
+  const cleanup = () => {
+    document.getElementById(ID)?.remove();
+  };
+
+  useEffect(() => {
+    const $link = document.getElementById(ID);
+
+    if ($link) {
+      // Moves external TailwindCSS to end of <head>
+      document.head.appendChild($link);
+      return cleanup;
+    }
+
+    const $style = document.createElement('link');
+    $style.id = 'tailwind-link';
+    $style.href = 'https://unpkg.com/tailwindcss@1.4.6/dist/tailwind.min.css';
+    $style.rel = 'stylesheet';
+
+    document.head.appendChild($style);
+
+    return cleanup;
+  }, []);
+
+  return null;
 };
 
 export const Label = BuildHelper('Label', 'text-xs', 'span');

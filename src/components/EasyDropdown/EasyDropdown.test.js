@@ -4,7 +4,8 @@ import { act } from 'react-dom/test-utils';
 
 import Button from '../Button';
 
-import { Menu } from '../Dropdown';
+import Dropdown from '../Dropdown';
+const { Menu } = Dropdown;
 import EasyDropdown from '.';
 
 describe('EasyDropdown', () => {

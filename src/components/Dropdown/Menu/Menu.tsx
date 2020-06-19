@@ -7,7 +7,7 @@ import { isOpenContext } from '../context';
 import styles from './Menu.module.css';
 import ItemMoon, { ItemProps } from './Item/Item';
 
-interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
   position?: 'topLeft' | 'topRight' | 'bottomRight' | 'bottomLeft';
 }

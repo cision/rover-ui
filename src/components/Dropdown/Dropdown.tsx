@@ -1,31 +1,41 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './Dropdown.module.css';
 
-import MenuMoon from './Menu';
+import Menu from './Menu';
 
 import { isOpenContext } from './context';
 
-const Dropdown = ({
+export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
+  disabled?: boolean;
+  isOpen?: boolean;
+  onToggle?: (e: MouseEvent | KeyboardEvent) => void;
+}
+
+type DropdownType = React.FC<DropdownProps> & {
+  Menu: typeof Menu;
+};
+
+const Dropdown: DropdownType = ({
   children,
-  className,
-  disabled,
-  isOpen,
-  onToggle,
+  className = '',
+  disabled = false,
+  isOpen = false,
+  onToggle = () => {},
   ...passedProps
 }) => {
-  const dropdown = React.createRef();
+  const dropdown = React.createRef<HTMLDivElement>();
 
   const handleDocumentClick = React.useCallback(
-    (event) => {
-      const dropdownEl = dropdown && dropdown.current;
+    (event: MouseEvent) => {
+      const dropdownEl = dropdown?.current;
 
       // If the click was inside the dropdown, don't close it
       if (
         !dropdownEl ||
-        (dropdownEl.contains(event.target) && dropdownEl !== event.target)
+        (dropdownEl.contains(event.target as HTMLDivElement) &&
+          dropdownEl !== event.target)
       ) {
         return;
       }
@@ -36,7 +46,7 @@ const Dropdown = ({
   );
 
   const handleKeyUp = React.useCallback(
-    (event) => {
+    (event: KeyboardEvent) => {
       // Escape key closes the dropdown
       if (event.key === 'Escape') {
         onToggle(event);
@@ -77,22 +87,6 @@ const Dropdown = ({
   );
 };
 
-Dropdown.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  isOpen: PropTypes.bool,
-  onToggle: PropTypes.func,
-};
-
-Dropdown.defaultProps = {
-  disabled: false,
-  className: '',
-  isOpen: false,
-  onToggle: null,
-};
-
-export const Menu = MenuMoon;
 Dropdown.Menu = Menu;
 
 export default Dropdown;
