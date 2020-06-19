@@ -54,13 +54,13 @@ export const EasyPill = ({ actions, children, onDelete, ...passedProps }) => {
     <Pill {...passedProps}>
       {children}
       {passedProps.checked && (
-        <Pill.Addon onClick={e => e.stopPropagation()}>
+        <Pill.Addon onClick={(e) => e.stopPropagation()}>
           <EasyPillDropdown actions={actions} onDelete={onDelete} />
         </Pill.Addon>
       )}
       {passedProps.checked && !actions.length && onDelete && (
         <Pill.Addon
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             onDelete(e);
           }}
@@ -75,7 +75,7 @@ export const EasyPill = ({ actions, children, onDelete, ...passedProps }) => {
 EasyPill.propTypes = {
   actions: PropTypes.arrayOf(
     PropTypes.shape({
-      children: PropTypes.string,
+      children: PropTypes.node,
       label: PropTypes.string.isRequired,
       onClick: PropTypes.func.isRequired,
     })

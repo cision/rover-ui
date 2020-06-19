@@ -24,6 +24,7 @@ import {
   Tooltip,
   Callout,
   Input,
+  InputTime,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -36,6 +37,7 @@ const App = () => {
   const [isEasyPillChecked, setIsEasyPillChecked] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [inputTimeValue, setInputTimeValue] = useState('');
 
   const toggleTooltip = function () {
     setTooltipOpen((prev) => !prev);
@@ -388,6 +390,14 @@ const App = () => {
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
         />
+      </Section>
+
+      <Section title="InputTime">
+        <InputTime
+          value={inputTimeValue}
+          onChange={(e) => setInputTimeValue(e.target.value)}
+        />
+        {inputTimeValue}
       </Section>
 
       {/** USAGE_INJECTOR */}
