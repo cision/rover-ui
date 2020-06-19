@@ -4,7 +4,7 @@ import isNull from 'lodash/isNull';
 
 import styles from './Collapse.module.css';
 
-interface CollapseProps {
+export interface CollapseProps {
   isOpen?: boolean;
   onEntered?: (node: React.ReactNode, isAppearing: boolean) => void;
   onEntering?: (node: React.ReactNode, isAppearing: boolean) => void;

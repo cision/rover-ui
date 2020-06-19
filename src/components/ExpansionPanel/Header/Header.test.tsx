@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Header from './';
+import Header from '.';
 
 describe('ExpansionPanel.Header', () => {
   it('renders its children', () => {
@@ -19,10 +19,12 @@ describe('ExpansionPanel.Header', () => {
   });
 
   it('can be fully styled', () => {
-    const wrapper = shallow(<Header className="foo" style={{ bar: 'bar' }} />);
+    const wrapper = shallow(
+      <Header className="foo" style={{ backgroundColor: 'rebeccapurple' }} />
+    );
 
     expect(wrapper.hasClass('foo')).toEqual(true);
-    expect(wrapper.props().style).toEqual({ bar: 'bar' });
+    expect(wrapper.props().style).toEqual({ backgroundColor: 'rebeccapurple' });
   });
 
   it('can receive children as render prop', () => {

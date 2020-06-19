@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Body from './';
+import Body from '.';
 
 describe('ExpansionPanel.body', () => {
   it('renders its children', () => {
@@ -12,9 +12,11 @@ describe('ExpansionPanel.body', () => {
   });
 
   it('can be fully styled', () => {
-    const wrapper = shallow(<Body className="foo" style={{ bar: 'bar' }} />);
+    const wrapper = shallow(
+      <Body className="foo" style={{ backgroundColor: 'rebeccapurple' }} />
+    );
 
     expect(wrapper.hasClass('foo')).toEqual(true);
-    expect(wrapper.props().style).toEqual({ bar: 'bar' });
+    expect(wrapper.props().style).toEqual({ backgroundColor: 'rebeccapurple' });
   });
 });

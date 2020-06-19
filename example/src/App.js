@@ -316,9 +316,27 @@ const App = () => {
       </Section>
 
       <Section title="ExpansionPanel">
-        <ExpansionPanel defaultExpanded={false}>
-          <ExpansionPanel.Header>Click me!</ExpansionPanel.Header>
-          <ExpansionPanel.Body>├── Body</ExpansionPanel.Body>
+        <ExpansionPanel
+          className="w-full shadow rounded overflow-hidden mb-5"
+          defaultExpanded={false}
+        >
+          <ExpansionPanel.Header className="p-3 bg-blue-100 text-blue-900 rounded-t">
+            Click me! I'm a Header
+          </ExpansionPanel.Header>
+          <ExpansionPanel.Body className="p-3">├── Body</ExpansionPanel.Body>
+        </ExpansionPanel>
+
+        <ExpansionPanel
+          className="w-full shadow rounded overflow-hidden"
+          defaultExpanded={false}
+        >
+          <ExpansionPanel.Header
+            expandIcon={<Icon name="chevron-down" />}
+            className="p-3 bg-green-100 text-green-900 rounded-t"
+          >
+            No, click me! I have an Icon
+          </ExpansionPanel.Header>
+          <ExpansionPanel.Body className="p-3">├── Body</ExpansionPanel.Body>
         </ExpansionPanel>
       </Section>
 
