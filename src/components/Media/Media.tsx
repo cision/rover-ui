@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styled from 'styled-components';
-import { alignSelf, space, flex } from 'styled-system';
 
 import styles from './Media.module.css';
-import withDefaultTheme from '../withDefaultTheme';
-
-const FlexSpacer = withDefaultTheme(styled.div(alignSelf, flex, space));
 
 type MediaItemType = React.FC<React.HTMLAttributes<HTMLDivElement>>;
 type MediaType = MediaItemType & {
@@ -21,7 +16,7 @@ type MediaType = MediaItemType & {
 const MediaGenerator = (name: string, cssClass) => {
   const MediaComponent: MediaItemType = (props) => {
     const { className = '', ...rest } = props;
-    return <FlexSpacer {...rest} className={classNames(cssClass, className)} />;
+    return <div {...rest} className={classNames(cssClass, className)} />;
   };
 
   MediaComponent.propTypes = {
@@ -37,10 +32,7 @@ const MediaGenerator = (name: string, cssClass) => {
 };
 
 const Media = MediaGenerator('Media', styles.Media) as MediaType;
-const Body = MediaGenerator('Media.Body', styles.Body);
-const Item = MediaGenerator('Media.Item', styles.Item);
-
-Media.Body = Body;
-Media.Item = Item;
+Media.Body = MediaGenerator('Media.Body', styles.Body);
+Media.Item = MediaGenerator('Media.Item', styles.Item);
 
 export default Media;
