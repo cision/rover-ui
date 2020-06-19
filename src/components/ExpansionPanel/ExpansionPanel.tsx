@@ -59,7 +59,7 @@ const ExpansionPanel: ExpansionPanelType = ({
           expanded,
           onClick: handleToggle,
         })}
-      <Collapse isOpen={expanded ?? false} {...collapseProps}>
+      <Collapse isOpen={!!expanded} {...collapseProps}>
         {body}
       </Collapse>
     </div>

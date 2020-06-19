@@ -2,17 +2,20 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 
 import ExpansionPanel from '.';
-import Collapse, { CollapseProps } from '../Collapse/Collapse';
+import { CollapseProps } from '../Collapse/Collapse';
 
 describe('ExpansionPanel', () => {
   it('is collaped by default', () => {
     const wrapper = mount(
       <ExpansionPanel>
         <ExpansionPanel.Header />
+        <ExpansionPanel.Body data-qa="content">Content</ExpansionPanel.Body>
       </ExpansionPanel>
     );
 
-    expect(wrapper.find(Collapse).prop('isOpen')).toBe(false);
+    expect(wrapper.find('.entered > [data-qa]').length).toBe(0);
+    expect(wrapper.find('.exited > [data-qa]').length).toBe(1);
+    expect(wrapper.find('.exited > [data-qa]').text()).toMatch(/content/gi);
   });
 
   it('renders header as first child', () => {
