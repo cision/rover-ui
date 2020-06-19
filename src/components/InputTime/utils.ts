@@ -57,10 +57,10 @@ export const guessTimeFromString = (string: string) => {
 
   if (content && hours > 0 && hours <= 12) {
     isPm = (content || '').toLowerCase() === 'p';
+    hours %= 12;
 
     if (isPm) {
       hours += 12;
-      hours %= 24;
     }
 
     hasValidUserInput = true;
