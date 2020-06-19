@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { forwardRef, Ref } from 'react';
+
 import classNames from 'classnames';
 
 import styles from './Input.module.css';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   /** Applies disabled appearance without disabling. Helpful for adding tooltips on disabled field clicks. */
   fauxDisabled?: boolean;
+  forwardedRef?: Ref<HTMLInputElement>;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -13,6 +16,7 @@ const Input: React.FC<InputProps> = ({
   onChange = () => {},
   readOnly = false,
   fauxDisabled = false,
+  forwardedRef: ref,
   ...passedProps
 }) => {
   return (
@@ -21,10 +25,13 @@ const Input: React.FC<InputProps> = ({
         [styles.disabled]: fauxDisabled,
       })}
       readOnly={readOnly}
+      ref={ref || undefined}
       onChange={onChange}
       {...passedProps}
     />
   );
 };
 
-export default Input;
+export default forwardRef<HTMLInputElement, InputProps>((props, ref) => (
+  <Input {...props} forwardedRef={ref || undefined} />
+));

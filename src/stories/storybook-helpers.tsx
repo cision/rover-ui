@@ -50,4 +50,4 @@ export const Tailwind = () => {
 export const Label = BuildHelper('Label', 'text-xs', 'span');
 export const Wrap = BuildHelper('Wrap', 'm-5 rounded bg-white shadow-md p-4');
 export const Spacer = BuildHelper('Spacer', 'mb-5');
-export const Title = BuildHelper('Wrap', 'text-xl mb-5 border-b', 'h3');
+export const Title = BuildHelper('Title', 'text-xl mb-5 border-b', 'h3');

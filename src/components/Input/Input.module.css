@@ -7,11 +7,19 @@
   font-size: var(--rvr-font-size-md);
   line-height: var(--rvr-line-height-lg);
   padding: var(--rvr-space-bordered-sm);
+  height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-sm));
   transition:
     100ms linear background-color,
     100ms linear border-color,
     100ms linear box-shadow,
     100ms linear color;
+}
+
+.Input[type="time"] {
+  /*
+    Time pickers have an extra 1px padding in Chrome that throws off the height.
+  */
+  height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-sm));
 }
 
 .Input::placeholder {
