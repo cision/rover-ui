@@ -10,12 +10,16 @@ import React, {
 import classNames from 'classnames';
 
 import Input, { InputProps } from '../Input';
-import styles from './InputTime.module.css';
+
 import {
+  getEndOfDay,
   getShortTimeString,
+  getStartOfDay,
   getLocaleTimeStringFromShortTimeString,
   guessTimeFromString,
 } from './utils';
+
+import styles from './InputTime.module.css';
 
 /*
 Desired features:
@@ -25,12 +29,115 @@ Desired features:
 */
 
 interface InputTimeProps extends Omit<InputProps, 'value' | 'max' | 'min'> {
+  max?: Date | string;
+  min?: Date | string;
+  value?: Date | string;
+}
+
+export const InputTime: React.FC<InputTimeProps> = ({
+  disabled: initDisabled,
+  forwardedRef,
+  max,
+  min,
+  value,
+  ...passedProps
+}) => {
+  let disabled = initDisabled;
+
+  if (value instanceof Date) {
+    const maxDate = max instanceof Date ? max : undefined;
+    const minDate = min instanceof Date ? min : undefined;
+    const now = new Date();
+
+    if (maxDate && maxDate < getStartOfDay(now)) {
+      disabled = true;
+    }
+
+    if (minDate && minDate > getEndOfDay(now)) {
+      disabled = true;
+    }
+
+    return (
+      <InputTimeDate
+        {...passedProps}
+        disabled={disabled}
+        max={maxDate}
+        min={minDate}
+        value={value}
+      />
+    );
+  }
+
+  const maxString = typeof max === 'string' ? max : undefined;
+  const minString = typeof min === 'string' ? min : undefined;
+  const valueString = typeof value === 'string' ? value : undefined;
+
+  return (
+    <InputTimeString
+      {...passedProps}
+      max={maxString}
+      min={minString}
+      value={valueString}
+    />
+  );
+};
+
+interface InputTimeDateProps extends Omit<InputProps, 'value' | 'max' | 'min'> {
+  max?: Date;
+  min?: Date;
+  value?: Date;
+}
+
+export const InputTimeDate: React.FC<InputTimeDateProps> = ({
+  max: maxDate,
+  min: minDate,
+  onChange,
+  value: valueDate,
+  ...passedProps
+}) => {
+  const now = new Date();
+
+  const max = useMemo(() => {
+    if (maxDate === undefined || maxDate === null) {
+      return '';
+    }
+
+    if (maxDate > getEndOfDay(now)) {
+      return '';
+    }
+
+    return getShortTimeString(maxDate.getHours(), maxDate.getMinutes());
+  }, [maxDate, now]);
+
+  const min = useMemo(() => {
+    if (minDate === undefined || minDate === null) {
+      return '';
+    }
+
+    if (minDate < getStartOfDay(now)) {
+      return '';
+    }
+
+    return getShortTimeString(minDate.getHours(), minDate.getMinutes());
+  }, [minDate, now]);
+
+  const value = useMemo(() => {
+    return valueDate !== undefined && valueDate !== null
+      ? getShortTimeString(valueDate.getHours(), valueDate.getMinutes())
+      : '';
+  }, [valueDate]);
+
+  return <InputTimeString {...passedProps} max={max} min={min} value={value} />;
+};
+
+interface InputTimeStringProps
+  extends Omit<InputProps, 'value' | 'max' | 'min'> {
   max?: string;
   min?: string;
   value?: string;
 }
 
-export const InputTime: React.FC<InputTimeProps> = ({
+export const InputTimeString: React.FC<InputTimeStringProps> = ({
   className = '',
   forwardedRef = undefined,
   max,
@@ -144,7 +251,7 @@ export const InputTime: React.FC<InputTimeProps> = ({
         ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
         onBlur={handleBlurFuzzyValue}
         onChange={handleChangeFuzzyValue}
-        className={classNames(styles.InputTime, className)}
+        className={classNames(styles.InputTimeString, className)}
       />
       {/*
         Shadow input for storing and dispatching change events to model
@@ -163,6 +270,8 @@ export const InputTime: React.FC<InputTimeProps> = ({
   );
 };
 
-export default forwardRef<HTMLInputElement, InputTimeProps>((props, ref) => {
-  return <InputTime {...props} forwardedRef={ref || undefined} />;
-});
+export default forwardRef<HTMLInputElement, InputTimeStringProps>(
+  (props, ref) => {
+    return <InputTime {...props} forwardedRef={ref || undefined} />;
+  }
+);

@@ -6,6 +6,25 @@ const nullSafeMatch = (string: string, regExp: RegExp) => {
   return { content, index, endIndex };
 };
 
+export const getEndOfDay = (date: Date) => {
+  const endOfDay = new Date(date);
+  endOfDay.setDate(endOfDay.getDate() + 1);
+  endOfDay.setHours(0);
+  endOfDay.setMinutes(0);
+  endOfDay.setSeconds(0);
+  endOfDay.setMilliseconds(-1);
+  return endOfDay;
+};
+
+export const getStartOfDay = (date: Date) => {
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0);
+  startOfDay.setMinutes(0);
+  startOfDay.setSeconds(0);
+  startOfDay.setMilliseconds(0);
+  return startOfDay;
+};
+
 export const getShortTimeString = (hours: number, minutes: number) =>
   `${hours < 10 ? '0' : ''}${hours || 0}:${minutes < 10 ? '0' : ''}${
     minutes || 0
