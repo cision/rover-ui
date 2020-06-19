@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 
 import Button from '../Button';
 
-import { Menu } from '../Dropdown';
+import Dropdown from '../Dropdown';
 import EasyDropdown from '.';
 
 describe('EasyDropdown', () => {
@@ -71,7 +71,10 @@ describe('EasyDropdown', () => {
           </EasyDropdown>
         );
 
-        const menuItem = wrapper.find('.item-foo').first().parent(Menu.Item);
+        const menuItem = wrapper
+          .find('.item-foo')
+          .first()
+          .parent(Dropdown.Menu.Item);
 
         act(() => menuItem.props().onClick('Pretend event!'));
 

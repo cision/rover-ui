@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Button from '../Button';
-import Dropdown, { Menu } from '../Dropdown';
+import Dropdown from '../Dropdown';
 
 import styles from './EasyDropdown.module.css';
 
@@ -98,7 +98,7 @@ const EasyDropdown = ({
     >
       {children}
       {!!menuItems.length && (
-        <Menu {...menuProps}>
+        <Dropdown.Menu {...menuProps}>
           {Object.keys(menuItemGroups).map((group) => {
             return (
               <div
@@ -110,7 +110,7 @@ const EasyDropdown = ({
               >
                 {menuItemGroups[group].map(
                   ({ children: itemChildren, label, ...itemProps }) => (
-                    <Menu.Item
+                    <Dropdown.Menu.Item
                       {...itemProps}
                       key={label}
                       onClick={(event) => {
@@ -125,13 +125,13 @@ const EasyDropdown = ({
                       }}
                     >
                       {itemChildren || label}
-                    </Menu.Item>
+                    </Dropdown.Menu.Item>
                   )
                 )}
               </div>
             );
           })}
-        </Menu>
+        </Dropdown.Menu>
       )}
     </Dropdown>
   );
@@ -159,7 +159,7 @@ EasyDropdown.propTypes = {
       onClick: PropTypes.func,
     })
   ),
-  menuProps: PropTypes.shape({ ...Menu.propTypes }),
+  menuProps: PropTypes.object,
   /** Without `defaultIsOpen`, `onToggle` is the only way to set state. With it, it's a convenience callback. */
   onToggle: PropTypes.func,
   toggleProps: PropTypes.shape({
