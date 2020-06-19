@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, date, text } from '@storybook/addon-knobs';
 
 import { Title, Wrap } from '../../stories/storybook-helpers';
 
+import { getShortTimeString } from './utils';
 import InputTime from '.';
 import Readme from './README.md';
 
@@ -58,17 +59,55 @@ storiesOf('Planets/InputTime', module)
   )
   .add(
     'Example',
-    () => (
-      <Wrap>
-        <Title>With string times for max, min, and value</Title>
-        <InteractiveInputTime
-          max={text('max', '20:00')}
-          min={text('min', '10:00')}
-          onChange={action('onChange string')}
-          value={`${new Date().getHours()}:${new Date().getMinutes()}`}
-        />
-      </Wrap>
-    ),
+    () => {
+      const now = new Date();
+      const valueDate = now;
+      const valueString = getShortTimeString(now.getHours(), now.getMinutes());
+
+      const defaultMaxDate = useMemo(() => {
+        const d = new Date();
+        d.setHours(20);
+        d.setMinutes(0);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d;
+      }, []);
+
+      const defaultMinDate = useMemo(() => {
+        const d = new Date();
+        d.setHours(10);
+        d.setMinutes(0);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d;
+      }, []);
+
+      const maxDate = new Date(date('max (Date)', defaultMaxDate));
+      const minDate = new Date(date('min (Date)', defaultMinDate));
+
+      return (
+        <>
+          <Wrap>
+            <Title>With string times for max, min, and value</Title>
+            <InteractiveInputTime
+              max={text('max', '20:00')}
+              min={text('min', '10:00')}
+              onChange={action('onChange string')}
+              value={valueString}
+            />
+          </Wrap>
+          <Wrap>
+            <Title>With Date times for max, min, and value</Title>
+            <InteractiveInputTime
+              max={maxDate}
+              min={minDate}
+              onChange={action('onChange date')}
+              value={valueDate}
+            />
+          </Wrap>
+        </>
+      );
+    },
     {
       info: {
         inline: false,
