@@ -1536,11 +1536,19 @@ a .Avatar_Avatar__2_adr {
   font-size: var(--rvr-font-size-md);
   line-height: var(--rvr-line-height-lg);
   padding: var(--rvr-space-bordered-sm);
+  height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-sm));
   transition:
     100ms linear background-color,
     100ms linear border-color,
     100ms linear box-shadow,
     100ms linear color;
+}
+
+.Input_Input__2ZMeK[type="time"] {
+  /*
+    Time pickers have an extra 1px padding in Chrome that throws off the height.
+  */
+  height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-sm));
 }
 
 .Input_Input__2ZMeK::-webkit-input-placeholder {
@@ -1654,5 +1662,9 @@ a .Avatar_Avatar__2_adr {
   color: var(--rvr-color-danger);
 }
 
+.InputTime_InputTime__10Fgl {
+  visibility: visible;
+}
 
-/*# sourceMappingURL=main.0e0d7db8.chunk.css.map*/
+
+/*# sourceMappingURL=main.3921669f.chunk.css.map*/
