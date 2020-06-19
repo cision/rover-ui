@@ -1,6 +1,7 @@
 import React, {
   forwardRef,
   Fragment,
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -9,6 +10,8 @@ import React, {
 
 import classNames from 'classnames';
 
+import EasyDropdown from '../EasyDropdown';
+import Icon from '../Icon';
 import Input, { InputProps } from '../Input';
 
 import {
@@ -24,8 +27,11 @@ import styles from './InputTime.module.css';
 /*
 Desired features:
 - Add an optional dropdown that lets the user select a time quickly
-- Add min/max support for both raw times datetimes (less than 10AM June 9)
+-- Needs to center selection on current
+-- Needs width tweaks
 - Add configurable steps for hour/minute/30/15/5 minutes/auto
+-- Configurable steps should be enforced on selections
+-- Auto steps should be enforced for dropdown options only
 */
 
 interface InputTimeProps extends Omit<InputProps, 'value' | 'max' | 'min'> {
@@ -134,6 +140,8 @@ interface InputTimeStringProps
   extends Omit<InputProps, 'value' | 'max' | 'min'> {
   max?: string;
   min?: string;
+  showDropdown?: boolean;
+  step?: number | string;
   value?: string;
 }
 
@@ -143,6 +151,8 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
   max,
   min,
   onChange,
+  showDropdown = true,
+  step,
   value,
   ...passedProps
 }) => {
@@ -194,26 +204,21 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
     }
   };
 
-  const handleChangeFuzzyValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFuzzyValue(e.target.value);
-
-    if (e.target.value) {
-      const { time: nextModelValue } = guessTimeFromString(e.target.value);
-
+  const changeShadowTimeInput = useCallback(
+    (nextModelValue?: string) => {
       // Need step logic
       // If custom step set, pass it in.
       // If auto-step set, pass it in.
-
       if (
         nextModelValue &&
         nextModelValue !== modelValue &&
         shadowTimeInputRef.current
       ) {
         /*
-          To dispatch a change programmatically from a native input,
-          you have to use a native input setter. Otherwise, React swallows it.
-          https://stackoverflow.com/a/46012210
-        */
+        To dispatch a change programmatically from a native input,
+        you have to use a native input setter. Otherwise, React swallows it.
+        https://stackoverflow.com/a/46012210
+      */
         const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
           window.HTMLInputElement.prototype,
           'value'
@@ -228,6 +233,16 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
           shadowTimeInputRef.current.dispatchEvent(passedEvent);
         }
       }
+    },
+    [modelValue]
+  );
+
+  const handleChangeFuzzyValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFuzzyValue(e.target.value);
+
+    if (e.target.value) {
+      const { time: nextModelValue } = guessTimeFromString(e.target.value);
+      changeShadowTimeInput(nextModelValue);
     }
   };
 
@@ -243,6 +258,52 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
     }
   };
 
+  const menuItems = useMemo(() => {
+    if (!showDropdown) {
+      return [];
+    }
+
+    let menuStep = typeof step === 'string' ? parseInt(step, 10) : step;
+    menuStep = menuStep || 60 * 60; // One hour, in secords
+    const current = getStartOfDay(new Date());
+    const end = getEndOfDay(new Date());
+    const maxAttempts = 25 * 60 * 5; // 5 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
+    let attempts = 0;
+
+    const options: {
+      className: string;
+      label: string;
+      onClick: Function;
+    }[] = [];
+
+    do {
+      attempts += 1;
+
+      const label = current.toLocaleTimeString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+      });
+
+      const timeString = getShortTimeString(
+        current.getHours(),
+        current.getMinutes()
+      );
+
+      options.push({
+        className: styles.menuItem,
+        label,
+        onClick: () => {
+          setFuzzyValue(label);
+          changeShadowTimeInput(timeString);
+        },
+      });
+
+      current.setSeconds(current.getSeconds() + menuStep);
+    } while (attempts <= maxAttempts && current < end);
+
+    return options;
+  }, [changeShadowTimeInput, showDropdown, step]);
+
   return (
     <Fragment>
       <Input
@@ -253,16 +314,27 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
         onChange={handleChangeFuzzyValue}
         className={classNames(styles.InputTime, className)}
       />
+      {showDropdown && (
+        <EasyDropdown
+          defaultIsOpen={false}
+          menuItems={menuItems}
+          menuProps={{ position: 'bottomLeft' }}
+        >
+          <Icon fill="currentColor" name="arrow-drop-down" />
+        </EasyDropdown>
+      )}
       {/*
         Shadow input for storing and dispatching change events to model
         value (as opposed to the fuzzy value)
       */}
+      <div>Max: {max}</div>
+      <div>Min: {min}</div>
       <input
         max={max}
         min={min}
         onChange={handleChangeModelValue}
         ref={shadowTimeInputRef}
-        style={{ display: 'none' }}
+        style={{ display: 'block' }}
         tabIndex={-1}
         type="time"
       />
