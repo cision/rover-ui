@@ -23,9 +23,7 @@ export const BuildHelper = (
 
 export const Tailwind = () => {
   const ID = 'tailwind-link';
-  const cleanup = () => {
-    document.getElementById(ID)?.remove();
-  };
+  const cleanup = () => {};
 
   useEffect(() => {
     const $link = document.getElementById(ID);
