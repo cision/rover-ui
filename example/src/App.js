@@ -330,7 +330,7 @@ const App = () => {
         >
           <ExpansionPanel.Header
             expandIcon={<Icon name="chevron-down" />}
-            className="p-3 bg-blue-100 text-blue-900 rounded-t"
+            className="p-3 bg-green-100 text-green-900 rounded-t"
           >
             No, click me! I have an Icon
           </ExpansionPanel.Header>
