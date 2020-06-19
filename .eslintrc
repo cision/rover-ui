@@ -1,6 +1,9 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    project: "tsconfig.json"
+  },
   "extends": [
     "airbnb-typescript",
     "airbnb/hooks",
@@ -17,6 +20,7 @@
   },
   "plugins": ["@typescript-eslint", "react", "prettier", "import"],
   "rules": {
+    "react/jsx-fragments": 0,
     "react/jsx-props-no-spreading": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
