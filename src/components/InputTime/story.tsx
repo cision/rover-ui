@@ -105,6 +105,16 @@ storiesOf('Planets/InputTime', module)
               value={valueDate}
             />
           </Wrap>
+          <Wrap>
+            <Title>Without `showDropdown`</Title>
+            <InteractiveInputTime
+              max={maxDate}
+              min={minDate}
+              onChange={action('onChange date')}
+              showDropdown="false"
+              value={valueDate}
+            />
+          </Wrap>
         </>
       );
     },

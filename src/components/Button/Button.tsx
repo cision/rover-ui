@@ -11,6 +11,11 @@ import { TButtonLevel, TButtonSize, TButtonState } from './types';
   Select (-> These might be better served as a different component)
 */
 
+type TagType = {
+  className?: string;
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+};
+
 interface BaseButtonProps {
   circle?: boolean;
   className?: string;
@@ -18,14 +23,14 @@ interface BaseButtonProps {
   hollow?: boolean;
   level?: TButtonLevel;
   size?: TButtonSize;
-  tag?: React.ComponentType<{ [key: string]: unknown }> | null;
-
+  tag?: React.FC<TagType> | React.ComponentType<TagType> | null;
   // States
   hover?: boolean;
   active?: boolean;
   disabled?: boolean;
   checked?: boolean;
   focus?: boolean;
+  [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 // Button props

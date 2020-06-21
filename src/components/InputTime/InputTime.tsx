@@ -1,6 +1,5 @@
 import React, {
   forwardRef,
-  Fragment,
   useCallback,
   useEffect,
   useMemo,
@@ -10,7 +9,6 @@ import React, {
 
 import classNames from 'classnames';
 
-import EasyDropdown from '../EasyDropdown';
 import Icon from '../Icon';
 import Input, { InputProps } from '../Input';
 
@@ -23,6 +21,7 @@ import {
 } from './utils';
 
 import styles from './InputTime.module.css';
+import Dropdown from './Dropdown';
 
 /*
 Desired features:
@@ -140,7 +139,7 @@ interface InputTimeStringProps
   extends Omit<InputProps, 'value' | 'max' | 'min'> {
   max?: string;
   min?: string;
-  showDropdown?: boolean;
+  showDropdown?: 'focus' | 'click' | 'none' | null;
   step?: number | string;
   value?: string;
 }
@@ -151,13 +150,18 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
   max,
   min,
   onChange,
-  showDropdown = true,
+  showDropdown: customShowDropdown = 'click',
   step,
   value,
   ...passedProps
 }) => {
   const mainRef = useRef<HTMLInputElement | null>(null);
   const shadowTimeInputRef = useRef<HTMLInputElement | null>(null);
+
+  const showDropdown: 'focus' | 'click' | undefined =
+    (customShowDropdown === 'focus' && 'focus') ||
+    (customShowDropdown === 'click' && 'click') ||
+    undefined;
 
   const syncValidity = () => {
     if (mainRef.current && shadowTimeInputRef.current) {
@@ -258,71 +262,52 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
     }
   };
 
-  const menuItems = useMemo(() => {
-    if (!showDropdown) {
-      return [];
-    }
+  const handleSelectMenuItem = (e: { target: { value: Date } }) => {
+    const dateTime = e.target.value;
 
-    let menuStep = typeof step === 'string' ? parseInt(step, 10) : step;
-    menuStep = menuStep || 60 * 60; // One hour, in secords
-    const current = getStartOfDay(new Date());
-    const end = getEndOfDay(new Date());
-    const maxAttempts = 25 * 60 * 5; // 5 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
-    let attempts = 0;
+    const label = dateTime.toLocaleTimeString([], {
+      hour: 'numeric',
+      minute: '2-digit',
+    });
 
-    const options: {
-      className: string;
-      label: string;
-      onClick: Function;
-    }[] = [];
+    const timeString = getShortTimeString(
+      dateTime.getHours(),
+      dateTime.getMinutes()
+    );
 
-    do {
-      attempts += 1;
-
-      const label = current.toLocaleTimeString([], {
-        hour: 'numeric',
-        minute: '2-digit',
-      });
-
-      const timeString = getShortTimeString(
-        current.getHours(),
-        current.getMinutes()
-      );
-
-      options.push({
-        className: styles.menuItem,
-        label,
-        onClick: () => {
-          setFuzzyValue(label);
-          changeShadowTimeInput(timeString);
-        },
-      });
-
-      current.setSeconds(current.getSeconds() + menuStep);
-    } while (attempts <= maxAttempts && current < end);
-
-    return options;
-  }, [changeShadowTimeInput, showDropdown, step]);
+    setFuzzyValue(label);
+    changeShadowTimeInput(timeString);
+  };
 
   return (
-    <Fragment>
-      <Input
-        {...passedProps}
-        value={fuzzyValue}
-        ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
-        onBlur={handleBlurFuzzyValue}
-        onChange={handleChangeFuzzyValue}
-        className={classNames(styles.InputTime, className)}
-      />
-      {showDropdown && (
-        <EasyDropdown
-          defaultIsOpen={false}
-          menuItems={menuItems}
-          menuProps={{ position: 'bottomLeft' }}
-        >
-          <Icon fill="currentColor" name="arrow-drop-down" />
-        </EasyDropdown>
-      )}
+    <>
+      <div
+        className={classNames(styles.InputTimeWrapper, {
+          [styles.with2Addons]: showDropdown,
+          [styles.with1Addon]: !showDropdown,
+        })}
+      >
+        <Input
+          {...passedProps}
+          value={fuzzyValue}
+          ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
+          onBlur={handleBlurFuzzyValue}
+          onChange={handleChangeFuzzyValue}
+          className={classNames(styles.InputTime, className)}
+        />
+        {showDropdown ? (
+          <Dropdown
+            className={styles.addons}
+            onSelectMenuItem={handleSelectMenuItem}
+            showDropdown={showDropdown}
+            step={step}
+          />
+        ) : (
+          <div className={styles.addons}>
+            <Icon className={styles.icon} fill="currentColor" name="clock" />
+          </div>
+        )}
+      </div>
       {/*
         Shadow input for storing and dispatching change events to model
         value (as opposed to the fuzzy value)
@@ -338,7 +323,7 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
         tabIndex={-1}
         type="time"
       />
-    </Fragment>
+    </>
   );
 };
 

@@ -1,8 +1,32 @@
-.InputTime {
-  visibility: visible;
+.InputTimeWrapper {
+  position: relative;
+  display: inline-block;
 }
 
-.menuItem {
-  text-align: right;
-  white-space: nowrap;
+.with1Addon {
+  padding-right: ;
+}
+
+.with2Addons {
+  padding-right: ;
+}
+
+.addons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-right: var(--rvr-border-width-md);
+}
+
+.icon {
+  margin-right: var(--rvr-space-bordered-sm);
+  color: var(--rvr-btn-color-text);
+}
+
+.icon:not(:last-child) {
+  margin-right: 0;
 }
