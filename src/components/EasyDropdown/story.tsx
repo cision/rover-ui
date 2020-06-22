@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions';
 import Button from '../Button';
 import EasyDropdown from '.';
 import Readme from './README.md';
+import { Tailwind, Wrap } from '../../stories/storybook-helpers';
 
 const defaultIsOpenOptions = ['true', 'false', 'undefined'];
 
@@ -82,74 +83,81 @@ storiesOf('Galaxies/EasyDropdown', module)
     () => {
       return (
         <div>
-          <EasyDropdown
-            menuItems={[
-              { label: 'I do nothing!' },
-              { label: 'Click me!', onClick: () => {} },
-              { label: "I'm in a group", onClick: () => {}, group: 'Group 1' },
-              { label: 'Me too', onClick: () => {}, group: 'Group 1' },
-              { label: 'Also me', onClick: () => {}, group: 'Group 1' },
-            ]}
-            defaultIsOpen={false}
-          >
-            Simple config
-          </EasyDropdown>
-          <br />
-          <br />
-          <EasyDropdown
-            menuItems={[{ label: 'Click me!', onClick: () => {} }]}
-            defaultIsOpen={false}
-          >
-            Button with addon
-            <Button.Addon>→</Button.Addon>
-          </EasyDropdown>
-          <br />
-          <br />
-          <EasyDropdown
-            className="w-full"
-            menuItems={[{ label: 'Click me!', onClick: () => {} }]}
-            defaultIsOpen={false}
-            toggleProps={{ className: 'w-full' }}
-          >
-            Full-width dropdown
-            <Button.Addon>→</Button.Addon>
-          </EasyDropdown>
-          <br />
-          <br />
-          <EasyDropdown
-            menuItems={[{ label: 'Click me!', onClick: () => {} }]}
-            defaultIsOpen={false}
-          >
-            <button type="button" onClick={action('Custom toggle onClick')}>
-              Custom toggle
-            </button>
-          </EasyDropdown>
-          <br />
-          <br />
-          <EasyDropdown
-            menuItems={[
-              {
-                label: 'Custom menu item',
-                children: (
-                  <Button
-                    level="primary-alt"
-                    style={{
-                      display: 'block',
-                      borderRadius: '0',
-                      width: '100%',
-                    }}
-                  >
-                    I&apos;m fancy
-                  </Button>
-                ),
-                onClick: action('Custom menu item onClick'),
-                className: 'p-0',
-              },
-            ]}
-            defaultIsOpen={false}
-          >
-            Custom button in the dropdown!
-          </EasyDropdown>
+          <Tailwind />
+          <Wrap>
+            <EasyDropdown
+              className="w-64"
+              menuItems={[
+                { label: 'I do nothing!' },
+                { label: 'Click me!', onClick: () => {} },
+                {
+                  label: "I'm in a group",
+                  group: 'Group 1',
+                },
+                { label: 'Me too', onClick: () => {}, group: 'Group 1' },
+                { label: 'Also me', onClick: () => {}, group: 'Group 1' },
+              ]}
+              defaultIsOpen={false}
+            >
+              Simple config
+            </EasyDropdown>
+          </Wrap>
+
+          <Wrap>
+            <EasyDropdown
+              menuItems={[{ label: 'Click me!', onClick: () => {} }]}
+              defaultIsOpen={false}
+            >
+              Button with addon
+              <Button.Addon>→</Button.Addon>
+            </EasyDropdown>
+          </Wrap>
+
+          <Wrap>
+            <EasyDropdown
+              className="w-full"
+              menuItems={[{ label: 'Click me!', onClick: () => {} }]}
+              defaultIsOpen={false}
+              toggleProps={{ className: 'w-full' }}
+            >
+              Full-width dropdown
+              <Button.Addon>→</Button.Addon>
+            </EasyDropdown>
+          </Wrap>
+
+          <Wrap>
+            <EasyDropdown
+              menuItems={[{ label: 'Click me!', onClick: () => {} }]}
+              defaultIsOpen={false}
+            >
+              <button type="button" onClick={action('Custom toggle onClick')}>
+                Custom toggle
+              </button>
+            </EasyDropdown>
+          </Wrap>
+
+          <Wrap>
+            <EasyDropdown
+              menuItems={[
+                {
+                  label: 'Custom menu item',
+                  children: (
+                    <Button
+                      level="primary-alt"
+                      className="block rounded-none w-full"
+                    >
+                      I&apos;m fancy
+                    </Button>
+                  ),
+                  onClick: action('Custom menu item onClick'),
+                  className: 'p-2',
+                },
+              ]}
+              defaultIsOpen={false}
+            >
+              Custom button in the dropdown!
+            </EasyDropdown>
+          </Wrap>
         </div>
       );
     },
