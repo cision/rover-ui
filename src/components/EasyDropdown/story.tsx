@@ -4,7 +4,7 @@ import { object, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import Button from '../Button';
-import EasyDropdown from './';
+import EasyDropdown from '.';
 import Readme from './README.md';
 
 const defaultIsOpenOptions = ['true', 'false', 'undefined'];
@@ -55,7 +55,7 @@ storiesOf('Galaxies/EasyDropdown', module)
           ? undefined
           : JSON.parse(customDefaultIsOpen);
 
-      const menuItems = customMenuItems.map(a => ({
+      const menuItems = customMenuItems.map((a) => ({
         ...a,
         onClick: action(a.label),
       }));
@@ -106,10 +106,10 @@ storiesOf('Galaxies/EasyDropdown', module)
           <br />
           <br />
           <EasyDropdown
+            className="w-full"
             menuItems={[{ label: 'Click me!', onClick: () => {} }]}
             defaultIsOpen={false}
-            style={{ width: '100%' }}
-            toggleProps={{ style: { width: '100%' } }}
+            toggleProps={{ className: 'w-full' }}
           >
             Full-width dropdown
             <Button.Addon>→</Button.Addon>
@@ -143,7 +143,7 @@ storiesOf('Galaxies/EasyDropdown', module)
                   </Button>
                 ),
                 onClick: action('Custom menu item onClick'),
-                style: { padding: '0' },
+                className: 'p-0',
               },
             ]}
             defaultIsOpen={false}

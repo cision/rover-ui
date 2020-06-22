@@ -5,7 +5,7 @@ import { Transition } from 'react-transition-group';
 
 import { isOpenContext } from '../context';
 import styles from './Menu.module.css';
-import ItemMoon, { ItemProps } from './Item/Item';
+import ItemMoon from './Item/Item';
 
 export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
   isOpen?: boolean;
@@ -13,7 +13,7 @@ export interface MenuProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 type MenuType = React.FC<MenuProps> & {
-  Item: React.FC<ItemProps>;
+  Item: typeof ItemMoon;
 };
 
 const Menu: MenuType = ({

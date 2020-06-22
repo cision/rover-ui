@@ -1,63 +1,70 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import styles from './Item.module.css';
 
-export interface ItemProps {
-  className?: string;
-  href?: string;
-  onClick?: () => void;
-}
+export type ButtonElementProps = React.ButtonHTMLAttributes<
+  HTMLButtonElement
+> & {
+  href?: undefined;
+};
 
-const Item: React.FC<ItemProps> = ({
-  className = '',
-  href = null,
-  onClick = null,
-  ...passedProps
-}) => {
-  if (href) {
-    // The anchor's content is provided by passedProps
-    /* eslint-disable jsx-a11y/anchor-has-content */
+type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href?: string;
+};
+
+type DivElementProps = React.AllHTMLAttributes<HTMLDivElement> & {
+  href?: undefined;
+};
+
+export type ItemProps =
+  | ButtonElementProps
+  | AnchorElementProps
+  | DivElementProps;
+
+// Guard to check if href exists in props
+const hasHref = (props: ItemProps): props is AnchorElementProps =>
+  'href' in props && props.href !== undefined;
+
+const Item: React.FC<ItemProps> = ({ className = '', ...passedProps }) => {
+  /**
+   * If an `href` prop is passed, the rendered element automatically renders
+   * as a bare <a> element with default styles
+   */
+  if (hasHref(passedProps as AnchorElementProps)) {
     return (
+      // eslint-disable-next-line jsx-a11y/anchor-has-content
       <a
         className={classNames(styles.Item, styles.link, className)}
-        href={href}
-        {...passedProps}
+        {...(passedProps as AnchorElementProps)}
       />
     );
-    /* eslint-enable jsx-a11y/anchor-has-content */
   }
 
-  if (onClick) {
+  /**
+   * If an `onClick` prop is passed, the rendered element automatically renders
+   * as a bare <button> element with some default styles
+   */
+  if (!hasHref(passedProps as AnchorElementProps) && passedProps.onClick) {
     return (
       <button
         className={classNames(styles.Item, styles.button, className)}
         type="button"
-        onClick={onClick}
-        {...passedProps}
+        {...(passedProps as ButtonElementProps)}
       />
     );
   }
 
+  /**
+   * If a no `href` or `onClick` props are passed, the rendered element simply renders
+   * as a <div> element with some default styles
+   */
   return (
     <div
       className={classNames(styles.Item, styles.content, className)}
-      {...passedProps}
+      {...(passedProps as DivElementProps)}
     />
   );
-};
-
-Item.propTypes = {
-  className: PropTypes.string,
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-};
-
-Item.defaultProps = {
-  className: '',
-  href: undefined,
-  onClick: undefined,
 };
 
 export default Item;
