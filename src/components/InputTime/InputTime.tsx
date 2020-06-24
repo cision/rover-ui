@@ -12,6 +12,7 @@ import classNames from 'classnames';
 
 import Icon from '../Icon';
 import Input, { InputProps } from '../Input';
+import inputStyles from '../Input/Input.module.css';
 
 import {
   getEndOfDay,
@@ -147,6 +148,7 @@ interface InputTimeStringProps
 
 export const InputTimeString: React.FC<InputTimeStringProps> = ({
   className = '',
+  disabled,
   forwardedRef = undefined,
   max,
   min,
@@ -158,6 +160,7 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
 }) => {
   const mainRef = useRef<HTMLInputElement | null>(null);
   const shadowTimeInputRef = useRef<HTMLInputElement | null>(null);
+  const [validity, setValidity] = useState(true);
 
   const showDropdown: 'focus' | 'click' | undefined =
     (customShowDropdown === 'focus' && 'focus') ||
@@ -169,6 +172,8 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
       mainRef.current.setCustomValidity(
         shadowTimeInputRef.current.validationMessage
       );
+
+      setValidity(!shadowTimeInputRef.current.validationMessage);
     }
   };
 
@@ -283,22 +288,26 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
   return (
     <Fragment>
       <div
-        className={classNames(styles.InputTimeWrapper, {
+        className={classNames(styles.InputTime, inputStyles.Input, className, {
           [styles.with2Addons]: showDropdown,
           [styles.with1Addon]: !showDropdown,
+          [inputStyles.invalid]: !validity,
+          [inputStyles.disabled]: disabled,
         })}
       >
         <Input
           {...passedProps}
-          value={fuzzyValue}
-          ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
+          className={classNames(styles.Input)}
+          disabled={disabled}
           onBlur={handleBlurFuzzyValue}
           onChange={handleChangeFuzzyValue}
-          className={classNames(styles.InputTime, className)}
+          ref={typeof forwardedRef === 'function' ? forwardedRef : mainRef}
+          value={fuzzyValue}
         />
         {showDropdown ? (
           <Dropdown
             className={styles.addons}
+            disabled={disabled}
             max={max}
             min={min}
             modelValue={modelValue}
@@ -322,14 +331,12 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
         Shadow input for storing and dispatching change events to model
         value (as opposed to the fuzzy value)
       */}
-      <div>Max: {max}</div>
-      <div>Min: {min}</div>
       <input
         max={max}
         min={min}
         onChange={handleChangeModelValue}
         ref={shadowTimeInputRef}
-        style={{ display: 'block' }}
+        style={{ display: 'none' }}
         tabIndex={-1}
         type="time"
       />

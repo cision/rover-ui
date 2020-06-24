@@ -1,14 +1,22 @@
-.InputTimeWrapper {
+.InputTime {
   position: relative;
   display: inline-block;
+  padding: 0;
+}
+
+.Input.Input {
+  background: transparent;
+  border-width: 0;
+  box-shadow: none;
+  height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-bordered-sm));
 }
 
 .with1Addon {
-  padding-right: ;
+  padding-right: 38px;
 }
 
 .with2Addons {
-  padding-right: ;
+  padding-right: 56px;
 }
 
 .addons {

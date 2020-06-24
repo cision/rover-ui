@@ -15,6 +15,7 @@ import styles from './Dropdown.module.css';
 
 interface DropdownProps {
   className?: string;
+  disabled?: boolean;
   max?: string;
   min?: string;
   modelValue?: string;
@@ -26,6 +27,7 @@ interface DropdownProps {
 
 const Dropdown: React.FC<DropdownProps> = ({
   className = '',
+  disabled,
   max,
   min,
   modelValue,
@@ -116,15 +118,23 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <EasyDropdown
       className={classNames(className, styles.Dropdown)}
-      disabled={false}
+      disabled={disabled}
       isOpen={undefined}
       onToggle={() => {}}
-      toggleProps={undefined}
+      toggleProps={{
+        disabled,
+      }}
       defaultIsOpen={false}
       menuItems={menuItems}
       menuProps={{ position: 'bottomLeft' }}
     >
-      <Icon className={styles.icon} fill="currentColor" name="clock" />
+      <Icon
+        className={styles.icon}
+        fill="currentColor"
+        height={16}
+        name="clock"
+        width={16}
+      />
       <Button className={styles.dropdownToggle} level="text" size="sm">
         <Icon fill="currentColor" name="arrow-drop-down" />
       </Button>
