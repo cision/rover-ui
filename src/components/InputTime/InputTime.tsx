@@ -1,5 +1,6 @@
 import React, {
   forwardRef,
+  Fragment,
   useCallback,
   useEffect,
   useMemo,
@@ -280,7 +281,7 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
   };
 
   return (
-    <>
+    <Fragment>
       <div
         className={classNames(styles.InputTimeWrapper, {
           [styles.with2Addons]: showDropdown,
@@ -298,13 +299,22 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
         {showDropdown ? (
           <Dropdown
             className={styles.addons}
+            max={max}
+            min={min}
+            modelValue={modelValue}
             onSelectMenuItem={handleSelectMenuItem}
             showDropdown={showDropdown}
             step={step}
           />
         ) : (
           <div className={styles.addons}>
-            <Icon className={styles.icon} fill="currentColor" name="clock" />
+            <Icon
+              className={styles.icon}
+              fill="currentColor"
+              height={16}
+              name="clock"
+              width={16}
+            />
           </div>
         )}
       </div>
@@ -323,7 +333,7 @@ export const InputTimeString: React.FC<InputTimeStringProps> = ({
         tabIndex={-1}
         type="time"
       />
-    </>
+    </Fragment>
   );
 };
 

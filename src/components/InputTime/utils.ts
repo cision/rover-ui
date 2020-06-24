@@ -30,17 +30,21 @@ export const getShortTimeString = (hours: number, minutes: number) =>
     minutes || 0
   }`;
 
-export const getLocaleTimeStringFromShortTimeString = (value: string) => {
+export const getDateTimeFromShortTimeString = (value: string) => {
   const date = new Date();
   const [hours, minutes] = value.split(':');
   date.setHours(parseInt(hours, 10));
   date.setMinutes(parseInt(minutes, 10));
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  return date;
+};
 
-  return date.toLocaleTimeString([], {
+export const getLocaleTimeStringFromShortTimeString = (value: string) =>
+  getDateTimeFromShortTimeString(value).toLocaleTimeString([], {
     hour: 'numeric',
     minute: '2-digit',
   });
-};
 
 export const guessTimeFromString = (string: string) => {
   const invalidChars = new RegExp('[^\\d:\\spam.]', 'gi');
