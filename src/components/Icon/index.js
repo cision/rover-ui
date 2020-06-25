@@ -15,6 +15,7 @@ import ArrowForward from './icons/ArrowForward';
 import ArrowLeft from './icons/ArrowLeft';
 import ArrowRight from './icons/ArrowRight';
 import ArrowUp from './icons/ArrowUp';
+import ArticleList from './icons/ArticleList';
 import Attach from './icons/Attach';
 import Bell from './icons/Bell';
 import Blocked from './icons/Blocked';
@@ -194,6 +195,7 @@ export const iconsMap = {
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
   'arrow-up': ArrowUp,
+  articleList: ArticleList,
   attach: Attach,
   bell: Bell,
   blocked: Blocked,
