@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import iconColorsMap from './colors';
 
 const ArticleList = ({ fill, ...props }) => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill={fill} {...props}>
-    <rect x="2" y="5" width="6" height="5" />
-    <rect x="10" y="5" width="12" height="2" />
-    <rect x="10" y="8" width="8" height="2" />
-    <rect x="2" y="14" width="6" height="5" />
-    <rect x="10" y="14" width="12" height="2" />
-    <rect x="10" y="17" width="8" height="2" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill={fill}
+    {...props}
+  >
+    <path d="M2 5h6v5H2zM10 5h12v2H10zM10 8h8v2h-8zM2 14h6v5H2zM10 14h12v2H10zM10 17h8v2h-8z" />
   </svg>
 );
 ArticleList.propTypes = { fill: PropTypes.string };
