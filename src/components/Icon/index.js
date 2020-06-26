@@ -15,7 +15,6 @@ import ArrowForward from './icons/ArrowForward';
 import ArrowLeft from './icons/ArrowLeft';
 import ArrowRight from './icons/ArrowRight';
 import ArrowUp from './icons/ArrowUp';
-import ArticleList from './icons/ArticleList';
 import Attach from './icons/Attach';
 import Bell from './icons/Bell';
 import Blocked from './icons/Blocked';
@@ -103,6 +102,7 @@ import MailPersonal from './icons/MailPersonal';
 import Mail from './icons/Mail';
 import MarkAsUnread from './icons/MarkAsUnread';
 import Meatballs from './icons/Meatballs';
+import MediaList from './icons/MediaList';
 import MentionGroup from './icons/MentionGroup';
 import MessageBubble from './icons/MessageBubble';
 import Mouse from './icons/Mouse';
@@ -195,7 +195,6 @@ export const iconsMap = {
   'arrow-left': ArrowLeft,
   'arrow-right': ArrowRight,
   'arrow-up': ArrowUp,
-  articleList: ArticleList,
   attach: Attach,
   bell: Bell,
   blocked: Blocked,
@@ -284,6 +283,7 @@ export const iconsMap = {
   mail: Mail,
   'mark-as-unread': MarkAsUnread,
   meatballs: Meatballs,
+  'media-list': MediaList,
   'mention-group': MentionGroup,
   'message-bubble': MessageBubble,
   mouse: Mouse,
