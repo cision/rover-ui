@@ -62,6 +62,9 @@
     "storybook:deploy": "yarn storybook:build && yarn gh-pages -d docs",
     "update-changelog": "auto-changelog --commit-limit false --package"
   },
+  "np": {
+    "contents": "dist"
+  },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^16.9.0",
