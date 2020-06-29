@@ -4,6 +4,7 @@ import UnresponsiveGrid from '../../Grid';
 import Context from '../Context';
 
 type GridGutter = number | string;
+
 type GridDefinition = {
   [key: string]: {
     columns?: number;

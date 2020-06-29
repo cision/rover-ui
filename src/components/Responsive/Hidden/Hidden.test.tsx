@@ -6,7 +6,7 @@ import Hidden from '.';
 describe('<Hidden />', () => {
   it('renders without error', () => {
     mount(
-      <Hidden breakpoints={[]}>
+      <Hidden>
         <span>Boom</span>
       </Hidden>
     );

@@ -6,7 +6,7 @@ import Visible from '.';
 describe('<Visible />', () => {
   it('renders without error', () => {
     mount(
-      <Visible breakpoints={[]}>
+      <Visible>
         <span>Boom</span>
       </Visible>
     );

@@ -4,7 +4,7 @@ import intersection from 'lodash/intersection';
 import Context from '../Context';
 
 interface VisibleProps {
-  breakpoints: string[];
+  breakpoints?: string[];
 }
 
 const Visible: React.FC<VisibleProps> = ({

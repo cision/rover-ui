@@ -4,17 +4,17 @@ import intersection from 'lodash/intersection';
 import Context from '../Context';
 
 interface HiddenProps {
-  breakpoints: string[];
+  breakpoints?: string[];
 }
 
 const Hidden: React.FC<HiddenProps> = ({
   children,
-  breakpoints,
+  breakpoints = [],
   ...passedProps
 }) => {
   const getIsHidden = useCallback(
     (responsiveContext) =>
-      !!intersection(breakpoints, responsiveContext).length,
+      !!intersection(breakpoints, responsiveContext ?? []).length,
     [breakpoints]
   );
 
