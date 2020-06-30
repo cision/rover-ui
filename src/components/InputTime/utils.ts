@@ -6,6 +6,28 @@ const nullSafeMatch = (string: string, regExp: RegExp) => {
   return { content, index, endIndex };
 };
 
+export const handleDispatchNativeInputChange = (
+  element: HTMLInputElement,
+  nextValue: string | Date
+) => {
+  /*
+    To dispatch a change programmatically from a native input,
+    you have to use a native input setter. Otherwise, React swallows it.
+    https://stackoverflow.com/a/46012210
+  */
+
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLInputElement.prototype,
+    'value'
+  )?.set;
+
+  if (nativeInputValueSetter) {
+    nativeInputValueSetter.call(element, nextValue);
+    const passedEvent = new Event('input', { bubbles: true });
+    element.dispatchEvent(passedEvent);
+  }
+};
+
 export const getEndOfDay = (date: Date) => {
   const endOfDay = new Date(date);
   endOfDay.setDate(endOfDay.getDate() + 1);
@@ -33,13 +55,16 @@ export const getShortTimeString = (hours: number, minutes: number) =>
 export const getLocaleTimeStringFromShortTimeString = (value: string) => {
   const date = new Date();
   const [hours, minutes] = value.split(':');
+
   date.setHours(parseInt(hours, 10));
   date.setMinutes(parseInt(minutes, 10));
 
-  return date.toLocaleTimeString([], {
-    hour: 'numeric',
-    minute: '2-digit',
-  });
+  return !Number.isNaN(date.valueOf())
+    ? date.toLocaleTimeString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+      })
+    : '';
 };
 
 export const guessTimeFromString = (string: string) => {
