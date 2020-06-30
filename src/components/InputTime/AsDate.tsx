@@ -1,4 +1,5 @@
 import React, {
+  Fragment,
   MutableRefObject,
   useEffect,
   useImperativeHandle,
@@ -138,7 +139,7 @@ export const AsDate: React.FC<AsStringProps> = ({
   };
 
   return (
-    <>
+    <Fragment>
       <InputTimeAsString
         {...passedProps}
         disabled={invalidMax || invalidMin || disabled}
@@ -154,7 +155,7 @@ export const AsDate: React.FC<AsStringProps> = ({
         style={{ display: 'none' }}
         tabIndex={-1}
       />
-    </>
+    </Fragment>
   );
 };
 
