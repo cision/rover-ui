@@ -7,7 +7,7 @@ import Container from '../Container';
 
 // This component's dependencies
 import Readme from './README.md';
-import Visible from './';
+import Visible from '.';
 
 storiesOf('Dark Matter/Responsive/Visible', module)
   .addParameters({
@@ -17,7 +17,7 @@ storiesOf('Dark Matter/Responsive/Visible', module)
   })
   .add('Overview', () => (
     <div>
-      <Container readOnly style={{ resize: 'both' }}>
+      <Container readOnly className="resize">
         <div>
           <Visible
             breakpoints={array('breakpoints', [
