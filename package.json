@@ -58,6 +58,7 @@
     "preversion": "run-p -l test build",
     "version": "yarn update-changelog && git add CHANGELOG.md",
     "new-version": "yarn version --no-git-tag-version",
+    "postnew-version": "git add . && git commit -m \"v$npm_package_version\" -n",
     "storybook": "start-storybook -p 9009",
     "storybook:build": "build-storybook -o docs",
     "storybook:deploy": "yarn storybook:build && yarn gh-pages -d docs",

@@ -67,10 +67,9 @@ To publish the npm package, you'll need a free account on npmjs.com, and you'll 
    2. For `minor`: `yarn new-version --minor`
    3. For `major`: `yarn new-version --major`
    4. For other: `yarn new-version --new-version 3.4.11`
-3. Create version commit. `git add . && git commit -m 'v3.4.11' -n` (just prefix the new version with `v`)
-4. Open a PR for that branch
-5. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
-6. After your pull request is merged, follow this process:
+3. Open a PR for that branch
+4. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
+5. After your pull request is merged, follow this process:
    1. `git checkout master && git fetch -p && git reset --hard origin/master`
    2. `yarn publish`
 
