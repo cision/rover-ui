@@ -31,15 +31,24 @@ export const AsDate: React.FC<AsStringProps> = ({
 
   useEffect(() => {
     if (maxDateString && Number.isNaN(new Date(maxDateString).valueOf())) {
-      console.warn('`max` should be an ISO date string');
+      /* eslint-disable-next-line no-console */
+      console.warn(
+        '`max` should be an ISO date string when using `InputTime` with dates'
+      );
     }
 
     if (minDateString && Number.isNaN(new Date(minDateString).valueOf())) {
-      console.warn('`min` should be an ISO date string');
+      /* eslint-disable-next-line no-console */
+      console.warn(
+        '`min` should be an ISO date string when using `InputTime` with dates'
+      );
     }
 
     if (valueDateString && Number.isNaN(new Date(valueDateString).valueOf())) {
-      console.warn('`value` should be an ISO date string');
+      /* eslint-disable-next-line no-console */
+      console.warn(
+        '`value` should be an ISO date string when using `InputTime` with dates'
+      );
     }
   });
 
