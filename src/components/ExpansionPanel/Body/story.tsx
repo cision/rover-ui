@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { object } from '@storybook/addon-knobs';
 
-import Body from './';
+import Body from '.';
 import Readme from './README.md';
 
 storiesOf('Galaxies/ExpansionPanel/Body', module)
@@ -21,16 +21,7 @@ storiesOf('Galaxies/ExpansionPanel/Body', module)
     'Examples',
     () => (
       <div style={{ width: '250px' }}>
-        <Body
-          style={{
-            backgroundColor: 'white',
-            border: '1px solid black',
-            padding: '10px',
-            margin: '10px',
-          }}
-        >
-          Body content
-        </Body>
+        <Body className="bg-white border p-3 m-3">Body content</Body>
       </div>
     ),
     {

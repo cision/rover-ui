@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import Dropdown from './';
+import Dropdown from '.';
 import { isOpenContext } from './context';
 
 describe('Dropdown', () => {
@@ -72,7 +72,7 @@ describe('Dropdown', () => {
     it('is called on click outside', () => {
       const onToggleSpy = jest.fn();
 
-      const wrapper = mount(
+      mount(
         <div className="outside">
           <Dropdown isOpen onToggle={onToggleSpy}>
             Boom
@@ -80,11 +80,7 @@ describe('Dropdown', () => {
         </div>
       );
 
-      document.dispatchEvent(
-        new MouseEvent('click', {
-          target: wrapper.find('.outside').getDOMNode(),
-        })
-      );
+      document.dispatchEvent(new MouseEvent('click'));
 
       expect(onToggleSpy.mock.calls.length).toEqual(1);
     });
