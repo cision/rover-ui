@@ -59,12 +59,28 @@ Please tread carefully, and add any issues or suggestions on the [GitHub issue t
 
 To publish the npm package, you'll need a free account on npmjs.com, and you'll need to be added to the list of maintainers by one of the current RoverUI maintainers.
 
-1. In `package.json`, bump the `version` property _using [semver](https://semver.org/)_.
-2. If all tests look good (`yarn test`), submit a pull-request against the master branch through GitHub.
-3. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
-4. After merging to master, from your local machine, run `yarn release` in the root. You'll be prompted for the publish version, which should match the package version.
+### Non-champions
 
-If you don't have write access to the repo, one of the admins can do steps 3 and 4 for you.
+1. Checkout a release branch of some kind: (e.g. `release-2.0.4` or `new-v2.1.4`)
+2. **Following [semver](https://semver.org)** as your version guide, use the script `yarn new-version [value]` to bump the version and commit the changes. See [`yarn version`](https://classic.yarnpkg.com/en/docs/cli/version/) docs for more info
+   1. For `patch`: `yarn new-version --patch`
+   2. For `minor`: `yarn new-version --minor`
+   3. For `major`: `yarn new-version --major`
+   4. For other: `yarn new-version --new-vesrion 3.4.11`
+3. Create version commit. `git add . && git commit -m 'v3.4.11' -n` (just prefix the new version with `v`)
+4. Open a PR for that branch
+5. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
+6. After your pull request is merged, follow this process:
+   1. `git checkout master && git fetch -p && git reset --hard origin/master`
+   2. `yarn publish`
+
+### Champions
+
+If you can commit directly to `master`, you are a champion. The process is much more streamlined.
+
+1. Reset your master: `git checkout master && git fetch -p && git reset --hard origin/master`
+2. `yarn version --patch` (or whatever version bump you are making)
+3. `yarn publish` (also pushes new tag to GitHub)
 
 ## Publishing Storybook
 
