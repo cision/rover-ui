@@ -62,7 +62,7 @@ To publish the npm package, you'll need a free account on npmjs.com, and you'll 
 ### Non-champions
 
 1. Checkout a release branch of some kind: (e.g. `release-2.0.4` or `new-v2.1.4`)
-2. **Following [semver](https://semver.org)** as your version guide, use the script `yarn new-version [value]` to bump the version and commit the changes. See [`yarn version`](https://classic.yarnpkg.com/en/docs/cli/version/) docs for more info
+2. **Following [semver](https://semver.org)** as your version guide, use the script `yarn new-version [value]` to bump the version. See [`yarn version`](https://classic.yarnpkg.com/en/docs/cli/version/) docs for more info
    1. For `patch`: `yarn new-version --patch`
    2. For `minor`: `yarn new-version --minor`
    3. For `major`: `yarn new-version --major`
