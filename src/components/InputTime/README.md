@@ -12,7 +12,14 @@ Validation of times in HTML is handled for time-of-day only, and this component 
 
 On blur, the user's fuzzy input is replaced with a locale-based time string.
 
-Coming soon:
+### Date vs. Time mode
+
+You can pass `max`, `min`, and `value` as either time strings `"14:00"` or ISO date strings `2020-06-30T14:30:00.000Z"`.
+All 3 props should match, if present.
+
+The component will disabled the input if the entire selected date is outside the `min` and `max`. It will enable all times if the entire selected date is inside the `min` and `max`. Otherwise, it will do time-of-day validation normally.
+
+### Coming soon
 
 - Add an optional dropdown that lets the user select a time quickly
 - Add min/max support for date times (less than 10AM June 9)
