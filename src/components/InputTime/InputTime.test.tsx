@@ -33,6 +33,86 @@ describe('InputTime', () => {
     expect(baseInputTime.value).toBe('');
   });
 
+  describe.only('dropdown time picker', () => {
+    it.only('clicking a time selects it', () => {
+      const handleChange = jest.fn((e) => {
+        e.persist();
+        return e;
+      });
+
+      const { getByLabelText, getByText, queryByText } = render(
+        <InputTime
+          aria-label="time input"
+          onChange={handleChange}
+          value="11:00"
+          toggleAriaLabel="Toggle"
+        />
+      );
+
+      const baseInputTime = getByLabelText('time input') as HTMLInputElement;
+      const toggle = getByLabelText('Toggle');
+      let select10 = queryByText('10:00 AM');
+
+      // Before clicking dropdown
+      expect(baseInputTime.value).toBe('11:00 AM');
+      expect(select10).toBeNull();
+      // Open dropdown
+      userEvent.click(toggle);
+      select10 = getByText('10:00 AM');
+      expect(select10).toBeTruthy();
+      expect(handleChange.mock.calls.length).toBe(1);
+      // Make a selection
+      userEvent.click(select10);
+      expect(baseInputTime.value).toBe('10:00 AM');
+      expect(handleChange.mock.calls.length).toBe(2);
+      expect(handleChange.mock.calls[1][0].target.value).toBe('10:00');
+    });
+
+    describe('`showDropdown` prop`', () => {
+      it('`null` or "none" hides the dropdown', () => {
+        const { queryByLabelText, rerender } = render(
+          <InputTime
+            aria-label="time input"
+            showDropdown={null}
+            toggleAriaLabel="Toggle"
+          />
+        );
+
+        const dropdownToggle = queryByLabelText('Toggle');
+        expect(dropdownToggle).toBeNull();
+
+        rerender(
+          <InputTime
+            aria-label="time input"
+            showDropdown="none"
+            toggleAriaLabel="Toggle"
+          />
+        );
+
+        expect(dropdownToggle).toBeNull();
+      });
+
+      it('"click" or `undefined` shows the dropdown', () => {
+        const { queryByLabelText, rerender } = render(
+          <InputTime
+            aria-label="time input"
+            showDropdown="click"
+            toggleAriaLabel="Toggle"
+          />
+        );
+
+        const dropdownToggle = queryByLabelText('Toggle');
+        expect(dropdownToggle).toBeTruthy();
+
+        rerender(
+          <InputTime aria-label="time input" toggleAriaLabel="Toggle" />
+        );
+
+        expect(dropdownToggle).toBeTruthy();
+      });
+    });
+  });
+
   describe('Handles bad values gracefully', () => {
     it("With bad user input, doesn't fire change callback", () => {
       const handleChange = jest.fn((e) => e.target.value);
@@ -49,7 +129,7 @@ describe('InputTime', () => {
       expect(handleChange.mock.calls.length).toBe(0);
     });
 
-    describe("With bad controlled values, doesn't fail", () => {
+    describe("With empty controlled values, doesn't fail", () => {
       it('undefined', () => {
         const { getByLabelText } = render(
           <InputTime aria-label="time input" />
@@ -67,15 +147,15 @@ describe('InputTime', () => {
         const baseInputTime = getByLabelText('time input') as HTMLInputElement;
         expect(baseInputTime.value).toBe('');
       });
+    });
 
-      it('garbage', () => {
-        const { getByLabelText } = render(
-          <InputTime aria-label="time input" value="foo" />
-        );
+    it('With garbage controlled values, fails', () => {
+      const { getByLabelText } = render(
+        <InputTime aria-label="time input" value="foo" />
+      );
 
-        const baseInputTime = getByLabelText('time input') as HTMLInputElement;
-        expect(baseInputTime.value).toBe('');
-      });
+      const baseInputTime = getByLabelText('time input') as HTMLInputElement;
+      expect(baseInputTime.value).toBe('Invalid Date');
     });
   });
 

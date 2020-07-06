@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 import { Title, Wrap } from '../../stories/storybook-helpers';
 
@@ -9,6 +9,12 @@ import Button from '../Button';
 import { getShortTimeString } from './utils';
 import InputTime from '.';
 import Readme from './README.md';
+
+const showDropdownOptions = {
+  click: 'click' as const,
+  none: 'none' as const,
+  undefined,
+};
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface InteractiveInputProps {
@@ -93,6 +99,12 @@ storiesOf('Planets/InputTime', module)
           placeholder={text('placeholder(HTML)', 'Placeholder', 'Common')}
           max={useDates ? maxDateString : maxString}
           min={useDates ? minDateString : minString}
+          showDropdown={select(
+            'showDropdown',
+            showDropdownOptions,
+            'click',
+            'Common'
+          )}
           value={useDates ? valueDateString : valueString}
         />
       );
@@ -159,6 +171,18 @@ storiesOf('Planets/InputTime', module)
               min={new Date().toISOString()}
               onChange={action('onChange date')}
               value={new Date().toISOString()}
+            />
+          </Wrap>
+          <Wrap>
+            <Title>Without the dropdown time selector</Title>
+            <InteractiveInput
+              Component={InputTime}
+              onChange={action('onChange string')}
+              showDropdown="none"
+              value={getShortTimeString(
+                new Date().getHours(),
+                new Date().getMinutes()
+              )}
             />
           </Wrap>
           <Wrap>
