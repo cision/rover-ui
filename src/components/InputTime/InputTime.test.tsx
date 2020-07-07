@@ -33,8 +33,8 @@ describe('InputTime', () => {
     expect(baseInputTime.value).toBe('');
   });
 
-  describe.only('dropdown time picker', () => {
-    it.only('clicking a time selects it', () => {
+  describe('dropdown time picker', () => {
+    it('clicking a time selects it', () => {
       const handleChange = jest.fn((e) => {
         e.persist();
         return e;

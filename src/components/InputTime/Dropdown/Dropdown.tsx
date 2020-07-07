@@ -121,7 +121,9 @@ const Dropdown: React.FC<DropdownProps> = ({
     <EasyDropdown
       className={classNames(className, styles.Dropdown)}
       disabled={disabled}
-      isOpen={undefined}
+      isOpen={
+        undefined /* Suppresses typescript lint warning about missing prop */
+      }
       onToggle={() => {}}
       toggleProps={{
         disabled,
@@ -130,13 +132,6 @@ const Dropdown: React.FC<DropdownProps> = ({
       menuItems={menuItems}
       menuProps={{ position: 'bottomLeft' }}
     >
-      <Icon
-        className={styles.icon}
-        fill="currentColor"
-        height={16}
-        name="clock"
-        width={16}
-      />
       <Button
         aria-label={toggleAriaLabel}
         className={styles.dropdownToggle}

@@ -56,10 +56,11 @@ const AsString: React.FC<AsStringProps> = ({
   >;
 
   useImperativeHandle(forwardedRef, () => localRef.current, []);
+  const [focus, setFocus] = useState(false);
   const [validity, setValidity] = useState(true);
 
   const showDropdown: 'click' | undefined =
-    (customShowDropdown === 'click' && 'click') || undefined;
+    customShowDropdown === 'click' ? 'click' : undefined;
 
   // value is the true, controlled value, patched for undefined / empty
   const value = useMemo(() => valueOrUndefined || '', [valueOrUndefined]);
@@ -94,6 +95,15 @@ const AsString: React.FC<AsStringProps> = ({
     if (e.target.value) {
       const { time: nextValue } = guessTimeFromString(e.target.value);
       changeShadowTimeInput(nextValue);
+    }
+  };
+
+  const handleFocus = () => setFocus(true);
+  const handleBlur = () => setFocus(false);
+
+  const handleClickClockIcon = () => {
+    if (localRef.current) {
+      localRef.current.focus();
     }
   };
 
@@ -141,7 +151,10 @@ const AsString: React.FC<AsStringProps> = ({
       className={classNames(styles.InputTime, inputStyles.Input, className, {
         [inputStyles.disabled]: disabled,
         [inputStyles.invalid]: !validity,
+        [inputStyles.focus]: focus,
       })}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
     >
       <Input
         {...passedProps}
@@ -152,29 +165,29 @@ const AsString: React.FC<AsStringProps> = ({
         ref={localRef}
         value={fuzzyValue}
       />
-      {showDropdown ? (
-        <Dropdown
-          toggleAriaLabel={toggleAriaLabel}
-          className={styles.addons}
-          disabled={disabled}
-          max={max}
-          min={min}
-          value={value}
-          onSelectMenuItem={handleSelectMenuItem}
-          showDropdown={showDropdown}
-          step={step}
+      <div className={styles.addons}>
+        <Icon
+          className={styles.icon}
+          fill="currentColor"
+          height={16}
+          name="clock"
+          onClick={handleClickClockIcon}
+          width={16}
         />
-      ) : (
-        <div className={styles.addons}>
-          <Icon
-            className={styles.icon}
-            fill="currentColor"
-            height={16}
-            name="clock"
-            width={16}
+        {showDropdown && (
+          <Dropdown
+            toggleAriaLabel={toggleAriaLabel}
+            className={styles.addons}
+            disabled={disabled}
+            max={max}
+            min={min}
+            value={value}
+            onSelectMenuItem={handleSelectMenuItem}
+            showDropdown={showDropdown}
+            step={step}
           />
-        </div>
-      )}
+        )}
+      </div>
       {/*
         Shadow input for storing and dispatching change events to model
         value (as opposed to the fuzzy value)
