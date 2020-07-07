@@ -7,11 +7,12 @@ import InputTimeAsString, { AsStringProps } from './AsString';
 Desired features:
 - Add an optional dropdown that lets the user select a time quickly
 -- Needs to center selection on current
--- Needs width tweaks
-- Add min/max support for both raw times datetimes (less than 10AM June 9)
-- Add configurable steps for hour/minute/30/15/5 minutes/auto
--- Configurable steps should be enforced on selections
--- Auto steps should be enforced for dropdown options only
+-- Should have keyboard support (up arrow / down arrow for iterating through menu items)
+-- Dropdown should have "focus" mode, where the dropdown is always visible when the
+   time field is focused
+- Add configurable `step` prop. '00:00' + n * step (in seconds): produces a list of times
+-- Those are the only times that are valid selections.
+-- Those are the time options in the dropdown.
 */
 
 export const InputTime: React.FC<AsStringProps> = ({
