@@ -35,6 +35,7 @@
   color: var(--rvr-gray-80);
 }
 
+.Input.focus,
 .Input:focus {
   border-color: var(--rvr-color-primary);
   box-shadow: 0 0 4px var(--rvr-color-primary);

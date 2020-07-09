@@ -1,0 +1,17 @@
+.icon {
+  margin-right: var(--rvr-space-bordered-sm);
+}
+
+.icon:not(:last-child) {
+  margin-right: 0;
+}
+
+.dropdownToggle {
+  display: block;
+  padding: 3px;
+}
+
+.menuItem {
+  text-align: right;
+  white-space: nowrap;
+}
