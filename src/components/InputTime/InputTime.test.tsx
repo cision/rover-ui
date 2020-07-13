@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { render, fireEvent /*, waitFor*/ } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { guessTimeFromStringInputOutputMap } from './utils.test';
 
 import InputTime from './InputTime';
 
@@ -364,49 +365,7 @@ describe('InputTime', () => {
 
   describe('when passed ISO dates', () => {
     it('Handles several time string patterns', () => {
-      const inputOutputMap = {
-        '1': {
-          hours: 1,
-          minutes: 0,
-        },
-        '1 p': {
-          hours: 13,
-          minutes: 0,
-        },
-        '3 15': {
-          hours: 3,
-          minutes: 15,
-        },
-        '3 15 pm': {
-          hours: 15,
-          minutes: 15,
-        },
-        '00:00': {
-          hours: 0,
-          minutes: 0,
-        },
-        '12:00': {
-          hours: 12,
-          minutes: 0,
-        },
-        '12 a': {
-          hours: 0,
-          minutes: 0,
-        },
-        '12 p': {
-          hours: 12,
-          minutes: 0,
-        },
-        '7h42': {
-          hours: 7,
-          minutes: 42,
-        },
-        '8,19p': {
-          hours: 20,
-          minutes: 19,
-        },
-      };
-
+      const inputOutputMap = guessTimeFromStringInputOutputMap;
       const handleChange = jest.fn((e) => e.target.value);
 
       const { getByLabelText } = render(

@@ -91,7 +91,7 @@ const AsString: React.FC<AsStringProps> = ({
   }, [customStep]);
 
   const dropdownStep: number | undefined = useMemo(
-    () => (step && step >= 60 * 10 ? step : undefined),
+    () => (step && step >= SECONDS_PER_MINUTE * 10 ? step : undefined),
     [step]
   );
 
