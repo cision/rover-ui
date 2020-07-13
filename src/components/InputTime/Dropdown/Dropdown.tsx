@@ -18,11 +18,12 @@ interface DropdownProps {
   disabled?: boolean;
   max?: string;
   min?: string;
-  value?: string;
   onSelectMenuItem: Function;
   showDropdown?: 'click' | 'focus';
-  step?: number | string;
+  step?: number;
+  stepFrom?: string;
   toggleAriaLabel?: string;
+  value?: string;
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
@@ -31,35 +32,22 @@ const Dropdown: React.FC<DropdownProps> = ({
   disabled,
   max,
   min,
-  value,
   onSelectMenuItem,
   showDropdown,
-  toggleAriaLabel = 'Toggle time dropdown',
   step: customStep,
+  stepFrom,
+  toggleAriaLabel = 'Toggle time dropdown',
+  value,
 }) => {
   const menuItems = useMemo(() => {
     if (!showDropdown) {
       return [];
     }
 
-    let step = 0;
+    let step = customStep || 0;
 
-    // For html time pickers, step is a number of number of seconds between
-    // increments in a number picker. For simplicity, we're setting steps in
-    // minutes in the dropdown
-    if (customStep) {
-      let safeCustomStep: number;
-
-      if (typeof customStep === 'number') {
-        safeCustomStep = customStep;
-      } else if (typeof customStep === 'string') {
-        safeCustomStep = parseInt(customStep, 10);
-      } else {
-        safeCustomStep = 0;
-      }
-
-      step =
-        safeCustomStep && !Number.isNaN(safeCustomStep) ? safeCustomStep : 0;
+    if (!step || Number.isNaN(step) || step < 60 * 10 || step > 60 * 60 * 24) {
+      step = 0;
     }
 
     if (!step) {
@@ -68,7 +56,7 @@ const Dropdown: React.FC<DropdownProps> = ({
         10
       );
 
-      step = [5, 10, 15, 30].reduce((result, increment) => {
+      step = [10, 15, 30].reduce((result, increment) => {
         if (currentMinute && currentMinute % increment === 0) {
           result = increment * 60;
         }
@@ -77,9 +65,11 @@ const Dropdown: React.FC<DropdownProps> = ({
       }, 60 * 60);
     }
 
-    const current = getStartOfDay(new Date());
+    const current =
+      (stepFrom && getDateTimeFromShortTimeString(stepFrom)) ||
+      getStartOfDay(new Date());
     const end = getEndOfDay(new Date());
-    const maxAttempts = 25 * 60 * 5; // 5 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
+    const maxAttempts = 25 * 60 * 10; // 10 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
     const maxDate = max ? getDateTimeFromShortTimeString(max) : undefined;
     const minDate = min ? getDateTimeFromShortTimeString(min) : undefined;
     let attempts = 0;
@@ -115,7 +105,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     } while (attempts <= maxAttempts && current < end);
 
     return options;
-  }, [customStep, max, min, value, onSelectMenuItem, showDropdown]);
+  }, [customStep, max, min, value, onSelectMenuItem, showDropdown, stepFrom]);
 
   return (
     <EasyDropdown
