@@ -223,6 +223,17 @@ storiesOf('Planets/InputTime', module)
             />
           </Wrap>
           <Wrap>
+            <Title>With a custom `formatTime` function</Title>
+            <InteractiveInput
+              Component={InputTime}
+              formatTime={(date: Date) =>
+                `${date.getHours()}🎈:${date.getMinutes()}🐝`
+              }
+              onChange={action('onChange date')}
+              value={new Date().toISOString()}
+            />
+          </Wrap>
+          <Wrap>
             <Title>Requires you to pick a future date time</Title>
             <InteractiveInput
               Component={InputTime}
