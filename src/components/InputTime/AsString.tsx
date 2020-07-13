@@ -29,6 +29,7 @@ import styles from './InputTime.module.css';
 
 export interface AsStringProps
   extends Omit<InputProps, 'value' | 'max' | 'min'> {
+  formatTime?: (date: Date) => string;
   fuzzyInputProps?: InputProps;
   max?: string;
   min?: string;
@@ -40,6 +41,7 @@ export interface AsStringProps
 const AsString: React.FC<AsStringProps> = ({
   className = '',
   disabled,
+  formatTime,
   forwardedRef,
   fuzzyInputProps = {},
   max,
@@ -101,7 +103,7 @@ const AsString: React.FC<AsStringProps> = ({
 
   // Fuzzy value is user input.
   const [fuzzyValue, setFuzzyValue] = useState(
-    value ? getLocaleTimeStringFromShortTimeString(value) : ''
+    value ? getLocaleTimeStringFromShortTimeString(value, { formatTime }) : ''
   );
 
   const syncValidity = (
@@ -142,16 +144,21 @@ const AsString: React.FC<AsStringProps> = ({
   };
 
   const handleBlurFuzzyValue = () => {
-    setFuzzyValue(value ? getLocaleTimeStringFromShortTimeString(value) : '');
+    setFuzzyValue(
+      value ? getLocaleTimeStringFromShortTimeString(value, { formatTime }) : ''
+    );
   };
 
   const handleSelectMenuItem = (e: { target: { value: Date } }) => {
     const dateTime = e.target.value;
 
-    const label = dateTime.toLocaleTimeString([], {
-      hour: 'numeric',
-      minute: '2-digit',
-    });
+    const label =
+      typeof formatTime === 'function'
+        ? formatTime(dateTime)
+        : dateTime.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit',
+          });
 
     const timeString = getShortTimeString(
       dateTime.getHours(),
@@ -170,11 +177,15 @@ const AsString: React.FC<AsStringProps> = ({
     }
 
     if (localRef?.current && document.activeElement !== localRef?.current) {
-      setFuzzyValue(value ? getLocaleTimeStringFromShortTimeString(value) : '');
+      setFuzzyValue(
+        value
+          ? getLocaleTimeStringFromShortTimeString(value, { formatTime })
+          : ''
+      );
     }
 
     syncValidity(shadowTimeInputRef, localRef);
-  }, [localRef, shadowTimeInputRef, step, value]);
+  }, [formatTime, localRef, shadowTimeInputRef, step, value]);
 
   // Sync validity on min/max changes
   useEffect(() => {
@@ -212,16 +223,17 @@ const AsString: React.FC<AsStringProps> = ({
         />
         {showDropdown && (
           <Dropdown
-            toggleAriaLabel={toggleAriaLabel}
             className={styles.addons}
             disabled={disabled}
+            formatTime={formatTime}
             max={max}
             min={min}
-            value={value}
             onSelectMenuItem={handleSelectMenuItem}
             showDropdown={showDropdown}
             step={dropdownStep}
             stepFrom={stepFrom}
+            toggleAriaLabel={toggleAriaLabel}
+            value={value}
           />
         )}
       </div>

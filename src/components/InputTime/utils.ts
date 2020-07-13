@@ -62,11 +62,16 @@ export const getDateTimeFromShortTimeString = (value: string) => {
   return date;
 };
 
-export const getLocaleTimeStringFromShortTimeString = (value: string) =>
-  getDateTimeFromShortTimeString(value).toLocaleTimeString([], {
-    hour: 'numeric',
-    minute: '2-digit',
-  });
+export const getLocaleTimeStringFromShortTimeString = (
+  value: string,
+  { formatTime }
+) =>
+  typeof formatTime === 'function'
+    ? formatTime(getDateTimeFromShortTimeString(value))
+    : getDateTimeFromShortTimeString(value).toLocaleTimeString([], {
+        hour: 'numeric',
+        minute: '2-digit',
+      });
 
 export const guessTimeFromString = (string: string) => {
   const invalidChars = new RegExp('[^\\d:\\spam.]', 'gi');
