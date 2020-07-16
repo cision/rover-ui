@@ -49,7 +49,7 @@
 .actionInline {
   flex: 0 0 auto;
   align-self: center;
-  margin: 0 var(--rvr-space-sm);
+  margin: 0 var(--rvr-space-xs);
   color: var(--rvr-blue);
   transition: color 0.2s var(--rvr-easeInOutQuad);
 }
