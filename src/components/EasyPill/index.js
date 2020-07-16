@@ -53,21 +53,23 @@ export const EasyPill = ({ actions, children, onDelete, ...passedProps }) => {
   return (
     <Pill {...passedProps}>
       {children}
-      {passedProps.checked && (
-        <Pill.Addon onClick={(e) => e.stopPropagation()}>
-          <EasyPillDropdown actions={actions} onDelete={onDelete} />
-        </Pill.Addon>
-      )}
-      {passedProps.checked && !actions.length && onDelete && (
-        <Pill.Addon
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete(e);
-          }}
-        >
-          <Icon style={{ display: 'block' }} name="clear" />
-        </Pill.Addon>
-      )}
+      {passedProps.checked &&
+        (actions.length ? (
+          <Pill.Addon onClick={e => e.stopPropagation()}>
+            <EasyPillDropdown actions={actions} onDelete={onDelete} />
+          </Pill.Addon>
+        ) : (
+          onDelete && (
+            <Pill.Addon
+              onClick={e => {
+                e.stopPropagation();
+                onDelete(e);
+              }}
+            >
+              <Icon style={{ display: 'block' }} name="clear" />
+            </Pill.Addon>
+          )
+        ))}
     </Pill>
   );
 };
