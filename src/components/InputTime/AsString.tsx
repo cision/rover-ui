@@ -14,6 +14,7 @@ import classNames from 'classnames';
 import Icon from '../Icon';
 import Input, { InputProps } from '../Input';
 import inputStyles from '../Input/Input.module.css';
+import { SECONDS_PER_DAY, SECONDS_PER_MINUTE } from './constants';
 
 import {
   getLocaleTimeStringFromShortTimeString,
@@ -68,19 +69,24 @@ const AsString: React.FC<AsStringProps> = ({
 
   const step: number | undefined = useMemo(() => {
     // Parsing undefined as a string and then parsing Int produces NaN, which is guarded against.
-    let safeStep: number | undefined = parseInt(customStep as string, 10);
+    const safeStep: number | undefined = parseInt(customStep as string, 10);
 
     if (
       !safeStep ||
       Number.isNaN(safeStep) ||
-      safeStep < 60 * 10 ||
-      safeStep > 60 * 60 * 24
+      safeStep < SECONDS_PER_MINUTE ||
+      safeStep > SECONDS_PER_DAY
     ) {
       return undefined;
     }
 
     return safeStep;
   }, [customStep]);
+
+  const dropdownStep: number | undefined = useMemo(
+    () => (step && step >= 60 * 10 ? step : undefined),
+    [step]
+  );
 
   const stepFrom = useMemo(() => {
     if (min) {
@@ -211,7 +217,7 @@ const AsString: React.FC<AsStringProps> = ({
             value={value}
             onSelectMenuItem={handleSelectMenuItem}
             showDropdown={showDropdown}
-            step={step}
+            step={dropdownStep}
             stepFrom={stepFrom}
           />
         )}

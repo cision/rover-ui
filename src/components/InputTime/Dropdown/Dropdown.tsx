@@ -6,6 +6,12 @@ import EasyDropdown from '../../EasyDropdown';
 import Icon from '../../Icon';
 
 import {
+  SECONDS_PER_DAY,
+  SECONDS_PER_HOUR,
+  SECONDS_PER_MINUTE,
+} from '../constants';
+
+import {
   getDateTimeFromShortTimeString,
   getEndOfDay,
   getStartOfDay,
@@ -46,7 +52,12 @@ const Dropdown: React.FC<DropdownProps> = ({
 
     let step = customStep || 0;
 
-    if (!step || Number.isNaN(step) || step < 60 * 10 || step > 60 * 60 * 24) {
+    if (
+      !step ||
+      Number.isNaN(step) ||
+      step < SECONDS_PER_MINUTE * 10 ||
+      step > SECONDS_PER_DAY
+    ) {
       step = 0;
     }
 
@@ -58,18 +69,18 @@ const Dropdown: React.FC<DropdownProps> = ({
 
       step = [10, 15, 30].reduce((result, increment) => {
         if (currentMinute && currentMinute % increment === 0) {
-          result = increment * 60;
+          result = increment * SECONDS_PER_MINUTE;
         }
 
         return result;
-      }, 60 * 60);
+      }, SECONDS_PER_HOUR);
     }
 
     const current =
       (stepFrom && getDateTimeFromShortTimeString(stepFrom)) ||
       getStartOfDay(new Date());
     const end = getEndOfDay(new Date());
-    const maxAttempts = 25 * 60 * 10; // 10 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
+    const maxAttempts = (SECONDS_PER_HOUR + SECONDS_PER_DAY) * 10; // 10 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
     const maxDate = max ? getDateTimeFromShortTimeString(max) : undefined;
     const minDate = min ? getDateTimeFromShortTimeString(min) : undefined;
     let attempts = 0;
