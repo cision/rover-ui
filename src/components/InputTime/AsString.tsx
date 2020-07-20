@@ -67,11 +67,8 @@ const AsString: React.FC<AsStringProps> = ({
   const value = useMemo(() => valueOrUndefined || '', [valueOrUndefined]);
 
   const step: number | undefined = useMemo(() => {
-    let safeStep: number | undefined;
-    safeStep = typeof customStep === 'number' ? customStep : safeStep;
-
-    safeStep =
-      typeof customStep === 'string' ? parseInt(customStep, 10) : safeStep;
+    // Parsing undefined as a string and then parsing Int produces NaN, which is guarded against.
+    let safeStep: number | undefined = parseInt(customStep as string, 10);
 
     if (
       !safeStep ||
