@@ -11,6 +11,21 @@ import {
   getDateTimeFromShortTimeString,
 } from './utils';
 
+const getDayOfMonthFormat = ({ timeZoneName = 'America/Chicago' } = {}) => {
+  return new Intl.DateTimeFormat('en-US', {
+    day: 'numeric',
+    timeZone: timeZoneName,
+  });
+};
+
+const getTimeFormat = ({ timeZoneName = 'America/Chicago' } = {}) => {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    timeZone: timeZoneName,
+  });
+};
+
 const getFormattedTimeWithTimeZone = ({
   date,
   timeZoneName,
@@ -66,6 +81,19 @@ export const guessTimeFromStringInputOutputMap = {
   },
 };
 
+const generateDatesWithIncrement = ({ startDate, endDate, stepMinutes }) => {
+  const dates: Date[] = [];
+  const currentDate = new Date(startDate);
+
+  do {
+    const dateCopy = new Date(currentDate);
+    dates.push(dateCopy);
+    currentDate.setMinutes(currentDate.getMinutes() + stepMinutes);
+  } while (currentDate <= endDate);
+
+  return dates;
+};
+
 describe('handleDispatchNativeInputChange', () => {
   it('dispatches an on change event', () => {
     const onChange = jest.fn((event) => {
@@ -118,33 +146,68 @@ describe('getEndOfDay', () => {
   });
 
   describe('with optional `timeZoneOffset`', () => {
+    it('TEST', () => {
+      const date = new Date('2020-08-11T20:30:00.000Z');
+      // Central Daylight Time
+      const timeZoneOffset = 330; // +5:30
+      const endOfDay = getEndOfDay(date, { timeZoneOffset });
+      expect(endOfDay.valueOf()).toBeGreaterThan(date.valueOf());
+    });
+
+    it('different timeZoneOffsets yield different results', () => {
+      const date = new Date('2020-07-20T12:30');
+      expect(
+        getEndOfDay(date, { timeZoneOffset: -300 }).toISOString()
+      ).not.toEqual(getEndOfDay(date, { timeZoneOffset: 330 }).toISOString());
+    });
+
     it('works for different time zones', () => {
       // Result is cast to UTC, using UTC input, timeZoneOffset for EOD
-      const date = new Date('2020-07-20T12:30');
-      const endOfDayTimeString = '11:59:59 PM';
+      const endOfDayTimeString = '11:59 PM';
+      let timeZoneName: string;
       let timeZoneOffset: number;
+      let dayOfMonthFormat: Intl.DateTimeFormat;
+      let timeFormat: Intl.DateTimeFormat;
+
+      const startDate = new Date('2020-08-11T20:30:00.000Z');
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 1);
+
+      const dates = generateDatesWithIncrement({
+        startDate,
+        endDate,
+        stepMinutes: 30,
+      });
 
       // Central Daylight Time
+      timeZoneName = 'America/Chicago';
       timeZoneOffset = -300; // -5:00
-      const endOfDayCDT = getEndOfDay(date, { timeZoneOffset });
+      dayOfMonthFormat = getDayOfMonthFormat({ timeZoneName });
+      timeFormat = getTimeFormat({ timeZoneName });
 
-      const formattedTimeCDT = getFormattedTimeWithTimeZone({
-        date: endOfDayCDT,
-        timeZoneName: 'America/Chicago',
+      dates.forEach((date) => {
+        const endOfDay = getEndOfDay(date, { timeZoneOffset });
+        const formattedTime = timeFormat.format(endOfDay);
+        const formattedDate = dayOfMonthFormat.format(endOfDay);
+        expect(formattedDate).toEqual(dayOfMonthFormat.format(date));
+        expect(formattedTime).toEqual(endOfDayTimeString);
+        expect(endOfDay.valueOf()).toBeGreaterThanOrEqual(date.valueOf());
       });
 
       // India Standard Time
+      timeZoneName = 'Asia/Calcutta';
       timeZoneOffset = 330; // +5:30
-      const endOfDayIST = getEndOfDay(date, { timeZoneOffset });
+      dayOfMonthFormat = getDayOfMonthFormat({ timeZoneName });
+      timeFormat = getTimeFormat({ timeZoneName });
 
-      const formattedTimeIST = getFormattedTimeWithTimeZone({
-        date: endOfDayIST,
-        timeZoneName: 'Asia/Calcutta',
+      dates.forEach((date) => {
+        const endOfDay = getEndOfDay(date, { timeZoneOffset });
+        const formattedTime = timeFormat.format(endOfDay);
+        const formattedDate = dayOfMonthFormat.format(endOfDay);
+        expect(formattedDate).toEqual(dayOfMonthFormat.format(date));
+        expect(formattedTime).toEqual(endOfDayTimeString);
+        expect(endOfDay.valueOf()).toBeGreaterThanOrEqual(date.valueOf());
       });
-
-      expect(formattedTimeCDT).toEqual(endOfDayTimeString);
-      expect(formattedTimeIST).toEqual(endOfDayTimeString);
-      expect(endOfDayCDT.toISOString()).not.toEqual(endOfDayIST.toISOString());
     });
   });
 });
@@ -175,6 +238,64 @@ describe('getStartOfDay', () => {
   });
 
   describe('with optional `timeZoneOffset`', () => {
+    it('different timeZoneOffsets yield different results', () => {
+      const date = new Date('2020-07-20T12:30');
+      expect(
+        getStartOfDay(date, { timeZoneOffset: -300 }).toISOString()
+      ).not.toEqual(
+        getStartOfDay(date, { timeZoneOffset: -330 }).toISOString()
+      );
+    });
+
+    it('works for different time zones', () => {
+      // Result is cast to UTC, using UTC input, timeZoneOffset for SOD
+      const startOfDayTimeString = '12:00 AM';
+      let timeZoneName: string;
+      let timeZoneOffset: number;
+      let dayOfMonthFormat: Intl.DateTimeFormat;
+      let timeFormat: Intl.DateTimeFormat;
+
+      const startDate = new Date('2020-08-11T20:30:00.000Z');
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 1);
+
+      const dates = generateDatesWithIncrement({
+        startDate,
+        endDate,
+        stepMinutes: 30,
+      });
+
+      // Central Daylight Time
+      timeZoneName = 'America/Chicago';
+      timeZoneOffset = -300; // -5:00
+      dayOfMonthFormat = getDayOfMonthFormat({ timeZoneName });
+      timeFormat = getTimeFormat({ timeZoneName });
+
+      dates.forEach((date) => {
+        const startOfDay = getStartOfDay(date, { timeZoneOffset });
+        const formattedTime = timeFormat.format(startOfDay);
+        const formattedDate = dayOfMonthFormat.format(startOfDay);
+        expect(formattedDate).toEqual(dayOfMonthFormat.format(date));
+        expect(formattedTime).toEqual(startOfDayTimeString);
+        expect(startOfDay.valueOf()).toBeLessThanOrEqual(date.valueOf());
+      });
+
+      // India Standard Time
+      timeZoneName = 'Asia/Calcutta';
+      timeZoneOffset = 330; // +5:30
+      dayOfMonthFormat = getDayOfMonthFormat({ timeZoneName });
+      timeFormat = getTimeFormat({ timeZoneName });
+
+      dates.forEach((date) => {
+        const startOfDay = getStartOfDay(date, { timeZoneOffset });
+        const formattedTime = timeFormat.format(startOfDay);
+        const formattedDate = dayOfMonthFormat.format(startOfDay);
+        expect(formattedDate).toEqual(dayOfMonthFormat.format(date));
+        expect(formattedTime).toEqual(startOfDayTimeString);
+        expect(startOfDay.valueOf()).toBeLessThanOrEqual(date.valueOf());
+      });
+    });
+
     it('works for different time zones', () => {
       // Result is cast to UTC, using UTC input, timeZoneOffset for EOD
       const date = new Date('2020-07-20T12:30');
@@ -211,15 +332,27 @@ describe('getStartOfDay', () => {
 
 describe('getShortTimeString', () => {
   it('makes strings in the form "12:30"', () => {
-    expect(getShortTimeString(12, 30)).toEqual('12:30');
+    expect(getShortTimeString({ hours: 12, minutes: 30 })).toEqual('12:30');
   });
 
   it('pads single digit numbers with "0"', () => {
-    expect(getShortTimeString(9, 1)).toEqual('09:01');
+    expect(getShortTimeString({ hours: 9, minutes: 1 })).toEqual('09:01');
   });
 
   it('handles zeroes', () => {
-    expect(getShortTimeString(0, 0)).toEqual('00:00');
+    expect(getShortTimeString({ hours: 0, minutes: 0 })).toEqual('00:00');
+  });
+
+  it('handles missing hour', () => {
+    expect(getShortTimeString({ minutes: 45 })).toEqual('00:45');
+  });
+
+  it('handles missing minute', () => {
+    expect(getShortTimeString({ hours: 1 })).toEqual('01:00');
+  });
+
+  it('handles missing everything', () => {
+    expect(getShortTimeString()).toEqual('00:00');
   });
 });
 
@@ -307,7 +440,10 @@ describe('guessTimeFromString', () => {
         const output = guessTimeFromString(input);
         expect(output).toStrictEqual({
           ...expected,
-          time: getShortTimeString(expected.hours, expected.minutes),
+          time: getShortTimeString({
+            hours: expected.hours,
+            minutes: expected.minutes,
+          }),
         });
       }
     );

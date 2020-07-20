@@ -30,6 +30,7 @@ interface DropdownProps {
   showDropdown?: 'click' | 'focus';
   step?: number;
   stepFrom?: string;
+  timeZoneOffset?: number | null;
   toggleAriaLabel?: string;
   toggleProps?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   value?: string;
@@ -48,6 +49,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   showDropdown,
   step: customStep,
   stepFrom,
+  timeZoneOffset,
   toggleAriaLabel = 'Toggle time dropdown',
   toggleProps,
   value,
@@ -83,25 +85,32 @@ const Dropdown: React.FC<DropdownProps> = ({
       }, SECONDS_PER_HOUR);
     }
 
-    const current =
-      (stepFrom && getDateTimeFromShortTimeString(stepFrom)) ||
-      getStartOfDay(new Date());
-    const end = getEndOfDay(new Date());
+    const current = stepFrom
+      ? getDateTimeFromShortTimeString(stepFrom, { timeZoneOffset })
+      : getStartOfDay(new Date(), { timeZoneOffset });
+
+    const end = getEndOfDay(new Date(), { timeZoneOffset });
 
     const maxAttempts =
       // 1 day + 1 hour buffer for daylight savings, divided into 10-minute increments
       // because that's the shortest step the dropdown supports
       (SECONDS_PER_HOUR + SECONDS_PER_DAY) / (SECONDS_PER_MINUTE * 10);
 
-    const maxDate = max ? getDateTimeFromShortTimeString(max) : undefined;
-    const minDate = min ? getDateTimeFromShortTimeString(min) : undefined;
-    let attempts = 0;
+    const maxDate = max
+      ? getDateTimeFromShortTimeString(max, { timeZoneOffset })
+      : undefined;
+
+    const minDate = min
+      ? getDateTimeFromShortTimeString(min, { timeZoneOffset })
+      : undefined;
 
     const options: {
       className: string;
       label: string;
       onClick: Function;
     }[] = [];
+
+    let attempts = 0;
 
     do {
       attempts += 1;
@@ -139,6 +148,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     onSelectMenuItem,
     showDropdown,
     stepFrom,
+    timeZoneOffset,
     value,
   ]);
 

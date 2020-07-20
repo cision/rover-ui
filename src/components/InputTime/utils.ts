@@ -6,13 +6,14 @@ const nullSafeMatch = (string: string, regExp: RegExp) => {
   return { content, index, endIndex };
 };
 
-type getDateOptions = {
+type DateOptions = {
   timeZoneOffset?: number | null;
 };
 
-interface GetTimeStringOptions extends Intl.DateTimeFormatOptions {
+interface TimeStringOptions extends Intl.DateTimeFormatOptions {
   formatTime?: Function;
   locale?: string;
+  timeZoneOffset?: number | null;
 }
 
 export const handleDispatchNativeInputChange = (
@@ -48,42 +49,65 @@ const getTimeZoneOffsetFromLocal = (targetMinusUtc?: number | null) => {
   return targetMinusUtc + utcMinusLocal;
 };
 
-export const getEndOfDay = (date: Date, options?: getDateOptions) => {
+export const getStartOfDay = (date: Date, options?: DateOptions) => {
   const { timeZoneOffset } = options || {};
   const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
-  const endOfDay = new Date(date);
+  const startOfDay = new Date(date);
+  startOfDay.setMinutes(startOfDay.getMinutes() + tzOffset);
+  startOfDay.setHours(0);
+  startOfDay.setMinutes(0);
+  startOfDay.setSeconds(0);
+  startOfDay.setMilliseconds(0);
+  startOfDay.setMinutes(startOfDay.getMinutes() - tzOffset);
+  return startOfDay;
+};
+
+export const getEndOfDay = (date: Date, options?: DateOptions) => {
+  const endOfDay = getStartOfDay(date, options);
   endOfDay.setDate(endOfDay.getDate() + 1);
-  endOfDay.setHours(0);
-  endOfDay.setMinutes(0 - tzOffset);
-  endOfDay.setSeconds(0);
   endOfDay.setMilliseconds(-1);
   return endOfDay;
 };
 
-export const getStartOfDay = (date: Date, options?: getDateOptions) => {
-  const { timeZoneOffset } = options || {};
-  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
-  const startOfDay = new Date(date);
-  startOfDay.setHours(0);
-  startOfDay.setMinutes(0 - tzOffset);
-  startOfDay.setSeconds(0);
-  startOfDay.setMilliseconds(0);
-  return startOfDay;
-};
+interface GetShortTimeStringArgs extends DateOptions {
+  hours?: number;
+  minutes?: number;
+  date?: Date;
+}
 
-export const getShortTimeString = (hours: number, minutes: number) =>
-  `${hours < 10 ? '0' : ''}${hours || 0}:${minutes < 10 ? '0' : ''}${
-    minutes || 0
-  }`;
+export const getShortTimeString = (args?: GetShortTimeStringArgs) => {
+  const {
+    hours: passedHours,
+    minutes: passedMinutes,
+    date: passedDate,
+    timeZoneOffset,
+  } = args || {};
+
+  let hours = passedHours || 0;
+  let minutes = passedMinutes || 0;
+  const date = passedDate && new Date(passedDate);
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
+
+  if (date) {
+    date.setMinutes(date.getMinutes() + tzOffset);
+    hours = date.getHours();
+    minutes = date.getMinutes();
+  }
+
+  return `${hours < 10 ? '0' : ''}${hours}:${
+    minutes < 10 ? '0' : ''
+  }${minutes}`;
+};
 
 export const getDateTimeFromShortTimeString = (
   value: string,
-  options?: getDateOptions
+  options?: DateOptions
 ) => {
   const { timeZoneOffset } = options || {};
   const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
   const date = new Date();
   const [hours, minutes] = value.split(':');
+  date.setMinutes(date.getMinutes() + tzOffset);
   date.setHours(parseInt(hours, 10));
   date.setMinutes(parseInt(minutes, 10) - tzOffset);
   date.setSeconds(0);
@@ -93,13 +117,18 @@ export const getDateTimeFromShortTimeString = (
 
 export const getLocaleTimeStringFromShortTimeString = (
   value: string,
-  options?: GetTimeStringOptions
+  options?: TimeStringOptions
 ) => {
-  const { formatTime, locale, ...passedOptions } = options || {};
+  const { formatTime, locale, timeZoneOffset, ...passedOptions } =
+    options || {};
+
+  const date = getDateTimeFromShortTimeString(value, {
+    timeZoneOffset,
+  });
 
   return typeof formatTime === 'function'
-    ? formatTime(getDateTimeFromShortTimeString(value))
-    : getDateTimeFromShortTimeString(value).toLocaleTimeString(locale, {
+    ? formatTime(date)
+    : date.toLocaleTimeString(locale, {
         hour: 'numeric',
         minute: '2-digit',
         ...passedOptions,
@@ -149,6 +178,6 @@ export const guessTimeFromString = (string: string) => {
     hasValidUserInput = true;
   }
 
-  const time = getShortTimeString(hours, minutes);
+  const time = getShortTimeString({ hours, minutes });
   return hasValidUserInput ? { time, hours, minutes } : {};
 };

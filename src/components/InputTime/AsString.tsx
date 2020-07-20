@@ -19,7 +19,6 @@ import { SECONDS_PER_DAY, SECONDS_PER_MINUTE } from './constants';
 import {
   getLocaleTimeStringFromShortTimeString,
   getShortTimeString,
-  getStartOfDay,
   guessTimeFromString,
   handleDispatchNativeInputChange,
 } from './utils';
@@ -35,6 +34,7 @@ export interface AsStringProps
   max?: string;
   min?: string;
   showDropdown?: 'click' | 'none' | null;
+  timeZoneOffset?: number | null;
   toggleAriaLabel?: string;
   value?: string;
 }
@@ -52,6 +52,7 @@ const AsString: React.FC<AsStringProps> = ({
   onChange,
   showDropdown: customShowDropdown = 'click',
   step: customStep,
+  timeZoneOffset,
   toggleAriaLabel,
   value: valueOrUndefined,
   ...passedProps
@@ -100,13 +101,17 @@ const AsString: React.FC<AsStringProps> = ({
       return min;
     }
 
-    const start = getStartOfDay(new Date());
-    return getShortTimeString(start.getHours(), start.getMinutes());
+    return '00:00';
   }, [min]);
 
   // Fuzzy value is user input.
   const [fuzzyValue, setFuzzyValue] = useState(
-    value ? getLocaleTimeStringFromShortTimeString(value, { formatTime }) : ''
+    value
+      ? getLocaleTimeStringFromShortTimeString(value, {
+          formatTime,
+          timeZoneOffset,
+        })
+      : ''
   );
 
   const syncValidity = (
@@ -148,7 +153,12 @@ const AsString: React.FC<AsStringProps> = ({
 
   const handleBlurFuzzyValue = () => {
     setFuzzyValue(
-      value ? getLocaleTimeStringFromShortTimeString(value, { formatTime }) : ''
+      value
+        ? getLocaleTimeStringFromShortTimeString(value, {
+            formatTime,
+            timeZoneOffset,
+          })
+        : ''
     );
   };
 
@@ -163,11 +173,7 @@ const AsString: React.FC<AsStringProps> = ({
             minute: '2-digit',
           });
 
-    const timeString = getShortTimeString(
-      dateTime.getHours(),
-      dateTime.getMinutes()
-    );
-
+    const timeString = getShortTimeString({ date: dateTime, timeZoneOffset });
     setFuzzyValue(label);
     changeShadowTimeInput(timeString);
     setFocus(false);
@@ -182,13 +188,16 @@ const AsString: React.FC<AsStringProps> = ({
     if (localRef?.current && document.activeElement !== localRef?.current) {
       setFuzzyValue(
         value
-          ? getLocaleTimeStringFromShortTimeString(value, { formatTime })
+          ? getLocaleTimeStringFromShortTimeString(value, {
+              formatTime,
+              timeZoneOffset,
+            })
           : ''
       );
     }
 
     syncValidity(shadowTimeInputRef, localRef);
-  }, [formatTime, localRef, shadowTimeInputRef, step, value]);
+  }, [formatTime, localRef, shadowTimeInputRef, step, timeZoneOffset, value]);
 
   // Sync validity on min/max changes
   useEffect(() => {
@@ -238,6 +247,7 @@ const AsString: React.FC<AsStringProps> = ({
             showDropdown={showDropdown}
             step={dropdownStep}
             stepFrom={stepFrom}
+            timeZoneOffset={timeZoneOffset}
             toggleAriaLabel={toggleAriaLabel}
             value={value}
             {...dropdownProps}

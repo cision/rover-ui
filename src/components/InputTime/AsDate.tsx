@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 
 import {
+  getDateTimeFromShortTimeString,
   getEndOfDay,
   getShortTimeString,
   getStartOfDay,
@@ -23,6 +24,7 @@ export const AsDate: React.FC<AsStringProps> = ({
   max: maxDateString,
   min: minDateString,
   onChange,
+  timeZoneOffset,
   value: valueDateString,
   ...passedProps
 }) => {
@@ -72,18 +74,20 @@ export const AsDate: React.FC<AsStringProps> = ({
     if (
       Number.isNaN(maxDate.valueOf()) ||
       Number.isNaN(valueDate.valueOf()) ||
-      maxDate > getEndOfDay(valueDate)
+      maxDate > getEndOfDay(valueDate, { timeZoneOffset })
     ) {
       return '';
     }
 
-    if (maxDate < getStartOfDay(valueDate)) {
+    if (maxDate < getStartOfDay(valueDate, { timeZoneOffset })) {
       setInvalidMax(true);
       return '';
     }
 
-    return getShortTimeString(maxDate.getHours(), maxDate.getMinutes());
-  }, [maxDateString, valueDateString]);
+    const maxString = getShortTimeString({ date: maxDate, timeZoneOffset });
+
+    return maxString;
+  }, [maxDateString, timeZoneOffset, valueDateString]);
 
   // If minDateString makes selected date 100% valid, all times are ok.
   // Otherwise, parse it into a time string for InputTimeAsString
@@ -95,18 +99,20 @@ export const AsDate: React.FC<AsStringProps> = ({
     if (
       Number.isNaN(minDate.valueOf()) ||
       Number.isNaN(valueDate.valueOf()) ||
-      minDate < getStartOfDay(valueDate)
+      minDate < getStartOfDay(valueDate, { timeZoneOffset })
     ) {
       return '';
     }
 
-    if (minDate > getEndOfDay(valueDate)) {
+    if (minDate > getEndOfDay(valueDate, { timeZoneOffset })) {
       setInvalidMin(true);
       return '';
     }
 
-    return getShortTimeString(minDate.getHours(), minDate.getMinutes());
-  }, [minDateString, valueDateString]);
+    const minString = getShortTimeString({ date: minDate, timeZoneOffset });
+
+    return minString;
+  }, [minDateString, timeZoneOffset, valueDateString]);
 
   const value = useMemo(() => {
     const valueDate = new Date(valueDateString || '');
@@ -115,8 +121,10 @@ export const AsDate: React.FC<AsStringProps> = ({
       return '';
     }
 
-    return getShortTimeString(valueDate.getHours(), valueDate.getMinutes());
-  }, [valueDateString]);
+    const valueString = getShortTimeString({ date: valueDate, timeZoneOffset });
+
+    return valueString;
+  }, [timeZoneOffset, valueDateString]);
 
   const handleChangeString = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!onChange) {
@@ -128,11 +136,26 @@ export const AsDate: React.FC<AsStringProps> = ({
     nextDate = Number.isNaN(nextDate.valueOf()) ? new Date() : nextDate;
 
     if (e.target.value) {
-      const [hoursString, minutesString] = e.target.value.split(':');
-      nextDate.setHours(parseInt(hoursString, 10));
-      nextDate.setMinutes(parseInt(minutesString, 10));
+      const maxDate = new Date(maxDateString || '');
+      const minDate = new Date(minDateString || '');
+
+      const selectedTimeOfDay = getDateTimeFromShortTimeString(e.target.value, {
+        timeZoneOffset,
+      });
+
+      nextDate.setHours(selectedTimeOfDay.getHours());
+      nextDate.setMinutes(selectedTimeOfDay.getMinutes());
       nextDate.setSeconds(0);
       nextDate.setMilliseconds(0);
+
+      if (nextDate > maxDate) {
+        nextDate.setDate(nextDate.getDate() - 1);
+      }
+
+      if (nextDate < minDate) {
+        nextDate.setDate(nextDate.getDate() + 1);
+      }
+
       const nextDateString = nextDate.toISOString();
 
       if (
@@ -156,6 +179,7 @@ export const AsDate: React.FC<AsStringProps> = ({
         max={max}
         min={min}
         onChange={handleChangeString}
+        timeZoneOffset={timeZoneOffset}
         value={value}
       />
       <input

@@ -174,7 +174,7 @@ storiesOf('Planets/InputTime', module)
             <InteractiveInput
               Component={InputTime}
               onChange={action('onChange string')}
-              value={getShortTimeString(new Date().getHours(), 0)}
+              value={getShortTimeString({ hours: new Date().getHours() })}
             />
           </Wrap>
           <Wrap>
@@ -185,7 +185,7 @@ storiesOf('Planets/InputTime', module)
               min={text('min', '10:00', 'Using times')}
               onChange={action('onChange string')}
               step={step}
-              value={getShortTimeString(new Date().getHours(), 0)}
+              value={getShortTimeString({ hours: new Date().getHours() })}
             />
           </Wrap>
           <Wrap>
@@ -197,7 +197,7 @@ storiesOf('Planets/InputTime', module)
               Component={InputTime}
               dropdownProps={{ menuProps: { style: { maxHeight: '115px' } } }}
               onChange={action('onChange string')}
-              value={getShortTimeString(new Date().getHours(), 0)}
+              value={getShortTimeString({ hours: new Date().getHours() })}
             />
           </Wrap>
           <Wrap>
@@ -212,14 +212,24 @@ storiesOf('Planets/InputTime', module)
             />
           </Wrap>
           <Wrap>
-            <Title>With a custom `formatTime` function</Title>
+            <Title>
+              With a custom `formatTime` function and a `timezoneOffset` prop
+            </Title>
             <InteractiveInput
               Component={InputTime}
-              formatTime={(date: Date) =>
-                `${date.getHours()}🎈:${date.getMinutes()}🐝`
-              }
+              formatTime={(date: Date) => {
+                return new Intl.DateTimeFormat('en-IN', {
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  timeZone: 'Asia/Calcutta',
+                  timeZoneName: 'long',
+                }).format(date);
+              }}
               onChange={action('onChange date')}
-              value={new Date().toISOString()}
+              step={3600}
+              style={{ width: '20em' }}
+              timeZoneOffset={330}
+              value="12:00"
             />
           </Wrap>
           <Wrap>
@@ -239,7 +249,7 @@ storiesOf('Planets/InputTime', module)
               onChange={action('onChange string')}
               showDropdown="none"
               step={step}
-              value={getShortTimeString(new Date().getHours(), 0)}
+              value={getShortTimeString({ hours: new Date().getHours() })}
             />
           </Wrap>
           <Wrap>
@@ -248,7 +258,7 @@ storiesOf('Planets/InputTime', module)
               Component={InputTime}
               disabled
               onChange={action('onChange string')}
-              value={getShortTimeString(new Date().getHours(), 0)}
+              value={getShortTimeString({ hours: new Date().getHours() })}
             />
           </Wrap>
           <Wrap>
