@@ -29,6 +29,7 @@ import styles from './InputTime.module.css';
 
 export interface AsStringProps
   extends Omit<InputProps, 'value' | 'max' | 'min'> {
+  fuzzyInputProps?: InputProps;
   max?: string;
   min?: string;
   showDropdown?: 'click' | 'none' | null;
@@ -40,6 +41,7 @@ const AsString: React.FC<AsStringProps> = ({
   className = '',
   disabled,
   forwardedRef,
+  fuzzyInputProps = {},
   max,
   min,
   onChange,
@@ -188,15 +190,16 @@ const AsString: React.FC<AsStringProps> = ({
       })}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      {...passedProps}
     >
       <Input
-        {...passedProps}
         className={styles.Input}
         disabled={disabled}
         onBlur={handleBlurFuzzyValue}
         onChange={handleChangeFuzzyValue}
         ref={localRef}
         value={fuzzyValue}
+        {...fuzzyInputProps}
       />
       <div className={styles.addons}>
         <Icon
