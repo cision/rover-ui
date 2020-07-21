@@ -68,7 +68,7 @@ describe('InputTime', () => {
     });
 
     it('regular input validates values against step + min if present', async () => {
-      const { debug, getByTestId } = render(
+      const { getByTestId } = render(
         <input
           data-testid="InputTime test"
           min="01:30"
@@ -77,7 +77,6 @@ describe('InputTime', () => {
         />
       );
 
-      debug();
       const baseInput = getByTestId('InputTime test') as HTMLInputElement;
       expect(baseInput.validationMessage).toBeFalsy();
     });
