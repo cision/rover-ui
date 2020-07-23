@@ -72,6 +72,7 @@ describe('InputTime', () => {
         <input
           data-testid="InputTime test"
           min="01:30"
+          onChange={() => {}}
           step="2700"
           value="01:30"
         />
