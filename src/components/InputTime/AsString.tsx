@@ -59,7 +59,7 @@ const AsString: React.FC<AsStringProps> = ({
     HTMLInputElement
   >;
 
-  useImperativeHandle(forwardedRef, () => localRef.current, []);
+  useImperativeHandle(forwardedRef, () => localRef.current);
   const [focus, setFocus] = useState(false);
   const [validity, setValidity] = useState(true);
 
@@ -120,7 +120,7 @@ const AsString: React.FC<AsStringProps> = ({
         handleDispatchNativeInputChange(shadowTimeInputRef.current, nextValue);
       }
     },
-    [value]
+    [shadowTimeInputRef, value]
   );
 
   const handleChangeFuzzyValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,12 +174,12 @@ const AsString: React.FC<AsStringProps> = ({
     }
 
     syncValidity(shadowTimeInputRef, localRef);
-  }, [localRef, step, value]);
+  }, [localRef, shadowTimeInputRef, step, value]);
 
   // Sync validity on min/max changes
   useEffect(() => {
     syncValidity(shadowTimeInputRef, localRef);
-  }, [localRef, max, min]);
+  }, [localRef, max, min, shadowTimeInputRef]);
 
   return (
     <div

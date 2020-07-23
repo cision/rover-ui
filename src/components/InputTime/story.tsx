@@ -78,6 +78,7 @@ storiesOf('Planets/InputTime', module)
 
       const defaultValueDate = useMemo(() => {
         const d = new Date();
+        d.setMinutes(0);
         d.setSeconds(0);
         d.setMilliseconds(0);
         return d.toISOString();
@@ -143,6 +144,14 @@ storiesOf('Planets/InputTime', module)
         return d.toISOString();
       }, []);
 
+      const defaultValueDate = useMemo(() => {
+        const d = new Date();
+        d.setMinutes(0);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d.toISOString();
+      }, []);
+
       const ref = React.createRef<HTMLInputElement>();
 
       const step = number(
@@ -168,10 +177,7 @@ storiesOf('Planets/InputTime', module)
               min={text('min', '10:00', 'Using times')}
               onChange={action('onChange string')}
               step={step}
-              value={getShortTimeString(
-                new Date().getHours(),
-                new Date().getMinutes()
-              )}
+              value={getShortTimeString(new Date().getHours(), 0)}
             />
           </Wrap>
           <Wrap>
@@ -182,7 +188,7 @@ storiesOf('Planets/InputTime', module)
               min={text('min', defaultMinDate, 'Using dates')}
               onChange={action('onChange date')}
               step={step}
-              value={new Date().toISOString()}
+              value={defaultValueDate}
             />
           </Wrap>
           <Wrap>
@@ -192,7 +198,7 @@ storiesOf('Planets/InputTime', module)
               min={startOfNextHour.toISOString()}
               onChange={action('onChange date')}
               step={3600}
-              value={new Date().toISOString()}
+              value={startOfNextHour.toISOString()}
             />
           </Wrap>
           <Wrap>
@@ -202,10 +208,7 @@ storiesOf('Planets/InputTime', module)
               onChange={action('onChange string')}
               showDropdown="none"
               step={step}
-              value={getShortTimeString(
-                new Date().getHours(),
-                new Date().getMinutes()
-              )}
+              value={getShortTimeString(new Date().getHours(), 0)}
             />
           </Wrap>
           <Wrap>
