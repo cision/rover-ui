@@ -60,7 +60,7 @@ export const AsDate: React.FC<AsStringProps> = ({
     null
   ) as MutableRefObject<HTMLInputElement>;
 
-  useImperativeHandle(forwardedRef, () => localRef.current, []);
+  useImperativeHandle(forwardedRef, () => localRef.current);
 
   // If maxDate makes selected date 100% valid, all times are ok.
   // Otherwise, parse it into a time string for InputTimeAsString

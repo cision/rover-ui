@@ -14,10 +14,12 @@ import classNames from 'classnames';
 import Icon from '../Icon';
 import Input, { InputProps } from '../Input';
 import inputStyles from '../Input/Input.module.css';
+import { SECONDS_PER_DAY, SECONDS_PER_MINUTE } from './constants';
 
 import {
   getLocaleTimeStringFromShortTimeString,
   getShortTimeString,
+  getStartOfDay,
   guessTimeFromString,
   handleDispatchNativeInputChange,
 } from './utils';
@@ -27,6 +29,7 @@ import styles from './InputTime.module.css';
 
 export interface AsStringProps
   extends Omit<InputProps, 'value' | 'max' | 'min'> {
+  fuzzyInputProps?: InputProps;
   max?: string;
   min?: string;
   showDropdown?: 'click' | 'none' | null;
@@ -38,11 +41,12 @@ const AsString: React.FC<AsStringProps> = ({
   className = '',
   disabled,
   forwardedRef,
+  fuzzyInputProps = {},
   max,
   min,
   onChange,
   showDropdown: customShowDropdown = 'click',
-  step,
+  step: customStep,
   toggleAriaLabel,
   value: valueOrUndefined,
   ...passedProps
@@ -55,7 +59,7 @@ const AsString: React.FC<AsStringProps> = ({
     HTMLInputElement
   >;
 
-  useImperativeHandle(forwardedRef, () => localRef.current, []);
+  useImperativeHandle(forwardedRef, () => localRef.current);
   const [focus, setFocus] = useState(false);
   const [validity, setValidity] = useState(true);
 
@@ -64,6 +68,36 @@ const AsString: React.FC<AsStringProps> = ({
 
   // value is the true, controlled value, patched for undefined / empty
   const value = useMemo(() => valueOrUndefined || '', [valueOrUndefined]);
+
+  const step: number | undefined = useMemo(() => {
+    // Parsing undefined as a string and then parsing Int produces NaN, which is guarded against.
+    const safeStep: number | undefined = parseInt(customStep as string, 10);
+
+    if (
+      !safeStep ||
+      Number.isNaN(safeStep) ||
+      safeStep < SECONDS_PER_MINUTE ||
+      safeStep > SECONDS_PER_DAY
+    ) {
+      return undefined;
+    }
+
+    return safeStep;
+  }, [customStep]);
+
+  const dropdownStep: number | undefined = useMemo(
+    () => (step && step >= 60 * 10 ? step : undefined),
+    [step]
+  );
+
+  const stepFrom = useMemo(() => {
+    if (min) {
+      return min;
+    }
+
+    const start = getStartOfDay(new Date());
+    return getShortTimeString(start.getHours(), start.getMinutes());
+  }, [min]);
 
   // Fuzzy value is user input.
   const [fuzzyValue, setFuzzyValue] = useState(
@@ -86,7 +120,7 @@ const AsString: React.FC<AsStringProps> = ({
         handleDispatchNativeInputChange(shadowTimeInputRef.current, nextValue);
       }
     },
-    [value]
+    [shadowTimeInputRef, value]
   );
 
   const handleChangeFuzzyValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,6 +160,7 @@ const AsString: React.FC<AsStringProps> = ({
 
     setFuzzyValue(label);
     changeShadowTimeInput(timeString);
+    setFocus(false);
   };
 
   // Sync shadow input and fuzzy input to controlled value
@@ -139,12 +174,12 @@ const AsString: React.FC<AsStringProps> = ({
     }
 
     syncValidity(shadowTimeInputRef, localRef);
-  }, [localRef, value]);
+  }, [localRef, shadowTimeInputRef, step, value]);
 
   // Sync validity on min/max changes
   useEffect(() => {
     syncValidity(shadowTimeInputRef, localRef);
-  }, [localRef, max, min]);
+  }, [localRef, max, min, shadowTimeInputRef]);
 
   return (
     <div
@@ -155,15 +190,16 @@ const AsString: React.FC<AsStringProps> = ({
       })}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      {...passedProps}
     >
       <Input
-        {...passedProps}
         className={styles.Input}
         disabled={disabled}
         onBlur={handleBlurFuzzyValue}
         onChange={handleChangeFuzzyValue}
         ref={localRef}
         value={fuzzyValue}
+        {...fuzzyInputProps}
       />
       <div className={styles.addons}>
         <Icon
@@ -184,7 +220,8 @@ const AsString: React.FC<AsStringProps> = ({
             value={value}
             onSelectMenuItem={handleSelectMenuItem}
             showDropdown={showDropdown}
-            step={step}
+            step={dropdownStep}
+            stepFrom={stepFrom}
           />
         )}
       </div>
@@ -197,6 +234,7 @@ const AsString: React.FC<AsStringProps> = ({
         min={min}
         onChange={onChange || (() => {})}
         ref={shadowTimeInputRef}
+        step={step}
         style={{ display: 'none' }}
         tabIndex={-1}
         type="time"

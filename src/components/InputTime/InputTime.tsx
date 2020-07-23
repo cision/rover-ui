@@ -10,9 +10,6 @@ Desired features:
 -- Should have keyboard support (up arrow / down arrow for iterating through menu items)
 -- Dropdown should have "focus" mode, where the dropdown is always visible when the
    time field is focused
-- Add configurable `step` prop. '00:00' + n * step (in seconds): produces a list of times
--- Those are the only times that are valid selections.
--- Those are the time options in the dropdown.
 */
 
 export const InputTime: React.FC<AsStringProps> = ({

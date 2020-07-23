@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent /*, waitFor*/ } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import InputTime from './InputTime';
@@ -25,12 +25,104 @@ const WithUseRef = ({ Component, focus = false, ...passedProps }) => {
 describe('InputTime', () => {
   it('renders', () => {
     const { getByLabelText } = render(
-      <InputTime aria-label="time input" placeholder="Type a time" />
+      <InputTime
+        fuzzyInputProps={{
+          'aria-label': 'time input',
+          placeholder: 'Type a time',
+        }}
+      />
     );
 
     const baseInputTime = getByLabelText('time input') as HTMLInputElement;
     expect(baseInputTime.placeholder).toBe('Type a time');
     expect(baseInputTime.value).toBe('');
+  });
+
+  describe('when passed a custom `step` prop', () => {
+    it('validates values against step + start of day', () => {
+      const { getByTestId, rerender } = render(
+        <InputTime
+          data-testid="InputTime test"
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          step="2700"
+          value="01:30"
+        />
+      );
+
+      const baseInputTime = getByTestId('InputTime test') as HTMLInputElement;
+
+      // Valid time
+      expect(baseInputTime.classList).not.toContain('invalid');
+
+      // Invalid time
+      rerender(
+        <InputTime
+          data-testid="InputTime test"
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          step="2700"
+          value="01:00"
+        />
+      );
+
+      expect(baseInputTime.classList).toContain('invalid');
+    });
+
+    it('regular input validates values against step + min if present', async () => {
+      const { getByTestId } = render(
+        <input
+          data-testid="InputTime test"
+          min="01:30"
+          step="2700"
+          value="01:30"
+        />
+      );
+
+      const baseInput = getByTestId('InputTime test') as HTMLInputElement;
+      expect(baseInput.validationMessage).toBeFalsy();
+    });
+
+    // it.only('validates values against step + min if present', async () => {
+    //   // const { debug, getByTestId, rerender } = render(
+    //   //   <InputTime
+    //   //     data-testid="InputTime test"
+    //   //     fuzzyInputProps={{ 'aria-label': "time input" }}
+    //   //     min="01:30"
+    //   //     step="2700"
+    //   //     value="02:15"
+    //   //   />
+    //   // );
+    //   //
+    //   // debug();
+    //   // const baseInputTime = getByTestId('InputTime test') as HTMLInputElement;
+    //   //
+    //   // await waitFor(() =>
+    //   //   expect(baseInputTime.classList).not.toContain('invalid')
+    //   // );
+    //
+    //   // Valid time
+    //   // expect(baseInputTime.classList).not.toContain('invalid');
+    //
+    //   // // Invalid time
+    //   // rerender(
+    //   //   <InputTime
+    //   //     data-testid="InputTime test"
+    //   //     fuzzyInputProps={{ 'aria-label': "time input" }}
+    //   //     min="01:30"
+    //   //     step="2700"
+    //   //     value="02:00"
+    //   //   />
+    //   // );
+    //   //
+    //   // expect(baseInputTime.classList).toContain('invalid');
+    // });
+
+    it('ignores invalid step values', () => {});
+
+    describe('dropdown time picker', () => {
+      it('shows options with correct intervals', () => {});
+
+      it('shows options with 1 hour intervals if the step is invalid', () => {});
+    });
   });
 
   describe('dropdown time picker', () => {
@@ -42,7 +134,7 @@ describe('InputTime', () => {
 
       const { getByLabelText, getByText, queryByText } = render(
         <InputTime
-          aria-label="time input"
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
           onChange={handleChange}
           value="11:00"
           toggleAriaLabel="Toggle"
@@ -72,7 +164,7 @@ describe('InputTime', () => {
       it('`null` or "none" hides the dropdown', () => {
         const { queryByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             showDropdown={null}
             toggleAriaLabel="Toggle"
           />
@@ -83,7 +175,7 @@ describe('InputTime', () => {
 
         rerender(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             showDropdown="none"
             toggleAriaLabel="Toggle"
           />
@@ -95,7 +187,7 @@ describe('InputTime', () => {
       it('"click" or `undefined` shows the dropdown', () => {
         const { queryByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             showDropdown="click"
             toggleAriaLabel="Toggle"
           />
@@ -105,7 +197,10 @@ describe('InputTime', () => {
         expect(dropdownToggle).toBeTruthy();
 
         rerender(
-          <InputTime aria-label="time input" toggleAriaLabel="Toggle" />
+          <InputTime
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
+            toggleAriaLabel="Toggle"
+          />
         );
 
         expect(dropdownToggle).toBeTruthy();
@@ -119,7 +214,11 @@ describe('InputTime', () => {
       const userInput = 'foo';
 
       const { getByLabelText } = render(
-        <InputTime aria-label="time input" onChange={handleChange} value="" />
+        <InputTime
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          onChange={handleChange}
+          value=""
+        />
       );
 
       const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -132,7 +231,7 @@ describe('InputTime', () => {
     describe("With empty controlled values, doesn't fail", () => {
       it('undefined', () => {
         const { getByLabelText } = render(
-          <InputTime aria-label="time input" />
+          <InputTime fuzzyInputProps={{ 'aria-label': 'time input' }} />
         );
 
         const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -141,7 +240,10 @@ describe('InputTime', () => {
 
       it('empty string', () => {
         const { getByLabelText } = render(
-          <InputTime aria-label="time input" value="" />
+          <InputTime
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
+            value=""
+          />
         );
 
         const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -151,7 +253,10 @@ describe('InputTime', () => {
 
     it('With garbage controlled values, fails', () => {
       const { getByLabelText } = render(
-        <InputTime aria-label="time input" value="foo" />
+        <InputTime
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          value="foo"
+        />
       );
 
       const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -162,7 +267,11 @@ describe('InputTime', () => {
   describe('Supports ref forwarding', () => {
     it('with useRef', () => {
       const { getByLabelText, rerender } = render(
-        <WithUseRef aria-label="time input" Component={InputTime} value="" />
+        <WithUseRef
+          Component={InputTime}
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          value=""
+        />
       );
 
       const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -170,9 +279,9 @@ describe('InputTime', () => {
 
       rerender(
         <WithUseRef
-          aria-label="time input"
           Component={InputTime}
           focus
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
           value=""
         />
       );
@@ -184,7 +293,11 @@ describe('InputTime', () => {
       const ref = React.createRef<any>();
 
       const { getByLabelText } = render(
-        <InputTime aria-label="time input" ref={ref} value="" />
+        <InputTime
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          ref={ref}
+          value=""
+        />
       );
 
       const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -195,7 +308,13 @@ describe('InputTime', () => {
 
     it('with callback refs', () => {
       const handleSetRef = jest.fn(() => {});
-      render(<InputTime aria-label="time input" ref={handleSetRef} value="" />);
+      render(
+        <InputTime
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          ref={handleSetRef}
+          value=""
+        />
+      );
 
       const {
         mock: { calls },
@@ -257,7 +376,7 @@ describe('InputTime', () => {
 
       const { getByLabelText } = render(
         <InputTime
-          aria-label="time input"
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
           onChange={handleChange}
           value="2020-06-29T20:00:00.000Z"
         />
@@ -283,7 +402,7 @@ describe('InputTime', () => {
       it('validates `value` against same day `min` and `max`', () => {
         const { getByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             max="2020-06-29T20:00:00.000Z"
             min="2020-06-29T10:00:00.000Z"
             value="2020-06-29T20:00:00.000Z"
@@ -335,7 +454,7 @@ describe('InputTime', () => {
       it('disables when `min` or `max` make all selections impossible', () => {
         const { getByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             max="2020-06-29T20:00:00.000Z"
             value="2020-06-29T20:00:00.000Z"
           />
@@ -386,7 +505,7 @@ describe('InputTime', () => {
       it('re-validates on `value` changes', () => {
         const { getByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             min="2020-06-29T10:00:00.000Z"
             value="2020-06-29T10:00:00.000Z"
           />
@@ -413,7 +532,7 @@ describe('InputTime', () => {
       it('re-validates on `max` changes', () => {
         const { getByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             max="2020-06-29T20:00:00.000Z"
             value="2020-06-29T20:00:00.000Z"
           />
@@ -440,7 +559,7 @@ describe('InputTime', () => {
       it('re-validates on `min` changes', () => {
         const { getByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             min="2020-06-29T10:00:00.000Z"
             value="2020-06-29T10:00:00.000Z"
           />
@@ -484,7 +603,11 @@ describe('InputTime', () => {
       const handleChange = jest.fn((e) => e.target.value);
 
       const { getByLabelText } = render(
-        <InputTime aria-label="time input" onChange={handleChange} value="" />
+        <InputTime
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          onChange={handleChange}
+          value=""
+        />
       );
 
       const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -505,7 +628,7 @@ describe('InputTime', () => {
       it('validates `value` against `min` and `max`', () => {
         const { getByLabelText, rerender } = render(
           <InputTime
-            aria-label="time input"
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
             max="20:00"
             min="10:00"
             value="20:00"
@@ -535,7 +658,11 @@ describe('InputTime', () => {
 
       it('re-validates on `value` changes', () => {
         const { getByLabelText, rerender } = render(
-          <InputTime aria-label="time input" min="10:00" value="10:00" />
+          <InputTime
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
+            min="10:00"
+            value="10:00"
+          />
         );
 
         const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -548,7 +675,11 @@ describe('InputTime', () => {
 
       it('re-validates on `max` changes', () => {
         const { getByLabelText, rerender } = render(
-          <InputTime aria-label="time input" max="20:00" value="20:00" />
+          <InputTime
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
+            max="20:00"
+            value="20:00"
+          />
         );
 
         const baseInputTime = getByLabelText('time input') as HTMLInputElement;
@@ -561,7 +692,11 @@ describe('InputTime', () => {
 
       it('re-validates on `min` changes', () => {
         const { getByLabelText, rerender } = render(
-          <InputTime aria-label="time input" min="10:00" value="10:00" />
+          <InputTime
+            fuzzyInputProps={{ 'aria-label': 'time input' }}
+            min="10:00"
+            value="10:00"
+          />
         );
 
         const baseInputTime = getByLabelText('time input') as HTMLInputElement;

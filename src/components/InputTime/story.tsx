@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, select, text } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 
 import { Title, Wrap } from '../../stories/storybook-helpers';
 
@@ -78,6 +78,7 @@ storiesOf('Planets/InputTime', module)
 
       const defaultValueDate = useMemo(() => {
         const d = new Date();
+        d.setMinutes(0);
         d.setSeconds(0);
         d.setMilliseconds(0);
         return d.toISOString();
@@ -103,6 +104,12 @@ storiesOf('Planets/InputTime', module)
             'showDropdown',
             showDropdownOptions,
             'click',
+            'Common'
+          )}
+          step={number(
+            'step (seconds)',
+            60 * 60,
+            { min: 60, max: 60 * 60 },
             'Common'
           )}
           value={useDates ? valueDateString : valueString}
@@ -137,7 +144,28 @@ storiesOf('Planets/InputTime', module)
         return d.toISOString();
       }, []);
 
+      const defaultValueDate = useMemo(() => {
+        const d = new Date();
+        d.setMinutes(0);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        return d.toISOString();
+      }, []);
+
       const ref = React.createRef<HTMLInputElement>();
+
+      const step = number(
+        'step (seconds)',
+        60 * 60,
+        { min: 60, max: 60 * 60 },
+        'Common'
+      );
+
+      const startOfNextHour = new Date();
+      startOfNextHour.setHours(startOfNextHour.getHours() + 1);
+      startOfNextHour.setMinutes(0);
+      startOfNextHour.setSeconds(0);
+      startOfNextHour.setMilliseconds(0);
 
       return (
         <>
@@ -148,10 +176,8 @@ storiesOf('Planets/InputTime', module)
               max={text('max', '20:00', 'Using times')}
               min={text('min', '10:00', 'Using times')}
               onChange={action('onChange string')}
-              value={getShortTimeString(
-                new Date().getHours(),
-                new Date().getMinutes()
-              )}
+              step={step}
+              value={getShortTimeString(new Date().getHours(), 0)}
             />
           </Wrap>
           <Wrap>
@@ -161,16 +187,18 @@ storiesOf('Planets/InputTime', module)
               max={text('max', defaultMaxDate, 'Using dates')}
               min={text('min', defaultMinDate, 'Using dates')}
               onChange={action('onChange date')}
-              value={new Date().toISOString()}
+              step={step}
+              value={defaultValueDate}
             />
           </Wrap>
           <Wrap>
             <Title>Requires you to pick a future date time</Title>
             <InteractiveInput
               Component={InputTime}
-              min={new Date().toISOString()}
+              min={startOfNextHour.toISOString()}
               onChange={action('onChange date')}
-              value={new Date().toISOString()}
+              step={3600}
+              value={startOfNextHour.toISOString()}
             />
           </Wrap>
           <Wrap>
@@ -179,10 +207,8 @@ storiesOf('Planets/InputTime', module)
               Component={InputTime}
               onChange={action('onChange string')}
               showDropdown="none"
-              value={getShortTimeString(
-                new Date().getHours(),
-                new Date().getMinutes()
-              )}
+              step={step}
+              value={getShortTimeString(new Date().getHours(), 0)}
             />
           </Wrap>
           <Wrap>

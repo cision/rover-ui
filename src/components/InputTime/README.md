@@ -22,5 +22,7 @@ The component will disabled the input if the entire selected date is outside the
 ### Coming soon
 
 - Add an optional dropdown that lets the user select a time quickly
-- Add min/max support for date times (less than 10AM June 9)
-- Add configurable steps for hour/minute/30/15/5 minutes/auto
+  - Needs to center selection on current
+  - Should have keyboard support (up arrow / down arrow for iterating through menu items)
+  - Dropdown should have "focus" mode, where the dropdown is always visible when the
+    time field is focused
