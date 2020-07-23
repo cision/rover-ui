@@ -126,6 +126,40 @@ describe('InputTime', () => {
     });
   });
 
+  describe('when passed a custom `formatTime` prop', () => {
+    it('uses the custom formatter for the fuzzy input', () => {
+      const { getByLabelText } = render(
+        <InputTime
+          formatTime={(date: Date) =>
+            `${date.getHours()}🎈:${date.getMinutes()}🐝`
+          }
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          value="01:30"
+        />
+      );
+
+      const baseInputTime = getByLabelText('time input') as HTMLInputElement;
+      expect(baseInputTime.value).toEqual('1🎈:30🐝');
+    });
+
+    it('uses the custom formatter for the dropdown options', () => {
+      const { getByLabelText, queryByText } = render(
+        <InputTime
+          formatTime={(date: Date) =>
+            `${date.getHours()}🎈:${date.getMinutes()}🐝`
+          }
+          toggleAriaLabel="Toggle"
+        />
+      );
+
+      const toggle = getByLabelText('Toggle');
+      // Open dropdown
+      userEvent.click(toggle);
+      const select10 = queryByText('10🎈:0🐝');
+      expect(select10).toBeTruthy();
+    });
+  });
+
   describe('dropdown time picker', () => {
     it('clicking a time selects it', () => {
       const handleChange = jest.fn((e) => {
