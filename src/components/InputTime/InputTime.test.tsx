@@ -72,6 +72,7 @@ describe('InputTime', () => {
         <input
           data-testid="InputTime test"
           min="01:30"
+          onChange={() => {}}
           step="2700"
           value="01:30"
         />
@@ -122,6 +123,40 @@ describe('InputTime', () => {
       it('shows options with correct intervals', () => {});
 
       it('shows options with 1 hour intervals if the step is invalid', () => {});
+    });
+  });
+
+  describe('when passed a custom `formatTime` prop', () => {
+    it('uses the custom formatter for the fuzzy input', () => {
+      const { getByLabelText } = render(
+        <InputTime
+          formatTime={(date: Date) =>
+            `${date.getHours()}🎈:${date.getMinutes()}🐝`
+          }
+          fuzzyInputProps={{ 'aria-label': 'time input' }}
+          value="01:30"
+        />
+      );
+
+      const baseInputTime = getByLabelText('time input') as HTMLInputElement;
+      expect(baseInputTime.value).toEqual('1🎈:30🐝');
+    });
+
+    it('uses the custom formatter for the dropdown options', () => {
+      const { getByLabelText, queryByText } = render(
+        <InputTime
+          formatTime={(date: Date) =>
+            `${date.getHours()}🎈:${date.getMinutes()}🐝`
+          }
+          toggleAriaLabel="Toggle"
+        />
+      );
+
+      const toggle = getByLabelText('Toggle');
+      // Open dropdown
+      userEvent.click(toggle);
+      const select10 = queryByText('10🎈:0🐝');
+      expect(select10).toBeTruthy();
     });
   });
 
