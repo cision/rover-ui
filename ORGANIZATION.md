@@ -2,7 +2,7 @@
 
 Currently, there is no clear, definitive organization to our RoverUI component library. Some effort has been made to do this, but it is currently half-baked. The following outline is a starting point of discussion to decide how components are organized and which pieces we should/should not migrate from tk-ui v1 to RoverUI.
 
-> **Disclaimer**: I've left higher-order components for now. We are still unsure what our best practices and patterns for creating re-usable components is and when to apply them. HOCs will be revisited later.
+> **Disclaimer**: I've left out higher-order components for now. We are still unsure what our best practices and patterns for creating re-usable components is and when to apply them. HOCs will be revisited later.
 
 #### Clarification
 
