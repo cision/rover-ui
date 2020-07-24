@@ -4,7 +4,7 @@ import { object, number } from '@storybook/addon-knobs';
 
 import ExpansionPanel from '../ExpansionPanel';
 import Icon from '../Icon';
-import Accordion from './';
+import Accordion from '.';
 import Readme from './README.md';
 
 storiesOf('Galaxies/Accordion', module)
@@ -18,7 +18,7 @@ storiesOf('Galaxies/Accordion', module)
     () => (
       <Accordion
         style={object('style', {})}
-        defaultExpandedPanel={number('defaultExpandedPanel', null)}
+        defaultExpandedPanel={number('defaultExpandedPanel', 0)}
       >
         <ExpansionPanel>
           <ExpansionPanel.Header>Header 1</ExpansionPanel.Header>
