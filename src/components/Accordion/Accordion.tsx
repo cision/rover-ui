@@ -15,7 +15,7 @@ interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
 const Accordion: FC<AccordionProps> = ({
   children,
   defaultExpandedPanel,
-  ...rest
+  ...passedProps
 }) => {
   const [expandedPanel, setExpandedPanel] = useState(defaultExpandedPanel);
 
@@ -31,7 +31,7 @@ const Accordion: FC<AccordionProps> = ({
   };
 
   return (
-    <div {...rest}>
+    <div {...passedProps}>
       {children &&
         Children.map(children, (child: ReactElement, index) =>
           cloneElement(child, {
