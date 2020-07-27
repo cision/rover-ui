@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 
 interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: any | null;
+  children?: React.ReactNode;
   defaultExpandedPanel?: number | null;
 }
 
@@ -29,17 +29,18 @@ const Accordion: FC<AccordionProps> = ({
       onToggle(event, expanded);
     }
   };
-
   return (
     <div {...passedProps}>
       {children &&
-        Children.map(children, (child: ReactElement, index) =>
-          cloneElement(child, {
-            ...child.props,
-            defaultExpanded: undefined,
-            expanded: index === expandedPanel,
-            onToggle: handleToggle(index, child.props.onToggle),
-          })
+        Children.map(
+          children as React.ReactElement[],
+          (child: ReactElement, index) =>
+            cloneElement(child, {
+              ...child.props,
+              defaultExpanded: undefined,
+              expanded: index === expandedPanel,
+              onToggle: handleToggle(index, child.props.onToggle),
+            })
         )}
     </div>
   );
