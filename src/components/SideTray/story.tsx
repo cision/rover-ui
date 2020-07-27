@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
-import SideTray from './';
+import SideTray from '.';
 import Button from '../Button';
 import Readme from './README.md';
 

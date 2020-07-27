@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import SideTray from './';
+import SideTray from '.';
 
 describe('SideTray', () => {
   it('renders', () => {
