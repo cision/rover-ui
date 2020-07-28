@@ -26,26 +26,12 @@ interface SideTrayChildProps {
 const Header: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
   <div {...props} className={`${styles.header} ${className}`} />
 );
-Header.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
 const Footer: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
   <div {...props} className={`${styles.footer} ${className}`} />
 );
-Footer.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
 const Body: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
   <div {...props} className={`${styles.body} ${className}`} />
 );
-Body.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
 
 interface SideTrayType extends React.FC<SideTrayProps> {
   Header: typeof Header;
