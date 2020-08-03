@@ -1,5 +1,6 @@
 import React, { useEffect, ReactNode, CSSProperties } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 // Rover UI dependencies
 import { parseCssSize } from '../../shared/css-utils';
@@ -13,7 +14,7 @@ interface SideTrayProps {
   direction?: string;
   height?: string | number;
   onClose: (...args) => void;
-  style?: object;
+  style?: CSSProperties;
   visible?: boolean;
   width?: string | number;
 }
@@ -24,13 +25,13 @@ interface SideTrayChildProps {
 }
 
 const Header: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
-  <div {...props} className={`${styles.header} ${className}`} />
+  <div {...props} className={classNames(styles.header, className)} />
 );
 const Footer: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
-  <div {...props} className={`${styles.footer} ${className}`} />
+  <div {...props} className={classNames(styles.footer, className)} />
 );
 const Body: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
-  <div {...props} className={`${styles.body} ${className}`} />
+  <div {...props} className={classNames(styles.body, className)} />
 );
 
 interface SideTrayType extends React.FC<SideTrayProps> {
@@ -123,7 +124,7 @@ const SideTray: SideTrayType = ({
           ...(!visible ? { transform: hideTransformStyle } : {}),
           ...style,
         }}
-        className={`${styles.SideTray} ${className}`}
+        className={classNames(styles.SideTray, className)}
       >
         <div className={styles.container}>{children}</div>
       </div>
