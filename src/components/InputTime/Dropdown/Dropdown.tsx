@@ -166,7 +166,11 @@ const Dropdown: React.FC<DropdownProps> = ({
         level="text"
         size="sm"
       >
-        <Icon fill="currentColor" name="arrow-drop-down" />
+        <Icon
+          fill="currentColor"
+          name="arrow-drop-down"
+          style={{ display: 'block' }}
+        />
       </Button>
     </EasyDropdown>
   );

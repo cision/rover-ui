@@ -1,8 +1,13 @@
 .InputTime {
+  box-sizing: border-box;
   position: relative;
   display: inline-flex;
   flex-flow: row nowrap;
   padding: 0;
+}
+
+.InputTime * {
+  box-sizing: border-box;
 }
 
 .Input.Input {
@@ -10,6 +15,8 @@
   border-width: 0;
   box-shadow: none;
   height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-bordered-sm));
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .addons {
