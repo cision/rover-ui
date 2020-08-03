@@ -12,7 +12,9 @@
 }
 
 .menu {
-  max-height: calc(var(--rvr-space-lg) * 2 * 5.5); /* --rvr-space-lg * 2 is the height of one row. */
+  --item-height: calc(var(--rvr-space-lg) * 2);
+  --visible-items-before-scrolling: 5.5;
+  max-height: calc(var(--item-height) * var(--visible-items-before-scrolling));
 }
 
 .menuItem {
