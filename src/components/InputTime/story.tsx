@@ -170,6 +170,14 @@ storiesOf('Planets/InputTime', module)
       return (
         <>
           <Wrap>
+            <Title>Required props only</Title>
+            <InteractiveInput
+              Component={InputTime}
+              onChange={action('onChange string')}
+              value={getShortTimeString(new Date().getHours(), 0)}
+            />
+          </Wrap>
+          <Wrap>
             <Title>With string times for max, min, and value</Title>
             <InteractiveInput
               Component={InputTime}
@@ -219,6 +227,15 @@ storiesOf('Planets/InputTime', module)
               onChange={action('onChange string')}
               showDropdown="none"
               step={step}
+              value={getShortTimeString(new Date().getHours(), 0)}
+            />
+          </Wrap>
+          <Wrap>
+            <Title>Disabled</Title>
+            <InteractiveInput
+              Component={InputTime}
+              disabled
+              onChange={action('onChange string')}
               value={getShortTimeString(new Date().getHours(), 0)}
             />
           </Wrap>
