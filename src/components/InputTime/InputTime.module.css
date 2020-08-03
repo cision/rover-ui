@@ -27,3 +27,7 @@
 .icon:not(:last-child) {
   margin-right: 0;
 }
+
+.disabledIcon {
+  color: var(--rvr-gray-40);
+}
