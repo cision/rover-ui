@@ -189,6 +189,18 @@ storiesOf('Planets/InputTime', module)
             />
           </Wrap>
           <Wrap>
+            <Title>
+              Override menu max-height with
+              `dropdownProps.menuProps.style.maxHeight`
+            </Title>
+            <InteractiveInput
+              Component={InputTime}
+              dropdownProps={{ menuProps: { style: { maxHeight: '115px' } } }}
+              onChange={action('onChange string')}
+              value={getShortTimeString(new Date().getHours(), 0)}
+            />
+          </Wrap>
+          <Wrap>
             <Title>With Date times for max, min, and value</Title>
             <InteractiveInput
               Component={InputTime}

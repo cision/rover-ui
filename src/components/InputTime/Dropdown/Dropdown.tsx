@@ -24,12 +24,14 @@ interface DropdownProps {
   disabled?: boolean;
   formatTime?: (date: Date) => string;
   max?: string;
+  menuProps?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   min?: string;
   onSelectMenuItem: Function;
   showDropdown?: 'click' | 'focus';
   step?: number;
   stepFrom?: string;
   toggleAriaLabel?: string;
+  toggleProps?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   value?: string;
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }

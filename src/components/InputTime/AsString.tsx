@@ -29,6 +29,7 @@ import styles from './InputTime.module.css';
 
 export interface AsStringProps
   extends Omit<InputProps, 'value' | 'max' | 'min'> {
+  dropdownProps?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   formatTime?: (date: Date) => string;
   fuzzyInputProps?: InputProps;
   max?: string;
@@ -41,6 +42,7 @@ export interface AsStringProps
 const AsString: React.FC<AsStringProps> = ({
   className = '',
   disabled,
+  dropdownProps,
   fauxDisabled,
   formatTime,
   forwardedRef,
@@ -238,6 +240,7 @@ const AsString: React.FC<AsStringProps> = ({
             stepFrom={stepFrom}
             toggleAriaLabel={toggleAriaLabel}
             value={value}
+            {...dropdownProps}
           />
         )}
       </div>
