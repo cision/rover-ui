@@ -11,6 +11,7 @@
   transition: opacity 200ms var(--rvr-easeInOutQuad);
   opacity: 0;
   display: block;
+  overflow-y: auto;
 }
 
 .entering {

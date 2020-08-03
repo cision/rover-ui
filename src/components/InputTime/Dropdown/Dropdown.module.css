@@ -6,9 +6,13 @@
   margin-right: 0;
 }
 
-.dropdownToggle {
+.toggle {
   display: block;
   padding: 3px;
+}
+
+.menu {
+  max-height: calc(var(--rvr-space-lg) * 2 * 5.5); /* --rvr-space-lg * 2 is the height of one row. */
 }
 
 .menuItem {

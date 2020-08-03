@@ -51,12 +51,15 @@ storiesOf('Star Systems/Dropdown', module)
     'Overview',
     () => (
       <Dropdown
-        className={text('className', '')}
+        className={text('className', 'm-5')}
         disabled={boolean('disabled', false)}
         isOpen={boolean('isOpen', false)}
         onToggle={action('onToggle')}
       >
         {text('children', 'Dropdown children')}
+        <Dropdown.Menu>
+          {text('Dropdown.Menu children', 'Dropdown menu children')}
+        </Dropdown.Menu>
       </Dropdown>
     ),
     {
@@ -102,6 +105,29 @@ storiesOf('Star Systems/Dropdown', module)
                 className: 'p-3',
               }}
               className="inline"
+            />
+          </div>
+          <div className="m-5">
+            <OpenableDropdown
+              buttonProps={{
+                children: "With `menuProps.style.max-height: '100px'`",
+              }}
+              className="inline"
+              menuProps={{
+                // Too lazy to type out a story example
+                /* eslint-disable @typescript-eslint/no-explicit-any, react/no-array-index-key */
+                children: new Array(20)
+                  .fill(null)
+                  .map((props: any, i: number) => (
+                    <div key={i} {...props}>
+                      Item {i + 1}
+                    </div>
+                  )),
+                /* eslint-enable @typescript-eslint/no-explicit-any, react/no-array-index-key */
+                style: {
+                  maxHeight: '100px',
+                },
+              }}
             />
           </div>
           <div className="m-5">

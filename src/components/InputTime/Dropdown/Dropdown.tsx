@@ -39,12 +39,15 @@ const Dropdown: React.FC<DropdownProps> = ({
   disabled,
   formatTime,
   max,
+  menuProps,
   min,
   onSelectMenuItem,
+  passedProps,
   showDropdown,
   step: customStep,
   stepFrom,
   toggleAriaLabel = 'Toggle time dropdown',
+  toggleProps,
   value,
 }) => {
   const menuItems = useMemo(() => {
@@ -135,21 +138,29 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <EasyDropdown
       className={classNames(className, styles.Dropdown)}
+      defaultIsOpen={false}
       disabled={disabled}
       isOpen={
-        undefined /* Suppresses typescript lint warning about missing prop */
+        /*
+          Explicit `undefined` suppresses typescript lint warning about missing prop.
+          We want to pass undefined to preserve controlled behavior
+        */
+        undefined
       }
-      onToggle={() => {}}
-      toggleProps={{
-        disabled,
-      }}
-      defaultIsOpen={false}
       menuItems={menuItems}
-      menuProps={{ position: 'bottomLeft' }}
+      menuProps={{
+        className: styles.menu,
+        position: 'bottomLeft',
+        ...menuProps,
+      }}
+      onToggle={() => {}}
+      toggleProps={toggleProps}
+      {...passedProps}
     >
       <Button
         aria-label={toggleAriaLabel}
-        className={styles.dropdownToggle}
+        className={styles.toggle}
+        disabled={disabled}
         level="text"
         size="sm"
       >

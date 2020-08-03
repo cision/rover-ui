@@ -41,6 +41,7 @@ export interface AsStringProps
 const AsString: React.FC<AsStringProps> = ({
   className = '',
   disabled,
+  fauxDisabled,
   formatTime,
   forwardedRef,
   fuzzyInputProps = {},
@@ -206,6 +207,7 @@ const AsString: React.FC<AsStringProps> = ({
       <Input
         className={styles.Input}
         disabled={disabled}
+        fauxDisabled={fauxDisabled}
         onBlur={handleBlurFuzzyValue}
         onChange={handleChangeFuzzyValue}
         ref={localRef}
@@ -214,7 +216,9 @@ const AsString: React.FC<AsStringProps> = ({
       />
       <div className={styles.addons}>
         <Icon
-          className={styles.icon}
+          className={classNames(styles.icon, {
+            [styles.disabledIcon]: disabled || fauxDisabled,
+          })}
           fill="currentColor"
           height={16}
           name="clock"
@@ -223,8 +227,8 @@ const AsString: React.FC<AsStringProps> = ({
         />
         {showDropdown && (
           <Dropdown
-            className={styles.addons}
-            disabled={disabled}
+            className={styles.dropdown}
+            disabled={disabled || fauxDisabled}
             formatTime={formatTime}
             max={max}
             min={min}
