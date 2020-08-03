@@ -2,17 +2,29 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import Pill from '../Pill';
-import EasyPill from './';
+import EasyPill from '.';
 
 describe('EasyPill', () => {
+  const defaultActions = [
+    {
+      label: 'myAction',
+      onClick: () => {},
+    },
+  ];
   it('renders', () => {
-    shallow(<EasyPill onDelete={() => {}}>EasyPill</EasyPill>);
+    shallow(
+      <EasyPill actions={defaultActions} onDelete={() => {}}>
+        EasyPill
+      </EasyPill>
+    );
   });
 
   describe('with children', () => {
     it('renders its children', () => {
       const wrapper = mount(
-        <EasyPill onDelete={() => {}}>EasyPill 1</EasyPill>
+        <EasyPill actions={defaultActions} onDelete={() => {}}>
+          EasyPill 1
+        </EasyPill>
       );
 
       expect(wrapper.children()).toHaveLength(1);
