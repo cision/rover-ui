@@ -1688,10 +1688,15 @@ a .Avatar_Avatar__2_adr {
 }
 
 .InputTime_InputTime__10Fgl {
+  box-sizing: border-box;
   position: relative;
   display: inline-flex;
   flex-flow: row nowrap;
   padding: 0;
+}
+
+.InputTime_InputTime__10Fgl * {
+  box-sizing: border-box;
 }
 
 .InputTime_Input__3Ut5i.InputTime_Input__3Ut5i {
@@ -1699,6 +1704,8 @@ a .Avatar_Avatar__2_adr {
   border-width: 0;
   box-shadow: none;
   height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-bordered-sm));
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .InputTime_addons__1mbHk {
@@ -1722,4 +1729,4 @@ a .Avatar_Avatar__2_adr {
 }
 
 
-/*# sourceMappingURL=main.7fceb088.chunk.css.map*/
+/*# sourceMappingURL=main.eb79e08c.chunk.css.map*/
