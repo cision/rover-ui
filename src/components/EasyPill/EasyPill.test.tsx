@@ -5,26 +5,14 @@ import Pill from '../Pill';
 import EasyPill from '.';
 
 describe('EasyPill', () => {
-  const defaultActions = [
-    {
-      label: 'myAction',
-      onClick: () => {},
-    },
-  ];
   it('renders', () => {
-    shallow(
-      <EasyPill actions={defaultActions} onDelete={() => {}}>
-        EasyPill
-      </EasyPill>
-    );
+    shallow(<EasyPill onDelete={() => {}}>EasyPill</EasyPill>);
   });
 
   describe('with children', () => {
     it('renders its children', () => {
       const wrapper = mount(
-        <EasyPill actions={defaultActions} onDelete={() => {}}>
-          EasyPill 1
-        </EasyPill>
+        <EasyPill onDelete={() => {}}>EasyPill 1</EasyPill>
       );
 
       expect(wrapper.children()).toHaveLength(1);

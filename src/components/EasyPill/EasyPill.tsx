@@ -14,7 +14,7 @@ type EasyPillActions = {
 };
 
 interface EasyPillProps {
-  actions: EasyPillActions[];
+  actions?: EasyPillActions[];
   checked?: boolean;
   children: React.ReactNode;
   onClick?: () => void;
