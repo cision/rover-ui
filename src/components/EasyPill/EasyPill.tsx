@@ -4,20 +4,19 @@ import Media from '../Media';
 import EasyDropdown from '../EasyDropdown';
 import Icon from '../Icon';
 import Pill from '../Pill';
+import { PillProps } from '../Pill/Pill';
 import styles from './EasyPill.module.css';
 
 type EasyPillActions = {
   children?: React.ReactNode;
   label: string;
-  onClick: () => void;
+  onClick: Function;
   group?: string;
 };
 
-interface EasyPillProps {
+interface EasyPillProps extends PillProps {
   actions?: EasyPillActions[];
-  checked?: boolean;
   children: React.ReactNode;
-  onClick?: () => void;
   onDelete?: (...args) => void;
 }
 

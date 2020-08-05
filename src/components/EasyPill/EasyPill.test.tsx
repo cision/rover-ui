@@ -35,7 +35,6 @@ describe('EasyPill', () => {
                 onClick: () => {},
               },
             ]}
-            onClick={() => {}}
           >
             EasyPill 1
           </EasyPill>
@@ -62,7 +61,6 @@ describe('EasyPill', () => {
               },
             ]}
             checked
-            onClick={() => {}}
           >
             EasyPill 1
           </EasyPill>
