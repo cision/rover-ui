@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 
 import Pill from '../Pill';
-import EasyPill from './';
+import EasyPill from '.';
 
 describe('EasyPill', () => {
   it('renders', () => {
@@ -35,7 +35,6 @@ describe('EasyPill', () => {
                 onClick: () => {},
               },
             ]}
-            onClick={() => {}}
           >
             EasyPill 1
           </EasyPill>
@@ -62,7 +61,6 @@ describe('EasyPill', () => {
               },
             ]}
             checked
-            onClick={() => {}}
           >
             EasyPill 1
           </EasyPill>

@@ -1,13 +1,35 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Media from '../Media';
 import EasyDropdown from '../EasyDropdown';
 import Icon from '../Icon';
 import Pill from '../Pill';
+import { PillProps } from '../Pill/Pill';
+import styles from './EasyPill.module.css';
 
-const EasyPillDropdown = ({ actions, onDelete }) => {
-  if (!actions.length) {
+type EasyPillActions = {
+  children?: React.ReactNode;
+  label: string;
+  onClick: Function;
+  group?: string;
+};
+
+interface EasyPillProps extends PillProps {
+  actions?: EasyPillActions[];
+  children: React.ReactNode;
+  onDelete?: (...args) => void;
+}
+
+interface EasyPillDropdownProps {
+  actions: EasyPillActions[];
+  onDelete?: (...args) => void;
+}
+
+const EasyPillDropdown: React.FC<EasyPillDropdownProps> = ({
+  actions,
+  onDelete = () => {},
+}) => {
+  if (!actions?.length) {
     return null;
   }
 
@@ -19,7 +41,7 @@ const EasyPillDropdown = ({ actions, onDelete }) => {
       label: 'Delete',
       children: (
         <Media>
-          <Media.Item mr="md" alignSelf="center">
+          <Media.Item className={styles.dropdownDeleteIcon}>
             <Icon
               height={16}
               name="trash"
@@ -40,6 +62,11 @@ const EasyPillDropdown = ({ actions, onDelete }) => {
       menuProps={{ position: 'bottomLeft' }}
       menuItems={menuItems}
       defaultIsOpen={false}
+      disabled={false}
+      isOpen={false}
+      onToggle={() => {}}
+      toggleProps={{}}
+      className=""
     >
       {/* The onClick action is handled by EasyDropdown */}
       <div role="button" tabIndex={0}>
@@ -49,19 +76,24 @@ const EasyPillDropdown = ({ actions, onDelete }) => {
   );
 };
 
-export const EasyPill = ({ actions, children, onDelete, ...passedProps }) => {
+export const EasyPill: React.FC<EasyPillProps> = ({
+  actions,
+  children,
+  onDelete,
+  ...passedProps
+}) => {
   return (
     <Pill {...passedProps}>
       {children}
       {passedProps.checked &&
-        (actions.length ? (
-          <Pill.Addon onClick={e => e.stopPropagation()}>
+        (actions?.length ? (
+          <Pill.Addon onClick={(e) => e.stopPropagation()}>
             <EasyPillDropdown actions={actions} onDelete={onDelete} />
           </Pill.Addon>
         ) : (
           onDelete && (
             <Pill.Addon
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation();
                 onDelete(e);
               }}
@@ -72,34 +104,6 @@ export const EasyPill = ({ actions, children, onDelete, ...passedProps }) => {
         ))}
     </Pill>
   );
-};
-
-EasyPill.propTypes = {
-  actions: PropTypes.arrayOf(
-    PropTypes.shape({
-      children: PropTypes.node,
-      label: PropTypes.string.isRequired,
-      onClick: PropTypes.func.isRequired,
-    })
-  ),
-  checked: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  onDelete: PropTypes.func,
-};
-
-EasyPill.defaultProps = {
-  actions: [],
-  checked: false,
-  onDelete: null,
-};
-
-EasyPillDropdown.propTypes = {
-  actions: EasyPill.propTypes.actions.isRequired,
-  onDelete: EasyPill.propTypes.onDelete,
-};
-
-EasyPillDropdown.defaultProps = {
-  onDelete: EasyPill.defaultProps.onDelete,
 };
 
 export default EasyPill;
