@@ -8,10 +8,12 @@ import { parseCssSize } from '../../shared/css-utils';
 // This component's dependencies
 import styles from './SideTray.module.css';
 
+type SideTrayDirection = 't' | 'b' | 'r' | 'l';
+
 interface SideTrayProps {
   children: ReactNode;
   className?: string;
-  direction?: string;
+  direction?: SideTrayDirection;
   height?: string | number;
   onClose: (...args) => void;
   style?: CSSProperties;
