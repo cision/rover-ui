@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, ReactNode, CSSProperties } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 // Rover UI dependencies
 import { parseCssSize } from '../../shared/css-utils';
@@ -7,14 +8,49 @@ import { parseCssSize } from '../../shared/css-utils';
 // This component's dependencies
 import styles from './SideTray.module.css';
 
-const SideTray = ({
+type SideTrayDirection = 't' | 'b' | 'r' | 'l';
+
+interface SideTrayProps {
+  children: ReactNode;
+  className?: string;
+  direction?: SideTrayDirection;
+  height?: string | number;
+  onClose: (...args) => void;
+  style?: CSSProperties;
+  visible?: boolean;
+  width?: string | number;
+}
+
+interface SideTrayChildProps {
+  children: ReactNode;
+  className?: string;
+}
+
+const Header: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
+  <div {...props} className={classNames(styles.header, className)} />
+);
+const Footer: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
+  <div {...props} className={classNames(styles.footer, className)} />
+);
+const Body: React.FC<SideTrayChildProps> = ({ className = '', ...props }) => (
+  <div {...props} className={classNames(styles.body, className)} />
+);
+
+interface SideTrayType extends React.FC<SideTrayProps> {
+  Header: typeof Header;
+  Footer: typeof Footer;
+  Body: typeof Body;
+}
+
+const SideTray: SideTrayType = ({
   children,
-  className,
-  direction,
-  height,
+  className = '',
+  direction = 'r',
+  height = '100vh',
   onClose,
-  visible,
-  width,
+  style = {},
+  visible = false,
+  width = '400px',
   ...passedProps
 }) => {
   // Close tray when the user hits "Escape"
@@ -52,7 +88,7 @@ const SideTray = ({
   const parsedWidth = parseCssSize({ size: width });
   let hideTransformStyle;
 
-  const sideTrayStyles = {
+  const sideTrayStyles: CSSProperties = {
     bottom: 0,
     height: `${parsedHeight.size}${parsedHeight.unit}`,
     left: 0,
@@ -82,20 +118,20 @@ const SideTray = ({
   }
 
   return (
-    <>
+    <React.Fragment>
       <div
         {...passedProps}
         style={{
           ...sideTrayStyles,
           ...(!visible ? { transform: hideTransformStyle } : {}),
-          ...passedProps.style,
+          ...style,
         }}
-        className={`${styles.SideTray} ${className}`}
+        className={classNames(styles.SideTray, className)}
       >
         <div className={styles.container}>{children}</div>
       </div>
       {clickOffBackdrop}
-    </>
+    </React.Fragment>
   );
 };
 
@@ -109,42 +145,6 @@ SideTray.propTypes = {
   visible: PropTypes.bool,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
-
-SideTray.defaultProps = {
-  className: '',
-  direction: 'r',
-  height: '100vh',
-  style: {},
-  visible: false,
-  width: '400px',
-};
-
-const Header = ({ className, ...props }) => (
-  <div {...props} className={`${styles.header} ${className}`} />
-);
-Header.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-Header.defaultProps = { className: '' };
-
-const Footer = ({ className, ...props }) => (
-  <div {...props} className={`${styles.footer} ${className}`} />
-);
-Footer.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-Footer.defaultProps = { className: '' };
-
-const Body = ({ className, ...props }) => (
-  <div {...props} className={`${styles.body} ${className}`} />
-);
-Body.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-Body.defaultProps = { className: '' };
 
 SideTray.Header = Header;
 SideTray.Footer = Footer;
