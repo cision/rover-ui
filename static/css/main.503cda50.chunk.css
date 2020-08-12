@@ -1289,6 +1289,11 @@ a .Avatar_Avatar__2_adr {
   border-top-width: 0;
 }
 
+.EasyPill_dropdownDeleteIcon__3X2aS {
+  align-self: center;
+  margin-right: var(--rvr-space-md);
+}
+
 .SideTray_SideTray___aQm6 {
   background-color: var(--rvr-white);
   position: fixed;
@@ -1729,4 +1734,4 @@ a .Avatar_Avatar__2_adr {
 }
 
 
-/*# sourceMappingURL=main.eb79e08c.chunk.css.map*/
+/*# sourceMappingURL=main.503cda50.chunk.css.map*/
