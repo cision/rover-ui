@@ -148,6 +148,17 @@ export const AsDate: React.FC<AsStringProps> = ({
       nextDate.setSeconds(0);
       nextDate.setMilliseconds(0);
 
+      /*
+        When the user is in a different time zone than specified by
+        `timeZoneOffset`, the valid options for single date will appear to be on
+        different calendar dates.
+
+        E.g. For a user in UTC, India's "04:30" and "05:30" options will be on
+        different dates.
+
+        Since the options never span more than 24 hours, this cheesy logic
+        works to force the selection into the correct date.
+      */
       if (nextDate > maxDate) {
         nextDate.setDate(nextDate.getDate() - 1);
       }
