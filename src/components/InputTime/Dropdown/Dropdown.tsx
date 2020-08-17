@@ -87,7 +87,12 @@ const Dropdown: React.FC<DropdownProps> = ({
       (stepFrom && getDateTimeFromShortTimeString(stepFrom)) ||
       getStartOfDay(new Date());
     const end = getEndOfDay(new Date());
-    const maxAttempts = (SECONDS_PER_HOUR + SECONDS_PER_DAY) * 10; // 10 minute incremenents, buffer of an hour for daylight savings, plus 1 for start/end point.
+
+    const maxAttempts =
+      // 1 day + 1 hour buffer for daylight savings, divided into 10-minute increments
+      // because that's the shortest step the dropdown supports
+      (SECONDS_PER_HOUR + SECONDS_PER_DAY) / (SECONDS_PER_MINUTE * 10);
+
     const maxDate = max ? getDateTimeFromShortTimeString(max) : undefined;
     const minDate = min ? getDateTimeFromShortTimeString(min) : undefined;
     let attempts = 0;
