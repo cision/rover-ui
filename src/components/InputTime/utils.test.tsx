@@ -2,13 +2,14 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import {
-  handleDispatchNativeInputChange,
-  guessTimeFromString,
-  getStartOfDay,
-  getShortTimeString,
-  getLocaleTimeStringFromShortTimeString,
-  getEndOfDay,
   getDateTimeFromShortTimeString,
+  getEndOfDay,
+  getInputTimeMinMaxValidationMessagePolyfill,
+  getLocaleTimeStringFromShortTimeString,
+  getShortTimeString,
+  getStartOfDay,
+  guessTimeFromString,
+  handleDispatchNativeInputChange,
 } from './utils';
 
 const getDayOfMonthFormat = ({ timeZoneName = 'America/Chicago' } = {}) => {
@@ -447,5 +448,78 @@ describe('guessTimeFromString', () => {
         });
       }
     );
+  });
+});
+
+describe('getInputTimeMinMaxValidationMessagePolyfill', () => {
+  it('handles validation with `max` and `min`', () => {
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '20:00',
+        min: '10:00',
+        value: '15:00',
+      })
+    ).toBeFalsy();
+
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '20:00',
+        min: '10:00',
+        value: '09:59',
+      })
+    ).toBeTruthy();
+
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '20:00',
+        min: '10:00',
+        value: '20:01',
+      })
+    ).toBeTruthy();
+  });
+
+  it('handles validation with `max` only', () => {
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '10:00',
+        value: '10:00',
+      })
+    ).toBeFalsy();
+
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '10:00',
+        value: '10:01',
+      })
+    ).toBeTruthy();
+  });
+
+  it('handles validation with `min` only', () => {
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        min: '10:00',
+        value: '10:00',
+      })
+    ).toBeFalsy();
+
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        min: '10:00',
+        value: '09:59',
+      })
+    ).toBeTruthy();
+  });
+
+  it('handles validation without a `value`', () => {
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '10:00',
+        min: '10:00',
+      })
+    ).toBeFalsy();
+  });
+
+  it('handles validation without anything', () => {
+    expect(getInputTimeMinMaxValidationMessagePolyfill({})).toBeFalsy();
   });
 });

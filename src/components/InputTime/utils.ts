@@ -181,3 +181,34 @@ export const guessTimeFromString = (string: string) => {
   const time = getShortTimeString({ hours, minutes });
   return hasValidUserInput ? { time, hours, minutes } : {};
 };
+
+const getTotalMinutes = (timeString?: string) => {
+  const [hours, minutes] = (timeString || ':').split(':');
+  const totalMinutes = parseInt(hours, 10) * 60 + parseInt(minutes, 10);
+  return !Number.isNaN(totalMinutes) ? totalMinutes : undefined;
+};
+
+export const getInputTimeMinMaxValidationMessagePolyfill = ({
+  max,
+  min,
+  value,
+}: {
+  max?: string;
+  min?: string;
+  value?: string;
+}) => {
+  let validationMessage = '';
+  const totalMinutes = getTotalMinutes(value || ':');
+  const maxTotalMinutes = getTotalMinutes(max);
+  const minTotalMinutes = getTotalMinutes(min);
+
+  if (totalMinutes && maxTotalMinutes && totalMinutes > maxTotalMinutes) {
+    validationMessage = `Value must be ${max} or earlier.`;
+  }
+
+  if (totalMinutes && minTotalMinutes && totalMinutes < minTotalMinutes) {
+    validationMessage = `Value must be ${min} or later.`;
+  }
+
+  return validationMessage;
+};
