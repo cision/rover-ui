@@ -212,6 +212,17 @@ storiesOf('Planets/InputTime', module)
             />
           </Wrap>
           <Wrap>
+            <Title>With a custom `formatTime` function</Title>
+            <InteractiveInput
+              Component={InputTime}
+              formatTime={(date: Date) =>
+                `${date.getHours()}🎈:${date.getMinutes()}🐝`
+              }
+              onChange={action('onChange date')}
+              value={getShortTimeString({ hours: new Date().getHours() })}
+            />
+          </Wrap>
+          <Wrap>
             <Title>
               With a custom `formatTime` function and a `timezoneOffset` prop
             </Title>
