@@ -99,32 +99,32 @@ export const getShortTimeString = (args?: GetShortTimeStringArgs) => {
   }${minutes}`;
 };
 
-export const getDateTimeFromShortTimeString = (
-  value: string,
-  options?: DateOptions
-) => {
-  const { timeZoneOffset } = options || {};
+interface GetDateTimeFromShortTimeStringArgs extends DateOptions {
+  time: string;
+  date?: Date;
+}
+
+export const getDateTimeFromShortTimeString = ({
+  date,
+  timeZoneOffset,
+  time,
+}: GetDateTimeFromShortTimeStringArgs) => {
   const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
-  const date = new Date();
-  const [hours, minutes] = value.split(':');
-  date.setMinutes(date.getMinutes() + tzOffset);
-  date.setHours(parseInt(hours, 10));
-  date.setMinutes(parseInt(minutes, 10) - tzOffset);
-  date.setSeconds(0);
-  date.setMilliseconds(0);
-  return date;
+  const nextDate = date !== undefined ? new Date(date) : new Date();
+  const [hours, minutes] = time.split(':');
+  nextDate.setMinutes(nextDate.getMinutes() + tzOffset);
+  nextDate.setHours(parseInt(hours, 10));
+  nextDate.setMinutes(parseInt(minutes, 10) - tzOffset);
+  nextDate.setSeconds(0);
+  nextDate.setMilliseconds(0);
+  return nextDate;
 };
 
-export const getLocaleTimeStringFromShortTimeString = (
-  value: string,
+export const getLocaleTimeStringFromDate = (
+  date: Date,
   options?: TimeStringOptions
 ) => {
-  const { formatTime, locale, timeZoneOffset, ...passedOptions } =
-    options || {};
-
-  const date = getDateTimeFromShortTimeString(value, {
-    timeZoneOffset,
-  });
+  const { formatTime, locale, ...passedOptions } = options || {};
 
   return typeof formatTime === 'function'
     ? formatTime(date)
@@ -133,6 +133,20 @@ export const getLocaleTimeStringFromShortTimeString = (
         minute: '2-digit',
         ...passedOptions,
       });
+};
+
+export const getLocaleTimeStringFromShortTimeString = (
+  value: string,
+  options?: TimeStringOptions
+) => {
+  const { timeZoneOffset, ...passedOptions } = options || {};
+
+  const date = getDateTimeFromShortTimeString({
+    time: value,
+    timeZoneOffset,
+  });
+
+  return getLocaleTimeStringFromDate(date, passedOptions);
 };
 
 export const guessTimeFromString = (string: string) => {

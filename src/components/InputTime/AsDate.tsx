@@ -69,14 +69,20 @@ export const AsDate: React.FC<AsStringProps> = ({
   const max = useMemo(() => {
     const maxDate = new Date(maxDateString || '');
     const valueDate = new Date(valueDateString || '');
+    const endOfDay = getEndOfDay(valueDate, { timeZoneOffset });
     setInvalidMax(false);
 
     if (
       Number.isNaN(maxDate.valueOf()) ||
       Number.isNaN(valueDate.valueOf()) ||
-      maxDate > getEndOfDay(valueDate, { timeZoneOffset })
+      maxDate > endOfDay
     ) {
-      return '';
+      const endOfDayTime = getShortTimeString({
+        date: endOfDay,
+        timeZoneOffset,
+      });
+
+      return endOfDayTime;
     }
 
     if (maxDate < getStartOfDay(valueDate, { timeZoneOffset })) {
@@ -94,14 +100,20 @@ export const AsDate: React.FC<AsStringProps> = ({
   const min = useMemo(() => {
     const minDate = new Date(minDateString || '');
     const valueDate = new Date(valueDateString || '');
+    const startOfDay = getStartOfDay(valueDate, { timeZoneOffset });
     setInvalidMin(false);
 
     if (
       Number.isNaN(minDate.valueOf()) ||
       Number.isNaN(valueDate.valueOf()) ||
-      minDate < getStartOfDay(valueDate, { timeZoneOffset })
+      minDate < startOfDay
     ) {
-      return '';
+      const startOfDayTime = getShortTimeString({
+        date: startOfDay,
+        timeZoneOffset,
+      });
+
+      return startOfDayTime;
     }
 
     if (minDate > getEndOfDay(valueDate, { timeZoneOffset })) {
@@ -131,41 +143,15 @@ export const AsDate: React.FC<AsStringProps> = ({
       return;
     }
 
-    let nextDate = new Date(valueDateString || '');
-
-    nextDate = Number.isNaN(nextDate.valueOf()) ? new Date() : nextDate;
+    let date = new Date(valueDateString || '');
+    date = Number.isNaN(date.valueOf()) ? new Date() : date;
 
     if (e.target.value) {
-      const maxDate = new Date(maxDateString || '');
-      const minDate = new Date(minDateString || '');
-
-      const selectedTimeOfDay = getDateTimeFromShortTimeString(e.target.value, {
+      const nextDate = getDateTimeFromShortTimeString({
+        date,
+        time: e.target.value,
         timeZoneOffset,
       });
-
-      nextDate.setHours(selectedTimeOfDay.getHours());
-      nextDate.setMinutes(selectedTimeOfDay.getMinutes());
-      nextDate.setSeconds(0);
-      nextDate.setMilliseconds(0);
-
-      /*
-        When the user is in a different time zone than specified by
-        `timeZoneOffset`, the valid options for single date will appear to be on
-        different calendar dates.
-
-        E.g. For a user in UTC, India's "04:30" and "05:30" options will be on
-        different dates.
-
-        Since the options never span more than 24 hours, this cheesy logic
-        works to force the selection into the correct date.
-      */
-      if (nextDate > maxDate) {
-        nextDate.setDate(nextDate.getDate() - 1);
-      }
-
-      if (nextDate < minDate) {
-        nextDate.setDate(nextDate.getDate() + 1);
-      }
 
       const nextDateString = nextDate.toISOString();
 

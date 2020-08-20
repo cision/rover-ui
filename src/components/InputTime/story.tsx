@@ -236,11 +236,13 @@ storiesOf('Planets/InputTime', module)
                   timeZoneName: 'long',
                 }).format(date);
               }}
+              max={text('max', defaultMaxDate, 'Using dates')}
+              min={text('min', defaultMinDate, 'Using dates')}
               onChange={action('onChange date')}
               step={3600}
               style={{ width: '20em' }}
               timeZoneOffset={330}
-              value="12:00"
+              value={defaultValueDate}
             />
           </Wrap>
           <Wrap>

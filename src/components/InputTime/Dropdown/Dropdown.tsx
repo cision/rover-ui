@@ -86,7 +86,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     }
 
     const current = stepFrom
-      ? getDateTimeFromShortTimeString(stepFrom, { timeZoneOffset })
+      ? getDateTimeFromShortTimeString({ time: stepFrom, timeZoneOffset })
       : getStartOfDay(new Date(), { timeZoneOffset });
 
     const end = getEndOfDay(new Date(), { timeZoneOffset });
@@ -97,11 +97,11 @@ const Dropdown: React.FC<DropdownProps> = ({
       (SECONDS_PER_HOUR + SECONDS_PER_DAY) / (SECONDS_PER_MINUTE * 10);
 
     const maxDate = max
-      ? getDateTimeFromShortTimeString(max, { timeZoneOffset })
+      ? getDateTimeFromShortTimeString({ time: max, timeZoneOffset })
       : undefined;
 
     const minDate = min
-      ? getDateTimeFromShortTimeString(min, { timeZoneOffset })
+      ? getDateTimeFromShortTimeString({ time: min, timeZoneOffset })
       : undefined;
 
     const options: {

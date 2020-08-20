@@ -360,19 +360,20 @@ describe('getDateTimeFromShortTimeString', () => {
   it('turns hour and minute into a local date', () => {
     let date: Date;
 
-    date = getDateTimeFromShortTimeString('12:30');
+    date = getDateTimeFromShortTimeString({ time: '12:30' });
     expect(date.toLocaleTimeString('en-US')).toEqual('12:30:00 PM');
 
-    date = getDateTimeFromShortTimeString('00:30');
+    date = getDateTimeFromShortTimeString({ time: '00:30' });
     expect(date.toLocaleTimeString('en-US')).toEqual('12:30:00 AM');
 
-    date = getDateTimeFromShortTimeString('23:59');
+    date = getDateTimeFromShortTimeString({ time: '23:59' });
     expect(date.toLocaleTimeString('en-US')).toEqual('11:59:00 PM');
   });
 
   describe('with optional `timeZoneOffset`', () => {
     it('works for different time zones', () => {
-      const dateCDT = getDateTimeFromShortTimeString('12:30', {
+      const dateCDT = getDateTimeFromShortTimeString({
+        time: '12:30',
         timeZoneOffset: -300,
       });
 
@@ -381,7 +382,8 @@ describe('getDateTimeFromShortTimeString', () => {
         timeZoneName: 'America/Chicago',
       });
 
-      const dateIST = getDateTimeFromShortTimeString('12:30', {
+      const dateIST = getDateTimeFromShortTimeString({
+        time: '12:30',
         timeZoneOffset: +330,
       });
 
