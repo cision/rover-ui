@@ -146,10 +146,10 @@ describe('InputTime', () => {
     it('uses the custom formatter for the dropdown options', () => {
       const { getByLabelText, queryByText } = render(
         <InputTime
+          dropdownProps={{ toggleProps: { 'aria-label': 'Toggle' } }}
           formatTime={(date: Date) =>
             `${date.getHours()}🎈:${date.getMinutes()}🐝`
           }
-          toggleAriaLabel="Toggle"
         />
       );
 
@@ -173,7 +173,7 @@ describe('InputTime', () => {
           fuzzyInputProps={{ 'aria-label': 'time input' }}
           onChange={handleChange}
           value="11:00"
-          toggleAriaLabel="Toggle"
+          dropdownProps={{ toggleProps: { 'aria-label': 'Toggle' } }}
         />
       );
 
@@ -202,7 +202,7 @@ describe('InputTime', () => {
           <InputTime
             fuzzyInputProps={{ 'aria-label': 'time input' }}
             showDropdown={null}
-            toggleAriaLabel="Toggle"
+            dropdownProps={{ toggleProps: { 'aria-label': 'Toggle' } }}
           />
         );
 
@@ -213,7 +213,7 @@ describe('InputTime', () => {
           <InputTime
             fuzzyInputProps={{ 'aria-label': 'time input' }}
             showDropdown="none"
-            toggleAriaLabel="Toggle"
+            dropdownProps={{ toggleProps: { 'aria-label': 'Toggle' } }}
           />
         );
 
@@ -225,7 +225,7 @@ describe('InputTime', () => {
           <InputTime
             fuzzyInputProps={{ 'aria-label': 'time input' }}
             showDropdown="click"
-            toggleAriaLabel="Toggle"
+            dropdownProps={{ toggleProps: { 'aria-label': 'Toggle' } }}
           />
         );
 
@@ -235,7 +235,7 @@ describe('InputTime', () => {
         rerender(
           <InputTime
             fuzzyInputProps={{ 'aria-label': 'time input' }}
-            toggleAriaLabel="Toggle"
+            dropdownProps={{ toggleProps: { 'aria-label': 'Toggle' } }}
           />
         );
 

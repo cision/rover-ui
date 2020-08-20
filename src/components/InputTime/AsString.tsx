@@ -35,7 +35,6 @@ export interface AsStringProps
   min?: string;
   showDropdown?: 'click' | 'none' | null;
   timeZoneOffset?: number | null;
-  toggleAriaLabel?: string;
   value?: string;
 }
 
@@ -53,7 +52,6 @@ const AsString: React.FC<AsStringProps> = ({
   showDropdown: customShowDropdown = 'click',
   step: customStep,
   timeZoneOffset,
-  toggleAriaLabel,
   value: valueOrUndefined,
   ...passedProps
 }) => {
@@ -248,7 +246,6 @@ const AsString: React.FC<AsStringProps> = ({
             step={dropdownStep}
             stepFrom={stepFrom}
             timeZoneOffset={timeZoneOffset}
-            toggleAriaLabel={toggleAriaLabel}
             value={value}
             {...dropdownProps}
           />

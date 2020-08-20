@@ -16,7 +16,7 @@ const EasyDropdown = ({
   menuItems,
   menuProps,
   onToggle: parentOnToggle,
-  toggleProps,
+  toggleProps = {},
   ...passedProps
 }) => {
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(defaultIsOpen);
@@ -74,7 +74,7 @@ const EasyDropdown = ({
           ...toggleProps,
           className: classNames(
             child && child.props && child.props.className,
-            toggleProps.className
+            toggleProps && toggleProps.className
           ),
           'data-is-open': isOpen,
           onClick: (event) => {

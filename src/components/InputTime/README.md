@@ -12,6 +12,11 @@ Validation of times in HTML is handled for time-of-day only, and this component 
 
 On blur, the user's fuzzy input is replaced with a locale-based time string.
 
+For advanced customization, the component passes these arbitrary props objects down to child components:
+
+- `dropdownProps` is passed to the nested `EasyDropdown` time picker.
+- `fuzzyInputProps` is passed down to the child `Input` that's exposed to the user.
+
 ### Date vs. Time mode
 
 You can pass `max`, `min`, and `value` as either time strings `"14:00"` or ISO date strings `2020-06-30T14:30:00.000Z"`.
@@ -21,8 +26,8 @@ The component will disabled the input if the entire selected date is outside the
 
 ### Coming soon
 
-- Add an optional dropdown that lets the user select a time quickly
-  - Needs to center selection on current
+- For the optional time picker dropdown
+  - Should center selection on current
   - Should have keyboard support (up arrow / down arrow for iterating through menu items)
   - Dropdown should have "focus" mode, where the dropdown is always visible when the
     time field is focused

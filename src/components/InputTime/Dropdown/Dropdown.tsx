@@ -31,8 +31,6 @@ interface DropdownProps {
   step?: number;
   stepFrom?: string;
   timeZoneOffset?: number | null;
-  toggleAriaLabel?: string;
-  toggleProps?: Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   value?: string;
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
@@ -45,14 +43,13 @@ const Dropdown: React.FC<DropdownProps> = ({
   menuProps,
   min,
   onSelectMenuItem,
-  passedProps,
   showDropdown,
   step: customStep,
   stepFrom,
   timeZoneOffset,
-  toggleAriaLabel = 'Toggle time dropdown',
   toggleProps,
   value,
+  ...passedProps
 }) => {
   const menuItems = useMemo(() => {
     if (!showDropdown) {
@@ -171,11 +168,13 @@ const Dropdown: React.FC<DropdownProps> = ({
         ...menuProps,
       }}
       onToggle={() => {}}
-      toggleProps={toggleProps}
+      toggleProps={{
+        ...toggleProps,
+        'arial-label': toggleProps?.['aria-label'] || 'Toggle time dropdown',
+      }}
       {...passedProps}
     >
       <Button
-        aria-label={toggleAriaLabel}
         className={styles.toggle}
         disabled={disabled}
         level="text"

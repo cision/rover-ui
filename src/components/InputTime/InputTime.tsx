@@ -12,7 +12,7 @@ Desired features:
    time field is focused
 */
 
-export const InputTime: React.FC<AsStringProps> = ({
+const InputTime: React.FC<AsStringProps> = ({
   max,
   min,
   value,
