@@ -6,6 +6,15 @@ const nullSafeMatch = (string: string, regExp: RegExp) => {
   return { content, index, endIndex };
 };
 
+type getDateOptions = {
+  timeZoneOffset?: number | null;
+};
+
+interface GetTimeStringOptions extends Intl.DateTimeFormatOptions {
+  formatTime?: Function;
+  locale?: string;
+}
+
 export const handleDispatchNativeInputChange = (
   element: HTMLInputElement,
   nextValue: string | Date
@@ -28,20 +37,35 @@ export const handleDispatchNativeInputChange = (
   }
 };
 
-export const getEndOfDay = (date: Date) => {
+// Without a timezone offset, use local dates.
+// With a time zone offset, compensate for local time and desired time zones.
+const getTimeZoneOffsetFromLocal = (targetMinusUtc?: number | null) => {
+  if (typeof targetMinusUtc !== 'number') {
+    return 0;
+  }
+
+  const utcMinusLocal = new Date().getTimezoneOffset();
+  return targetMinusUtc + utcMinusLocal;
+};
+
+export const getEndOfDay = (date: Date, options?: getDateOptions) => {
+  const { timeZoneOffset } = options || {};
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
   const endOfDay = new Date(date);
   endOfDay.setDate(endOfDay.getDate() + 1);
   endOfDay.setHours(0);
-  endOfDay.setMinutes(0);
+  endOfDay.setMinutes(0 - tzOffset);
   endOfDay.setSeconds(0);
   endOfDay.setMilliseconds(-1);
   return endOfDay;
 };
 
-export const getStartOfDay = (date: Date) => {
+export const getStartOfDay = (date: Date, options?: getDateOptions) => {
+  const { timeZoneOffset } = options || {};
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
   const startOfDay = new Date(date);
   startOfDay.setHours(0);
-  startOfDay.setMinutes(0);
+  startOfDay.setMinutes(0 - tzOffset);
   startOfDay.setSeconds(0);
   startOfDay.setMilliseconds(0);
   return startOfDay;
@@ -52,11 +76,16 @@ export const getShortTimeString = (hours: number, minutes: number) =>
     minutes || 0
   }`;
 
-export const getDateTimeFromShortTimeString = (value: string) => {
+export const getDateTimeFromShortTimeString = (
+  value: string,
+  options?: getDateOptions
+) => {
+  const { timeZoneOffset } = options || {};
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
   const date = new Date();
   const [hours, minutes] = value.split(':');
   date.setHours(parseInt(hours, 10));
-  date.setMinutes(parseInt(minutes, 10));
+  date.setMinutes(parseInt(minutes, 10) - tzOffset);
   date.setSeconds(0);
   date.setMilliseconds(0);
   return date;
@@ -64,14 +93,18 @@ export const getDateTimeFromShortTimeString = (value: string) => {
 
 export const getLocaleTimeStringFromShortTimeString = (
   value: string,
-  { formatTime }
-) =>
-  typeof formatTime === 'function'
+  options?: GetTimeStringOptions
+) => {
+  const { formatTime, locale, ...passedOptions } = options || {};
+
+  return typeof formatTime === 'function'
     ? formatTime(getDateTimeFromShortTimeString(value))
-    : getDateTimeFromShortTimeString(value).toLocaleTimeString([], {
+    : getDateTimeFromShortTimeString(value).toLocaleTimeString(locale, {
         hour: 'numeric',
         minute: '2-digit',
+        ...passedOptions,
       });
+};
 
 export const guessTimeFromString = (string: string) => {
   const invalidChars = new RegExp('[^\\d:\\spam.]', 'gi');
