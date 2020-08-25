@@ -24,11 +24,7 @@ export { default as Pill } from './components/Pill';
 export { default as Responsive } from './components/Responsive';
 export { default as SideTray } from './components/SideTray';
 
-export {
-  default as TabMenu,
-  SimpleTabMenu,
-  EasyTabMenu,
-} from './components/TabMenu';
+export { default as TabMenu, EasyTabMenu } from './components/TabMenu';
 
 export { default as Tooltip, EasyRichTooltip } from './components/Tooltip';
 export { default as Input } from './components/Input';
