@@ -31,8 +31,9 @@ export type EasyTabType = {
   label: string;
   onClick: (e: React.SyntheticEvent) => void;
 };
+
 export interface EasyTabMenuProps extends TabMenuProps {
-  tabs?: Readonly<EasyTabType[]>;
+  tabs?: Readonly<Array<EasyTabType | undefined>>;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   activeTab?: string;
 }
@@ -43,9 +44,17 @@ export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
   size = 'md',
   ...props
 }) => {
+  const safeTabs: EasyTabType[] = [];
+
+  tabs.forEach((tab) => {
+    if (tab) {
+      safeTabs.push(tab);
+    }
+  });
+
   return (
     <TabMenu {...props}>
-      {tabs.map((tab) => {
+      {safeTabs.map((tab) => {
         const inner = classNames(
           styles.itemPadding,
           styles[`${size}TextSize`],
@@ -64,5 +73,7 @@ export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
     </TabMenu>
   );
 };
+
+export const SimpleTabMenu = TabMenu;
 
 export default TabMenu;
