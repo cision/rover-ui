@@ -32,7 +32,7 @@ export type EasyTabType = {
   onClick: (e: React.SyntheticEvent) => void;
 };
 export interface EasyTabMenuProps extends TabMenuProps {
-  tabs?: EasyTabType[];
+  tabs?: Readonly<EasyTabType[]>;
   size?: 'xs' | 'sm' | 'md' | 'lg';
   activeTab?: string;
 }
