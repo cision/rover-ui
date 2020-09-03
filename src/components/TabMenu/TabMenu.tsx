@@ -74,6 +74,6 @@ export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
   );
 };
 
-export const SimpleTabMenu = TabMenu;
+export const SimpleTabMenu = EasyTabMenu;
 
 export default TabMenu;
