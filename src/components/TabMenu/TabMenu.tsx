@@ -43,18 +43,13 @@ export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
   activeTab = '',
   size = 'md',
   ...props
-}) => {
-  const safeTabs: EasyTabType[] = [];
-
-  tabs.forEach((tab) => {
-    if (tab) {
-      safeTabs.push(tab);
-    }
-  });
-
-  return (
-    <TabMenu {...props}>
-      {safeTabs.map((tab) => {
+}) => (
+  <TabMenu {...props}>
+    {tabs
+      .filter(
+        (tab: EasyTabType | undefined): tab is EasyTabType => tab !== undefined
+      )
+      .map((tab) => {
         const inner = classNames(
           styles.itemPadding,
           styles[`${size}TextSize`],
@@ -70,9 +65,8 @@ export const EasyTabMenu: React.FC<EasyTabMenuProps> = ({
           </Item>
         );
       })}
-    </TabMenu>
-  );
-};
+  </TabMenu>
+);
 
 export const SimpleTabMenu = EasyTabMenu;
 
