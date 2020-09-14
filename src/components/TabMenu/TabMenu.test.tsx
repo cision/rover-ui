@@ -27,6 +27,18 @@ describe('TabMenu.Item', () => {
 
     expect(inactive.prop('active')).not.toBe(true);
   });
+
+  it('triggers onClick handler when clicking', () => {
+    const fakeClickHandler = jest.fn();
+    const menuItem = mount(
+      <TabMenu.Item onClick={fakeClickHandler}>
+        Clickable menu item
+      </TabMenu.Item>
+    );
+    menuItem.simulate('click');
+
+    expect(fakeClickHandler).toHaveBeenCalled();
+  });
 });
 
 describe('EasyTabMenu', () => {

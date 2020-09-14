@@ -26,7 +26,7 @@ const Item: React.FC<ItemProps> = ({
     [styles.active]: active || isChildActive(children),
   });
   return (
-    <li className={className} {...props}>
+    <li className={className} onClick={onClick} {...props}>
       {children}
     </li>
   );
