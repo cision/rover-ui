@@ -1,1 +1,1 @@
-export { default, EasyTabMenu } from './TabMenu';
+export { default, EasyTabMenu, SimpleTabMenu } from './TabMenu';

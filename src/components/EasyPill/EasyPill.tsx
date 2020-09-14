@@ -16,7 +16,7 @@ type EasyPillActions = {
 
 interface EasyPillProps extends PillProps {
   actions?: EasyPillActions[];
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onDelete?: (...args) => void;
 }
 
