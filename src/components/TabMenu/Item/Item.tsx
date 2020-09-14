@@ -11,7 +11,6 @@ const Item: React.FC<ItemProps> = ({
   className: customClassName,
   active = false,
   children,
-  onClick = () => {},
   ...props
 }) => {
   // NOTE: "Using the 'active' className on a TabMenu.Item child is deprecated. Use <TabMenu.Item active> instead."
@@ -26,7 +25,7 @@ const Item: React.FC<ItemProps> = ({
     [styles.active]: active || isChildActive(children),
   });
   return (
-    <li className={className} onClick={onClick} {...props}>
+    <li className={className} {...props}>
       {children}
     </li>
   );
