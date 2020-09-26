@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactElement } from 'react';
 import classNames from 'classnames';
 import styled from 'styled-components';
 import { margin } from 'styled-system';
@@ -14,21 +13,35 @@ import Entry from './Entry';
 
 const StyledGrid = styled.div(margin);
 
+interface BaseGridProps {
+  children?: ReactElement[];
+  className?: string;
+  columns?: number;
+
+  // Too many gutter data formats are supported to nail this type down further.
+  //
+  gutter?: string | number;
+
+  // Using more theme properties than just `space` will require this type to be broadened.
+  //
+  theme?: Record<'space', Record<string, number>>;
+}
+
 export const Grid = withDefaultTheme(
   ({
-    children,
-    className: customClassName,
-    gutter,
-    columns,
+    children = [],
+    className: customClassName = '',
+    gutter = 0,
+    columns = 1,
+    theme,
     ...passedProps
-  }) => {
+  }: BaseGridProps) => {
     let themeGutter;
 
-    /** `theme.space` prop is provided by the `withDefaultTheme` HOC */
-    const { theme } = passedProps;
+    /** `theme` and `theme.space` prop are provided by the `withDefaultTheme` HOC */
 
-    if (theme.space[gutter] || theme.space[gutter] === 0) {
-      themeGutter = `${theme.space[gutter]}px`; // Gutter is a theme key
+    if (theme?.space[gutter] || theme?.space[gutter] === 0) {
+      themeGutter = `${theme?.space[gutter]}px`; // Gutter is a theme key
     }
 
     const parsedGutter = parseCssSize({ size: themeGutter || gutter });
@@ -49,11 +62,12 @@ export const Grid = withDefaultTheme(
 
     return (
       <StyledGrid
+        theme
         {...passedProps}
         className={classNames(styles.Grid, customClassName)}
       >
         <div className={styles.gridColumns} style={{ margin: inverseGutter }}>
-          {entries.map((child) => (
+          {(entries as ReactElement[]).map((child: ReactElement) => (
             <Entry
               entryPercentWidth={entryPercentWidth}
               gutter={safeGutter}
@@ -67,20 +81,5 @@ export const Grid = withDefaultTheme(
     );
   }
 );
-
-Grid.propTypes = {
-  children: PropTypes.node,
-  /** Optional css class for custom styles */
-  className: PropTypes.string,
-  columns: PropTypes.number,
-  gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-Grid.defaultProps = {
-  children: null,
-  className: '',
-  columns: 1,
-  gutter: 0,
-};
 
 export default Grid;
