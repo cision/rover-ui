@@ -6,22 +6,16 @@ import Icon from '../Icon';
 import Pill from '../Pill';
 import { PillProps } from '../Pill/Pill';
 import styles from './EasyPill.module.css';
-
-type EasyPillActions = {
-  children?: React.ReactNode;
-  label: string;
-  onClick: Function;
-  group?: string;
-};
+import type { MenuItem } from '../EasyDropdown/EasyDropdown';
 
 interface EasyPillProps extends PillProps {
-  actions?: EasyPillActions[];
+  actions?: MenuItem[];
   children?: React.ReactNode;
   onDelete?: (...args) => void;
 }
 
 interface EasyPillDropdownProps {
-  actions: EasyPillActions[];
+  actions: MenuItem[];
   onDelete?: (...args) => void;
 }
 

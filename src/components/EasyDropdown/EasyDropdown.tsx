@@ -9,7 +9,7 @@ import { MenuProps } from '../Dropdown/Menu/Menu';
 import { DropdownProps } from '../Dropdown/Dropdown';
 import { ItemProps, ButtonElementProps } from '../Dropdown/Menu/Item/Item';
 
-type MenuItem = ItemProps & {
+export type MenuItem = ItemProps & {
   /** Children will be rendered instead of the label, if provided */
   children?: React.ReactNode;
   /** If you provide group IDs, the menu items will be grouped with dividers between them. */
