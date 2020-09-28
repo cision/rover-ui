@@ -6,12 +6,13 @@ import { object } from '@storybook/addon-knobs';
 import ResponsiveReadme from './README.md';
 import ResponsiveContainerReadme from './Container/README.md';
 import ResponsiveElementReadme from './Element/README.md';
-import Responsive from './';
+import Responsive from '.';
+import { defaultBreakpoints } from './Container/Container';
 
 const MyComponent = ({ responsiveContext }) => (
   <div>
     My component&apos;s `responsiveContext` prop:
-    <pre style={{ whiteSpace: 'wrap', wordWrap: 'break-word' }}>
+    <pre className="break-words">
       {JSON.stringify(responsiveContext)
         .replace(/","/g, '",\n  "')
         .replace(/\[/g, '[\n  ')
@@ -53,10 +54,7 @@ storiesOf('Dark Matter/Responsive/Moons/Container', module).add(
   'Overview',
   () => (
     <Responsive.Container
-      customBreakpoints={object(
-        'customBreakpoints',
-        Responsive.Container.defaultProps.customBreakpoints
-      )}
+      customBreakpoints={object('customBreakpoints', defaultBreakpoints)}
     />
   ),
   {

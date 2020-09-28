@@ -1,6 +1,6 @@
 {
   "name": "@cision/rover-ui",
-  "version": "2.0.1",
+  "version": "2.4.5",
   "description": "UI Component Library",
   "author": "Matthew Wells (https://github.com/mdespuits)",
   "contributors": [
@@ -52,10 +52,13 @@
     "start": "yarn compile --watch",
     "generate-component": "yarn hygen component new",
     "prepare": "",
-    "prepublish": "in-publish && run-p test build || not-in-publish",
+    "prepublish": "in-publish && run-p -l test build || not-in-publish",
     "predeploy": "cd example && yarn install && yarn build",
-    "postpublish": "git tag v$npm_package_version && git push --tags && echo \"Successfully released version $npm_package_version!\"",
-    "release": "yarn publish --no-git-tag-version",
+    "postpublish": "git push --tags && echo \"Successfully released version $npm_package_version!\"",
+    "preversion": "run-p -l test build",
+    "version": "yarn update-changelog && git add CHANGELOG.md",
+    "new-version": "yarn version --no-git-tag-version",
+    "postnew-version": "git add . && git commit -m \"v$npm_package_version\" -n",
     "storybook": "start-storybook -p 9009",
     "storybook:build": "build-storybook -o docs",
     "storybook:deploy": "yarn storybook:build && yarn gh-pages -d docs",
@@ -84,6 +87,7 @@
     "@testing-library/jest-dom": "^5.10.1",
     "@testing-library/react": "^10.2.1",
     "@testing-library/react-hooks": "^3.3.0",
+    "@testing-library/user-event": "^12.0.7",
     "@types/classnames": "^2.2.10",
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.1.4",
@@ -114,6 +118,7 @@
     "eslint-import-resolver-alias": "^1.0.3",
     "eslint-import-resolver-webpack": "^0.12.1",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-mocha": "^7.0.0",
     "eslint-plugin-node": "^11.0.0",
@@ -149,7 +154,7 @@
   "dependencies": {
     "@cision/react-container-query": "1.0.0-alpha.3",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "styled-components": "^4.2.0",
     "styled-system": "^4.1.0"
   }

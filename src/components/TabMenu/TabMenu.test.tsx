@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
-import TabMenu, { EasyTabMenu } from './';
+import TabMenu, { EasyTabMenu } from '.';
 
 describe('TabMenu', () => {
   it('renders', () => {
@@ -26,6 +26,18 @@ describe('TabMenu.Item', () => {
     const inactive = mount(<TabMenu.Item>I am inactive :(</TabMenu.Item>);
 
     expect(inactive.prop('active')).not.toBe(true);
+  });
+
+  it('triggers onClick handler when clicking', () => {
+    const fakeClickHandler = jest.fn();
+    const menuItem = mount(
+      <TabMenu.Item onClick={fakeClickHandler}>
+        Clickable menu item
+      </TabMenu.Item>
+    );
+    menuItem.simulate('click');
+
+    expect(fakeClickHandler).toHaveBeenCalled();
   });
 });
 

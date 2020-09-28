@@ -60,7 +60,7 @@ storiesOf('Galaxies/EasyPill', module)
             checked={isChecked}
             onClick={() => setIsChecked(!isChecked)}
           >
-            With actions and onDelete
+            {props.children}
           </EasyPill>
         );
       };

@@ -1,10 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactElement } from 'react';
 
 import UnresponsiveGrid from '../../Grid';
 import Context from '../Context';
 
-const Grid = ({ breakpoints, children, columns, gutter, ...passedProps }) => {
+type GridGutter = number | string;
+
+type GridDefinition = {
+  [key: string]: {
+    columns?: number;
+    gutter?: GridGutter;
+  };
+};
+
+interface GridProps {
+  breakpoints?: GridDefinition;
+  columns?: number;
+  gutter?: GridGutter;
+}
+
+const Grid: React.FC<GridProps> = ({
+  breakpoints = {
+    'container-xs-up': {
+      columns: 1,
+      gutter: 0,
+    },
+  },
+  children = '',
+  columns = 1,
+  gutter = 0,
+  ...passedProps
+}) => {
   let responsiveProps = {
     columns,
     gutter,
@@ -14,7 +39,7 @@ const Grid = ({ breakpoints, children, columns, gutter, ...passedProps }) => {
 
   return (
     <Context.Consumer>
-      {context => {
+      {(context) => {
         if (context && context.length) {
           /*
             If the current responsive context matches a configured breakpoint on
@@ -32,7 +57,8 @@ const Grid = ({ breakpoints, children, columns, gutter, ...passedProps }) => {
             If the current responsive context matches a configured breakpoint on
             a child, use the breakpoint's colSpan for that child
           */
-          responsiveChildren = React.Children.map(children, child => {
+          responsiveChildren = React.Children.map(children, (origChild) => {
+            const child = origChild as ReactElement;
             const childProps = (child && child.props) || {};
             const { clear = false, colSpan = 1, offset = 0 } = childProps;
             let { breakpoints: childBreakpoints } = childProps;
@@ -64,28 +90,6 @@ const Grid = ({ breakpoints, children, columns, gutter, ...passedProps }) => {
       }}
     </Context.Consumer>
   );
-};
-
-Grid.propTypes = {
-  /** Map of breakpoint labels (like container-xs-up) to object of columns and gutter props */
-  breakpoints: PropTypes.object,
-  children: PropTypes.node,
-  /** Fallback column count */
-  columns: PropTypes.number,
-  /** Fallback gutter width */
-  gutter: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-Grid.defaultProps = {
-  breakpoints: {
-    'container-xs-up': {
-      columns: 1,
-      gutter: 0,
-    },
-  },
-  children: '',
-  columns: 1,
-  gutter: 0,
 };
 
 export default Grid;

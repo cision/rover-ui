@@ -34,17 +34,7 @@
       var(--rvr-space-xl) - var(--rvr-border-width-md)
     );
 
-  /* TYPE */
-
-  /* Tooltip */
-  --rvr-tooltip-arrow-size: 6px;
-  --rvr-tooltip-border-size: 1px;
-  --rvr-tooltip-box-shadow:
-    0 1px 2px 0 rgba(0, 0, 0, 0.2),
-    0 5px 10px 0 rgba(0, 0, 0, 0.1);
-  --rvr-tooltip-base-z-index: 900;
-  --rvr-tooltip-border-radius: 3px;
-  --rvr-tooltip-offset: 20px;
+  /* TYPOGRAPHY */
 
   /* font-size */
   --rvr-font-size-base: 14px;
@@ -59,4 +49,21 @@
   --rvr-line-height-sm: calc(var(--rvr-baseSize) * 2); /* 16px */
   --rvr-line-height-md: calc(var(--rvr-baseSize) * 2.5); /* 20px */
   --rvr-line-height-lg: calc(var(--rvr-baseSize) * 3); /* 24px */
+
+  /* Tooltip */
+  --rvr-tooltip-arrow-size: 6px;
+  --rvr-tooltip-border-size: 1px;
+  --rvr-tooltip-box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.2),
+    0 5px 10px 0 rgba(0, 0, 0, 0.1);
+  --rvr-tooltip-base-z-index: 900;
+  --rvr-tooltip-border-radius: 3px;
+  --rvr-tooltip-offset: 20px;
+
+  /* Dropdowns */
+  /* Default EasyDropdown menu item with text label */
+  --rvr-dropdown-menu-item-height: calc(var(--rvr-line-height-sm) + 2 * var(--rvr-space-sm));
+  /* Dropdown menu max height includes a half-row as a scrolling hint */
+  --rvr-dropdown-menu-max-rows-sm: 5.5;
+  --rvr-dropdown-menu-max-rows-md: 10.5;
 }

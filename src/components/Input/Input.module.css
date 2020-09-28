@@ -1,4 +1,5 @@
 .Input {
+  box-sizing: border-box;
   background-color: var(--rvr-white);
   border-radius: var(--rvr-border-radius);
   border: var(--rvr-border-width-md) solid var(--rvr-gray-60);
@@ -35,6 +36,7 @@
   color: var(--rvr-gray-80);
 }
 
+.Input.focus,
 .Input:focus {
   border-color: var(--rvr-color-primary);
   box-shadow: 0 0 4px var(--rvr-color-primary);

@@ -6,21 +6,104 @@ const nullSafeMatch = (string: string, regExp: RegExp) => {
   return { content, index, endIndex };
 };
 
+type getDateOptions = {
+  timeZoneOffset?: number | null;
+};
+
+interface GetTimeStringOptions extends Intl.DateTimeFormatOptions {
+  formatTime?: Function;
+  locale?: string;
+}
+
+export const handleDispatchNativeInputChange = (
+  element: HTMLInputElement,
+  nextValue: string | Date
+) => {
+  /*
+    To dispatch a change programmatically from a native input,
+    you have to use a native input setter. Otherwise, React swallows it.
+    https://stackoverflow.com/a/46012210
+  */
+
+  const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+    window.HTMLInputElement.prototype,
+    'value'
+  )?.set;
+
+  if (nativeInputValueSetter) {
+    nativeInputValueSetter.call(element, nextValue);
+    const passedEvent = new Event('input', { bubbles: true });
+    element.dispatchEvent(passedEvent);
+  }
+};
+
+// Without a timezone offset, use local dates.
+// With a time zone offset, compensate for local time and desired time zones.
+const getTimeZoneOffsetFromLocal = (targetMinusUtc?: number | null) => {
+  if (typeof targetMinusUtc !== 'number') {
+    return 0;
+  }
+
+  const utcMinusLocal = new Date().getTimezoneOffset();
+  return targetMinusUtc + utcMinusLocal;
+};
+
+export const getEndOfDay = (date: Date, options?: getDateOptions) => {
+  const { timeZoneOffset } = options || {};
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
+  const endOfDay = new Date(date);
+  endOfDay.setDate(endOfDay.getDate() + 1);
+  endOfDay.setHours(0);
+  endOfDay.setMinutes(0 - tzOffset);
+  endOfDay.setSeconds(0);
+  endOfDay.setMilliseconds(-1);
+  return endOfDay;
+};
+
+export const getStartOfDay = (date: Date, options?: getDateOptions) => {
+  const { timeZoneOffset } = options || {};
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
+  const startOfDay = new Date(date);
+  startOfDay.setHours(0);
+  startOfDay.setMinutes(0 - tzOffset);
+  startOfDay.setSeconds(0);
+  startOfDay.setMilliseconds(0);
+  return startOfDay;
+};
+
 export const getShortTimeString = (hours: number, minutes: number) =>
   `${hours < 10 ? '0' : ''}${hours || 0}:${minutes < 10 ? '0' : ''}${
     minutes || 0
   }`;
 
-export const getLocaleTimeStringFromShortTimeString = (value: string) => {
+export const getDateTimeFromShortTimeString = (
+  value: string,
+  options?: getDateOptions
+) => {
+  const { timeZoneOffset } = options || {};
+  const tzOffset = getTimeZoneOffsetFromLocal(timeZoneOffset);
   const date = new Date();
   const [hours, minutes] = value.split(':');
   date.setHours(parseInt(hours, 10));
-  date.setMinutes(parseInt(minutes, 10));
+  date.setMinutes(parseInt(minutes, 10) - tzOffset);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  return date;
+};
 
-  return date.toLocaleTimeString([], {
-    hour: 'numeric',
-    minute: '2-digit',
-  });
+export const getLocaleTimeStringFromShortTimeString = (
+  value: string,
+  options?: GetTimeStringOptions
+) => {
+  const { formatTime, locale, ...passedOptions } = options || {};
+
+  return typeof formatTime === 'function'
+    ? formatTime(getDateTimeFromShortTimeString(value))
+    : getDateTimeFromShortTimeString(value).toLocaleTimeString(locale, {
+        hour: 'numeric',
+        minute: '2-digit',
+        ...passedOptions,
+      });
 };
 
 export const guessTimeFromString = (string: string) => {

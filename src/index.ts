@@ -26,8 +26,8 @@ export { default as SideTray } from './components/SideTray';
 
 export {
   default as TabMenu,
-  SimpleTabMenu,
   EasyTabMenu,
+  SimpleTabMenu,
 } from './components/TabMenu';
 
 export { default as Tooltip, EasyRichTooltip } from './components/Tooltip';

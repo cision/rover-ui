@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Context from '../Context';
-import Hidden from './';
+import Hidden from '.';
 
 describe('<Hidden />', () => {
   it('renders without error', () => {

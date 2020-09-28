@@ -18,7 +18,7 @@
     "jest": true,
     "browser": true
   },
-  "plugins": ["@typescript-eslint", "react", "prettier", "import"],
+  "plugins": ["@typescript-eslint", "react", "prettier", "import", "jest"],
   "rules": {
     "react/jsx-fragments": 0,
     "react/jsx-props-no-spreading": "off",
@@ -49,7 +49,8 @@
     "import/no-anonymous-default-export": "error",
     "prettier/prettier": "error",
     "@typescript-eslint/space-before-function-paren": "off",
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "jest/no-focused-tests": "error",
   },
   "overrides": [
     {

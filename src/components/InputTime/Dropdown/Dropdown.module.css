@@ -1,0 +1,21 @@
+.icon {
+  margin-right: var(--rvr-space-bordered-sm);
+}
+
+.icon:not(:last-child) {
+  margin-right: 0;
+}
+
+.toggle {
+  display: block;
+  padding: 3px;
+}
+
+.menu {
+  max-height: calc(var(--rvr-dropdown-menu-item-height) * var(--rvr-dropdown-menu-max-rows-sm));
+}
+
+.menuItem {
+  text-align: right;
+  white-space: nowrap;
+}
