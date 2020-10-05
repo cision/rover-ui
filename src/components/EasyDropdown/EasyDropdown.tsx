@@ -10,25 +10,15 @@ import { DropdownProps } from '../Dropdown/Dropdown';
 import { ItemProps, ButtonElementProps } from '../Dropdown/Menu/Item/Item';
 
 export type MenuItem = ItemProps & {
-  /** Children will be rendered instead of the label, if provided */
-  children?: React.ReactNode;
   /** If you provide group IDs, the menu items will be grouped with dividers between them. */
   group?: string;
   /** This will be the array key and the fallback contents */
   label: string;
-  onClick?: () => void;
 };
 
 interface EasyDropdownProps extends DropdownProps {
-  /** Pass a custom node if you want to control the toggle fully. */
-  children?: React.ReactNode;
-  /** Totally optional, for additional styling */
-  className?: string;
   /** If defaultIsOpen is provided, the component will run in "uncontrolled" mode */
   defaultIsOpen?: boolean;
-  disabled?: boolean;
-  /** Without `defaultIsOpen`, `isOpen` fully controls the dropdown state */
-  isOpen?: boolean;
   /** An array of items that comprise the menu */
   menuItems?: MenuItem[];
   menuProps?: MenuProps;
@@ -57,7 +47,7 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
   const isOpen = isControlled ? controlledIsOpen : uncontrolledIsOpen;
 
   // Group menu items while preserving their order.
-  const menuItemGroups = useMemo<Record<string, MenuItem[]>>(
+  const menuItemGroups = useMemo(
     () =>
       menuItems.reduce((result, item) => {
         let groupId = item.group;
