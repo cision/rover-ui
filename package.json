@@ -96,8 +96,6 @@
     "@types/react": "^16.9.27",
     "@types/react-dom": "^16.9.8",
     "@types/react-transition-group": "^4.4.0",
-    "@types/styled-components": "^4.4.1",
-    "@types/styled-system": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
     "auto-changelog": "^2.0.0",
@@ -154,8 +152,6 @@
   "dependencies": {
     "@cision/react-container-query": "1.0.0-alpha.3",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.19",
-    "styled-components": "^4.2.0",
-    "styled-system": "^4.1.0"
+    "lodash": "^4.17.19"
   }
 }
