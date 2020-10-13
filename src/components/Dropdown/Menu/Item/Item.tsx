@@ -3,19 +3,13 @@ import classNames from 'classnames';
 
 import styles from './Item.module.css';
 
-export type ButtonElementProps = React.ButtonHTMLAttributes<
-  HTMLButtonElement
-> & {
-  href?: undefined;
-};
+export type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   href?: string;
 };
 
-type DivElementProps = React.AllHTMLAttributes<HTMLDivElement> & {
-  href?: undefined;
-};
+type DivElementProps = React.AllHTMLAttributes<HTMLDivElement>;
 
 export type ItemProps =
   | ButtonElementProps
