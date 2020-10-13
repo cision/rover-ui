@@ -5,9 +5,7 @@ import styles from './Item.module.css';
 
 export type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-  href?: string;
-};
+type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 type DivElementProps = React.AllHTMLAttributes<HTMLDivElement>;
 
