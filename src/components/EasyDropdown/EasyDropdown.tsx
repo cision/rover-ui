@@ -1,22 +1,45 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useMemo, useState, ReactElement } from 'react';
 import classNames from 'classnames';
 
 import Button from '../Button';
 import Dropdown from '../Dropdown';
 
 import styles from './EasyDropdown.module.css';
+import { MenuProps } from '../Dropdown/Menu/Menu';
+import { DropdownProps } from '../Dropdown/Dropdown';
+import { ItemProps, ButtonElementProps } from '../Dropdown/Menu/Item/Item';
 
-const EasyDropdown = ({
-  children: initChildren,
-  className,
-  defaultIsOpen,
-  disabled,
-  isOpen: controlledIsOpen,
-  menuItems,
-  menuProps,
-  onToggle: parentOnToggle,
-  toggleProps,
+export type MenuItem = ItemProps & {
+  /** If you provide group IDs, the menu items will be grouped with dividers between them. */
+  group?: string;
+  /** This will be the array key and the fallback contents */
+  label: string;
+};
+
+interface EasyDropdownProps extends DropdownProps {
+  /** If defaultIsOpen is provided, the component will run in "uncontrolled" mode */
+  defaultIsOpen?: boolean;
+  /** An array of items that comprise the menu */
+  menuItems?: MenuItem[];
+  menuProps?: MenuProps;
+  /** Without `defaultIsOpen`, `onToggle` is the only way to set state. With it, it's a convenience callback. */
+  toggleProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+}
+
+const EasyDropdown: React.FC<EasyDropdownProps> = ({
+  children: initChildren = undefined,
+  className = '',
+  defaultIsOpen = undefined,
+  disabled = false,
+  isOpen: controlledIsOpen = false,
+  menuItems = [],
+  menuProps = {
+    position: 'bottomRight',
+  },
+  onToggle: parentOnToggle = () => {},
+  toggleProps = {
+    className: '',
+  },
   ...passedProps
 }) => {
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(defaultIsOpen);
@@ -69,23 +92,21 @@ const EasyDropdown = ({
         {initChildren}
       </Button>
     ) : (
-      React.Children.map(initChildren, (child) =>
-        React.cloneElement(child, {
+      React.Children.map(initChildren, (c) => {
+        const child = c as ReactElement;
+        return React.cloneElement(child, {
           ...toggleProps,
-          className: classNames(
-            child && child.props && child.props.className,
-            toggleProps.className
-          ),
+          className: classNames(child?.props?.className, toggleProps.className),
           'data-is-open': isOpen,
-          onClick: (event) => {
+          onClick: (event: MouseEvent) => {
             onToggle(event);
 
-            if (child && child.props && child.props.onClick) {
+            if (child?.props?.onClick) {
               child.props.onClick(event);
             }
           },
-        })
-      )
+        });
+      })
     );
   }, [initChildren, isOpen, onToggle, toggleProps]);
 
@@ -93,6 +114,7 @@ const EasyDropdown = ({
     <Dropdown
       {...passedProps}
       className={classNames(className, styles.EasyDropdown)}
+      disabled={disabled}
       isOpen={isOpen}
       onToggle={onToggle}
     >
@@ -111,9 +133,11 @@ const EasyDropdown = ({
                 {menuItemGroups[group].map(
                   ({ children: itemChildren, label, ...itemProps }) => (
                     <Dropdown.Menu.Item
-                      {...itemProps}
+                      {...(itemProps as ButtonElementProps)}
                       key={label}
-                      onClick={(event) => {
+                      onClick={(
+                        event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                      ) => {
                         // Clicking a menu item has the side effect of closing the menu
                         if (!isControlled) {
                           setUncontrolledIsOpen(false);
@@ -135,36 +159,6 @@ const EasyDropdown = ({
       )}
     </Dropdown>
   );
-};
-
-EasyDropdown.propTypes = {
-  /** Pass a custom node if you want to control the toggle fully. */
-  children: PropTypes.node,
-  /** Totally optional, for additional styling */
-  className: PropTypes.string,
-  /** If defaultIsOpen is provided, the component will run in "uncontrolled" mode */
-  defaultIsOpen: PropTypes.bool,
-  disabled: PropTypes.bool,
-  /** Without `defaultIsOpen`, `isOpen` fully controls the dropdown state */
-  isOpen: PropTypes.bool,
-  /** An array of items that comprise the menu */
-  menuItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      /** Children will be rendered instead of the label, if provided */
-      children: PropTypes.node,
-      /** If you provide group IDs, the menu items will be grouped with dividers between them. */
-      group: PropTypes.string,
-      /** This will be the array key and the fallback contents */
-      label: PropTypes.string.isRequired,
-      onClick: PropTypes.func,
-    })
-  ),
-  menuProps: PropTypes.object,
-  /** Without `defaultIsOpen`, `onToggle` is the only way to set state. With it, it's a convenience callback. */
-  onToggle: PropTypes.func,
-  toggleProps: PropTypes.shape({
-    className: PropTypes.string,
-  }),
 };
 
 EasyDropdown.defaultProps = {
