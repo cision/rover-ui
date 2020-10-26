@@ -173,11 +173,15 @@ export const getInputTimeMinMaxValidationMessagePolyfill = ({
   const maxTotalMinutes = getTotalMinutes(max);
   const minTotalMinutes = getTotalMinutes(min);
 
-  if (totalMinutes && maxTotalMinutes && totalMinutes > maxTotalMinutes) {
+  if (typeof totalMinutes !== 'number') {
+    return validationMessage;
+  }
+
+  if (typeof maxTotalMinutes === 'number' && totalMinutes > maxTotalMinutes) {
     validationMessage = `Value must be ${max} or earlier.`;
   }
 
-  if (totalMinutes && minTotalMinutes && totalMinutes < minTotalMinutes) {
+  if (typeof minTotalMinutes === 'number' && totalMinutes < minTotalMinutes) {
     validationMessage = `Value must be ${min} or later.`;
   }
 

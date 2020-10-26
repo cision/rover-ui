@@ -358,6 +358,22 @@ describe('getInputTimeMinMaxValidationMessagePolyfill', () => {
     ).toBeTruthy();
   });
 
+  it('handles validation with `max` "00:00"', () => {
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '00:00',
+        value: '00:00',
+      })
+    ).toBeFalsy();
+
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        max: '00:00',
+        value: '00:01',
+      })
+    ).toBeTruthy();
+  });
+
   it('handles validation with `min` only', () => {
     expect(
       getInputTimeMinMaxValidationMessagePolyfill({
@@ -374,11 +390,27 @@ describe('getInputTimeMinMaxValidationMessagePolyfill', () => {
     ).toBeTruthy();
   });
 
-  it('handles validation without a `value`', () => {
+  it('handles validation with `value` undefined', () => {
     expect(
       getInputTimeMinMaxValidationMessagePolyfill({
         max: '10:00',
         min: '10:00',
+      })
+    ).toBeFalsy();
+  });
+
+  it('handles validation with `value` "00:00"', () => {
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        min: '00:01',
+        value: '00:00',
+      })
+    ).toBeTruthy();
+
+    expect(
+      getInputTimeMinMaxValidationMessagePolyfill({
+        min: '00:00',
+        value: '00:00',
       })
     ).toBeFalsy();
   });
