@@ -2,7 +2,7 @@
 
 ## What to avoid in RoverUI
 
-It's _not_ a repository for all shared components. Don't try to add components that deal specifically with business logic and concepts here. Don't try to add components that handle whole layout areas.
+It's _not_ a repository for all shared components. Don't try to add components that deal specifically with business logic and concepts here. Don't try to add components that handle whole layout areas. This is a UI library only.
 
 ## Run locally
 
@@ -41,6 +41,16 @@ Loaded templates: _templates
 
 At any time you can see what generators we have configured using `hygen help`.
 
+### Component-writing guidelines
+
+- Most components should be ["dumb", a.k.a "presentational"](https://www.digitalocean.com/community/tutorials/react-smart-dumb-components#:~:text=What%20Makes%20a%20Component%20Smart,focus%20solely%20on%20the%20UI.).
+- Most components should render smaller components, and keep styling at each level to a minimum.
+- Let consumers pass in custom `children` nodes when possible, so they can compose custom experiences.
+- Let consumers pass arbitrary extra props that are applied to the outermost rendered DOM element or React component. (This is super helpful for consumer-added styles, custom data attributes, and accessibility props.)
+- Sometimes it's developer-friendly to provide some state management, e.g. open/closed panels or valid/invalid inputs. In those cases, export dumb components first, then add a smart component with the prefix "Easy". See [EasyDropdown](https://github.com/cision/rover-ui/blob/master/src/components/EasyDropdown/EasyDropdown.tsx)
+- For legibility, we prefer composing Components by passing React nodes as props, rather than other forms of function composition.
+- We use TypeScript, but don't add types for props that aren't actively consumed by your code, even if you "know" the types you expect. Overtyping in intermediate layers leads to nothing but 💔.
+
 ### Testing another project using local RoverUI
 
 For simple projects, you should be able to use [`npm link`](https://docs.npmjs.com/cli/link.html) or [`yarn link`](https://yarnpkg.com/lang/en/docs/cli/link/) to temporarily and invisibly load your local copy of RoverUI as a dependency in another project. These tools both have caveats, though. They may fail on peer dependencies, and their symlinking strategy can introduce bugs in monorepos with multiple workspaces.
@@ -55,36 +65,12 @@ You can use [yalc](https://github.com/whitecolor/yalc) to test a local project. 
 
 Please tread carefully, and add any issues or suggestions on the [GitHub issue tracker](https://github.com/cision/rover-ui/issues).
 
-## Publishing a new version
+## Commit messages
 
-To publish the npm package, you'll need a free account on npmjs.com, and you'll need to be added to the list of maintainers by one of the current RoverUI maintainers.
+- Please use the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0-beta.4/) syntax for your commits.
+- Include issue numbers in the commit if applicable, e.g. "fix: Update text input border color, resolves #215".
+- Write your commit message in plain English so that others can easily understand the commit history at a glance.
 
-### Non-champions
+## Merging
 
-1. Checkout a release branch of some kind: (e.g. `release-2.0.4` or `new-v2.1.4`)
-2. **Following [semver](https://semver.org)** as your version guide, use the script `yarn new-version [value]` to bump the version. See [`yarn version`](https://classic.yarnpkg.com/en/docs/cli/version/) docs for more info
-   1. For `patch`: `yarn new-version --patch`
-   2. For `minor`: `yarn new-version --minor`
-   3. For `major`: `yarn new-version --major`
-   4. For other: `yarn new-version --new-version 3.4.11`
-3. Open a PR for that branch
-4. Once you have at least one PR approval from a [champion](README.md#champions) and no pending requests for changes, you can merge in to master.
-5. After your pull request is merged, follow this process:
-   1. `git checkout master && git fetch -p && git reset --hard origin/master`
-   2. `yarn publish`
-
-### Champions
-
-If you can commit directly to `master`, you are a champion. The process is much more streamlined.
-
-1. Reset your master: `git checkout master && git fetch -p && git reset --hard origin/master`
-2. `yarn version --patch` (or whatever version bump you are making)
-3. `yarn publish` (also pushes new tag to GitHub)
-
-## Publishing Storybook
-
-By default, our Storybook docs are published automatically using ![Github Actions](.github/workflows/gh-pages.yml). If there is an issue with this release or you need to publish this manually, use the following command:
-
-```sh
-yarn storybook:deploy
-```
+Don't merge code to `master` without a PR and at least one (preferably two) approvals from admins. Once your code is merged and ready, you're ready to [publish](PUBLISHING.md).
