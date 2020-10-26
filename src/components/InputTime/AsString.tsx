@@ -17,6 +17,7 @@ import inputStyles from '../Input/Input.module.css';
 import { SECONDS_PER_DAY, SECONDS_PER_MINUTE } from './constants';
 
 import {
+  getInputTimeMinMaxValidationMessagePolyfill,
   getLocaleTimeStringFromShortTimeString,
   getShortTimeString,
   getStartOfDay,
@@ -109,15 +110,30 @@ const AsString: React.FC<AsStringProps> = ({
     value ? getLocaleTimeStringFromShortTimeString(value, { formatTime }) : ''
   );
 
-  const syncValidity = (
-    refFrom?: RefObject<HTMLInputElement>,
-    refTo?: RefObject<HTMLInputElement>
-  ) => {
-    if (refTo?.current && refFrom?.current) {
-      refTo.current.setCustomValidity(refFrom.current.validationMessage);
-      setValidity(!refFrom.current.validationMessage);
-    }
-  };
+  const syncValidity = useCallback(
+    (
+      refFrom?: RefObject<HTMLInputElement>,
+      refTo?: RefObject<HTMLInputElement>
+    ) => {
+      if (refTo?.current && refFrom?.current) {
+        let { validationMessage } = refFrom.current;
+
+        // Safari and IE don't support time inputs natively
+        // Mostly not a problem, but they need special handling for min/max validation
+        if (refFrom.current.type !== 'time') {
+          validationMessage = getInputTimeMinMaxValidationMessagePolyfill({
+            value: refFrom.current.value,
+            max,
+            min,
+          });
+        }
+
+        refTo.current.setCustomValidity(validationMessage);
+        setValidity(!validationMessage);
+      }
+    },
+    [max, min]
+  );
 
   const changeShadowTimeInput = useCallback(
     (nextValue?: string) => {
@@ -188,12 +204,12 @@ const AsString: React.FC<AsStringProps> = ({
     }
 
     syncValidity(shadowTimeInputRef, localRef);
-  }, [formatTime, localRef, shadowTimeInputRef, step, value]);
+  }, [formatTime, localRef, shadowTimeInputRef, step, syncValidity, value]);
 
   // Sync validity on min/max changes
   useEffect(() => {
     syncValidity(shadowTimeInputRef, localRef);
-  }, [localRef, max, min, shadowTimeInputRef]);
+  }, [localRef, max, min, shadowTimeInputRef, syncValidity]);
 
   return (
     <div
