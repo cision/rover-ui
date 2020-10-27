@@ -111,9 +111,4 @@ We run linters pre-commit to enforce code conventions. It is useful to have your
 
 ## Pull requests
 
-All code changes should be in branches and should be reviewed and approved by at least 2 people. One of those people should be a RoverUI V2 champion.
-
-Currently, the champions are:
-
-- [@mdespuits](https://github.com/mdespuits)
-- [@pixelbandito](https://github.com/pixelbandito)
+All code changes should be in branches and should be reviewed and approved by at least 2 people. One of those people should be an admin.
