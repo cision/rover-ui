@@ -55,7 +55,11 @@ const domAttributes = [
   'useMap',
 ];
 
-export const TestComponent = props => {
+// TestComponent is deliberately super permissive, so it can be used anywhere.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TestComponentProps = { [key: string]: any };
+
+export const TestComponent = (props: TestComponentProps) => {
   // Don't pass down invalid attributes to <div> to avoid annoying warnings
   const safeProps = Object.entries(props).reduce((result, [key, value]) => {
     if (key.toLowerCase() === key || domAttributes.indexOf(key) >= 0) {
