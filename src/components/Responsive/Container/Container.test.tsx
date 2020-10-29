@@ -2,16 +2,14 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { ContainerQuery } from '@cision/react-container-query';
 
-import { TestComponent } from '../../../setupTests';
+import { TestComponent, TestComponentProps } from '../../../setupTests';
 
 import Container from '.';
 import Context from '../Context';
 
-const TestComponentWithContext = props => (
+const TestComponentWithContext = (props: TestComponentProps) => (
   <Context.Consumer>
-    {context => {
-      return <TestComponent {...props} testcontext={context} />;
-    }}
+    {(context) => <TestComponent {...props} testcontext={context} />}
   </Context.Consumer>
 );
 
@@ -20,7 +18,7 @@ describe('Responsive.Container', () => {
     shallow(<Container>Boom</Container>);
   });
 
-  it.only('passes props', () => {
+  it('passes props', () => {
     const wrapper = mount(<Container className="foo">Boom</Container>);
     const inner = wrapper.find('div').first();
     expect(inner.hasClass('foo')).toEqual(true);

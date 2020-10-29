@@ -49,13 +49,6 @@ See our [Contribution guidelines](./CONTRIBUTING.md) for more information.
 
 Report issues at the [GitHub issue tracker](https://github.com/cision/rover-ui/issues).
 
-## Champions
-
-The main RoverUI champions currently are:
-
-- [@mdespuits](https://github.com/mdespuits)
-- [@pixelbandito](https://github.com/pixelbandito)
-
 ## Customizing the theme with a custom build
 
 There are a few different styling paradigms at work in RoverUI.
