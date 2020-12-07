@@ -25,6 +25,7 @@ import {
   Callout,
   Input,
   InputTime,
+  Typography,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -398,6 +399,10 @@ const App = () => {
           onChange={(e) => setInputTimeValue(e.target.value)}
         />
         {inputTimeValue}
+      </Section>
+
+      <Section title="Typography">
+        <Typography />
       </Section>
 
       {/** USAGE_INJECTOR */}

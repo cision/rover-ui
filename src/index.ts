@@ -33,3 +33,4 @@ export {
 export { default as Tooltip, EasyRichTooltip } from './components/Tooltip';
 export { default as Input } from './components/Input';
 export { default as InputTime } from './components/InputTime';
+export { default as Typography } from './components/Typography';

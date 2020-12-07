@@ -1,0 +1,94 @@
+.h1 {
+  font-size: var(--rvr-font-size-h1);
+}
+
+.h2 {
+  font-size: var(--rvr-font-size-h2);
+}
+
+.h3 {
+  font-size: var(--rvr-font-size-h3);
+}
+
+.h4 {
+  font-size: var(--rvr-font-size-h4);
+}
+
+.sm {
+  font-size: var(--rvr-font-size-sm);
+}
+
+.md {
+  font-size: var(--rvr-font-size-md);
+}
+
+.lg {
+  font-size: var(--rvr-font-size-lg);
+}
+
+.xl {
+  font-size: var(--rvr-font-size-xl);
+}
+
+.xl2 {
+  font-size: var(--rvr-font-size-2xl);
+}
+
+.xl3 {
+  font-size: var(--rvr-font-size-3xl);
+}
+
+/*font weight*/
+.normal {
+  font-weight: var(--rvr-font-weight-normal);
+}
+
+.bold {
+  font-weight: var(--rvr-font-weight-bold);
+}
+
+/*text alignment*/
+.inherit {
+  text-align: inherit;
+}
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+}
+
+.justify {
+  text-align: justify;
+}
+
+/*Display*/
+.initial {
+  display: initial;
+}
+
+.inline {
+  display: inline;
+}
+
+.block {
+  display: block;
+}
+
+/*colors*/
+.primary {
+  color: var(--rvr-color-font);
+}
+
+.primary-alt {
+  color: var(--rvr-color-font-dark);
+}
+
+.black {
+  color: var(--rvr-black);
+}
