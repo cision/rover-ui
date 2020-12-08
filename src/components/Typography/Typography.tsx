@@ -3,12 +3,7 @@ import classNames from 'classnames';
 
 import styles from './Typography.module.css';
 
-type TagType =
-  | keyof JSX.IntrinsicElements
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | React.FC<any>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  | React.ComponentClass<any>;
+type TagType = React.ElementType;
 
 type Color = 'primary' | 'primary-alt' | 'black';
 type Weight = 'normal' | 'bold';

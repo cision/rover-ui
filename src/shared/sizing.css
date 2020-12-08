@@ -45,11 +45,6 @@
   --rvr-font-size-2xl: 30px;
   --rvr-font-size-3xl: 42px;
 
-  --rvr-font-size-h1: var(--rvr-font-size-3xl);
-  --rvr-font-size-h2: var(--rvr-font-size-2xl);
-  --rvr-font-size-h3: var(--rvr-font-size-xl);
-  --rvr-font-size-h4: var(--rvr-font-size-lg);
-
   /* font-weight */
   --rvr-font-weight-bold: 700;
   --rvr-font-weight-normal: 400;
