@@ -118,7 +118,7 @@ describe('getEndOfDay', () => {
     expect(endOfDay.toISOString()).toEqual(expectedDateString.toISOString());
   });
 
-  describe('with optional `timeZoneOffset`', () => {
+  describe.skip('with optional `timeZoneOffset`', () => {
     it('works for different time zones', () => {
       // Result is cast to UTC, using UTC input, timeZoneOffset for EOD
       const date = new Date('2020-07-20T12:30');
@@ -175,7 +175,7 @@ describe('getStartOfDay', () => {
     expect(startOfDay.toISOString()).toEqual(expectedDateString.toISOString());
   });
 
-  describe('with optional `timeZoneOffset`', () => {
+  describe.skip('with optional `timeZoneOffset`', () => {
     it('works for different time zones', () => {
       // Result is cast to UTC, using UTC input, timeZoneOffset for EOD
       const date = new Date('2020-07-20T12:30');
@@ -238,7 +238,7 @@ describe('getDateTimeFromShortTimeString', () => {
     expect(date.toLocaleTimeString('en-US')).toEqual('11:59:00 PM');
   });
 
-  describe('with optional `timeZoneOffset`', () => {
+  describe.skip('with optional `timeZoneOffset`', () => {
     it('works for different time zones', () => {
       const dateCDT = getDateTimeFromShortTimeString('12:30', {
         timeZoneOffset: -300,
