@@ -74,7 +74,7 @@ storiesOf('Planets/Button', module)
             ))}
           </div>
           <hr />
-          <h2>CustomComponent for Tag</h2>
+          <h2>Render with a custom component</h2>
           <div style={{ marginBottom: '20px' }}>
             <Button tag={MyComponent} href="#">
               MyComponent
@@ -100,6 +100,27 @@ storiesOf('Planets/Button', module)
               }}
             >
               <Button>button (default)</Button>
+            </span>
+          </div>
+          <h2>Custom type</h2>
+          <div style={{ marginBottom: '20px' }}>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button type="submit">type=&quot;submit&quot;</Button>
+            </span>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button type="reset">type=&quot;reset&quot;</Button>
             </span>
           </div>
           <hr />
