@@ -7,7 +7,7 @@ const Form = ({
   initialValues = {},
   validationSchema = {},
   onSubmit,
-  className,
+  className = '',
 }) => {
   const [formValues, setFormValues] = useState(initialValues);
   const [touched, setTouched] = useState({});
