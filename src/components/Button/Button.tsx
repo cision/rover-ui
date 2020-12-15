@@ -159,9 +159,9 @@ const Button: ButtonType = ({
   // button render
   return (
     <button
-      {...(passedProps as ButtonElementProps)}
       type="button"
       className={className}
+      {...(passedProps as ButtonElementProps)}
     >
       {children}
     </button>

@@ -10,6 +10,11 @@ describe('Button', () => {
     expect(inner.name()).toEqual('button');
   });
 
+  it('You can override default props', () => {
+    const wrapper = mount(<Button type="submit" />);
+    expect(wrapper.prop('type')).toEqual('submit');
+  });
+
   describe('props.children', () => {
     it('renders strings', () => {
       const wrapper = shallow(<Button>Boom</Button>);
