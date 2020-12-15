@@ -1,11 +1,11 @@
 ---
-to: src/components/<%= h.changeCase.pascal(name) %>/story.js
+to: src/components/<%= h.changeCase.pascal(name) %>/story.tsx
 unless_exists: true
 ---
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import <%= h.changeCase.pascal(name) %> from './';
+import <%= h.changeCase.pascal(name) %> from '.';
 import Readme from './README.md';
 
 storiesOf('Uncategorized/<%= h.changeCase.pascal(name) %>', module)
