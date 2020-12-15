@@ -38,12 +38,16 @@
 
   /* font-size */
   --rvr-font-size-base: 14px;
-  --rvr-font-size-h1: 42px;
-  --rvr-font-size-h2: 30px;
-  --rvr-font-size-h3: 25px;
-  --rvr-font-size-h4: 16px;
-  --rvr-font-size-md: 14px;
   --rvr-font-size-sm: 12px;
+  --rvr-font-size-md: 14px;
+  --rvr-font-size-lg: 16px;
+  --rvr-font-size-xl: 25px;
+  --rvr-font-size-2xl: 30px;
+  --rvr-font-size-3xl: 42px;
+
+  /* font-weight */
+  --rvr-font-weight-bold: 700;
+  --rvr-font-weight-normal: 400;
 
   /* line-height */
   --rvr-line-height-sm: calc(var(--rvr-baseSize) * 2); /* 16px */
