@@ -13,6 +13,7 @@ type GridDefinition = {
 };
 
 interface GridProps {
+  children?: React.ReactNode;
   breakpoints?: GridDefinition;
   columns?: number;
   gutter?: GridGutter;
@@ -25,7 +26,7 @@ const Grid: React.FC<GridProps> = ({
       gutter: 0,
     },
   },
-  children = '',
+  children,
   columns = 1,
   gutter = 0,
   ...passedProps

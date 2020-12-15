@@ -6,6 +6,11 @@ import { boolean, number, text } from '@storybook/addon-knobs';
 import Grid from './';
 import Readme from './README.md';
 
+// Grid formerly supported theming values generically, and gutter theme values
+// specifically (prop'ped down to Entry.tsx, through styled-components and our own bespoke style definitions.
+//
+// Acceptable _gutter_ values are now only numbers and sizing strings, or manually through className.
+//
 storiesOf('Dark Matter/Grid', module)
   .addParameters({
     readme: {
@@ -47,20 +52,10 @@ storiesOf('Dark Matter/Grid', module)
   .add('Examples', () => (
     <div style={{}}>
       <section>
-        <h4>With margins from themes</h4>
-        <Grid m="xl" gutter="xl" columns={2}>
-          <span style={{ background: 'white' }}>
-            This grid has an outer margin and gutter of &quot;2xl&quot;, which
-            is defined by the theme.
-          </span>
-          <span style={{ background: 'white' }}>&nbsp;</span>
-        </Grid>
-      </section>
-      <section>
         <h4>With colSpan</h4>
-        <Grid gutter="xl" columns={3}>
+        <Grid gutter="20px" columns={3}>
           <span colSpan="1" style={{ background: 'white' }}>
-            This entry has colSpan=&quot;1&quot;
+            This entry has colSpan=&quot;1&quot; and a gutter of 20px
           </span>
           <span style={{ background: 'white' }}>This entry has no colspan</span>
           <span style={{ background: 'white' }}>This entry has no colspan</span>
