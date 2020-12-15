@@ -9,12 +9,6 @@ describe('<Grid />', () => {
     shallow(<Grid />);
   });
 
-  describe('with theme-based `gutter` prop', () => {
-    it('renders', () => {
-      mount(<Grid gutter="md" />);
-    });
-  });
-
   describe('with css units in `gutter` prop', () => {
     it('renders', () => {
       mount(<Grid gutter="42%" />);
