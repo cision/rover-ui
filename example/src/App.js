@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import {
   Accordion,
@@ -405,9 +405,45 @@ const App = () => {
       <Section title="Typography">
         <Typography />
       </Section>
-      
+
       <Section title="Form">
-        <Form />
+        <Form
+          initialValues={{
+            nameInput: 'foo',
+          }}
+          onSubmit={(formValues) => alert(JSON.stringify(formValues))}
+          validationSchema={{
+            nameInput: {
+              message: 'No empty strings',
+              validate: (value) => value !== '',
+            },
+          }}
+        >
+          {({
+            formState,
+            formValues,
+            handleChange,
+            handleBlur,
+            // handleCustom,
+          }) => (
+            <Fragment>
+              <label htmlFor="nameInput">
+                Name
+                <br />
+                <input
+                  type="text"
+                  name="nameInput"
+                  value={formValues.nameInput}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </label>
+              <button type="submit">Submit button</button>
+              <input type="submit" value="Submit input" />
+              <pre>{JSON.stringify(formState)}</pre>
+            </Fragment>
+          )}
+        </Form>
       </Section>
 
       {/** USAGE_INJECTOR */}

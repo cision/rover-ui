@@ -9,10 +9,12 @@ const Form = ({
   onSubmit,
   className = '',
 }) => {
+  // We're already in a form, can we just call this `values`?
   const [formValues, setFormValues] = useState(initialValues);
   const [touched, setTouched] = useState({});
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // We're already in a form, can we just call this `submitError`?
   const [formSubmitError, setFormSubmitError] = useState(null);
 
   const handleBlur = ({ target: { name } }) => {
@@ -22,15 +24,17 @@ const Form = ({
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // TODO: Maybe call this conditionally
 
     if (_isEmpty(validationErrors)) {
       setIsSubmitting(true);
     }
   };
 
-  const handleCustom = (fieldName, callback) => (e) => {
+  const handleCustom = (fieldName: string, callback: Function) => (
+    e: Event
+  ) => {
     e.preventDefault(); // TODO: maybe call this conditionally
 
     setFormValues((prevFormValues) => ({
@@ -91,23 +95,25 @@ const Form = ({
     })();
   }, [isSubmitting, formSubmitError, formValues, onSubmit]);
 
+  if (!children) {
+    return null;
+  }
+
   return (
-    children && (
-      <form className={className} onSubmit={handleSubmit}>
-        {children({
-          formState: {
-            touched,
-            validationErrors,
-            isSubmitting,
-            formSubmitError,
-          },
-          formValues,
-          handleChange,
-          handleBlur,
-          handleCustom,
-        })}
-      </form>
-    )
+    <form className={className} onSubmit={handleSubmit}>
+      {children({
+        formState: {
+          touched,
+          validationErrors,
+          isSubmitting,
+          formSubmitError,
+        },
+        formValues,
+        handleChange,
+        handleBlur,
+        handleCustom,
+      })}
+    </form>
   );
 };
 
