@@ -13,6 +13,7 @@ export interface InputProps
 
 const Input: React.FC<InputProps> = ({
   className = '',
+  onChange = () => {},
   fauxDisabled = false,
   forwardedRef: ref,
   ...passedProps
@@ -23,6 +24,7 @@ const Input: React.FC<InputProps> = ({
         [styles.disabled]: fauxDisabled,
       })}
       ref={ref || undefined}
+      onChange={onChange}
       {...passedProps}
     />
   );
