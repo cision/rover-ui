@@ -32,17 +32,16 @@ storiesOf('Planets/Input', module)
     'Overview',
     () => (
       <Wrap>
-        <label className="text-xl inline-block mb-2">{`<Input />`}</label>
-        <Input
-          disabled={boolean('disabled (HTML)', false)}
-          fauxDisabled={boolean('fauxDisabled', false)}
-          onChange={action('onChange (HTML)')}
-          className={text('className (HTML)', 'w-full')}
-          placeholder={text('placeholder(HTML)', 'Placeholder')}
-          value={text('value (HTML)', '')}
-          pattern={text('pattern (HTML)', '.*')}
-          type={text('type (HTML)', '')}
-        />
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label className="text-xl inline-block mb-2">
+          {`<Input />`}
+          <Input
+            id="SampleInput"
+            className={text('className (HTML)', 'w-full')}
+            onChange={action('onChange (HTML)')}
+            fauxDisabled={boolean('fauxDisabled', false)}
+          />
+        </label>
       </Wrap>
     ),
     {
@@ -56,7 +55,7 @@ storiesOf('Planets/Input', module)
     'Examples',
     () => (
       <Wrap>
-        <h2 className="text-2xl leading-snug">Basic Input Examples</h2>
+        <h2 className="text-2xl leading-snug">Input Examples</h2>
         <div className="w-full md:w-1/3 mt-6">
           <InteractiveInput className="w-full" placeholder="Type here" />
         </div>
@@ -75,6 +74,36 @@ storiesOf('Planets/Input', module)
         </div>
         <div className="w-full md:w-1/3 mt-6">
           <Input className="w-full" fauxDisabled value="fauxDisabled" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="date" value="1967-03-01" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="month" value="1967-03" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="week" value="1967-W09" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="time" value="10:31" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="email" value="foo@bar.com" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="tel" value="512-867-5309" />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input
+            className="w-full"
+            type="range"
+            max="100"
+            value="70"
+            step="10"
+          />
+        </div>
+        <div className="w-full md:w-1/3 mt-6">
+          <Input className="w-full" type="color" value="#00CED1" />
         </div>
       </Wrap>
     ),
