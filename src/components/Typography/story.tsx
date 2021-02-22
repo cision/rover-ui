@@ -1,9 +1,17 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { select } from '@storybook/addon-knobs';
 import { Wrap } from '../../stories/storybook-helpers';
 
+import Paper from '../Paper';
 import Typography from '.';
+import type { Color, Size, Tag, Weight } from './Typography';
 import Readme from './README.md';
+
+const tags = ['undefined', 'div', 'span', 'strong', 'textarea', 'Paper'];
+const sizes = ['inherit', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3'];
+const weights = ['inherit', 'normal', 'bold'];
+const colors = ['inherit', 'primary', 'primary-alt', 'black'];
 
 storiesOf('Planets/Typography', module)
   .addParameters({
@@ -13,17 +21,21 @@ storiesOf('Planets/Typography', module)
   })
   .add(
     'Overview',
-    () => (
-      <Typography
-        tag="div"
-        size="xl2"
-        align="center"
-        weight="bold"
-        color="primary-alt"
-      >
-        Hi! I&apos;m a child of &lt;Typography&gt; component.
-      </Typography>
-    ),
+    () => {
+      const tagSelection = select('tag', tags, 'undefined');
+      const tag = tagSelection === 'Paper' ? Paper : tagSelection;
+
+      return (
+        <Typography
+          tag={tagSelection === 'undefined' ? undefined : (tag as Tag)}
+          size={select('sizes', sizes, 'md') as Size}
+          weight={select('weight', weights, 'normal') as Weight}
+          color={select('color', colors, 'primary') as Color}
+        >
+          Hi! I&apos;m a child of &lt;Typography&gt; component.
+        </Typography>
+      );
+    },
     {
       info: {
         inline: false,
@@ -41,12 +53,12 @@ storiesOf('Planets/Typography', module)
           </Typography>
         </Wrap>
         <Wrap>
-          <Typography tag="h1" align="right" size="xl3">
+          <Typography tag="h1" size="xl3">
             Text Size xl3 normal
           </Typography>
         </Wrap>
         <Wrap>
-          <Typography tag="h2" align="center" size="xl2">
+          <Typography tag="h2" size="xl2">
             Text Size xl2
           </Typography>
         </Wrap>
