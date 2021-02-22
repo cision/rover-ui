@@ -40,8 +40,8 @@ describe('Typography', () => {
       </Typography>
     );
 
-    expect(screen.getByTestId('Typography-Test')).toHaveClass('xl3');
-    expect(screen.getByTestId('Typography-Test')).toHaveClass('primary');
-    expect(screen.getByTestId('Typography-Test')).toHaveClass('bold');
+    expect(screen.getByTestId('Typography-Test')).toHaveClass('size--xl3');
+    expect(screen.getByTestId('Typography-Test')).toHaveClass('color--primary');
+    expect(screen.getByTestId('Typography-Test')).toHaveClass('weight--bold');
   });
 });
