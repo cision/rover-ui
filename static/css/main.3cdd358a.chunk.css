@@ -1743,84 +1743,49 @@ a .Avatar_Avatar__2_adr {
   color: var(--rvr-gray-40);
 }
 
-.Typography_sm__1I1Jo {
-  font-size: var(--rvr-font-size-sm);
-}
-
-.Typography_md__2m2XR {
-  font-size: var(--rvr-font-size-md);
-}
-
-.Typography_lg__2-M4K {
-  font-size: var(--rvr-font-size-lg);
-}
-
-.Typography_xl__30Ptf {
-  font-size: var(--rvr-font-size-xl);
-}
-
-.Typography_xl2__2ZKUf {
-  font-size: var(--rvr-font-size-2xl);
-}
-
-.Typography_xl3__1FJYU {
-  font-size: var(--rvr-font-size-3xl);
-}
-
-/*font weight*/
-.Typography_normal__3Yca9 {
-  font-weight: var(--rvr-font-weight-normal);
-}
-
-.Typography_bold___bJZh {
-  font-weight: var(--rvr-font-weight-bold);
-}
-
-/*text alignment*/
-.Typography_inherit__1O7O2 {
-  text-align: inherit;
-}
-.Typography_left__3vWqJ {
-  text-align: left;
-}
-
-.Typography_right__2N82u {
-  text-align: right;
-}
-
-.Typography_center__1MIp5 {
-  text-align: center;
-}
-
-.Typography_justify__1v1mu {
-  text-align: justify;
-}
-
-/*Display*/
-.Typography_initial__3gTfO {
-  display: inline;
-  display: initial;
-}
-
-.Typography_inline__sFjVE {
-  display: inline;
-}
-
-.Typography_block__24c86 {
-  display: block;
-}
-
-/*colors*/
-.Typography_primary__3TRXX {
+.Typography_color--primary__1ubFt {
   color: var(--rvr-color-font);
 }
 
-.Typography_primary-alt__14zoc {
+.Typography_color--primary-alt__2b3XI {
   color: var(--rvr-color-font-dark);
 }
 
-.Typography_black__5xDPu {
+.Typography_color--black__18ovI {
   color: var(--rvr-black);
 }
 
-/*# sourceMappingURL=main.1879784d.chunk.css.map*/
+.Typography_size--sm__3xK0T {
+  font-size: var(--rvr-font-size-sm);
+}
+
+.Typography_size--md__cr3dY {
+  font-size: var(--rvr-font-size-md);
+}
+
+.Typography_size--lg__3QxPL {
+  font-size: var(--rvr-font-size-lg);
+}
+
+.Typography_size--xl__1mQAG {
+  font-size: var(--rvr-font-size-xl);
+}
+
+.Typography_size--xl2__3xS7E {
+  font-size: var(--rvr-font-size-2xl);
+}
+
+.Typography_size--xl3__3Kc_N {
+  font-size: var(--rvr-font-size-3xl);
+}
+
+.Typography_weight--normal__3JXa5 {
+  font-weight: var(--rvr-font-weight-normal);
+}
+
+.Typography_weight--bold__3D_DU {
+  font-weight: var(--rvr-font-weight-bold);
+}
+
+
+/*# sourceMappingURL=main.3cdd358a.chunk.css.map*/
