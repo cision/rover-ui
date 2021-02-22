@@ -25,7 +25,7 @@ type TypographyType = React.FC<TypographyProps> & {
 const Typography: TypographyType = ({
   color = 'primary',
   className: passedClassName = '',
-  size = 'medium',
+  size = 'md',
   tag: Tag = 'span',
   weight = 'normal',
   ...props
