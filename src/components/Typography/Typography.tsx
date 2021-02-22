@@ -3,19 +3,16 @@ import classNames from 'classnames';
 
 import styles from './Typography.module.css';
 
-type TagType = React.ElementType;
-
-type Color = 'primary' | 'primary-alt' | 'black';
-type Weight = 'normal' | 'bold';
-type Align = 'inherit' | 'left' | 'center' | 'right' | 'justify';
-type Size = 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3';
+export type Tag = React.ComponentType | React.ElementType;
+export type Color = 'inherit' | 'primary' | 'primary-alt' | 'black';
+export type Weight = 'inherit' | 'normal' | 'bold';
+export type Size = 'inherit' | 'sm' | 'md' | 'lg' | 'xl' | 'xl2' | 'xl3';
 
 interface TypographyProps {
-  align?: Align;
   children?: React.ReactNode;
   color?: Color;
   className?: string;
-  tag?: TagType;
+  tag?: Tag;
   weight?: Weight;
   size?: Size;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,10 +23,9 @@ type TypographyType = React.FC<TypographyProps> & {
   Block: React.FC<TypographyProps>;
 };
 const Typography: TypographyType = ({
-  align = 'inherit',
   color = 'primary',
   className: passedClassName = '',
-  size = 'md',
+  size = 'medium',
   tag: Tag = 'span',
   weight = 'normal',
   ...props
@@ -37,19 +33,22 @@ const Typography: TypographyType = ({
   const className = useMemo(
     () =>
       classNames(
-        styles[color],
-        styles[weight],
-        styles[align],
-        styles[size],
+        {
+          [styles[`color--${color}`]]: color,
+          [styles[`weight--${weight}`]]: weight,
+          [styles[`size--${size}`]]: size,
+        },
         passedClassName
       ),
-    [align, color, passedClassName, weight, size]
+    [color, passedClassName, weight, size]
   );
 
   return <Tag {...props} className={className} />;
 };
 
-const TypographyBlock = (props) => <Typography Tag="div" {...props} />;
+const TypographyBlock: React.FC<TypographyProps> = (props) => (
+  <Typography Tag="div" {...props} />
+);
 
 Typography.Block = TypographyBlock;
 export default Typography;
