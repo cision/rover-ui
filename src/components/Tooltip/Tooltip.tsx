@@ -1,79 +1,108 @@
 import React, {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
   useLayoutEffect,
 } from 'react';
-import classNames from 'classnames';
 
-import styles from './Tooltip.module.css';
+import classNames from 'classnames';
 
 import Icon from '../Icon';
 
-export type TooltipDirection = 'top' | 'left' | 'right' | 'bottom';
+import styles from './Tooltip.module.css';
+
+export type TooltipDirection =
+  // | 'bottom-left'
+  // | 'bottom-right'
+  | 'bottom'
+  // | 'left-bottom'
+  // | 'left-top'
+  | 'left'
+  // | 'right-bottom'
+  // | 'right-top'
+  | 'right'
+  // | 'top-left'
+  // | 'top-right'
+  | 'top';
+
 export const directions: TooltipDirection[] = [
-  'top',
-  'left',
-  'right',
+  // 'bottom-left',
+  // 'bottom-right',
   'bottom',
+  // 'left-bottom',
+  // 'left-top',
+  'left',
+  // 'right-bottom',
+  // 'right-top',
+  'right',
+  // 'top-left',
+  // 'top-right',
+  'top',
 ];
 
 interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  closeButtonProps?: React.HTMLAttributes<HTMLButtonElement>;
   closeOnEscape?: boolean;
   content?: React.ReactNode;
   direction?: TooltipDirection;
   isOpen?: boolean;
-  tooltipProps?: React.HTMLAttributes<HTMLDivElement>;
-  tooltipWidth?: string;
   onClose?: () => void;
   showOnHover?: boolean;
+  tooltipProps?: React.HTMLAttributes<HTMLDivElement>;
+  tooltipWidth?: string;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   children,
   className = '',
+  closeButtonProps = {},
   closeOnEscape = true,
   content: tooltipContent = null,
   direction = 'top',
-  isOpen = false,
+  isOpen: controlledIsOpen = false,
   onClose = null,
   showOnHover = false,
   tooltipProps: tooltipOptsProp = {},
   tooltipWidth = null,
   ...rest
 }) => {
+  const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(false);
+  const isControlled = !showOnHover;
+  const isOpen = isControlled ? controlledIsOpen : uncontrolledIsOpen;
+
   const [tooltipId] = useState(
     `tooltip-${Date.now() * Math.floor(100 * Math.random())}`
   );
-  const tooltipRef = useRef<HTMLDivElement>(null);
 
-  const [hovered, setHovered] = useState(false);
+  const tooltipRef = useRef<HTMLDivElement>(null);
   const [tooltipHeight, setTooltipHeight] = useState(0);
 
-  const handleSetHover = (value) => () => {
-    if (showOnHover) {
-      setHovered(value);
-    }
-  };
+  const handleSetHover = useCallback(
+    (value: boolean) => {
+      if (!isControlled) {
+        setUncontrolledIsOpen(value);
+      }
+    },
+    [isControlled, setUncontrolledIsOpen]
+  );
 
   useEffect(() => {
-    const handleEscape = (e) => {
-      if (onClose && e.key === 'Escape') {
-        onClose();
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (!isControlled) {
+          setUncontrolledIsOpen(false);
+        }
+
+        if (onClose) onClose();
       }
     };
 
-    if (closeOnEscape) {
-      document.addEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', handleEscape);
 
-      return () => {
-        document.removeEventListener('keydown', handleEscape);
-      };
-    }
-
-    return () => {};
-  }, [closeOnEscape, onClose]);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [closeOnEscape, isControlled, onClose]);
 
   useLayoutEffect(() => {
     if (tooltipRef.current) {
@@ -92,7 +121,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     styles[direction],
     tooltipClassName,
     {
-      [styles.open]: isOpen || hovered,
+      [styles.open]: isOpen,
     }
   );
 
@@ -121,8 +150,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   const TooltipContent = tooltipContent && (
     <div
       id={tooltipId}
-      aria-hidden={isOpen}
+      aria-hidden={!isOpen}
       ref={tooltipRef}
+      role="tooltip"
       {...tooltipWrapperProps}
     >
       <div
@@ -135,6 +165,8 @@ const Tooltip: React.FC<TooltipProps> = ({
             type="button"
             className={styles.tooltipClose}
             onClick={onClose}
+            aria-label="Close"
+            {...closeButtonProps}
           >
             <Icon name="close" />
           </button>
@@ -151,15 +183,17 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <div className={styles.wrapper} {...rest}>
-      {TooltipContent}
       <div
         aria-describedby={tooltipId}
-        onMouseEnter={handleSetHover(true)}
-        onMouseLeave={handleSetHover(false)}
         className={classNames(className, styles.original)}
+        onBlur={() => handleSetHover(false)}
+        onFocus={() => handleSetHover(true)}
+        onMouseLeave={() => handleSetHover(false)}
+        onMouseEnter={() => handleSetHover(true)}
       >
         {children}
       </div>
+      {TooltipContent}
     </div>
   );
 };

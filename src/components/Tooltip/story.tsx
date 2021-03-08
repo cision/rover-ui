@@ -69,6 +69,8 @@ const Overview = () => {
     setOpen((prev) => !prev);
   };
 
+  const handleClose = () => setOpen(false);
+
   const direction = options(
     'Direction',
     directions.reduce<Record<string, TooltipDirection>>((acc, val) => {
@@ -99,7 +101,7 @@ const Overview = () => {
         isOpen={open}
         showOnHover={boolean('Show on hover', false, 'content')}
         direction={direction}
-        onClose={toggle}
+        onClose={handleClose}
         tooltipWidth={`${number(
           'Width',
           300,
@@ -242,7 +244,6 @@ storiesOf('Planets/Tooltip', module)
         <RichTooltip
           content={TooltipContent}
           onClose={action('closing tooltip on left')}
-          closeOnEscape={false}
           direction="left"
           tooltipWidth="400px"
         >
