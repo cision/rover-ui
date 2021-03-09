@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { mount } from 'enzyme';
 
 import Media from '.';
@@ -12,9 +15,9 @@ const TestWrapper = () => {
 
   return (
     <Media>
-      <Media.Body id="media-body">
+      <Media.Body>
         <input
-          id="input-test"
+          data-testid="input-test"
           type="text"
           value={val}
           onChange={handleOnChange}
@@ -24,25 +27,17 @@ const TestWrapper = () => {
   );
 };
 
-type OverrideInstanceFocus = {
-  instance: () => {
-    focus: () => void;
-  };
-};
-
 describe('Media', () => {
   describe('Media.Item', () => {
     it('will not re-render everything unnecessarily', () => {
-      const wrapper = mount(<TestWrapper />);
-      const input = wrapper.find('input#input-test');
+      const { getByTestId } = render(<TestWrapper />);
+      const input = getByTestId('input-test') as HTMLInputElement;
 
-      // TypeScript _really_ doesn't think `focus` exists.
-      ((input as unknown) as OverrideInstanceFocus).instance().focus();
+      userEvent.tab();
+      userEvent.type(input, 'h');
+      userEvent.type(input, 'e');
 
-      input.simulate('change', { target: { value: 'h' } });
-      input.simulate('change', { target: { value: 'he' } });
-
-      expect(wrapper.find('#input-test').is(':focus')).toBe(true);
+      expect(document.activeElement).toEqual(input);
     });
 
     it('renders its children', () => {

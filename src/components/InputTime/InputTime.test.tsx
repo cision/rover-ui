@@ -83,7 +83,7 @@ describe('InputTime', () => {
       expect(baseInput.validationMessage).toBeFalsy();
     });
 
-    // it.only('validates values against step + min if present', async () => {
+    // it('validates values against step + min if present', async () => {
     //   // const { debug, getByTestId, rerender } = render(
     //   //   <InputTime
     //   //     data-testid="InputTime test"
@@ -393,56 +393,61 @@ describe('InputTime', () => {
     });
 
     describe('validation', () => {
-      it('validates `value` against same day `min` and `max`', () => {
-        const { getByLabelText, rerender } = render(
-          <InputTime
-            fuzzyInputProps={{ 'aria-label': 'time input' }}
-            max="2020-06-29T20:00:00.000Z"
-            min="2020-06-29T10:00:00.000Z"
-            value="2020-06-29T20:00:00.000Z"
-          />
-        );
+      describe('validates `value` against same day `min` and `max`', () => {
+        const defaultProps = {
+          fuzzyInputProps: { 'aria-label': 'time input' },
+          max: '2020-06-29T20:00:00.000Z',
+          min: '2020-06-29T10:00:00.000Z',
+          value: '2020-06-29T20:00:00.000Z',
+        };
 
-        // Equals `max`
-        const baseInputTime = getByLabelText('time input') as HTMLInputElement;
-        expect(baseInputTime.validationMessage).toBeFalsy();
+        it('passes when value === max', () => {
+          const { getByLabelText } = render(<InputTime {...defaultProps} />);
 
-        // Equals `min`
-        rerender(
-          <InputTime
-            min="2020-06-29T10:00:00.000Z"
-            value="2020-06-29T10:00:00.000Z"
-          />
-        );
-        expect(baseInputTime.validationMessage).toBeFalsy();
+          const baseInputTime = getByLabelText(
+            'time input'
+          ) as HTMLInputElement;
 
-        // Outside `max`
-        rerender(
-          <InputTime
-            max="2020-06-29T20:00:00.000Z"
-            value="2020-06-29T20:01:00.000Z"
-          />
-        );
-        expect(baseInputTime.validationMessage).toBeTruthy();
+          expect(baseInputTime.validationMessage).toBeFalsy();
+        });
 
-        // Outside `min`
-        rerender(
-          <InputTime
-            min="2020-06-29T10:00:00.000Z"
-            value="2020-06-29T09:59:00.000Z"
-          />
-        );
-        expect(baseInputTime.validationMessage).toBeTruthy();
+        it('passes when value === min', () => {
+          const { getByLabelText } = render(
+            <InputTime {...defaultProps} value="2020-06-29T10:00:00.000Z" />
+          );
 
-        // Impossible
-        rerender(
-          <InputTime
-            max="2020-06-29T09:59:00.000Z"
-            min="2020-06-29T10:00:00.000Z"
-            value="2020-06-29T09:59:00.000Z"
-          />
-        );
-        expect(baseInputTime.validationMessage).toBeTruthy();
+          const baseInputTime = getByLabelText(
+            'time input'
+          ) as HTMLInputElement;
+
+          expect(baseInputTime.validationMessage).toBeFalsy();
+        });
+
+        it('fails when value > max', () => {
+          const { debug, getByLabelText } = render(
+            <InputTime {...defaultProps} value="2020-06-29T20:01:00.000Z" />
+          );
+
+          const baseInputTime = getByLabelText(
+            'time input'
+          ) as HTMLInputElement;
+
+          debug();
+
+          expect(baseInputTime.validationMessage).toBeTruthy();
+        });
+
+        it('fails when value < min', () => {
+          const { getByLabelText } = render(
+            <InputTime {...defaultProps} value="2020-06-29T09:59:00.000Z" />
+          );
+
+          const baseInputTime = getByLabelText(
+            'time input'
+          ) as HTMLInputElement;
+
+          expect(baseInputTime.validationMessage).toBeTruthy();
+        });
       });
 
       it('disables when `min` or `max` make all selections impossible', () => {
