@@ -2,18 +2,10 @@
 import React, { Fragment, useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import {
-  boolean,
-  number,
-  optionsKnob as options,
-  text,
-} from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 
-import Tooltip, {
-  EasyRichTooltip,
-  directions,
-  TooltipDirection,
-} from './Tooltip';
+import Tooltip, { EasyRichTooltip, directions } from './Tooltip';
+
 import Button from '../Button';
 import Readme from './README.md';
 
@@ -62,76 +54,62 @@ const Element: React.FC<React.HTMLAttributes<HTMLDivElement>> = (props) => (
   <div className="mr-5" {...props} />
 );
 
-const Overview = () => {
-  const [open, setOpen] = useState(false);
-
-  const toggle = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const handleClose = () => setOpen(false);
-
-  const direction = options(
-    'Direction',
-    directions.reduce<Record<string, TooltipDirection>>((acc, val) => {
-      acc[val] = val;
-      return acc;
-    }, {}),
-    directions[0],
-    {
-      display: 'inline-radio',
-    },
-    'all'
-  );
-  const textHover = boolean('Show on hover', true, 'text');
-
-  return (
-    <FlexWrapper>
-      <Element>
-        <Tooltip
-          content={text('Tooltip Text', 'Hi there!', 'text')}
-          showOnHover={textHover}
-          direction={direction}
-          isOpen={boolean('Open', false, 'text')}
-        >
-          <Button>{text('Main Content', 'With Text', 'text')}</Button>
-        </Tooltip>
-      </Element>
-      <Tooltip
-        isOpen={open}
-        showOnHover={boolean('Show on hover', false, 'content')}
-        direction={direction}
-        onClose={handleClose}
-        tooltipWidth={`${number(
-          'Width',
-          300,
-          { min: 10, max: 1000, step: 5 },
-          'content'
-        )}px`}
-        content={
-          <div>
-            <h3 style={{ margin: '0 0 1em' }}>Article Reach</h3>
-            <p style={{ margin: 0 }}>
-              The expected readership (UVPM) of the next article they write,
-              based on the average readership of the articles they&apos;ve
-              written over the last 90 days.
-            </p>
-          </div>
-        }
-      >
-        <Button onClick={toggle}>With content</Button>
-      </Tooltip>
-    </FlexWrapper>
-  );
-};
-
 storiesOf('Planets/Tooltip', module)
   .addParameters({
     readme: {
       sidebar: Readme,
     },
   })
-  .add('Overview', () => <Overview />)
+  .add('Overview', () => {
+    const [open, setOpen] = useState(false);
+
+    const toggle = () => {
+      setOpen((prev) => !prev);
+    };
+
+    const handleClose = () => setOpen(false);
+
+    const direction = select('direction', directions, directions[0], 'all');
+
+    const textHover = boolean('Show on hover', true, 'text');
+
+    return (
+      <FlexWrapper>
+        <Element>
+          <Tooltip
+            content={text('Tooltip Text', 'Hi there!', 'text')}
+            showOnHover={textHover}
+            direction={direction}
+          >
+            <Button>{text('Main Content', 'With Text', 'text')}</Button>
+          </Tooltip>
+        </Element>
+        <Tooltip
+          isOpen={open}
+          direction={direction}
+          onClose={handleClose}
+          tooltipWidth={`${number(
+            'Width',
+            300,
+            { min: 10, max: 1000, step: 5 },
+            'content'
+          )}px`}
+          content={
+            <div>
+              <h3 style={{ margin: '0 0 1em' }}>Article Reach</h3>
+              <div>
+                The expected readership (UVPM) of the next article they write,
+                based on the average readership of the articles they&apos;ve
+                written over the last 90 days.
+              </div>
+            </div>
+          }
+        >
+          <Button onClick={toggle}>With content</Button>
+        </Tooltip>
+      </FlexWrapper>
+    );
+  })
   .add(
     'Hoverable',
     () => {
@@ -170,6 +148,34 @@ storiesOf('Planets/Tooltip', module)
             </Tooltip>
           </Element>
         </FlexWrapper>
+      );
+    },
+    {}
+  )
+
+  .add(
+    'Directions',
+    () => {
+      return (
+        <div style={{ textAlign: 'center' }}>
+          {directions.map((direction) => (
+            <div className="m-6" key={direction}>
+              <Tooltip
+                showOnHover
+                content={
+                  <div style={{ whiteSpace: 'nowrap' }}>
+                    Hi!
+                    <br />
+                    I&apos;m on the {direction}!
+                  </div>
+                }
+                direction={direction}
+              >
+                <button type="button">{direction}</button>
+              </Tooltip>
+            </div>
+          ))}
+        </div>
       );
     },
     {}
