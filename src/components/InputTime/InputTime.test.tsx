@@ -424,15 +424,13 @@ describe('InputTime', () => {
         });
 
         it('fails when value > max', () => {
-          const { debug, getByLabelText } = render(
+          const { getByLabelText } = render(
             <InputTime {...defaultProps} value="2020-06-29T20:01:00.000Z" />
           );
 
           const baseInputTime = getByLabelText(
             'time input'
           ) as HTMLInputElement;
-
-          debug();
 
           expect(baseInputTime.validationMessage).toBeTruthy();
         });
