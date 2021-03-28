@@ -1,0 +1,129 @@
+.modal {
+  z-index: var(--rvr-zindex-modal-backdrop);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color:rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  overflow: auto;
+  pointer-events: none;
+}
+
+.enterDone {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.exit {
+  opacity: 0;
+}
+
+.modalContent {
+  display: flex;
+  flex-flow: column nowrap;
+  z-index: var(--rvr-zindex-modal);
+  background-color: var(--rvr-white);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+  overflow: auto;
+  transform: translateY(-200px);
+  margin: var(--rvr-space-bordered-lg);
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.enterDone .modalContent {
+  transform: translateY(0);
+}
+
+.exit .modalContent {
+  transform: translateY(-200px);
+}
+
+.modalHeader {
+  flex: 0 0 auto;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.modalHeader.level--primary {
+  background: var(--rvr-gray-10);
+  border-bottom: 1px solid var(--rvr-gray-20)
+}
+
+.modalHeader.level--warning {
+  background: var(--rvr-yellow-lite-2);
+  border-bottom: 1px solid var(--rvr-yellow);
+}
+
+.modalHeader.level--info {
+  background: var(--rvr-blue-lite-2);
+  border-bottom: 1px solid var(--rvr-blue);
+}
+
+.modalHeader.level--danger {
+  background: var(--rvr-red-lite-2);
+  border-bottom: 1px solid var(--rvr-red);
+}
+
+
+.modalFooter {
+  flex: 0 0 auto;
+  border-top: 1px solid var(--rvr-gray-20);
+  background: var(--rvr-white);
+}
+
+.modalHeader, .modalFooter {
+  padding: 12px;
+}
+
+.modalTitle {
+  margin: 0;
+}
+
+.modalBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.bodyHasOpenModal {
+  overflow: hidden;
+}
+
+.size--sm {
+  width: 340px;
+}	
+
+.size--md {
+  width: 578px;
+}	
+
+.size--lg {
+  width: 815px;
+}	
+
+/*max-height: calc(var(--rvr-baseSize) * 40*/
+@media (max-height: 320px) {
+  .modalBody {
+    flex: 0 0 auto;
+  }
+
+  .modalContent {
+    flex: 0 0 auto;
+    max-height: none;
+  }
+
+  .modal {
+    justify-content: flex-start;
+  }
+}
+

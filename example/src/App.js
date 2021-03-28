@@ -26,6 +26,7 @@ import {
   Input,
   InputTime,
   Typography,
+  Modal,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -403,6 +404,10 @@ const App = () => {
 
       <Section title="Typography">
         <Typography />
+      </Section>
+
+      <Section title="Modal">
+        <Modal />
       </Section>
 
       {/** USAGE_INJECTOR */}
