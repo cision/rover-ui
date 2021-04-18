@@ -17,13 +17,13 @@ describe('Modal', () => {
 
   describe('Modal CSS Classes', () => {
     test.each`
-      size         | level        | sizeClass     | levelClass
-      ${'sm'}      | ${'primary'} | ${'size--sm'} | ${'level--primary'}
-      ${'md'}      | ${'warning'} | ${'size--md'} | ${'level--warning'}
-      ${'lg'}      | ${undefined} | ${'size--lg'} | ${'level--primary'}
-      ${undefined} | ${undefined} | ${'size--md'} | ${'level--primary'}
-      ${'lg'}      | ${'info'}    | ${'size--lg'} | ${'level--info'}
-      ${undefined} | ${'danger'}  | ${'size--md'} | ${'level--danger'}
+      size         | level        | sizeClass | levelClass
+      ${'sm'}      | ${'primary'} | ${'sm'}   | ${'level--primary'}
+      ${'md'}      | ${'warning'} | ${'md'}   | ${'level--warning'}
+      ${'lg'}      | ${undefined} | ${'lg'}   | ${'level--primary'}
+      ${undefined} | ${undefined} | ${'md'}   | ${'level--primary'}
+      ${'lg'}      | ${'info'}    | ${'lg'}   | ${'level--info'}
+      ${undefined} | ${'danger'}  | ${'md'}   | ${'level--danger'}
     `(
       'when size prop = $size and level prop = $level, the modal should have css classes $sizeClass and $levelClass',
       ({ size, level, sizeClass, levelClass }) => {

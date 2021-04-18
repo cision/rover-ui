@@ -1,4 +1,4 @@
-.modal {
+.Modal {
   z-index: var(--rvr-zindex-modal-backdrop);
   position: fixed;
   left: 0;
@@ -25,7 +25,7 @@
   opacity: 0;
 }
 
-.modalContent {
+.content {
   display: flex;
   flex-flow: column nowrap;
   z-index: var(--rvr-zindex-modal);
@@ -40,55 +40,52 @@
   max-width: 100%;
 }
 
-.enterDone .modalContent {
+.enterDone .content {
   transform: translateY(0);
 }
 
-.exit .modalContent {
+.exit .content {
   transform: translateY(-200px);
 }
 
-.modalHeader {
+.Header {
   flex: 0 0 auto;
   border-radius: 4px 4px 0px 0px;
 }
 
-.modalHeader.level--primary {
+.Header.level--primary {
   background: var(--rvr-gray-10);
   border-bottom: 1px solid var(--rvr-gray-20)
 }
 
-.modalHeader.level--warning {
+.Header.level--warning {
   background: var(--rvr-yellow-lite-2);
   border-bottom: 1px solid var(--rvr-yellow);
 }
 
-.modalHeader.level--info {
+.Header.level--info {
   background: var(--rvr-blue-lite-2);
   border-bottom: 1px solid var(--rvr-blue);
 }
 
-.modalHeader.level--danger {
+.Header.level--danger {
   background: var(--rvr-red-lite-2);
   border-bottom: 1px solid var(--rvr-red);
 }
 
 
-.modalFooter {
+.Footer {
   flex: 0 0 auto;
   border-top: 1px solid var(--rvr-gray-20);
   background: var(--rvr-white);
 }
 
-.modalHeader, .modalFooter {
+.Header, .Footer {
   padding: 12px;
 }
 
-.modalTitle {
-  margin: 0;
-}
 
-.modalBody {
+.Body {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
@@ -99,30 +96,30 @@
   overflow: hidden;
 }
 
-.size--sm {
+.sm {
   width: 340px;
 }	
 
-.size--md {
+.md {
   width: 578px;
 }	
 
-.size--lg {
+.lg {
   width: 815px;
 }	
 
 /*max-height: calc(var(--rvr-baseSize) * 40*/
 @media (max-height: 320px) {
-  .modalBody {
+  .Body {
     flex: 0 0 auto;
   }
 
-  .modalContent {
+  .content {
     flex: 0 0 auto;
     max-height: none;
   }
 
-  .modal {
+  .Modal {
     justify-content: flex-start;
   }
 }

@@ -1,4 +1,4 @@
-import React, { CSSProperties, useCallback, useEffect, useMemo } from 'react';
+import React, { CSSProperties, useCallback, useEffect } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import { ClassValue } from 'classnames/types';
@@ -74,17 +74,14 @@ const Modal: ModalType = ({
     }
   }, [isOpen]);
 
-  const modalContentStyle = useMemo(
-    () =>
-      classNames(
-        styles.modalContent,
-        {
-          [styles[`size--${size}`]]: size,
-        },
-        passedClassName
-      ),
-    [passedClassName, size]
+  const modalContentStyle = classNames(
+    styles.content,
+    {
+      [styles[size]]: size,
+    },
+    passedClassName
   );
+
   return ReactDOM.createPortal(
     <CSSTransition
       in={isOpen}
@@ -99,7 +96,7 @@ const Modal: ModalType = ({
         role="presentation"
         {...passedProps}
         style={passedStyle}
-        className={styles.modal}
+        className={styles.Modal}
         onClick={onClose}
       >
         <div
@@ -124,7 +121,7 @@ const Header: React.FC<ModalHeaderProps> = ({
   <div
     {...props}
     className={classNames(
-      styles.modalHeader,
+      styles.Header,
       { [styles[`level--${level}`]]: level },
       className
     )}
@@ -138,7 +135,7 @@ const Body: React.FC<ModalChildProps> = ({
   className = '',
   ...props
 }) => (
-  <div {...props} className={classNames(styles.modalBody, className)}>
+  <div {...props} className={classNames(styles.Body, className)}>
     {children}
   </div>
 );
@@ -148,7 +145,7 @@ const Footer: React.FC<ModalChildProps> = ({
   className = '',
   ...props
 }) => (
-  <div {...props} className={classNames(styles.modalFooter, className)}>
+  <div {...props} className={classNames(styles.Footer, className)}>
     {children}
   </div>
 );
