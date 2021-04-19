@@ -1,9 +1,18 @@
-import React, { CSSProperties, useCallback, useEffect } from 'react';
+import React, {
+  createContext,
+  createRef,
+  CSSProperties,
+  useCallback,
+  //useContext,
+  useEffect,
+} from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import { ClassValue } from 'classnames/types';
 
 import ReactDOM from 'react-dom';
+import { TrapFocus } from './TrapFocus';
+
 import styles from './Modal.module.css';
 
 type Size = 'sm' | 'md' | 'lg';
@@ -29,6 +38,25 @@ type ModalType = React.FC<ModalProps> & {
   Body: React.FC<ModalChildProps>;
 };
 
+const modalRef = createRef<HTMLDivElement>();
+const modalContext = createContext({ onClose: () => {} });
+
+/*const getFocusableElements = (element: HTMLElement) => {
+  return element?.querySelectorAll(
+    'a, button, textarea, input, input[type="radio"], input[type="checkbox"], select'
+  );
+};
+
+const getFirstFocusableElement = (element: HTMLElement) => {
+  const focusableElements = getFocusableElements(element);
+  return focusableElements && focusableElements[0];
+};
+
+const getLastFocusableElement = (element: HTMLElement) => {
+  const focusableElements = getFocusableElements(element);
+  return focusableElements && focusableElements[focusableElements.length - 1];
+};*/
+
 const Modal: ModalType = ({
   children,
   className: passedClassName = '',
@@ -41,23 +69,33 @@ const Modal: ModalType = ({
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
       if (isOpen && e.code === 'Escape' && onClose) {
-        onClose();
+        if (!modalRef?.current?.contains(document.activeElement)) {
+          onClose();
+        }
+        (document.activeElement as HTMLElement).blur();
       }
     },
     [isOpen, onClose]
   );
 
   useEffect(() => {
+    const keyListenerMap = new Map([['Escape', handleEscape]]);
+
+    const keyListener = (e: KeyboardEvent) => {
+      const listener = keyListenerMap.get(e.code);
+      return listener && listener(e);
+    };
+
     if (isOpen) {
-      window.addEventListener('keyup', handleEscape);
+      window.addEventListener('keydown', keyListener);
     }
 
     if (!isOpen) {
-      window.removeEventListener('keyup', handleEscape);
+      window.removeEventListener('keydown', keyListener);
     }
 
     return () => {
-      if (isOpen) window.removeEventListener('keyup', handleEscape);
+      if (isOpen) window.removeEventListener('keydown', keyListener);
     };
   }, [handleEscape, isOpen]);
 
@@ -67,6 +105,12 @@ const Modal: ModalType = ({
         document.body.className,
         styles.bodyHasOpenModal
       );
+      //AutoFocus goes
+      /*const firstElement = getFirstFocusableElement(
+        modalRef?.current as HTMLElement
+      );
+
+      (firstElement as HTMLElement)?.focus();*/
     } else {
       document.body.className = document.body.className
         .replace(styles.bodyHasOpenModal, '')
@@ -81,6 +125,13 @@ const Modal: ModalType = ({
     },
     passedClassName
   );
+
+  const handleClickBackdrop = (e: React.MouseEvent) => {
+    if (e.target && modalRef?.current?.contains(e.target as HTMLElement)) {
+      return;
+    }
+    onClose();
+  };
 
   return ReactDOM.createPortal(
     <CSSTransition
@@ -97,14 +148,13 @@ const Modal: ModalType = ({
         {...passedProps}
         style={passedStyle}
         className={styles.Modal}
-        onClick={onClose}
+        onClick={handleClickBackdrop}
       >
-        <div
-          role="presentation"
-          className={modalContentStyle}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {children}
+        <div role="dialog" className={modalContentStyle} ref={modalRef}>
+          <TrapFocus elementRef={modalRef} isOpen={isOpen} />
+          <modalContext.Provider value={{ onClose }}>
+            {children}
+          </modalContext.Provider>
         </div>
       </div>
     </CSSTransition>,
@@ -117,18 +167,20 @@ const Header: React.FC<ModalHeaderProps> = ({
   className = '',
   level = 'primary',
   ...props
-}) => (
-  <div
-    {...props}
-    className={classNames(
-      styles.Header,
-      { [styles[`level--${level}`]]: level },
-      className
-    )}
-  >
-    {children}
-  </div>
-);
+}) => {
+  return (
+    <div
+      {...props}
+      className={classNames(
+        styles.Header,
+        { [styles[`level--${level}`]]: level },
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+};
 
 const Body: React.FC<ModalChildProps> = ({
   children,

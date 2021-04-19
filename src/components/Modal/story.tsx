@@ -87,6 +87,13 @@ const MediumModalExample = () => {
 
 const LargeModalExample = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const initialInputValues = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  };
+  const [formInputValues, setFormInputValues] = useState(initialInputValues);
 
   const openModal = () => {
     setIsOpen(true);
@@ -94,6 +101,18 @@ const LargeModalExample = () => {
 
   const closeModal = () => {
     setIsOpen(false);
+    setFormInputValues({
+      ...initialInputValues,
+    });
+  };
+
+  const handleInputChange = (event) => {
+    event.persist();
+
+    setFormInputValues({
+      ...formInputValues,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
@@ -118,10 +137,10 @@ const LargeModalExample = () => {
                 autoComplete="off"
                 className="border py-2 px-3 text-grey-darkest"
                 type="text"
-                name="first-name"
+                name="firstName"
                 placeholder="First Name"
-                onChange={() => {}}
-                value=""
+                onChange={handleInputChange}
+                value={formInputValues.firstName}
               />
             </div>
             <div className="flex flex-col mb-4">
@@ -130,10 +149,10 @@ const LargeModalExample = () => {
                 autoComplete="off"
                 className="border py-2 px-3 text-grey-darkest"
                 type="text"
-                name="last-name"
+                name="lastName"
                 placeholder="Last Name"
-                onChange={() => {}}
-                value=""
+                onChange={handleInputChange}
+                value={formInputValues.lastName}
               />
             </div>
             <div className="flex flex-col mb-4">
@@ -144,8 +163,8 @@ const LargeModalExample = () => {
                 type="text"
                 name="email"
                 placeholder="Email"
-                onChange={() => {}}
-                value=""
+                onChange={handleInputChange}
+                value={formInputValues.email}
               />
             </div>
             <div className="flex flex-col mb-6">
@@ -155,8 +174,8 @@ const LargeModalExample = () => {
                 className="border py-2 px-3 text-grey-darkest"
                 type="password"
                 name="password"
-                onChange={() => {}}
-                value=""
+                onChange={handleInputChange}
+                value={formInputValues.password}
               />
             </div>
           </div>
