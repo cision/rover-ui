@@ -34,7 +34,7 @@ describe('Modal', () => {
             </Modal.Header>
           </Modal>
         );
-        const modalContentDiv = screen.getAllByRole('presentation')[1];
+        const modalContentDiv = screen.getByRole('dialog');
         expect(modalContentDiv).toHaveClass(sizeClass);
         expect(screen.getByTestId('Modal-Header')).toHaveClass(levelClass);
       }
