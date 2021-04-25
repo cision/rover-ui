@@ -40,6 +40,7 @@ const App = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [inputTimeValue, setInputTimeValue] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleTooltip = function () {
     setTooltipOpen((prev) => !prev);
@@ -407,7 +408,32 @@ const App = () => {
       </Section>
 
       <Section title="Modal">
-        <Modal />
+        <div>
+          <Button modifiers={['primary']} onClick={() => setIsModalOpen(true)}>
+            Show Modal
+          </Button>
+        </div>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          size="md"
+        >
+          <Modal.Header>
+            <h4 className="">Modal Header</h4>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Modal Body</p>
+            <p>You can put all of your interesting content in the modal body</p>
+            <p>
+              Click outside the modal or use the escape key to close the modal
+            </p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => setIsModalOpen(false)} className="">
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Section>
 
       {/** USAGE_INJECTOR */}
