@@ -4,7 +4,31 @@ import '@testing-library/jest-dom';
 
 import Modal from './Modal';
 
+const defaultProps = {
+  isOpen: true,
+  onClose: jest.fn(),
+};
+
+const renderModal = (props = defaultProps) =>
+  render(
+    <Modal {...props}>
+      <Modal.Header>
+        <p>Modal Header</p>
+      </Modal.Header>
+      <Modal.Body>
+        <p>Modal Body</p>
+      </Modal.Body>
+      <Modal.Footer>
+        <p>Modal Footer</p>
+      </Modal.Footer>
+    </Modal>
+  );
 describe('Modal', () => {
+  it('renders correctly', () => {
+    const { baseElement } = renderModal();
+    expect(baseElement).toMatchSnapshot();
+  });
+
   it('renders', () => {
     render(<Modal isOpen data-testid="Modal-Test" />);
     expect(screen.getByTestId('Modal-Test')).toBeInTheDocument();

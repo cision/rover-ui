@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal renders correctly 1`] = `
+<body
+  class="bodyHasOpenModal"
+>
+  <div />
+  <div
+    class="Modal"
+    role="presentation"
+  >
+    <div
+      class="content md"
+      role="dialog"
+    >
+      <div
+        class="Header level--primary"
+      >
+        <p>
+          Modal Header
+        </p>
+      </div>
+      <div
+        class="Body"
+      >
+        <p>
+          Modal Body
+        </p>
+      </div>
+      <div
+        class="Footer"
+      >
+        <p>
+          Modal Footer
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;
