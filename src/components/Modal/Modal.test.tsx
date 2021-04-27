@@ -71,10 +71,12 @@ describe('Modal', () => {
       render(<Modal isOpen onClose={onClose} data-testid="Modal-Test" />);
       const modal = screen.getByTestId('Modal-Test');
       expect(modal).toBeInTheDocument();
-      fireEvent.keyUp(modal, {
+
+      fireEvent.keyDown(modal, {
         key: 'Escape',
         code: 'Escape',
       });
+
       expect(onClose).toHaveBeenCalledTimes(1);
     });
   });

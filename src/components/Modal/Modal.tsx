@@ -116,15 +116,15 @@ const Modal: ModalType = ({
     };
 
     if (isOpen) {
-      window.addEventListener('keyup', keyListener);
+      window.addEventListener('keydown', keyListener);
     }
 
     if (!isOpen) {
-      window.removeEventListener('keyup', keyListener);
+      window.removeEventListener('keydown', keyListener);
     }
 
     return () => {
-      if (isOpen) window.removeEventListener('keyup', keyListener);
+      if (isOpen) window.removeEventListener('keydown', keyListener);
     };
   }, [handleEscape, handleTabKey, isOpen]);
 
