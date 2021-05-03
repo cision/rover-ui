@@ -1,7 +1,8 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
+import userEvent from '@testing-library/user-event';
 import Modal from './Modal';
 
 const defaultProps = {
@@ -72,10 +73,7 @@ describe('Modal', () => {
       const modal = screen.getByTestId('Modal-Test');
       expect(modal).toBeInTheDocument();
 
-      fireEvent.keyDown(modal, {
-        key: 'Escape',
-        code: 'Escape',
-      });
+      userEvent.type(modal, '{esc}');
 
       expect(onClose).toHaveBeenCalledTimes(1);
     });
