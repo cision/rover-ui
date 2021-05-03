@@ -1,7 +1,7 @@
 :root {
   /* PRIMARY */
   --rvr-btn-color-primary: var(--rvr-white);
-  --rvr-btn-bg-color-primary: var(--rvr-blue);
+  --rvr-btn-bg-color-primary: var(--rvr-color-primary);
   --rvr-btn-border-color-primary: var(--rvr-btn-bg-color-primary);
 
   /* Active */
@@ -30,7 +30,7 @@
   --rvr-btn-border-color-primary-alt-disabled: var(--rvr-btn-border-color-primary-disabled);
 
   /* SECONDARY */
-  --rvr-btn-color-secondary: var(--rvr-blue);
+  --rvr-btn-color-secondary: var(--rvr-color-primary);
   --rvr-btn-bg-color-secondary: var(--rvr-white);
   --rvr-btn-border-color-secondary: var(--rvr-btn-color-secondary);
 
@@ -90,7 +90,7 @@
   --rvr-btn-border-color-danger-disabled: var(--rvr-btn-border-color-secondary-disabled);
 
   /* LINK */
-  --rvr-btn-color-link: var(--rvr-blue);
+  --rvr-btn-color-link: var(--rvr-color-primary);
   --rvr-btn-bg-color-link: transparent;
   --rvr-btn-border-color-link: var(--rvr-btn-bg-color-link);
 
