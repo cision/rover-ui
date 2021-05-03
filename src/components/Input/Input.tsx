@@ -14,7 +14,6 @@ export interface InputProps
 const Input: React.FC<InputProps> = ({
   className = '',
   onChange = () => {},
-  readOnly = false,
   fauxDisabled = false,
   forwardedRef: ref,
   ...passedProps
@@ -24,7 +23,6 @@ const Input: React.FC<InputProps> = ({
       className={classNames(styles.Input, className, {
         [styles.disabled]: fauxDisabled,
       })}
-      readOnly={readOnly}
       ref={ref || undefined}
       onChange={onChange}
       {...passedProps}
