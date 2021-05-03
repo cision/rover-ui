@@ -75,7 +75,7 @@ describe('Modal', () => {
 
       userEvent.type(modal, '{esc}');
 
-      expect(onClose).toHaveBeenCalledTimes(1);
+      expect(onClose).toHaveBeenCalled();
     });
   });
 });
