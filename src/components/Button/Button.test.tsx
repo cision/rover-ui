@@ -39,14 +39,6 @@ describe('Button', () => {
     });
   });
 
-  describe('props.hollow', () => {
-    // Our current test build doesn't do css modules, so this won't work
-    // it('adds hollow className', () => {
-    //   const wrapper = shallow(<Button hollow />);
-    //   expect(wrapper.hasClass(style.hollow)).toEqual(true);
-    // });
-  });
-
   describe('props.level', () => {
     // Our current test build doesn't do css modules, so this won't work
     // it.ignore('adds "primary" level className', () => {

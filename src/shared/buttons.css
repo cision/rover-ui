@@ -1,21 +1,50 @@
 :root {
+  /* SHARED */
+  --rvr-btn-focus-outline-color: var(--rvr-color-primary);
+  --rvr-btn-focus-outline-offset-color: var(--rvr-bg-color);
+
+  /* Disabled filled button */
+  --rvr-btn-color-disabled: var(--rvr-bg-color);
+  --rvr-btn-bg-color-disabled: var(--rvr-color-disabled);
+  --rvr-btn-border-color-disabled: var(--rvr-color-disabled);
+
+  /* Disabled unfilled button */
+  --rvr-btn-unfilled-color-disabled: var(--rvr-color-font);
+  --rvr-btn-unfilled-bg-color-disabled: var(--rvr-bg-color);
+  --rvr-btn-unfilled-border-color-disabled: var(--rvr-color-disabled);
+
+  /* Disabled text/link style button */
+  --rvr-btn-as-text-color-disabled: var(--rvr-color-disabled);
+  --rvr-btn-as-text-bg-color-disabled: transparent;
+  --rvr-btn-as-text-border-color-disabled: transparent;
+
+  /* Outline / hollow shared */
+  --rvr-btn-color-outlined-disabled: var(--rvr-color-primary-focus);
+  /* _Outlined_/hollow-style button with focus has a CSS _outline_ property. */
+  --rvr-btn-outline-color-outlined: var(--rvr-teal-lite-5);
+
+  /* Outline / inverted button-as-text shared */
+  --rvr-btn-color-as-text-outlined-disabled: var(--rvr-gray-30);
+  --rvr-btn-outline-color-as-text-outlined-focus: var(--rvr-color-highlight);
+
   /* PRIMARY */
-  --rvr-btn-color-primary: var(--rvr-white);
+  --rvr-btn-color-primary: var(--rvr-bg-color);
   --rvr-btn-bg-color-primary: var(--rvr-color-primary);
   --rvr-btn-border-color-primary: var(--rvr-btn-bg-color-primary);
 
+  /* Focus */
+  --rvr-btn-color-primary-focus: var(--rvr-color-primary-focus);
+
   /* Active */
-  --rvr-btn-color-primary-active: var(--rvr-btn-color-primary);
   --rvr-btn-bg-color-primary-active: var(--rvr-blue-lite-1);
   --rvr-btn-border-color-primary-active: var(--rvr-btn-bg-color-primary-active);
 
-  /* Disabled */
-  --rvr-btn-color-primary-disabled: var(--rvr-white);
-  --rvr-btn-bg-color-primary-disabled: var(--rvr-color-disabled);
-  --rvr-btn-border-color-primary-disabled: var(--rvr-color-disabled);
+  /* Outlined main and active  */
+  --rvr-btn-color-primary-outlined: var(--rvr-color-highlight);
+  --rvr-btn-color-primary-outlined-active: var(--rvr-bg-color);
 
   /* PRIMARY-ALT (TEAL) */
-  --rvr-btn-color-primary-alt: var(--rvr-white);
+  --rvr-btn-color-primary-alt: var(--rvr-bg-color);
   --rvr-btn-bg-color-primary-alt: var(--rvr-teal);
   --rvr-btn-border-color-primary-alt: var(--rvr-btn-bg-color-primary-alt);
 
@@ -24,70 +53,68 @@
   --rvr-btn-bg-color-primary-alt-active: var(--rvr-teal-lite-1);
   --rvr-btn-border-color-primary-alt-active: var(--rvr-btn-bg-color-primary-alt-active);
 
-  /* Disabled */
-  --rvr-btn-color-primary-alt-disabled: var(--rvr-btn-color-primary-disabled);
-  --rvr-btn-bg-color-primary-alt-disabled: var(--rvr-btn-bg-color-primary-disabled);
-  --rvr-btn-border-color-primary-alt-disabled: var(--rvr-btn-border-color-primary-disabled);
+  /* Outlined main and active  */
+  --rvr-btn-color-primary-alt-outlined: var(--rvr-teal-lite-4);
+  --rvr-btn-color-primary-alt-outlined-active: var(--rvr-teal-lite-5);
 
   /* SECONDARY */
   --rvr-btn-color-secondary: var(--rvr-color-primary);
-  --rvr-btn-bg-color-secondary: var(--rvr-white);
+  --rvr-btn-bg-color-secondary: var(--rvr-bg-color);
   --rvr-btn-border-color-secondary: var(--rvr-btn-color-secondary);
 
+  /* Focus */
+  --rvr-btn-color-secondary-focus: var(--rvr-btn-bg-color-primary-active);
+
   /* Active */
-  --rvr-btn-color-secondary-active: var(--rvr-btn-color-primary-active);
+  --rvr-btn-color-secondary-active: var(--rvr-btn-color-primary);
   --rvr-btn-bg-color-secondary-active: var(--rvr-btn-bg-color-primary-active);
   --rvr-btn-border-color-secondary-active: var(--rvr-btn-border-color-primary-active);
 
-  /* Disabled */
-  --rvr-btn-color-secondary-disabled: var(--rvr-color-disabled);
-  --rvr-btn-bg-color-secondary-disabled: var(--rvr-white);
-  --rvr-btn-border-color-secondary-disabled: var(--rvr-color-disabled);
+  /* Outlined main and active  */
+  --rvr-btn-color-secondary-outlined: var(--rvr-gray-25);
+  --rvr-btn-color-secondary-outlined-active: var(--rvr-bg-color);
 
   /* TERTIARY */
   --rvr-btn-color-tertiary: var(--rvr-color-font);
-  --rvr-btn-bg-color-tertiary: var(--rvr-white);
-  --rvr-btn-border-color-tertiary: var(--rvr-gray-40);
+  --rvr-btn-bg-color-tertiary: var(--rvr-bg-color);
+  --rvr-btn-border-color-tertiary: var(--rvr-color-disabled);
 
   /* Active */
   --rvr-btn-color-tertiary-active: var(--rvr-color-font-dark);
   --rvr-btn-bg-color-tertiary-active: var(--rvr-gray-20);
   --rvr-btn-border-color-tertiary-active: var(--rvr-gray-60);
 
-  /* Disabled */
-  --rvr-btn-color-tertiary-disabled: var(--rvr-btn-color-secondary-disabled);
-  --rvr-btn-bg-color-tertiary-disabled: var(--rvr-btn-bg-color-secondary-disabled);
-  --rvr-btn-border-color-tertiary-disabled: var(--rvr-btn-border-color-secondary-disabled);
+  /* Outlined main and active  */
+  --rvr-btn-color-tertiary-outlined: var(--rvr-gray-30);
+  --rvr-btn-color-tertiary-outlined-active: var(--rvr-gray-10);
 
   /* SUCCESS */
-  --rvr-btn-color-success: var(--rvr-white);
+  --rvr-btn-color-success: var(--rvr-bg-color);
   --rvr-btn-bg-color-success: var(--rvr-color-success);
   --rvr-btn-border-color-success: var(--rvr-btn-bg-color-success);
 
   /* Active */
-  --rvr-btn-color-success-active: var(--rvr-white);
+  --rvr-btn-color-success-active: var(--rvr-bg-color);
   --rvr-btn-bg-color-success-active: var(--rvr-color-success-hover);
   --rvr-btn-border-color-success-active: var(--rvr-btn-bg-color-success-active);
 
-  /* Disabled */
-  --rvr-btn-color-success-disabled: var(--rvr-btn-color-secondary-disabled);
-  --rvr-btn-bg-color-success-disabled: var(--rvr-btn-bg-color-secondary-disabled);
-  --rvr-btn-border-color-success-disabled: var(--rvr-btn-border-color-secondary-disabled);
+  /* Outlined main and active  */
+  --rvr-btn-color-success-outlined: var(--rvr-green-lite-3);
+  --rvr-btn-color-success-outlined-active: var(--rvr-green-lite-4);
 
   /* DANGER */
-  --rvr-btn-color-danger: var(--rvr-white);
+  --rvr-btn-color-danger: var(--rvr-bg-color);
   --rvr-btn-bg-color-danger: var(--rvr-red);
   --rvr-btn-border-color-danger: var(--rvr-btn-bg-color-danger);
 
   /* Active */
-  --rvr-btn-color-danger-active: var(--rvr-white);
+  --rvr-btn-color-danger-active: var(--rvr-bg-color);
   --rvr-btn-bg-color-danger-active: var(--rvr-color-danger-hover);
   --rvr-btn-border-color-danger-active: var(--rvr-btn-bg-color-danger-active);
 
-  /* Disabled */
-  --rvr-btn-color-danger-disabled: var(--rvr-btn-color-secondary-disabled);
-  --rvr-btn-bg-color-danger-disabled: var(--rvr-btn-bg-color-secondary-disabled);
-  --rvr-btn-border-color-danger-disabled: var(--rvr-btn-border-color-secondary-disabled);
+  /* Outlined main and active  */
+  --rvr-btn-color-danger-outlined: var(--rvr-red-lite-3);
+  --rvr-btn-color-danger-outlined-active: var(--rvr-red-lite-4);
 
   /* LINK */
   --rvr-btn-color-link: var(--rvr-color-primary);
@@ -99,10 +126,9 @@
   --rvr-btn-bg-color-link-active: var(--rvr-btn-bg-color-link);
   --rvr-btn-border-color-link-active: var(--rvr-btn-bg-color-link-active);
 
-  /* Disabled */
-  --rvr-btn-color-link-disabled: var(--rvr-color-disabled);
-  --rvr-btn-bg-color-link-disabled: var(--rvr-btn-bg-color-link);
-  --rvr-btn-border-color-link-disabled: var(--rvr-btn-bg-color-link-disabled);
+  /* Inverted (aka outlined, even though it's a misnomer) */
+  --rvr-btn-color-link-outlined: var(--rvr-color-highlight);
+  --rvr-btn-color-link-outlined-active: var(--rvr-bg-color);
 
   /* TEXT */
   --rvr-btn-color-text: var(--rvr-gray-80);
@@ -114,23 +140,7 @@
   --rvr-btn-bg-color-text-active: var(--rvr-btn-bg-color-text);
   --rvr-btn-border-color-text-active: var(--rvr-btn-bg-color-text-active);
 
-  /* Disabled */
-  --rvr-btn-color-text-disabled: var(--rvr-color-disabled);
-  --rvr-btn-bg-color-text-disabled: var(--rvr-btn-bg-color-text);
-  --rvr-btn-border-color-text-disabled: var(--rvr-btn-bg-color-text-disabled);
-
-  /* DARK MODE */
-  --rvr-btn-color-hollow: var(--rvr-white);
-  --rvr-btn-bg-color-hollow: transparent;
-  --rvr-btn-border-color-hollow: var(--rvr-btn-color-hollow);
-
-  /* Active */
-  --rvr-btn-color-hollow-active: var(--rvr-gray-40);
-  --rvr-btn-bg-color-hollow-active: var(--rvr-bg-color-hollow);
-  --rvr-btn-border-color-hollow-active: var(--rvr-btn-color-hollow-active);
-
-  /* Disabled */
-  --rvr-btn-color-hollow-disabled: #fff6;
-  --rvr-btn-bg-color-hollow-disabled: var(--rvr-bg-color-hollow);
-  --rvr-btn-border-color-hollow-disabled: #fff6;
+  /* Inverted (aka outlined, even though it's a misnomer) */
+  --rvr-btn-color-text-outlined: var(--rvr-gray-30);
+  --rvr-btn-color-text-outlined-active: var(--rvr-gray-10);
 }

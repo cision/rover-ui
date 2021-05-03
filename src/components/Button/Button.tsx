@@ -19,9 +19,9 @@ type TagType = {
 interface BaseButtonProps {
   circle?: boolean;
   className?: string;
-  darkMode?: boolean;
   hollow?: boolean;
   level?: TButtonLevel;
+  outline?: boolean;
   size?: TButtonSize;
   tag?: React.FC<TagType> | React.ComponentType<TagType> | null;
 
@@ -86,37 +86,19 @@ const Button: ButtonType = ({
   children: initChildren = null,
   circle = undefined,
   className: passedClassName = '',
-  darkMode = false,
-  hollow = false,
+  hollow: DEPRECATED_hollow = false,
   level = 'secondary',
+  outline = false,
   size = 'lg',
   tag: Tag = null,
   ...passedProps
 }: ButtonElementProps | AnchorElementProps) => {
   const children = initChildren;
 
-  // For future ref
   const truthyStateKeys = useMemo(
     () => states.filter((state) => !!passedProps[state]),
     [passedProps]
   );
-
-  // Filter out undefined passedProps and `active` from DOM element tags
-  // const safePassedProps = useMemo(
-  //   () =>
-  //     Object.entries(passedProps).reduce((result, [key, value]) => {
-  //       if (value === undefined) {
-  //         return result;
-  //       }
-
-  //       if (typeof Tag === 'string' && key === 'active') {
-  //         return result;
-  //       }
-
-  //       return { ...result, [key]: value };
-  //     }, {}),
-  //   [passedProps, Tag]
-  // );
 
   const className = useMemo(
     () =>
@@ -126,8 +108,9 @@ const Button: ButtonType = ({
         styles[level],
         styles[size],
         {
-          [styles.hollow]: hollow || darkMode,
+          [styles['as-text']]: ['link', 'text'].indexOf(level) >= 0,
           [styles.circle]: circle,
+          [styles.outline]: outline || DEPRECATED_hollow, // eslint-disable-line @typescript-eslint/camelcase
           [styles['primary-alt']]: level === 'teal', // For backwards compatibility with the old level name
         },
         /*
@@ -137,7 +120,15 @@ const Button: ButtonType = ({
         */
         truthyStateKeys.map((truthyStateKey) => styles[truthyStateKey])
       ),
-    [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
+    [
+      circle,
+      DEPRECATED_hollow, // eslint-disable-line @typescript-eslint/camelcase
+      level,
+      outline,
+      passedClassName,
+      size,
+      truthyStateKeys,
+    ]
   );
 
   if (Tag) {
