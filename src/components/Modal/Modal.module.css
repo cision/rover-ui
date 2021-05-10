@@ -65,7 +65,7 @@
 
 .Header.level--info {
   background: var(--rvr-blue-lite-2);
-  border-bottom: 1px solid var(--rvr-blue);
+  border-bottom: 1px solid var(--rvr-color-info);
 }
 
 .Header.level--danger {
@@ -98,15 +98,15 @@
 
 .sm {
   width: 340px;
-}	
+}
 
 .md {
   width: 578px;
-}	
+}
 
 .lg {
   width: 815px;
-}	
+}
 
 /*max-height: calc(var(--rvr-baseSize) * 40*/
 @media (max-height: 320px) {
@@ -123,4 +123,3 @@
     justify-content: flex-start;
   }
 }
-

@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  background-color: var(--rvr-blue);
+  background-color: var(--rvr-color-primary);
   background-position: center;
   background-size: cover;
 }
@@ -16,7 +16,7 @@
   animation-iteration-count: infinite;
   animation-name: imagePlaceholderShimmer;
   animation-timing-function: linear;
-  background: linear-gradient(to right, var(--rvr-blue) 2%, var(--rvr-blue-lite-1) 18%, var(--rvr-blue) 33%);
+  background: linear-gradient(to right, var(--rvr-color-primary) 2%, var(--rvr-blue-lite-1) 18%, var(--rvr-color-primary) 33%);
   background-size: 1200px 10px;
   position: relative;
 }

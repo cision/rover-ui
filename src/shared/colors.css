@@ -3,7 +3,8 @@
   /* Palette */
   --rvr-white: #fff;
   --rvr-black: #000;
-  --rvr-blue: #0092c2;
+  --rvr-blue-base: #0092c2; /* The official brand color, insufficient contrast on white */
+  --rvr-blue: #007fa9; /* The brand color, darkened to pass contrast guidelines */
   --rvr-blue-lite-1: #0ba5d6;
   --rvr-blue-lite-2: #c9e8f2;
   --rvr-blue-lite-3: #e3f6fc;
