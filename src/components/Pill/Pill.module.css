@@ -16,7 +16,7 @@
   font-family: var(--rvr-base-font-family);
   font-size: var(--rvr-font-size-base);
   line-height: var(--rvr-line-height-sm);
-  color: var(--rvr-blue);
+  color: var(--rvr-color-primary);
   box-shadow: var(--rvr-box-shadow);
   transition:
     background-color 0.2s var(--rvr-easeInOutQuad),
@@ -50,7 +50,7 @@
   flex: 0 0 auto;
   align-self: center;
   margin: 0 var(--rvr-space-xs);
-  color: var(--rvr-blue);
+  color: var(--rvr-color-primary);
   transition: color 0.2s var(--rvr-easeInOutQuad);
 }
 

@@ -5,8 +5,9 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import { Wrap } from '../../stories/storybook-helpers';
 import Icon from '../Icon';
-import Button, { levels, sizes, states } from './Button';
+import Button, { levels, sizes, states as stateProps } from './Button';
 import ButtonReadme from './README.md';
 import AddonReadme from './Addon/README.md';
 
@@ -29,21 +30,27 @@ storiesOf('Planets/Button', module)
   })
   .add(
     'Overview',
-    () => (
-      <Button
-        active={boolean('active', false)}
-        className={text('className', '')}
-        circle={boolean('circle', false)}
-        hollow={boolean('hollow', false)}
-        disabled={boolean('disabled', false)}
-        href={text('href', '') || undefined}
-        level={select('level', levels, 'secondary')}
-        onClick={action('Button clicked')}
-        size={select('size', sizes, 'lg')}
-      >
-        {text('children', 'Click me!')}
-      </Button>
-    ),
+    () => {
+      const outline = boolean('outline', false);
+
+      return (
+        <Wrap style={outline ? { backgroundColor: '#00607f' } : {}}>
+          <Button
+            active={boolean('active', false)}
+            className={text('className', '')}
+            circle={boolean('circle', false)}
+            disabled={boolean('disabled', false)}
+            href={text('href', '') || undefined}
+            level={select('level', levels, 'secondary')}
+            onClick={action('Button clicked')}
+            outline={outline}
+            size={select('size', sizes, 'lg')}
+          >
+            {text('children', 'Click me!')}
+          </Button>
+        </Wrap>
+      );
+    },
     {
       info: {
         inline: false,
@@ -56,8 +63,8 @@ storiesOf('Planets/Button', module)
     () => {
       return (
         <div>
-          <h2>Sizes</h2>
-          <div style={{ marginBottom: '20px' }}>
+          <Wrap>
+            <h3>Sizes</h3>
             {sizes.map((size) => (
               <span
                 key={size}
@@ -72,17 +79,15 @@ storiesOf('Planets/Button', module)
                 </Button>
               </span>
             ))}
-          </div>
-          <hr />
-          <h2>Render with a custom component</h2>
-          <div style={{ marginBottom: '20px' }}>
+          </Wrap>
+          <Wrap>
+            <h3>With a custom React component</h3>
             <Button tag={MyComponent} href="#">
               MyComponent
             </Button>
-          </div>
-          <hr />
-          <h2>Tags</h2>
-          <div style={{ marginBottom: '20px' }}>
+          </Wrap>
+          <Wrap>
+            <h3>With custom HTML tags</h3>
             <span
               style={{
                 display: 'inline-block',
@@ -114,9 +119,9 @@ storiesOf('Planets/Button', module)
             >
               <Button tag="input" type="button" value="input type=button" />
             </span>
-          </div>
-          <h2>Custom type</h2>
-          <div style={{ marginBottom: '20px' }}>
+          </Wrap>
+          <Wrap>
+            <h3>With HTML button types other than &quot;button&quot;</h3>
             <span
               style={{
                 display: 'inline-block',
@@ -135,10 +140,9 @@ storiesOf('Planets/Button', module)
             >
               <Button type="reset">type=&quot;reset&quot;</Button>
             </span>
-          </div>
-          <hr />
-          <h2>Add-ons</h2>
-          <div style={{ marginBottom: '20px' }}>
+          </Wrap>
+          <Wrap>
+            <h3>With add-ons</h3>
             <span
               style={{
                 display: 'inline-block',
@@ -188,10 +192,9 @@ storiesOf('Planets/Button', module)
                 </Button.Addon>
               </Button>
             </span>
-          </div>
-          <hr />
-          <h2>Circle</h2>
-          <div style={{ marginBottom: '20px' }}>
+          </Wrap>
+          <Wrap>
+            <h3>Circle</h3>
             {sizes.map((size) => (
               <span
                 key={size}
@@ -212,13 +215,12 @@ storiesOf('Planets/Button', module)
                 </Button>
               </span>
             ))}
-          </div>
-          <hr />
-          <h2>Levels</h2>
-          {levels.map((level) => {
-            return (
+          </Wrap>
+          <Wrap>
+            <h3>Color variants</h3>
+            {levels.map((level) => (
               <div key={level}>
-                <h3>{level}</h3>
+                <h4>{level}</h4>
                 <div style={{ marginBottom: '20px' }}>
                   <span
                     style={{
@@ -229,43 +231,69 @@ storiesOf('Planets/Button', module)
                   >
                     <Button level={level}>default</Button>
                   </span>
-                  {states.map((state) => (
-                    <span key={state} style={{ marginRight: '20px' }}>
-                      <Button level={level} {...{ [state]: true }}>
-                        {state}
-                      </Button>
-                    </span>
-                  ))}
+                  {[
+                    ...stateProps.map((propName) => [propName]),
+                    ['hover', 'focus'],
+                  ].map((propNames) => {
+                    const key = propNames.join('-');
+
+                    const trueProps = Object.fromEntries(
+                      propNames.map((propName) => [propName, true])
+                    );
+
+                    return (
+                      <span key={key} style={{ marginRight: '20px' }}>
+                        <Button level={level} {...trueProps}>
+                          {key}
+                        </Button>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
-            );
-          })}
-          <hr />
-          <h2>Hollow</h2>
-          <div
-            style={{
-              background: 'black',
-              padding: '20px',
-              marginBottom: '20px',
-            }}
-          >
-            <span
-              style={{
-                display: 'inline-block',
-                marginRight: '20px',
-                marginBottom: '10px',
-              }}
-            >
-              <Button hollow>(default)</Button>
-            </span>
-            {states.map((state) => (
-              <span key={state} style={{ marginRight: '20px' }}>
-                <Button hollow {...{ [state]: true }}>
-                  {state}
-                </Button>
-              </span>
             ))}
-          </div>
+          </Wrap>
+          <Wrap style={{ backgroundColor: '#00607f' }}>
+            <h3 style={{ color: 'white' }}>
+              Color variants with the `outline` prop
+            </h3>
+            {levels.map((level) => (
+              <div key={level}>
+                <h4 style={{ color: 'white' }}>{level}</h4>
+                <div style={{ marginBottom: '20px' }}>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      marginRight: '20px',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    <Button level={level} outline>
+                      default
+                    </Button>
+                  </span>
+                  {[
+                    ...stateProps.map((propName) => [propName]),
+                    ['hover', 'focus'],
+                  ].map((propNames) => {
+                    const key = propNames.join('-');
+
+                    const trueProps = Object.fromEntries(
+                      propNames.map((propName) => [propName, true])
+                    );
+
+                    return (
+                      <span key={key} style={{ marginRight: '20px' }}>
+                        <Button level={level} outline {...trueProps}>
+                          {key}
+                        </Button>
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </Wrap>
         </div>
       );
     },
@@ -286,12 +314,14 @@ storiesOf('Planets/Button/Addon', module)
   .add(
     'Overview',
     () => (
-      <Button size={select('<Button/> size', sizes, 'lg')}>
-        <Button.Addon className={text('className', '')}>
-          {text('children', '😸')}
-        </Button.Addon>
-        Click me!
-      </Button>
+      <Wrap>
+        <Button size={select('<Button/> size', sizes, 'lg')}>
+          <Button.Addon className={text('className', '')}>
+            {text('children', '😸')}
+          </Button.Addon>
+          Click me!
+        </Button>
+      </Wrap>
     ),
     {
       info: {
