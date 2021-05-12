@@ -9,11 +9,11 @@ const Form = ({
   onSubmit,
   className = '',
 }) => {
-  const [formValues, setFormValues] = useState(initialValues);
+  const [values, setValues] = useState(initialValues);
   const [touched, setTouched] = useState({});
   const [validationErrors, setValidationErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formSubmitError, setFormSubmitError] = useState(null);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleBlur = ({ target: { name } }) => {
     setTouched((prevState) => ({
@@ -33,29 +33,32 @@ const Form = ({
   const handleCustom = (fieldName, callback) => (e) => {
     e.preventDefault(); // TODO: maybe call this conditionally
 
-    setFormValues((prevFormValues) => ({
-      ...prevFormValues,
-      [fieldName]: callback(prevFormValues[fieldName]),
+    setValues((prevValues) => ({
+      ...prevValues,
+      [fieldName]: callback(prevValues[fieldName]),
     }));
   };
 
   const handleChange = ({ target: { name, type, value, checked } }) => {
     const newValue = type === 'checkbox' ? checked : value;
 
-    setFormValues((prevFormValues) =>
-      _set({ ...prevFormValues }, name, newValue)
-    );
+    setValues((prevValues) => _set({ ...prevValues }, name, newValue));
   };
 
   useEffect(() => {
     const validateInputs = () => {
-      const errors = Object.entries(formValues).reduce(
+      const errors = Object.entries(values).reduce(
         (errorsObject, [fieldName, fieldValue]) => {
           const fieldValidation = validationSchema[fieldName];
+
+          console.info('fieldName', validationSchema);
+
           if (
             fieldValidation?.validate &&
             fieldValidation?.message &&
-            !fieldValidation.validate(fieldValue)
+            !fieldValidation.validate(
+              fieldValue as ArrayBufferView | ArrayBuffer
+            )
           ) {
             return {
               ...errorsObject,
@@ -72,24 +75,24 @@ const Form = ({
     };
 
     validateInputs();
-  }, [formValues, validationSchema]);
+  }, [values, validationSchema]);
 
   useEffect(() => {
     if (!isSubmitting) return;
 
     (async () => {
       try {
-        await onSubmit(formValues);
+        await onSubmit(values);
         setIsSubmitting(false);
-        if (formSubmitError) {
-          setFormSubmitError(null);
+        if (submitError) {
+          setSubmitError(null);
         }
       } catch (error) {
         setIsSubmitting(false);
-        setFormSubmitError(error);
+        setSubmitError(error);
       }
     })();
-  }, [isSubmitting, formSubmitError, formValues, onSubmit]);
+  }, [isSubmitting, submitError, values, onSubmit]);
 
   return (
     children && (
@@ -99,9 +102,9 @@ const Form = ({
             touched,
             validationErrors,
             isSubmitting,
-            formSubmitError,
+            submitError,
           },
-          formValues,
+          values,
           handleChange,
           handleBlur,
           handleCustom,

@@ -16,7 +16,7 @@ storiesOf('Uncategorized/Form', module)
       <Form
         initialValues={{ nameInput: 'james r. cat' }}
         // eslint-disable-next-line no-alert
-        onSubmit={(formValues) => alert(JSON.stringify(formValues))}
+        onSubmit={(values) => alert(JSON.stringify(values))}
         validationSchema={{
           nameInput: {
             message: 'No empty strings',
@@ -24,13 +24,7 @@ storiesOf('Uncategorized/Form', module)
           },
         }}
       >
-        {({
-          formState,
-          formValues,
-          handleChange,
-          handleBlur,
-          handleCustom,
-        }) => (
+        {({ formState, values, handleChange, handleBlur, handleCustom }) => (
           <>
             <label htmlFor="nameInput">
               Name
@@ -38,7 +32,7 @@ storiesOf('Uncategorized/Form', module)
               <input
                 type="text"
                 name="nameInput"
-                value={formValues.nameInput}
+                value={values.nameInput}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />

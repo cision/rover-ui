@@ -32,19 +32,17 @@ interface DefaultPropsType {
 const renderForm = (props: DefaultPropsType = defaultProps) =>
   render(
     <Form {...defaultProps} {...props}>
-      {({ formValues, formState, handleChange, handleBlur, handleCustom }) => (
+      {({ values, formState, handleChange, handleBlur, handleCustom }) => (
         <>
           <pre data-testid="form-data">
-            {JSON.stringify({ formValues, formState })}
+            {JSON.stringify({ values, formState })}
           </pre>
-          {formState.formSubmitError && (
-            <div>{formState.formSubmitError.message}</div>
-          )}
+          {formState.submitError && <div>{formState.submitError.message}</div>}
           <input
             data-testid="text-input"
             type="text"
             name="textInput"
-            value={formValues.textInput}
+            value={values.textInput}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -53,14 +51,14 @@ const renderForm = (props: DefaultPropsType = defaultProps) =>
             type="radio"
             name="radioInput"
             onChange={handleChange}
-            checked={formValues.radioInput}
+            checked={values.radioInput}
           />
           <input
             data-testid="checkbox-input"
             type="checkbox"
             name="checkboxInput"
             onChange={handleChange}
-            checked={formValues.checkboxInput}
+            checked={values.checkboxInput}
           />
           {props.onCustom && (
             <button
@@ -94,16 +92,16 @@ describe('<Form />', () => {
     fireEvent.click(radioInput);
     fireEvent.click(checkboxInput);
 
-    const { formValues } = JSON.parse(getByTestId('form-data').innerHTML);
+    const { values } = JSON.parse(getByTestId('form-data').innerHTML);
 
     expect(textInput.value).toEqual(someText.target.value);
-    expect(formValues.textInput).toEqual(someText.target.value);
+    expect(values.textInput).toEqual(someText.target.value);
 
     expect(radioInput.checked).toEqual(true);
-    expect(formValues.radioInput).toEqual('on'); // this is odd
+    expect(values.radioInput).toEqual('on'); // this is odd
 
     expect(checkboxInput.checked).toEqual(true);
-    expect(formValues.checkboxInput).toEqual(true);
+    expect(values.checkboxInput).toEqual(true);
   });
 
   it('handles blur events', () => {
@@ -132,10 +130,10 @@ describe('<Form />', () => {
     const customBtn = getByTestId('custom-button');
     fireEvent.click(customBtn);
 
-    const { formValues } = JSON.parse(getByTestId('form-data').innerHTML);
+    const { values } = JSON.parse(getByTestId('form-data').innerHTML);
 
     expect(textInput.value).toEqual('raichu');
-    expect(formValues.textInput).toEqual('raichu');
+    expect(values.textInput).toEqual('raichu');
   });
 
   it('validates inputs', async () => {
@@ -197,7 +195,7 @@ describe('<Form />', () => {
     const formData = getByTestId('form-data');
 
     const { formState: initialFormState } = JSON.parse(formData.innerHTML);
-    expect(initialFormState.formSubmitError).toEqual(null);
+    expect(initialFormState.submitError).toEqual(null);
 
     await act(async () => {
       fireEvent.click(submitBtn);
