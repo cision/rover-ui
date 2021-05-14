@@ -2,11 +2,24 @@ import React, { useState, useEffect } from 'react';
 import _isEmpty from 'lodash/isEmpty';
 import _set from 'lodash/set';
 
-const Form = ({
+type SchemaElement = {
+  message: string;
+  validate: (value) => boolean;
+};
+
+export interface FormProps {
+  children?: (config) => React.ReactElement;
+  initialValues?: Record<string, string | boolean>;
+  validationSchema?: Record<string, SchemaElement>;
+  onSubmit?: Function;
+  className?: string;
+}
+
+const Form: React.FC<FormProps> = ({
   children,
   initialValues = {},
   validationSchema = {},
-  onSubmit,
+  onSubmit = () => {},
   className = '',
 }) => {
   const [values, setValues] = useState(initialValues);
@@ -24,13 +37,12 @@ const Form = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (_isEmpty(validationErrors)) {
       setIsSubmitting(true);
     }
   };
 
-  const handleCustom = (fieldName, callback) => (e) => {
+  const handleCustom = (fieldName: string, callback: Function) => (e) => {
     e.preventDefault(); // TODO: maybe call this conditionally
 
     setValues((prevValues) => ({
@@ -51,14 +63,10 @@ const Form = ({
         (errorsObject, [fieldName, fieldValue]) => {
           const fieldValidation = validationSchema[fieldName];
 
-          console.info('fieldName', validationSchema);
-
           if (
             fieldValidation?.validate &&
             fieldValidation?.message &&
-            !fieldValidation.validate(
-              fieldValue as ArrayBufferView | ArrayBuffer
-            )
+            !fieldValidation.validate(fieldValue)
           ) {
             return {
               ...errorsObject,
@@ -94,24 +102,22 @@ const Form = ({
     })();
   }, [isSubmitting, submitError, values, onSubmit]);
 
-  return (
-    children && (
-      <form className={className} onSubmit={handleSubmit}>
-        {children({
-          formState: {
-            touched,
-            validationErrors,
-            isSubmitting,
-            submitError,
-          },
-          values,
-          handleChange,
-          handleBlur,
-          handleCustom,
-        })}
-      </form>
-    )
-  );
+  return children ? (
+    <form className={className} onSubmit={handleSubmit}>
+      {children({
+        formState: {
+          touched,
+          validationErrors,
+          isSubmitting,
+          submitError,
+        },
+        values,
+        handleChange,
+        handleBlur,
+        handleCustom,
+      })}
+    </form>
+  ) : null;
 };
 
 export default Form;
