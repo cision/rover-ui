@@ -31,6 +31,7 @@ storiesOf('Uncategorized/Form', module)
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label className="text-xl inline-block mb-2">
               Name
+              <br />
               <Input
                 type="text"
                 name="nameInput"
