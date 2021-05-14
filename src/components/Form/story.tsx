@@ -3,6 +3,8 @@ import { storiesOf } from '@storybook/react';
 
 import Form from '.';
 import Readme from './README.md';
+import Button from '../Button';
+import Input from '../Input';
 
 storiesOf('Uncategorized/Form', module)
   .addParameters({
@@ -26,10 +28,10 @@ storiesOf('Uncategorized/Form', module)
       >
         {({ formState, values, handleChange, handleBlur, handleCustom }) => (
           <>
-            <label htmlFor="nameInput">
+            {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+            <label className="text-xl inline-block mb-2">
               Name
-              <br />
-              <input
+              <Input
                 type="text"
                 name="nameInput"
                 value={values.nameInput}
@@ -37,23 +39,22 @@ storiesOf('Uncategorized/Form', module)
                 onBlur={handleBlur}
               />
             </label>
-            <br />
 
-            <button
+            <Button
               type="button"
               onClick={handleCustom('nameInput', (name) => name.toUpperCase())}
+              style={{ margin: '20px' }}
             >
-              Click to capitalize
-            </button>
-            <br />
+              Capitalize
+            </Button>
 
-            <button
+            <Button
               disabled={formState.validationErrors.nameInput}
               data-testid="submit-button"
               type="submit"
             >
               Submit
-            </button>
+            </Button>
           </>
         )}
       </Form>
