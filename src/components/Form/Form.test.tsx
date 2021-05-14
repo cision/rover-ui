@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 
 import Form from './index';
+import { FormProps } from './Form';
 
 const defaultProps = {
   className: 'some_classname',
@@ -14,15 +15,7 @@ const defaultProps = {
   onSubmit: jest.fn(),
 };
 
-interface DefaultPropsType {
-  className?: string;
-  initialValues?: {
-    textInput: string;
-    radioInput: boolean;
-    checkboxInput: boolean;
-  };
-  validationSchema?: {};
-  onSubmit?: Function;
+interface DefaultPropsType extends FormProps {
   onCustom?: {
     fieldName: string;
     callback: () => string;

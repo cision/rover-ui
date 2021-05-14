@@ -35,14 +35,16 @@ const Form: React.FC<FormProps> = ({
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (_isEmpty(validationErrors)) {
       setIsSubmitting(true);
     }
   };
 
-  const handleCustom = (fieldName: string, callback: Function) => (e) => {
+  const handleCustom = (fieldName: string, callback: Function) => (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault(); // TODO: maybe call this conditionally
 
     setValues((prevValues) => ({
