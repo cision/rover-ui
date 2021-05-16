@@ -147,8 +147,8 @@ const Avatar: AvatarType = ({
   return (
     <div
       className={mainClassName}
-      aria-label={name ? `Profile image of ${name}` : ''}
-      aria-hidden={!name}
+      aria-label={name ? `Profile image of ${name}` : undefined}
+      aria-hidden={name ? undefined : true}
       {...rest}
       style={mainStyle}
     >

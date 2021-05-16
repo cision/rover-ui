@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { storiesOf } from '@storybook/react';
 import { boolean, text, select } from '@storybook/addon-knobs';
 
-import Avatar from './';
+import { Wrap } from '../../stories/storybook-helpers';
 import Paper from '../Paper';
+
+import Avatar from '.';
 import Readme from './README.md';
 import AddonReadme from './Addon.README.md';
 
@@ -46,12 +49,14 @@ storiesOf('Planets/Avatar', module)
   .add(
     'Overview',
     () => (
-      <Avatar
-        loading={boolean('loading', false)}
-        name={text('name', 'Helter Skelter')}
-        imageUrl={text('imageUrl', 'https://picsum.photos/40')}
-        size={text('size', 'small')}
-      />
+      <Wrap>
+        <Avatar
+          loading={boolean('loading', false)}
+          name={text('name', 'Helter Skelter')}
+          imageUrl={text('imageUrl', 'https://picsum.photos/40')}
+          size={text('size', 'small')}
+        />
+      </Wrap>
     ),
     {
       info: {
@@ -116,7 +121,7 @@ storiesOf('Planets/Avatar', module)
     }
   );
 
-storiesOf('Planets/Avatar/Moons', module)
+storiesOf('Planets/Avatar/Addon', module)
   .addParameters({
     readme: {
       sidebar: AddonReadme,
@@ -125,18 +130,20 @@ storiesOf('Planets/Avatar/Moons', module)
   .add(
     'Overview',
     () => (
-      <Avatar
-        name="Helter Skelter"
-        imageUrl={text('Avatar imageUrl', 'https://picsum.photos/60')}
-        size={text('Avatar size', 'medium')}
-      >
-        <Avatar.Addon
-          offset={text('offset', '-3')}
-          position={select('position', positionOptions, 'bottom-right')}
+      <Wrap>
+        <Avatar
+          name="Helter Skelter"
+          imageUrl={text('Avatar imageUrl', 'https://picsum.photos/60')}
+          size={text('Avatar size', 'medium')}
         >
-          <BadgeExample size={text('badge example size', 20)} color="#00f" />
-        </Avatar.Addon>
-      </Avatar>
+          <Avatar.Addon
+            offset={text('offset', '-3')}
+            position={select('position', positionOptions, 'bottom-right')}
+          >
+            <BadgeExample size={text('badge example size', 20)} color="#00f" />
+          </Avatar.Addon>
+        </Avatar>
+      </Wrap>
     ),
     {
       info: {
