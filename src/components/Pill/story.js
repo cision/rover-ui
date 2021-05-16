@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
+
+import { Wrap } from '../../stories/storybook-helpers';
 
 import Icon from '../Icon';
 import Pill from '.';
@@ -16,13 +19,15 @@ storiesOf('Star Systems/Pill', module)
   .add(
     'Overview',
     () => (
-      <Pill
-        checked={boolean('checked', false)}
-        className={text('className', '')}
-        onClick={action('onClick')}
-      >
-        Pill 1
-      </Pill>
+      <Wrap>
+        <Pill
+          checked={boolean('checked', false)}
+          className={text('className', '')}
+          onClick={action('onClick')}
+        >
+          Pill 1
+        </Pill>
+      </Wrap>
     ),
     {
       info: {
@@ -34,7 +39,7 @@ storiesOf('Star Systems/Pill', module)
   .add(
     'Examples',
     () => (
-      <>
+      <Wrap>
         <Pill
           id="pill-1"
           onClick={() => action('onClick')('pill-1')}
@@ -51,7 +56,7 @@ storiesOf('Star Systems/Pill', module)
         >
           Checked, with Pill.Addon (text)
           <Pill.Addon
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation();
               action('onClickEdit')(e);
             }}
@@ -66,7 +71,7 @@ storiesOf('Star Systems/Pill', module)
         >
           With Pill.Addon (icon)
           <Pill.Addon
-            onClick={e => {
+            onClick={(e) => {
               e.stopPropagation();
               action('onClickClear')(e);
             }}
@@ -74,7 +79,7 @@ storiesOf('Star Systems/Pill', module)
             <Icon name="clear" />
           </Pill.Addon>
         </Pill>
-      </>
+      </Wrap>
     ),
     {
       info: {

@@ -92,28 +92,30 @@ storiesOf('Planets/InputTime', module)
       const valueString = text('value', '', 'Using times');
 
       return (
-        <InputTime
-          className="m-8"
-          disabled={boolean('disabled (HTML)', false, 'Common')}
-          fauxDisabled={boolean('fauxDisabled', false, 'Common')}
-          onChange={action('onChange (HTML)')}
-          placeholder={text('placeholder(HTML)', 'Placeholder', 'Common')}
-          max={useDates ? maxDateString : maxString}
-          min={useDates ? minDateString : minString}
-          showDropdown={select(
-            'showDropdown',
-            showDropdownOptions,
-            'click',
-            'Common'
-          )}
-          step={number(
-            'step (seconds)',
-            60 * 60,
-            { min: 60, max: 60 * 60 },
-            'Common'
-          )}
-          value={useDates ? valueDateString : valueString}
-        />
+        <Wrap>
+          <InputTime
+            className="m-8"
+            disabled={boolean('disabled (HTML)', false, 'Common')}
+            fauxDisabled={boolean('fauxDisabled', false, 'Common')}
+            onChange={action('onChange (HTML)')}
+            placeholder={text('placeholder(HTML)', 'Placeholder', 'Common')}
+            max={useDates ? maxDateString : maxString}
+            min={useDates ? minDateString : minString}
+            showDropdown={select(
+              'showDropdown',
+              showDropdownOptions,
+              'click',
+              'Common'
+            )}
+            step={number(
+              'step (seconds)',
+              60 * 60,
+              { min: 60, max: 60 * 60 },
+              'Common'
+            )}
+            value={useDates ? valueDateString : valueString}
+          />
+        </Wrap>
       );
     },
     {

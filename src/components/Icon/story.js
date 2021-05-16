@@ -1,15 +1,16 @@
 import React from 'react';
+
 import { storiesOf } from '@storybook/react';
 import { select } from '@storybook/addon-knobs';
 
 import Responsive from '../Responsive';
 
-import { BuildHelper } from '../../stories/storybook-helpers';
+import { BuildHelper, Wrap } from '../../stories/storybook-helpers';
 
 import Icon, { iconsMap } from '.';
 import IconReadme from './README.md';
 
-const Wrap = BuildHelper(
+const IconWrapper = BuildHelper(
   'IconWrap',
   'm-5 rounded bg-white shadow-md text-sm p-4 flex flex-row flex-nowrap items-center'
 );
@@ -23,7 +24,9 @@ storiesOf('Planets/Icon', module)
     },
   })
   .add('Overview', () => (
-    <Icon name={select('name', iconNames, iconNames[0])} />
+    <Wrap>
+      <Icon name={select('name', iconNames, iconNames[0])} />
+    </Wrap>
   ))
   .add('Examples', () => (
     <Responsive.Container>
@@ -42,7 +45,7 @@ storiesOf('Planets/Icon', module)
           }}
         >
           {iconNames.map((iconName) => (
-            <Wrap key={iconName}>
+            <IconWrapper key={iconName}>
               <dd
                 key={iconName}
                 style={{
@@ -55,7 +58,7 @@ storiesOf('Planets/Icon', module)
               <dt>
                 <pre>{iconName}</pre>
               </dt>
-            </Wrap>
+            </IconWrapper>
           ))}
         </Responsive.Grid>
       </dl>

@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, object } from '@storybook/addon-knobs';
 
-import EasyPill from './';
+import EasyPill from '.';
 import Readme from './README.md';
 
 storiesOf('Galaxies/EasyPill', module)
@@ -51,7 +51,7 @@ storiesOf('Galaxies/EasyPill', module)
   .add(
     'Examples',
     () => {
-      const CheckablePill = props => {
+      const CheckablePill = (props) => {
         const [isChecked, setIsChecked] = useState(false);
 
         return (
@@ -59,9 +59,7 @@ storiesOf('Galaxies/EasyPill', module)
             {...props}
             checked={isChecked}
             onClick={() => setIsChecked(!isChecked)}
-          >
-            {props.children}
-          </EasyPill>
+          />
         );
       };
 

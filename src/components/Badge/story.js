@@ -30,9 +30,8 @@ storiesOf('Planets/Badge', module)
     'Overview',
     () => {
       const fontSize = select('Font size', fontSizes, 'sm');
-      const variant = select('variant', variants, '');
+      const variant = select('variant', variants, 'info');
       const round = boolean('round', false);
-
       const styles = { fontSize };
 
       return (
@@ -52,8 +51,7 @@ storiesOf('Planets/Badge', module)
   .add('Examples', () => (
     <>
       <Box>
-        <Badge>My Badge</Badge>
-        <Badge>Other</Badge>
+        <Badge>My Badge (no variant)</Badge> <Badge>Another one</Badge>
       </Box>
       <Box bg="#414c52">
         <Badge variant="dark">Dark Badge</Badge>
@@ -68,7 +66,7 @@ storiesOf('Planets/Badge', module)
         <Badge variant="info">Info Badge</Badge>
       </Box>
       <Box>
-        <Badge variant="warning">Warning Badge</Badge>
+        <Badge variant="warning">Warning Badge</Badge>{' '}
         <Badge variant="success">Different text color and font-size</Badge>
       </Box>
       <Box>

@@ -7,7 +7,7 @@ import Container from '../Container';
 
 // This component's dependencies
 import Readme from './README.md';
-import Grid from './';
+import Grid from '.';
 
 storiesOf('Dark Matter/Responsive/Grid', module)
   .addParameters({

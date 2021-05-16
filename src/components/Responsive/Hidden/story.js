@@ -7,7 +7,7 @@ import Container from '../Container';
 
 // This component's dependencies
 import Readme from './README.md';
-import Hidden from './';
+import Hidden from '.';
 
 storiesOf('Dark Matter/Responsive/Hidden', module)
   .addParameters({

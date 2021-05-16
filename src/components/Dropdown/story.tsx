@@ -7,7 +7,7 @@ import Dropdown from '.';
 import Readme from './README.md';
 import { MenuProps } from './Menu/Menu';
 import { DropdownProps } from './Dropdown';
-import { Tailwind } from '../../stories/storybook-helpers';
+import { Tailwind, Wrap } from '../../stories/storybook-helpers';
 
 interface Props extends DropdownProps {
   buttonProps?: React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -16,7 +16,7 @@ interface Props extends DropdownProps {
   menuProps?: MenuProps;
 }
 
-const OpenableDropdown: React.FC<Props> = ({
+const ExampleDropdownWrapper: React.FC<Props> = ({
   buttonProps = {},
   menuProps = {},
   ...passedProps
@@ -33,13 +33,13 @@ const OpenableDropdown: React.FC<Props> = ({
         {buttonProps.children || 'Click me'}
       </button>
       <Dropdown.Menu {...menuProps}>
-        {menuProps.children || 'Menu'}
+        <Dropdown.Menu.Item>{menuProps.children || 'Menu'}</Dropdown.Menu.Item>
       </Dropdown.Menu>
     </Dropdown>
   );
 };
 
-OpenableDropdown.defaultProps = { buttonProps: {}, menuProps: {} };
+ExampleDropdownWrapper.defaultProps = { buttonProps: {}, menuProps: {} };
 
 storiesOf('Star Systems/Dropdown', module)
   .addParameters({
@@ -50,17 +50,21 @@ storiesOf('Star Systems/Dropdown', module)
   .add(
     'Overview',
     () => (
-      <Dropdown
-        className={text('className', 'm-5')}
-        disabled={boolean('disabled', false)}
-        isOpen={boolean('isOpen', false)}
-        onToggle={action('onToggle')}
-      >
-        {text('children', 'Dropdown children')}
-        <Dropdown.Menu>
-          {text('Dropdown.Menu children', 'Dropdown menu children')}
-        </Dropdown.Menu>
-      </Dropdown>
+      <Wrap>
+        <Dropdown
+          className={text('className', 'm-5')}
+          disabled={boolean('disabled', false)}
+          isOpen={boolean('isOpen', false)}
+          onToggle={action('onToggle')}
+        >
+          {text('children', 'Dropdown children')}
+          <Dropdown.Menu>
+            <Dropdown.Menu.Item>
+              {text('Dropdown.Menu children', 'Dropdown menu children')}
+            </Dropdown.Menu.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Wrap>
     ),
     {
       info: {
@@ -73,10 +77,10 @@ storiesOf('Star Systems/Dropdown', module)
     'Examples',
     () => {
       return (
-        <div className="text-center">
+        <Wrap className="text-center">
           <Tailwind />
           <div className="m-5">
-            <OpenableDropdown
+            <ExampleDropdownWrapper
               menuProps={{
                 children: (
                   <>
@@ -95,7 +99,7 @@ storiesOf('Star Systems/Dropdown', module)
             />
           </div>
           <div className="m-5">
-            <OpenableDropdown
+            <ExampleDropdownWrapper
               buttonProps={{
                 children: 'Top-left positioned',
               }}
@@ -108,7 +112,7 @@ storiesOf('Star Systems/Dropdown', module)
             />
           </div>
           <div className="m-5">
-            <OpenableDropdown
+            <ExampleDropdownWrapper
               buttonProps={{
                 children: "With `menuProps.style.max-height: '100px'`",
               }}
@@ -131,7 +135,7 @@ storiesOf('Star Systems/Dropdown', module)
             />
           </div>
           <div className="m-5">
-            <OpenableDropdown
+            <ExampleDropdownWrapper
               buttonProps={{
                 children: 'Disabled',
                 disabled: true,
@@ -140,7 +144,7 @@ storiesOf('Star Systems/Dropdown', module)
               disabled
             />
           </div>
-        </div>
+        </Wrap>
       );
     },
     {

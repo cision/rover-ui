@@ -26,14 +26,16 @@ storiesOf('Planets/Typography', module)
       const tag = tagSelection === 'Paper' ? Paper : tagSelection;
 
       return (
-        <Typography
-          tag={tagSelection === 'undefined' ? undefined : (tag as Tag)}
-          size={select('sizes', sizes, 'md') as Size}
-          weight={select('weight', weights, 'normal') as Weight}
-          color={select('color', colors, 'primary') as Color}
-        >
-          Hi! I&apos;m a child of &lt;Typography&gt; component.
-        </Typography>
+        <Wrap>
+          <Typography
+            tag={tagSelection === 'undefined' ? undefined : (tag as Tag)}
+            size={select('sizes', sizes, 'md') as Size}
+            weight={select('weight', weights, 'normal') as Weight}
+            color={select('color', colors, 'primary') as Color}
+          >
+            Hi! I&apos;m a child of &lt;Typography&gt; component.
+          </Typography>
+        </Wrap>
       );
     },
     {

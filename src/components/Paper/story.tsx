@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, text, object, color } from '@storybook/addon-knobs';
 
-import Paper from './';
+import Paper from '.';
 import PaperReadme from './README.md';
 
 import { BuildHelper } from '../../stories/storybook-helpers';

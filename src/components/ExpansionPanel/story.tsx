@@ -4,7 +4,7 @@ import { boolean, object, text } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 
 import Icon from '../Icon';
-import ExpansionPanel from './';
+import ExpansionPanel from '.';
 import Readme from './README.md';
 import { Wrap, Title } from '../../stories/storybook-helpers';
 

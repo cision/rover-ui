@@ -94,6 +94,7 @@ storiesOf('Star Systems/TabMenu', module)
               onClick={() => {
                 setTab(EXAMPLE_TABS.home);
               }}
+              onKeyUp={() => {}}
             >
               Home
             </span>
@@ -106,6 +107,7 @@ storiesOf('Star Systems/TabMenu', module)
               }}
               role="tab"
               tabIndex={0}
+              onKeyUp={() => {}}
             >
               About
             </span>
@@ -118,6 +120,7 @@ storiesOf('Star Systems/TabMenu', module)
               }}
               role="tab"
               tabIndex={0}
+              onKeyUp={() => {}}
             >
               Contact Us
             </span>
@@ -144,11 +147,15 @@ storiesOf('Star Systems/TabMenu/Item', module)
     'Overview',
     () => {
       return (
-        <div className="flex">
-          <TabMenu.Item active={boolean('active', true)}>
-            <span className={itemPadding}>{text('children', 'Text Here')}</span>
-          </TabMenu.Item>
-        </div>
+        <Wrap>
+          <TabMenu>
+            <TabMenu.Item active={boolean('active', true)}>
+              <span className={itemPadding}>
+                {text('children', 'Text Here')}
+              </span>
+            </TabMenu.Item>
+          </TabMenu>
+        </Wrap>
       );
     },
     {

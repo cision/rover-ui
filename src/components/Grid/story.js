@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { boolean, number, text } from '@storybook/addon-knobs';
 
 // This component's dependencies
-import Grid from './';
+import Grid from '.';
 import Readme from './README.md';
 
 // Grid formerly supported theming values generically, and gutter theme values

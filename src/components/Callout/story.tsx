@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { select, text, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
+
+import { Wrap } from '../../stories/storybook-helpers';
 
 import Callout, { variants } from './Callout';
 
@@ -35,7 +37,7 @@ storiesOf('Star Systems/Callout', module)
       }
 
       return (
-        <div style={{ marginBottom: '15px' }}>
+        <Wrap style={{ marginBottom: '15px' }}>
           <Callout
             variant={variant}
             borderless={borderless}
@@ -44,7 +46,7 @@ storiesOf('Star Systems/Callout', module)
           >
             {content || ''}
           </Callout>
-        </div>
+        </Wrap>
       );
     },
     {
@@ -56,7 +58,7 @@ storiesOf('Star Systems/Callout', module)
   )
   .add('Examples', () => {
     return (
-      <Fragment>
+      <Wrap>
         <h3>Available variants</h3>
         <Div>
           <Callout variant="info">
@@ -119,6 +121,6 @@ storiesOf('Star Systems/Callout', module)
             I can be `compact` <em>and </em> cancelable
           </Callout>
         </Div>
-      </Fragment>
+      </Wrap>
     );
   });

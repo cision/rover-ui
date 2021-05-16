@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { boolean, select, text } from '@storybook/addon-knobs';
 
-import Menu from './';
+import Menu from '.';
 import Readme from './README.md';
 
 storiesOf('Star Systems/Dropdown/Menu', module)

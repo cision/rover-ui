@@ -4,9 +4,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 
-import Tooltip, { EasyRichTooltip, directions } from './Tooltip';
-
+import { Wrap } from '../../stories/storybook-helpers';
 import Button from '../Button';
+
+import Tooltip, { EasyRichTooltip, directions } from './Tooltip';
 import Readme from './README.md';
 
 const TooltipContent = (
@@ -74,80 +75,84 @@ storiesOf('Planets/Tooltip', module)
     const textHover = boolean('Show on hover', true, 'text');
 
     return (
-      <FlexWrapper>
-        <Element>
+      <Wrap>
+        <FlexWrapper>
+          <Element>
+            <Tooltip
+              content={text('Tooltip Text', 'Hi there!', 'text')}
+              showOnHover={textHover}
+              direction={direction}
+            >
+              <Button>{text('Main Content', 'With Text', 'text')}</Button>
+            </Tooltip>
+          </Element>
           <Tooltip
-            content={text('Tooltip Text', 'Hi there!', 'text')}
-            showOnHover={textHover}
+            isOpen={open}
             direction={direction}
-          >
-            <Button>{text('Main Content', 'With Text', 'text')}</Button>
-          </Tooltip>
-        </Element>
-        <Tooltip
-          isOpen={open}
-          direction={direction}
-          onClose={handleClose}
-          tooltipWidth={`${number(
-            'Width',
-            300,
-            { min: 10, max: 1000, step: 5 },
-            'content'
-          )}px`}
-          content={
-            <div>
-              <h3 style={{ margin: '0 0 1em' }}>Article Reach</h3>
+            onClose={handleClose}
+            tooltipWidth={`${number(
+              'Width',
+              300,
+              { min: 10, max: 1000, step: 5 },
+              'content'
+            )}px`}
+            content={
               <div>
-                The expected readership (UVPM) of the next article they write,
-                based on the average readership of the articles they&apos;ve
-                written over the last 90 days.
+                <h3 style={{ margin: '0 0 1em' }}>Article Reach</h3>
+                <div>
+                  The expected readership (UVPM) of the next article they write,
+                  based on the average readership of the articles they&apos;ve
+                  written over the last 90 days.
+                </div>
               </div>
-            </div>
-          }
-        >
-          <Button onClick={toggle}>With content</Button>
-        </Tooltip>
-      </FlexWrapper>
+            }
+          >
+            <Button onClick={toggle}>With content</Button>
+          </Tooltip>
+        </FlexWrapper>
+      </Wrap>
     );
   })
   .add(
     'Hoverable',
     () => {
       return (
-        <FlexWrapper>
-          <Element>
-            <Tooltip showOnHover isOpen content="Hello, I'm on top!">
-              <div>Hover on the top</div>
-            </Tooltip>
-          </Element>
-          <Element>
-            <Tooltip
-              showOnHover
-              direction="bottom"
-              content="...and I'm on the bottom!"
-            >
-              <div>Hover on the bottom</div>
-            </Tooltip>
-          </Element>
-          <Element>
-            <Tooltip
-              showOnHover
-              direction="left"
-              content="...and I'm on the left!"
-            >
-              <div>Hover on the left</div>
-            </Tooltip>
-          </Element>
-          <Element>
-            <Tooltip
-              showOnHover
-              direction="right"
-              content="...and I'm on the right!"
-            >
-              <div>Hover on the right</div>
-            </Tooltip>
-          </Element>
-        </FlexWrapper>
+        <Wrap>
+          <FlexWrapper>
+            <Element>
+              <Tooltip showOnHover isOpen content="Hello, I'm on top!">
+                <div>Hover on the top</div>
+              </Tooltip>
+            </Element>
+            <Element>
+              <Tooltip
+                showOnHover
+                direction="bottom"
+                content="...and I'm on the bottom!"
+              >
+                <div>Hover on the bottom</div>
+              </Tooltip>
+            </Element>
+            <Element>
+              <Tooltip
+                showOnHover
+                direction="left"
+                content="...and I'm on the left!"
+              >
+                <div>Hover on the left</div>
+              </Tooltip>
+            </Element>
+            <Element>
+              <Tooltip
+                showOnHover
+                direction="right"
+                content="...and I'm on the right!"
+              >
+                <div>Hover on the right</div>
+              </Tooltip>
+            </Element>
+          </FlexWrapper>
+        </Wrap>
       );
     },
     {}
@@ -157,25 +162,27 @@ storiesOf('Planets/Tooltip', module)
     'Directions',
     () => {
       return (
-        <div style={{ textAlign: 'center' }}>
-          {directions.map((direction) => (
-            <div className="m-6" key={direction}>
-              <Tooltip
-                showOnHover
-                content={
-                  <div style={{ whiteSpace: 'nowrap' }}>
-                    Hi!
-                    <br />
-                    I&apos;m on the {direction}!
-                  </div>
-                }
-                direction={direction}
-              >
-                <button type="button">{direction}</button>
-              </Tooltip>
-            </div>
-          ))}
-        </div>
+        <Wrap>
+          <div style={{ textAlign: 'center' }}>
+            {directions.map((direction) => (
+              <div className="m-6" key={direction}>
+                <Tooltip
+                  showOnHover
+                  content={
+                    <div style={{ whiteSpace: 'nowrap' }}>
+                      Hi!
+                      <br />
+                      I&apos;m on the {direction}!
+                    </div>
+                  }
+                  direction={direction}
+                >
+                  <button type="button">{direction}</button>
+                </Tooltip>
+              </div>
+            ))}
+          </div>
+        </Wrap>
       );
     },
     {}
@@ -194,27 +201,29 @@ storiesOf('Planets/Tooltip', module)
       );
 
       return (
-        <FlexWrapper>
-          <EasyRichTooltip
-            content={Content}
-            direction="bottom"
-            tooltipWidth="325px"
-          >
-            {({ toggle, open, close }) => (
-              <React.Fragment>
-                <Button style={{ marginRight: 10 }} onClick={toggle}>
-                  I toggle the tooltip
-                </Button>
-                <Button style={{ marginRight: 10 }} onClick={open}>
-                  I only open the tooltip
-                </Button>
-                <Button style={{ marginRight: 10 }} onClick={close}>
-                  I only close the tooltip
-                </Button>
-              </React.Fragment>
-            )}
-          </EasyRichTooltip>
-        </FlexWrapper>
+        <Wrap>
+          <FlexWrapper>
+            <EasyRichTooltip
+              content={Content}
+              direction="bottom"
+              tooltipWidth="325px"
+            >
+              {({ toggle, open, close }) => (
+                <React.Fragment>
+                  <Button style={{ marginRight: 10 }} onClick={toggle}>
+                    I toggle the tooltip
+                  </Button>
+                  <Button style={{ marginRight: 10 }} onClick={open}>
+                    I only open the tooltip
+                  </Button>
+                  <Button style={{ marginRight: 10 }} onClick={close}>
+                    I only close the tooltip
+                  </Button>
+                </React.Fragment>
+              )}
+            </EasyRichTooltip>
+          </FlexWrapper>
+        </Wrap>
       );
     },
     {}
@@ -222,40 +231,42 @@ storiesOf('Planets/Tooltip', module)
   .add(
     'Closeable',
     () => (
-      <FlexWrapper>
-        <RichTooltip
-          content={TooltipContent}
-          onClose={action('closing tooltip on bottom')}
-          direction="bottom"
-          tooltipWidth="225px"
-        >
-          Tooltip to Bottom
-        </RichTooltip>
-        <RichTooltip
-          content={TooltipContent}
-          onClose={action('closing tooltip on top')}
-          direction="top"
-          tooltipWidth="700px"
-        >
-          Tooltip to Top
-        </RichTooltip>
-        <RichTooltip
-          content={TooltipContent}
-          onClose={action('closing tooltip on right')}
-          direction="right"
-          tooltipWidth="225px"
-        >
-          Tooltip to Right
-        </RichTooltip>
-        <RichTooltip
-          content={TooltipContent}
-          onClose={action('closing tooltip on left')}
-          direction="left"
-          tooltipWidth="400px"
-        >
-          Tooltip to Left
-        </RichTooltip>
-      </FlexWrapper>
+      <Wrap>
+        <FlexWrapper>
+          <RichTooltip
+            content={TooltipContent}
+            onClose={action('closing tooltip on bottom')}
+            direction="bottom"
+            tooltipWidth="225px"
+          >
+            Tooltip to Bottom
+          </RichTooltip>
+          <RichTooltip
+            content={TooltipContent}
+            onClose={action('closing tooltip on top')}
+            direction="top"
+            tooltipWidth="700px"
+          >
+            Tooltip to Top
+          </RichTooltip>
+          <RichTooltip
+            content={TooltipContent}
+            onClose={action('closing tooltip on right')}
+            direction="right"
+            tooltipWidth="225px"
+          >
+            Tooltip to Right
+          </RichTooltip>
+          <RichTooltip
+            content={TooltipContent}
+            onClose={action('closing tooltip on left')}
+            direction="left"
+            tooltipWidth="400px"
+          >
+            Tooltip to Left
+          </RichTooltip>
+        </FlexWrapper>
+      </Wrap>
     ),
     {}
   );

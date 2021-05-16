@@ -5,6 +5,8 @@ import { boolean, text, select } from '@storybook/addon-knobs';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import { Wrap } from '../../stories/storybook-helpers';
+
 import Icon from '../Icon';
 import Button, { levels, sizes, states } from './Button';
 import ButtonReadme from './README.md';
@@ -30,19 +32,21 @@ storiesOf('Planets/Button', module)
   .add(
     'Overview',
     () => (
-      <Button
-        active={boolean('active', false)}
-        className={text('className', '')}
-        circle={boolean('circle', false)}
-        hollow={boolean('hollow', false)}
-        disabled={boolean('disabled', false)}
-        href={text('href', '') || undefined}
-        level={select('level', levels, 'secondary')}
-        onClick={action('Button clicked')}
-        size={select('size', sizes, 'lg')}
-      >
-        {text('children', 'Click me!')}
-      </Button>
+      <Wrap>
+        <Button
+          active={boolean('active', false)}
+          className={text('className', '')}
+          circle={boolean('circle', false)}
+          hollow={boolean('hollow', false)}
+          disabled={boolean('disabled', false)}
+          href={text('href', '') || undefined}
+          level={select('level', levels, 'secondary')}
+          onClick={action('Button clicked')}
+          size={select('size', sizes, 'lg')}
+        >
+          {text('children', 'Click me!')}
+        </Button>
+      </Wrap>
     ),
     {
       info: {
@@ -55,7 +59,7 @@ storiesOf('Planets/Button', module)
     'Examples',
     () => {
       return (
-        <div>
+        <Wrap>
           <h2>Sizes</h2>
           <div style={{ marginBottom: '20px' }}>
             {sizes.map((size) => (
@@ -216,7 +220,7 @@ storiesOf('Planets/Button', module)
               </span>
             ))}
           </div>
-        </div>
+        </Wrap>
       );
     },
     {
@@ -236,12 +240,14 @@ storiesOf('Planets/Button/Addon', module)
   .add(
     'Overview',
     () => (
-      <Button size={select('<Button/> size', sizes, 'lg')}>
-        <Button.Addon className={text('className', '')}>
-          {text('children', '😸')}
-        </Button.Addon>
-        Click me!
-      </Button>
+      <Wrap>
+        <Button size={select('<Button/> size', sizes, 'lg')}>
+          <Button.Addon className={text('className', '')}>
+            {text('children', '😸')}
+          </Button.Addon>
+          Click me!
+        </Button>
+      </Wrap>
     ),
     {
       info: {
