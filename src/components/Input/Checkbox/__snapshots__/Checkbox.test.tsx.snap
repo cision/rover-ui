@@ -11,6 +11,7 @@ exports[`Input renders 1`] = `
         type="checkbox"
       />
       <svg
+        aria-hidden="true"
         class="svg"
         height="18px"
         version="1.1"

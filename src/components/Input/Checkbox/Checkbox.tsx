@@ -34,7 +34,7 @@ const CheckboxWithRef: React.FC<CheckboxWithRefProps> = ({
         type="checkbox"
         {...passedProps}
       />
-      <CheckboxSvg className={styles.svg} />
+      <CheckboxSvg aria-hidden className={styles.svg} />
     </div>
   );
 };

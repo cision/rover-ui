@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
@@ -6,35 +6,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import Input from '.';
 import Readme from './README.md';
 
-import { Wrap } from '../../stories/storybook-helpers';
-
-interface InteractiveInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  InputRenderer: React.FC<React.InputHTMLAttributes<HTMLInputElement>>;
-  fauxDisabled?: boolean;
-}
-
-const InteractiveInput: React.FC<InteractiveInputProps> = ({
-  InputRenderer,
-  checked: defaultChecked = undefined,
-  value: defaultValue = undefined,
-  ...passedProps
-}) => {
-  const [value, setValue] = useState(defaultValue);
-  const [checked, setChecked] = useState<boolean | undefined>(defaultChecked);
-
-  return (
-    <InputRenderer
-      {...passedProps}
-      checked={checked !== undefined ? checked : undefined}
-      onChange={(e) => {
-        setValue(e.target.value);
-        setChecked(e.target.checked);
-      }}
-      value={value !== undefined ? value : undefined}
-    />
-  );
-};
+import { InteractiveInput, Wrap } from '../../stories/storybook-helpers';
 
 storiesOf('Planets/Input', module)
   .addParameters({
@@ -46,6 +18,10 @@ storiesOf('Planets/Input', module)
     'Overview',
     () => (
       <Wrap>
+        {/*
+          Eslint doesn't recognise that the `InteractiveInput` wrappers are
+          putting IDs on input elements, but they are.
+        */}
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="text-xl inline-block mb-2">
           {`<Input />`}
@@ -95,8 +71,10 @@ storiesOf('Planets/Input', module)
           <label htmlFor="default">Default</label>
           <InteractiveInput
             className="w-full"
+            defaultValue=""
             id="default"
             InputRenderer={Input}
+            onChange={action('onChange default')}
             placeholder="Type here"
           />
         </div>
@@ -108,6 +86,7 @@ storiesOf('Planets/Input', module)
             defaultValue="focus (using 'autoFocus')"
             id="autofocus"
             InputRenderer={Input}
+            onChange={action('onChange autofocus')}
           />
         </div>
         <div className="w-full md:w-1/3 mt-6">
@@ -119,6 +98,7 @@ storiesOf('Planets/Input', module)
             defaultValue="Invalid"
             id="invalid"
             InputRenderer={Input}
+            onChange={action('onChange invalid')}
             pattern="\d+"
           />
         </div>
@@ -130,6 +110,7 @@ storiesOf('Planets/Input', module)
             disabled
             id="disabled"
             InputRenderer={Input}
+            onChange={action('onChange disabled')}
           />
         </div>
         <div className="w-full md:w-1/3 mt-6">
@@ -140,6 +121,7 @@ storiesOf('Planets/Input', module)
             fauxDisabled
             id="fauxDisabled"
             InputRenderer={Input}
+            onChange={action('onChange fauxDisabled')}
           />
         </div>
         <div className="w-full md:w-1/3 mt-6">
@@ -149,6 +131,7 @@ storiesOf('Planets/Input', module)
             defaultValue="1967-03-01"
             id="date"
             InputRenderer={Input}
+            onChange={action('onChange date')}
             type="date"
           />
         </div>
@@ -159,6 +142,7 @@ storiesOf('Planets/Input', module)
             defaultValue="1967-03"
             id="month"
             InputRenderer={Input}
+            onChange={action('onChange month')}
             type="month"
           />
         </div>
@@ -169,6 +153,7 @@ storiesOf('Planets/Input', module)
             defaultValue="1967-W09"
             id="week"
             InputRenderer={Input}
+            onChange={action('onChange week')}
             type="week"
           />
         </div>
@@ -179,6 +164,7 @@ storiesOf('Planets/Input', module)
             defaultValue="10:31"
             id="time"
             InputRenderer={Input}
+            onChange={action('onChange time')}
             type="time"
           />
         </div>
@@ -189,6 +175,7 @@ storiesOf('Planets/Input', module)
             defaultValue="foo@bar.com"
             id="email"
             InputRenderer={Input}
+            onChange={action('onChange email')}
             type="email"
           />
         </div>
@@ -199,6 +186,7 @@ storiesOf('Planets/Input', module)
             defaultValue="512-867-5309"
             id="tel"
             InputRenderer={Input}
+            onChange={action('onChange tel')}
             type="tel"
           />
         </div>
@@ -210,6 +198,7 @@ storiesOf('Planets/Input', module)
             id="range"
             InputRenderer={Input}
             max="100"
+            onChange={action('onChange range')}
             step="10"
             type="range"
           />
@@ -221,6 +210,7 @@ storiesOf('Planets/Input', module)
             defaultValue="#00CED1"
             id="color"
             InputRenderer={Input}
+            onChange={action('onChange color')}
             type="color"
           />
         </div>
@@ -228,9 +218,10 @@ storiesOf('Planets/Input', module)
           <label htmlFor="checkbox">
             Native type=checkbox{' '}
             <InteractiveInput
-              defaultChecked={false}
+              defaultChecked={undefined}
               id="checkbox"
               InputRenderer={Input}
+              onChange={action('onChange checkbox')}
               type="checkbox"
             />
           </label>

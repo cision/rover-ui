@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
@@ -6,36 +6,7 @@ import { boolean, text } from '@storybook/addon-knobs';
 import Checkbox from '.';
 import Readme from './README.md';
 
-import { Wrap } from '../../../stories/storybook-helpers';
-
-interface InteractiveInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  onChange: () => void;
-  InputRenderer: React.FC<React.InputHTMLAttributes<HTMLInputElement>>;
-}
-
-const InteractiveInput: React.FC<InteractiveInputProps> = ({
-  InputRenderer,
-  onChange,
-  checked: defaultChecked = undefined,
-  ...passedProps
-}) => {
-  const [value, setValue] = useState('');
-  const [checked, setChecked] = useState<boolean | undefined>(defaultChecked);
-
-  return (
-    <InputRenderer
-      {...passedProps}
-      checked={checked !== undefined ? checked : undefined}
-      onChange={(e) => {
-        setValue(e.target.value);
-        setChecked(e.target.checked);
-        onChange();
-      }}
-      value={value !== undefined ? value : undefined}
-    />
-  );
-};
+import { InteractiveInput, Wrap } from '../../../stories/storybook-helpers';
 
 storiesOf('Planets/Input/Checkbox', module)
   .addParameters({
@@ -47,6 +18,10 @@ storiesOf('Planets/Input/Checkbox', module)
     'Overview',
     () => (
       <Wrap>
+        {/*
+          Eslint doesn't recognise that the `InteractiveInput` wrappers are
+          putting IDs on input elements, but they are.
+        */}
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label className="text-xl inline-block mb-2">
           {`<Checkbox />`}
@@ -111,27 +86,29 @@ storiesOf('Planets/Input/Checkbox', module)
             ['disabled'],
             ['fauxDisabled'],
             ['checked', 'disabled'],
-          ].map((attributes) => (
-            <div className="my-6" key={['atts', ...attributes].join('-')}>
-              <label htmlFor={['atts', ...attributes].join('-')}>
-                {attributes.join(' and ') || 'default'}{' '}
-                <InteractiveInput
-                  InputRenderer={Checkbox}
-                  id={['atts', ...attributes].join('-')}
-                  onChange={action(
-                    `onChange ${attributes.join(' and ') || 'default'}`
-                  )}
-                  {...attributes.reduce(
-                    (acc, attr) => ({
-                      ...acc,
-                      [attr]: true,
-                    }),
-                    {}
-                  )}
-                />
-              </label>
-            </div>
-          ))}
+          ].map((attributes) => {
+            const attributesId = ['atts', ...attributes].join('-');
+            const attributesLabel = attributes.join(' and ') || 'default';
+
+            const attributesProps = attributes.reduce(
+              (acc, attr) => ({ ...acc, [attr]: true }),
+              {}
+            );
+
+            return (
+              <div className="my-6" key={attributesId}>
+                <label htmlFor={attributesId}>
+                  {attributesLabel}{' '}
+                  <InteractiveInput
+                    InputRenderer={Checkbox}
+                    id={attributesId}
+                    onChange={action(`onChange ${attributesLabel}`)}
+                    {...attributesProps}
+                  />
+                </label>
+              </div>
+            );
+          })}
         </div>
       </Wrap>
     ),
