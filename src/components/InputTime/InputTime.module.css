@@ -36,5 +36,5 @@
 }
 
 .disabledIcon {
-  color: var(--rvr-gray-40);
+  color: var(--rvr-color-disabled);
 }

@@ -18,12 +18,11 @@ const CheckboxWithRef: React.FC<CheckboxWithRefProps> = ({
   ...passedProps
 }) => {
   return (
-    <div className={className}>
-      <CheckboxSvg
-        className={classNames(styles.svg, {
-          [styles.checked]: checked,
-        })}
-      />
+    <div
+      className={classNames(styles.Checkbox, className, {
+        [styles.checked]: checked,
+      })}
+    >
       <input
         {...passedProps}
         checked={checked}
@@ -31,6 +30,7 @@ const CheckboxWithRef: React.FC<CheckboxWithRefProps> = ({
         ref={ref || undefined}
         type="checkbox"
       />
+      <CheckboxSvg className={styles.svg} />
     </div>
   );
 };

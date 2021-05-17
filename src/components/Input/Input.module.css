@@ -10,10 +10,10 @@
   padding: var(--rvr-space-bordered-sm);
   height: calc(var(--rvr-line-height-lg) + 2 * var(--rvr-space-sm));
   transition:
-    100ms linear background-color,
-    100ms linear border-color,
-    100ms linear box-shadow,
-    100ms linear color;
+    var(--rvr-transition-duration-fast) var(--rvr-linear) background-color,
+    var(--rvr-transition-duration-fast) var(--rvr-linear) border-color,
+    var(--rvr-transition-duration-fast) var(--rvr-linear) box-shadow,
+    var(--rvr-transition-duration-fast) var(--rvr-linear) color;
 }
 
 .Input[type="time"] {
@@ -54,8 +54,8 @@
 
 .Input:disabled,
 .Input.disabled {
-  border-color: var(--rvr-gray-40);
-  color: var(--rvr-gray-40);
+  border-color: var(--rvr-color-disabled);
+  color: var(--rvr-color-disabled);
   cursor: default;
 }
 

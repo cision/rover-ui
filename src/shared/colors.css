@@ -98,4 +98,5 @@
   --rvr-color-chart-yellow-lite: var(--rvr-yellow-alt-lite-1);
   --rvr-color-font-dark: var(--rvr-gray-90);
   --rvr-color-font: var(--rvr-gray-80);
+  --rvr-color-disabled: var(--rvr-gray-40);
 }
