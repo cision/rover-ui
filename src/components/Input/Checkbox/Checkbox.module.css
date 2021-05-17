@@ -1,0 +1,30 @@
+.outline {
+  fill: gray;
+}
+
+.inner {
+  fill: white;
+}
+
+.check,
+.dash {
+  display: none;
+}
+
+.checked .outline {
+  fill: blue;
+}
+
+.checked .inner {
+  display: none;
+}
+
+.checked .check {
+  display: initial;
+  fill: white;
+}
+
+.indeterminate .dash {
+  display: initial;
+  fill: white;
+}

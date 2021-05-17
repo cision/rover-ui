@@ -2,6 +2,8 @@ import React, { forwardRef, Ref } from 'react';
 
 import classNames from 'classnames';
 
+import Checkbox from './Checkbox';
+
 import styles from './Input.module.css';
 
 export interface InputProps
@@ -16,8 +18,15 @@ const Input: React.FC<InputProps> = ({
   onChange = () => {},
   fauxDisabled = false,
   forwardedRef: ref,
+  type = '',
   ...passedProps
 }) => {
+  if (type.toLowerCase() === 'checkbox') {
+    return (
+      <Checkbox ref={ref || undefined} onChange={onChange} {...passedProps} />
+    );
+  }
+
   return (
     <input
       className={classNames(styles.Input, className, {
@@ -25,6 +34,7 @@ const Input: React.FC<InputProps> = ({
       })}
       ref={ref || undefined}
       onChange={onChange}
+      type={type}
       {...passedProps}
     />
   );
