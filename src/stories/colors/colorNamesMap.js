@@ -45,6 +45,7 @@ const colorNamesMap = {
     '--rvr-color-chart-yellow-lite',
     '--rvr-color-font-dark',
     '--rvr-color-font',
+    '--rvr-color-disabled',
   ],
   'Full color palette': [
     '--rvr-white',

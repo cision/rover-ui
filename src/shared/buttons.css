@@ -11,8 +11,8 @@
 
   /* Disabled */
   --rvr-btn-color-primary-disabled: var(--rvr-white);
-  --rvr-btn-bg-color-primary-disabled: var(--rvr-gray-40);
-  --rvr-btn-border-color-primary-disabled: var(--rvr-gray-40);
+  --rvr-btn-bg-color-primary-disabled: var(--rvr-color-disabled);
+  --rvr-btn-border-color-primary-disabled: var(--rvr-color-disabled);
 
   /* PRIMARY-ALT (TEAL) */
   --rvr-btn-color-primary-alt: var(--rvr-white);
@@ -40,9 +40,9 @@
   --rvr-btn-border-color-secondary-active: var(--rvr-btn-border-color-primary-active);
 
   /* Disabled */
-  --rvr-btn-color-secondary-disabled: var(--rvr-gray-40);
+  --rvr-btn-color-secondary-disabled: var(--rvr-color-disabled);
   --rvr-btn-bg-color-secondary-disabled: var(--rvr-white);
-  --rvr-btn-border-color-secondary-disabled: var(--rvr-gray-40);
+  --rvr-btn-border-color-secondary-disabled: var(--rvr-color-disabled);
 
   /* TERTIARY */
   --rvr-btn-color-tertiary: var(--rvr-color-font);
@@ -100,7 +100,7 @@
   --rvr-btn-border-color-link-active: var(--rvr-btn-bg-color-link-active);
 
   /* Disabled */
-  --rvr-btn-color-link-disabled: var(--rvr-gray-40);
+  --rvr-btn-color-link-disabled: var(--rvr-color-disabled);
   --rvr-btn-bg-color-link-disabled: var(--rvr-btn-bg-color-link);
   --rvr-btn-border-color-link-disabled: var(--rvr-btn-bg-color-link-disabled);
 
@@ -115,7 +115,7 @@
   --rvr-btn-border-color-text-active: var(--rvr-btn-bg-color-text-active);
 
   /* Disabled */
-  --rvr-btn-color-text-disabled: var(--rvr-gray-40);
+  --rvr-btn-color-text-disabled: var(--rvr-color-disabled);
   --rvr-btn-bg-color-text-disabled: var(--rvr-btn-bg-color-text);
   --rvr-btn-border-color-text-disabled: var(--rvr-btn-bg-color-text-disabled);
 
