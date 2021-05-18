@@ -39,7 +39,7 @@ storiesOf('Planets/Input/Checkbox', module)
               checked={boolean('checked', false)}
               className={text('className (HTML)', 'w-full')}
               fauxDisabled={boolean('fauxDisabled', false)}
-              id="SamplCheckbox"
+              id="SampleCheckbox"
               onChange={action('onChange (HTML)')}
             />
           </div>

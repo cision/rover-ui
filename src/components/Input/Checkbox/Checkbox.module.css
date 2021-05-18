@@ -37,7 +37,7 @@
   display: none;
 }
 
-input:checked + .svg .outline {
+.Checkbox.checked .outline {
   fill: var(--rvr-color-primary);
 }
 
@@ -53,11 +53,11 @@ input:focus + .svg {
     0px 0px 8px 2px var(--rvr-color-primary-hover);
 }
 
-input:checked + .svg .inner {
+.Checkbox.checked .inner {
   display: none;
 }
 
-input:checked + .svg .check,
+.Checkbox.checked .check,
 .indeterminate + .svg .dash {
   display: initial;
   fill: var(--rvr-white);

@@ -65,7 +65,7 @@
   --rvr-tooltip-offset: 20px;
 
   /* Form elements */
-  --rvr-checkbox-size: calc(var(--rvr-baseSize * 2.25)); /* 18px */
+  --rvr-checkbox-size: calc(var(--rvr-baseSize) * 2.25); /* 18px */
 
   /* Dropdowns */
   /* Default EasyDropdown menu item with text label */
