@@ -27,6 +27,7 @@ import {
   InputTime,
   Typography,
   Modal,
+  Select,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -434,6 +435,10 @@ const App = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+      </Section>
+
+      <Section title="Select">
+        <Select />
       </Section>
 
       {/** USAGE_INJECTOR */}
