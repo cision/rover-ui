@@ -19,6 +19,11 @@ import '../components/Button/story';
 import '../components/Icon/story';
 import '../components/Paper/story';
 import '../components/Avatar/story';
+import '../components/Tooltip/story';
+import '../components/Input/story';
+import '../components/Input/Checkbox/story';
+import '../components/InputTime/story';
+import '../components/Typography/story';
 
 /*
  * STAR SYSTEMS
@@ -50,6 +55,7 @@ import '../components/DeletablePill/story';
 import '../components/EasyPill/story';
 import '../components/SideTray/story';
 import '../components/Accordion/story';
+import '../components/Modal/story';
 
 /*
  * DARK MATTER
@@ -69,9 +75,4 @@ import '../components/Responsive/Visible/story';
  * NEW & UNCATEGORIZED
  * Move these to a section above before committing
  */
-import '../components/Tooltip/story';
-import '../components/Input/story';
-import '../components/InputTime/story';
-import '../components/Typography/story';
-import '../components/Modal/story';
 /** INJECTOR */

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 type HelperTags = keyof Pick<
@@ -51,3 +51,36 @@ export const Label = BuildHelper('Label', 'text-xs', 'span');
 export const Wrap = BuildHelper('Wrap', 'm-5 rounded bg-white shadow-md p-4');
 export const Spacer = BuildHelper('Spacer', 'mb-5');
 export const Title = BuildHelper('Title', 'text-xl mb-5 border-b', 'h3');
+
+interface InteractiveInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  fauxDisabled?: boolean;
+  InputRenderer: React.FC<React.InputHTMLAttributes<HTMLInputElement>>;
+  onChange?: () => void;
+}
+
+export const InteractiveInput: React.FC<InteractiveInputProps> = ({
+  InputRenderer,
+  onChange = () => {},
+  checked: defaultChecked = undefined,
+  defaultValue,
+  ...passedProps
+}) => {
+  const [value, setValue] = useState<string | string[] | number | undefined>(
+    defaultValue
+  );
+  const [checked, setChecked] = useState<boolean | undefined>(defaultChecked);
+
+  return (
+    <InputRenderer
+      {...passedProps}
+      checked={checked !== undefined ? checked : undefined}
+      onChange={(e) => {
+        setValue(e.target.value);
+        setChecked(e.target.checked);
+        onChange();
+      }}
+      value={value !== undefined ? value : undefined}
+    />
+  );
+};

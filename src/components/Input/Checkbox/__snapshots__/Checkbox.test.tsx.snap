@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders 1`] = `
+<body>
+  <div>
+    <div
+      class="Checkbox"
+    >
+      <input
+        class="input"
+        type="checkbox"
+      />
+      <svg
+        aria-hidden="true"
+        class="svg"
+        height="18px"
+        version="1.1"
+        viewBox="0 0 18 18"
+        width="18px"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>
+          Checkbox
+        </title>
+        <g
+          fill="none"
+          fill-rule="evenodd"
+          stroke="none"
+          stroke-width="1"
+        >
+          <polygon
+            class="outline"
+            fill="#34404B"
+            points="0 0 18 0 18 18 0 18"
+          />
+          <polygon
+            class="inner"
+            fill="#34404B"
+            points="16 16 16 2 2 2 2 16"
+          />
+          <polygon
+            class="check"
+            fill="#34404B"
+            points="7 14 2 9 3.41 7.59 7 11.17 14.59 3.58 16 5"
+          />
+          <polygon
+            class="dash"
+            fill="#34404B"
+            points="14 10 4 10 4 8 14 8"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+</body>
+`;

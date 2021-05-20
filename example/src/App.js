@@ -39,6 +39,7 @@ const App = () => {
   const [isEasyPillChecked, setIsEasyPillChecked] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const [inputCheckboxValue, setInputCheckboxValue] = useState(false);
   const [inputTimeValue, setInputTimeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -387,24 +388,40 @@ const App = () => {
         </Callout>
       </Section>
 
-      <Section>
+      <Section title="Input">
         <h1>Input</h1>
         <Input
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
-        />
+        />{' '}
+        {inputValue}
+      </Section>
+
+      <Section title="Input.Checkbox">
+        <h1>Input.Checkbox</h1>
+        <Input
+          onChange={(e) =>
+            console.log(e.target.checked) ||
+            setInputCheckboxValue(e.target.checked)
+          }
+          checked={inputCheckboxValue}
+          type="checkbox"
+        />{' '}
+        {JSON.stringify(inputCheckboxValue)}
       </Section>
 
       <Section title="InputTime">
         <InputTime
           value={inputTimeValue}
           onChange={(e) => setInputTimeValue(e.target.value)}
-        />
+        />{' '}
         {inputTimeValue}
       </Section>
 
       <Section title="Typography">
-        <Typography />
+        <Typography size="md" color="primary">
+          Md primary
+        </Typography>
       </Section>
 
       <Section title="Modal">
