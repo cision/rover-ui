@@ -1,6 +1,8 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
+import styles from './Button.module.css';
+
 import Button from '.';
 
 describe('Button', () => {
@@ -40,11 +42,17 @@ describe('Button', () => {
   });
 
   describe('props.level', () => {
-    // Our current test build doesn't do css modules, so this won't work
-    // it.ignore('adds "primary" level className', () => {
-    //   const wrapper = shallow(<Button level="primary" />);
-    //   expect(wrapper.hasClass(style.primary)).toEqual(true);
-    // });
+    it('adds "primary" level className', () => {
+      const wrapper = shallow(<Button level="primary" />);
+      expect(wrapper.hasClass(styles.primary)).toEqual(true);
+    });
+  });
+
+  describe('props.outline', () => {
+    it('adds "outline" className', () => {
+      const wrapper = shallow(<Button outline />);
+      expect(wrapper.hasClass(styles.outline)).toEqual(true);
+    });
   });
 
   describe('props.size', () => {
