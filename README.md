@@ -25,7 +25,7 @@ To install and develop or run locally, you're in the right place.
 
 ## Usage
 
-```jsx
+```js
 import React, { Component } from 'react';
 
 import { Media } from '@cision/rover-ui';
@@ -39,6 +39,18 @@ class Example extends Component {
     );
   }
 }
+```
+
+If your front-end stack supports a CSS loader, you can add styles with `import`.
+
+```js
+import '@cision/rover-ui/dist/rover-ui.css';
+```
+
+Otherwise, you'll want to put the rover-ui.css stylesheet in your static resources and load it with an plain old `link`.
+
+```html
+<link href="%PUBLIC_URL%/rover-ui.css" rel="stylesheet" />
 ```
 
 ## Contributing
