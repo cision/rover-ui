@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import { Wrap } from '../../stories/storybook-helpers';
 import Icon from '../Icon';
-import Button, { levels, sizes, states } from './Button';
+import Button, { levels, sizes, states as stateProps } from './Button';
 import ButtonReadme from './README.md';
 import AddonReadme from './Addon/README.md';
 
@@ -181,27 +181,24 @@ storiesOf('Planets/Button', module)
                   >
                     <Button level={level}>default</Button>
                   </span>
-                  {[...states.map((state) => [state]), ['hover', 'focus']].map(
-                    (stateCombo) => {
-                      const key = stateCombo.join('-');
+                  {[
+                    ...stateProps.map((propName) => [propName]),
+                    ['hover', 'focus'],
+                  ].map((propNames) => {
+                    const key = propNames.join('-');
 
-                      const trueStates = stateCombo.reduce(
-                        (result, state) => ({
-                          ...result,
-                          [state]: true,
-                        }),
-                        {}
-                      );
+                    const trueProps = Object.fromEntries(
+                      propNames.map((propName) => [propName, true])
+                    );
 
-                      return (
-                        <span key={key} style={{ marginRight: '20px' }}>
-                          <Button level={level} {...trueStates}>
-                            {key}
-                          </Button>
-                        </span>
-                      );
-                    }
-                  )}
+                    return (
+                      <span key={key} style={{ marginRight: '20px' }}>
+                        <Button level={level} {...trueProps}>
+                          {key}
+                        </Button>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             ))}
@@ -225,27 +222,24 @@ storiesOf('Planets/Button', module)
                       default
                     </Button>
                   </span>
-                  {[...states.map((state) => [state]), ['hover', 'focus']].map(
-                    (stateCombo) => {
-                      const key = stateCombo.join('-');
+                  {[
+                    ...stateProps.map((propName) => [propName]),
+                    ['hover', 'focus'],
+                  ].map((propNames) => {
+                    const key = propNames.join('-');
 
-                      const trueStates = stateCombo.reduce(
-                        (result, state) => ({
-                          ...result,
-                          [state]: true,
-                        }),
-                        {}
-                      );
+                    const trueProps = Object.fromEntries(
+                      propNames.map((propName) => [propName, true])
+                    );
 
-                      return (
-                        <span key={key} style={{ marginRight: '20px' }}>
-                          <Button level={level} outline {...trueStates}>
-                            {key}
-                          </Button>
-                        </span>
-                      );
-                    }
-                  )}
+                    return (
+                      <span key={key} style={{ marginRight: '20px' }}>
+                        <Button level={level} outline {...trueProps}>
+                          {key}
+                        </Button>
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             ))}
