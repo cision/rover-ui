@@ -1,0 +1,12 @@
+.Select {
+  visibility: visible;
+  display: inline-flex;
+}
+
+.placeholder {
+  font-style: italic;
+}
+
+.menu {
+  max-height: calc(var(--rvr-dropdown-menu-item-height) * var(--rvr-dropdown-menu-max-rows-sm));
+}

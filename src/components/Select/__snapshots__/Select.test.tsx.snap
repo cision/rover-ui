@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select renders 1`] = `
+<body>
+  <div>
+    <div
+      class="Dropdown Select EasyDropdown"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="Input Toggle placeholder"
+        data-is-open="false"
+        id="foo"
+        type="button"
+      >
+        <span
+          class="label"
+        >
+          Choose something
+        </span>
+        <svg
+          class="icon"
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</body>
+`;

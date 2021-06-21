@@ -27,6 +27,8 @@ interface BaseButtonProps {
   circle?: boolean;
   className?: string;
   darkMode?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  forwardedRef?: React.Ref<any>;
   hollow?: boolean;
   level?: TButtonLevel;
   size?: TButtonSize;
@@ -42,19 +44,21 @@ interface BaseButtonProps {
 }
 
 // Button props
-type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   BaseButtonProps & {
     href?: undefined;
   };
 
 // Anchor props
-type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+export type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   BaseButtonProps & {
     href?: string;
   };
 
 type ButtonType = React.FC<ButtonElementProps | AnchorElementProps> & {
   Addon: React.FC<AddonProps>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  WithRef: any;
 };
 
 // Guard to check if href exists in props
@@ -94,6 +98,7 @@ const Button: ButtonType = ({
   circle = undefined,
   className: passedClassName = '',
   darkMode = false,
+  forwardedRef,
   hollow = false,
   level = 'secondary',
   size = 'lg',
@@ -138,6 +143,7 @@ const Button: ButtonType = ({
     <Context.Provider value={{ size }}>
       <Tag
         className={className}
+        ref={forwardedRef}
         type={Tag === 'button' ? 'button' : undefined}
         {...passedProps}
       >
@@ -148,5 +154,9 @@ const Button: ButtonType = ({
 };
 
 Button.Addon = Addon;
+
+Button.WithRef = React.forwardRef((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));
 
 export default Button;
