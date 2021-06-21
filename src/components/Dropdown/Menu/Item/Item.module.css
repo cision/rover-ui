@@ -1,36 +1,15 @@
 .Item {
-  background: transparent none;
-  padding: var(--rvr-space-sm) var(--rvr-space-lg);
-  -webkit-appearance: none;
-  border: 0 none transparent;
-  transition: 100ms var(--rvr-easeInOutQuad) background-color, 100ms var(--rvr-easeInOutQuad) color;
   text-align: left;
   display: block;
-  box-sizing: border-box;
   width: 100%;
-  font-family: var(--rvr-base-font-family);
-  font-size: var(--rvr-font-size-md);
-  line-height: var(--rvr-line-height-sm);
-  color: var(--rvr-gray-90);
+  border-radius: 0;
 }
 
-.button {
-  cursor: pointer;
-  color: var(--rvr-gray-90);
-}
-
-.button:hover,
-.button:active {
+.button:hover:not(.disabled),
+.button:active:not(.disabled) {
   background-color: var(--rvr-gray-10);
 }
 
-.link {
-  cursor: pointer;
-  color: var(--rvr-gray-90);
-  text-decoration: none;
-}
-
-.link:hover,
-.link:active {
-  background-color: var(--rvr-gray-10);
+.content {
+  cursor: default;
 }

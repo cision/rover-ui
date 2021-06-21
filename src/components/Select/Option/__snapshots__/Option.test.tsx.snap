@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Option renders 1`] = `
+<body>
+  <div>
+    <div
+      class="Item content Button text md"
+    >
+      Boom
+    </div>
+  </div>
+</body>
+`;

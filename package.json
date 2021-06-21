@@ -156,6 +156,7 @@
   "dependencies": {
     "@cision/react-container-query": "1.0.0-alpha.3",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "nanoid": "^3.1.23"
   }
 }

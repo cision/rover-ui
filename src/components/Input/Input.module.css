@@ -54,6 +54,7 @@
 
 .Input:disabled,
 .Input.disabled {
+  background-color: var(--rvr-white);
   border-color: var(--rvr-color-disabled);
   box-shadow: none;
   color: var(--rvr-color-disabled);
