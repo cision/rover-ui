@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 
 import userEvent from '@testing-library/user-event';
 import Kite from './Kite';
-import { Icon } from '../..';
 
 const defaultProps = {
   visible: true,
@@ -17,15 +16,14 @@ const defaultProps = {
 const renderKite = (props = defaultProps) =>
   render(
     <Kite {...props}>
-      <Kite.KiteIcon>
-        <Icon
-          fill="green"
-          height="20"
-          name="check"
-          style={{ display: 'block' }}
-          width="20"
-        />
-      </Kite.KiteIcon>
+      <Kite.Icon
+        fill="green"
+        height="20"
+        name="check"
+        style={{ display: 'block' }}
+        width="20"
+      />
+      <Kite.Content title="Kite Title" />
     </Kite>
   );
 describe('Kite', () => {
@@ -35,7 +33,7 @@ describe('Kite', () => {
   });
 
   it("does not render when 'visible' prop is false", () => {
-    render(<Kite title="" visible={false} data-testid="Kite-Test" />);
+    render(<Kite visible={false} data-testid="Kite-Test" />);
     expect(screen.queryByTestId('Modal-Test')).not.toBeInTheDocument();
   });
 

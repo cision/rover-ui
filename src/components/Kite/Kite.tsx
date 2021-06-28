@@ -15,14 +15,18 @@ interface KiteProps {
   visible?: boolean;
   onClose?: () => void;
   style?: CSSProperties;
-  title: React.ReactNode;
+  //title: React.ReactNode;
   ttl?: number;
 }
 
-type KiteChildProps = Pick<KiteProps, 'children' | 'className'>;
+type KiteChildProps = Parameters<typeof Icon>[0];
+type KiteContentProps = Pick<KiteProps, 'children' | 'className'> & {
+  title: React.ReactNode;
+};
 
 type KiteType = React.FC<KiteProps> & {
-  KiteIcon: React.FC<KiteChildProps>;
+  Icon: React.FC<KiteChildProps>;
+  Content: React.FC<KiteContentProps>;
 };
 
 const Kite: KiteType = ({
@@ -31,13 +35,13 @@ const Kite: KiteType = ({
   className: passedClassName = '',
   visible = false,
   onClose = () => {},
-  title,
+  //title,
   ttl = undefined,
   ...passedProps
 }) => {
   useEffect(() => {
     const interval = setInterval(() => {
-      if (onClose) {
+      if (onClose && ttl) {
         onClose();
       }
     }, ttl);
@@ -64,9 +68,8 @@ const Kite: KiteType = ({
         )}
         {...passedProps}
       >
-        <div className={styles.content}>
-          {children}
-          <div className={styles.title}>{title}</div>
+        {children}
+        <div className={styles.dismissButton}>
           {canBeDismissed && (
             <Button
               level="text"
@@ -90,17 +93,31 @@ const Kite: KiteType = ({
   );
 };
 
-const KiteIcon: React.FC<KiteChildProps> = ({
-  children,
+const KiteIcon: React.FC<KiteChildProps> = ({ className, ...props }) => {
+  return <Icon {...props} className={classNames(styles.icon, className)} />;
+};
+
+const KiteContent: React.FC<KiteContentProps> = ({
   className,
+  title,
+  children,
   ...props
 }) => {
   return (
-    <div {...props} className={classNames(styles.icon, className)}>
-      {children}
+    <div
+      {...props}
+      className={classNames(
+        styles.content,
+        { [styles.withCustomContent]: children },
+        className
+      )}
+    >
+      <div className={styles.title}>{title}</div>
+      <div className={styles.childrenWrapper}>{children}</div>
     </div>
   );
 };
 
-Kite.KiteIcon = KiteIcon;
+Kite.Icon = KiteIcon;
+Kite.Content = KiteContent;
 export default Kite;

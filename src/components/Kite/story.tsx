@@ -5,7 +5,6 @@ import Kite from '.';
 import Readme from './README.md';
 import { Wrap } from '../../stories/storybook-helpers';
 import Button from '../Button';
-import Icon from '../Icon';
 
 function KiteExample() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,22 +24,15 @@ function KiteExample() {
           Show Kite
         </Button>
       </div>
-      <Kite
-        title="Success Kite!"
-        canBeDismissed
-        visible={isOpen}
-        onClose={hideKite}
-        ttl={3000}
-      >
-        <Kite.KiteIcon>
-          <Icon
-            fill="green"
-            height="20"
-            name="check"
-            style={{ display: 'block' }}
-            width="20"
-          />
-        </Kite.KiteIcon>
+      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
+        <Kite.Icon
+          fill="green"
+          height="20"
+          name="check"
+          style={{ display: 'block' }}
+          width="20"
+        />
+        <Kite.Content title="Success Kite" />
       </Kite>
     </>
   );
@@ -64,22 +56,56 @@ function ErrorKiteExample() {
           Error Kite
         </Button>
       </div>
-      <Kite
-        title="Error Kite!"
-        canBeDismissed
-        visible={isOpen}
-        onClose={hideKite}
-        ttl={3000}
-      >
-        <Kite.KiteIcon>
-          <Icon
-            fill="red"
-            height="20"
-            name="warning"
-            style={{ display: 'block' }}
-            width="20"
-          />
-        </Kite.KiteIcon>
+      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
+        <Kite.Icon
+          fill="red"
+          height="20"
+          name="warning"
+          style={{ display: 'block' }}
+          width="20"
+        />
+        <Kite.Content title="Error Kite" />
+      </Kite>
+    </>
+  );
+}
+
+function EverythingKiteExample() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const showKite = () => {
+    setIsOpen(true);
+  };
+
+  const hideKite = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <>
+      <div>
+        <Button modifiers={['primary']} onClick={showKite}>
+          Everything Kite
+        </Button>
+      </div>
+      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
+        <Kite.Icon
+          fill="red"
+          height="20"
+          name="warning"
+          style={{ display: 'block' }}
+          width="20"
+        />
+        <Kite.Content title="Regular Kite with no icon">
+          <div>
+            <span>The quick brown fox jumps over the lazy dog!</span>
+          </div>
+          <div className="mt-2">
+            <Button modifiers={['primary']} onClick={() => {}}>
+              Click me!
+            </Button>
+          </div>
+        </Kite.Content>
       </Kite>
     </>
   );
@@ -94,22 +120,14 @@ storiesOf('Galaxies/Kite', module)
   .add(
     'Overview',
     () => (
-      <Kite
-        visible={false}
-        title="Kite component!"
-        canBeDismissed
-        ttl={3000}
-        onClose={() => {}}
-      >
-        <Kite.KiteIcon>
-          <Icon
-            fill="green"
-            height="20"
-            name="check"
-            style={{ display: 'block' }}
-            width="20"
-          />
-        </Kite.KiteIcon>
+      <Kite visible={false} canBeDismissed ttl={3000} onClose={() => {}}>
+        <Kite.Icon
+          fill="green"
+          height="20"
+          name="check"
+          style={{ display: 'block' }}
+          width="20"
+        />
       </Kite>
     ),
     {
@@ -128,6 +146,9 @@ storiesOf('Galaxies/Kite', module)
         </Wrap>
         <Wrap>
           <ErrorKiteExample />
+        </Wrap>
+        <Wrap>
+          <EverythingKiteExample />
         </Wrap>
       </>
     ),
