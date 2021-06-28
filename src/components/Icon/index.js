@@ -150,6 +150,7 @@ import Tv from './icons/Tv';
 import Upload from './icons/Upload';
 import UserRelationship from './icons/UserRelationship';
 import User from './icons/User';
+import UserEmpty from './icons/UserEmpty';
 import ViewGrid from './icons/ViewGrid';
 import ViewStream from './icons/ViewStream';
 import ViewTable from './icons/ViewTable';
@@ -332,6 +333,7 @@ export const iconsMap = {
   upload: Upload,
   'user-relationship': UserRelationship,
   user: User,
+  'user-empty': UserEmpty,
   'view-grid': ViewGrid,
   'view-stream': ViewStream,
   'view-table': ViewTable,
