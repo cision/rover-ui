@@ -22,6 +22,7 @@ import '../components/Avatar/story';
 import '../components/Tooltip/story';
 import '../components/Input/story';
 import '../components/Input/Checkbox/story';
+import '../components/Input/Radio/story';
 import '../components/InputTime/story';
 import '../components/Typography/story';
 
