@@ -25,6 +25,7 @@
   --rvr-zindex-modal-backdrop: 1060;
   --rvr-zindex-modal: 1070;
   --rvr-zindex-popover: 1080;
+  --rvr-zindex-kite: 1090;
 
   /* Borders */
   --rvr-border-radius: 4px;

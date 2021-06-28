@@ -1,0 +1,71 @@
+.Kite {
+  z-index: var(--rvr-zindex-kite);
+  visibility: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  transition: transform .6s ease-in-out;
+  animation: slide-in-right .7s;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--rvr-white);
+  width: 342px;
+  height: 56px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.icon {
+  margin-left: 15px;
+}
+
+.title {
+  flex-grow: 2;
+  font-size: var(--rvr-font-size-md);
+  color: var(--rvr-color-font-dark);
+  margin-left: 15px;
+}
+
+.enterDone {
+  opacity: 1;
+  pointer-events: visible;
+  transform: translateY(0);
+}
+
+.exit {
+  opacity: 0;
+  transform: translateY(-200px);
+}
+
+.top-right {
+  top: 12px;
+  right: 12px;
+  transition: all .6s ease-in-out;
+  transform: translateX(100%);
+}
+
+
+
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
