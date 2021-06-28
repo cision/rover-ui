@@ -2,17 +2,11 @@
 
 Add your documentation for the `Select` component here.
 
-## TODO:
+## TODOs:
 
-- ~autofocus~
-- validity
-- ~placeholder - let it unset value!~
-- required
-- ~on open, scroll to the active or first element (seems to be automatic with focus fixed)~
 - keyboard arrow control
-- focus
-- blur
-- max-height
+- validity
+- required
 - groups
 - typeahead to move the cursor
 - set default min width 30 characters and max width ??? - get design input
@@ -26,3 +20,12 @@ Add your documentation for the `Select` component here.
   - if too close to the bottom edge of window, move window up as far as possible without bumping top edge
 - multiselect - needs design work on presenting values and checkboxes or another affordance in the dropdown
 - New component: searchable with api callback, and preserve the current selections
+
+## TADAs:
+
+- ~autofocus~
+- ~placeholder - let it unset value!~
+- ~on open, scroll to the active or first element (seems to be automatic with focus fixed)~
+- ~focus~
+- ~blur~
+- ~max-height~

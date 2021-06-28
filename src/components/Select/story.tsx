@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -6,9 +6,11 @@ import { boolean, text } from '@storybook/addon-knobs';
 
 import { Spacer, Wrap, WrapClear } from '../../stories/storybook-helpers';
 
+import Button from '../Button';
+
 import Option from './Option';
 import './Option/story';
-import Select from '.';
+import Select, { WithRef as SelectWithRef } from '.';
 import Readme from './README.md';
 
 storiesOf('Planets/Select', module)
@@ -66,6 +68,10 @@ storiesOf('Planets/Select', module)
   .add(
     'Examples',
     () => {
+      const imperativeFocusRef = useRef<HTMLButtonElement>(null);
+      const imperativeFocusSelect = () => imperativeFocusRef.current?.focus();
+      const imperativeBlurSelect = () => imperativeFocusRef.current?.blur();
+
       return (
         <Wrap>
           <div>With `autofocus`</div>
@@ -112,6 +118,24 @@ storiesOf('Planets/Select', module)
           <Select disabled placeholder="Choose one (disabled)">
             <Option>Option 1</Option>
           </Select>
+          <Spacer />
+          <div>Trigger focus and blur</div>
+          <SelectWithRef
+            onBlur={action('onBlur')}
+            onFocus={action('onFocus')}
+            placeholder="Choose one (disabled)"
+            ref={imperativeFocusRef}
+          >
+            <Option>Option 1</Option>
+          </SelectWithRef>
+          <div className="mt-1">
+            <Button onClick={imperativeFocusSelect} level="tertiary">
+              Focus on it
+            </Button>{' '}
+            <Button onClick={imperativeBlurSelect} level="tertiary">
+              Stop focusing on it
+            </Button>
+          </div>
         </Wrap>
       );
     },

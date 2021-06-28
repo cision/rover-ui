@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState, ReactElement } from 'react';
+import React, { forwardRef, useCallback, useMemo, useState, ReactElement } from 'react';
 import classNames from 'classnames';
 
 import Button from '../Button';
@@ -128,7 +128,10 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
     >
       {children}
       {!!menuItems.length && (
-        <Dropdown.Menu {...menuProps}>
+        <Dropdown.Menu
+          {...menuProps}
+          position={menuProps.position || 'bottomRight'}
+        >
           {Object.keys(menuItemGroups).map((group) => {
             return (
               <div

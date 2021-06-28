@@ -52,6 +52,8 @@ const makeMenuItemConfigFromChild = ({ handleSelectOption, value }) => (
     handleSelectOption(item.value === 'string' ? item.value : item.label),
 });
 
+const keysToWatch = ['ArrowUp', 'ArrowDown'];
+
 export interface SelectProps
   extends Omit<EasyDropdownProps, 'onChange' | 'placeholder'> {
   autoFocus?: boolean;
@@ -76,13 +78,17 @@ const Select: FC<SelectProps> = ({
   fauxDisabled = false,
   forwardedRef: forwardedToggleRef,
   id: unsafeId = '',
+  menuProps,
+  onBlur,
   onChange,
+  onFocus,
   placeholder = 'Choose something',
   position = 'bottom',
   ...props
 }) => {
   const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const transitioning = useRef(false);
 
   const toggleRef = useRef<HTMLButtonElement>(null) as MutableRefObject<
     HTMLButtonElement
@@ -94,10 +100,34 @@ const Select: FC<SelectProps> = ({
     if (defaultValue !== undefined) setValue(defaultValue);
   }, [defaultValue]);
 
+  const handleBlur = useCallback(
+    (e) => {
+      if (!onBlur) return;
+      if (transitioning.current) return;
+      if (e.currentTarget.contains(e.relatedTarget)) return;
+
+      onBlur(e);
+    },
+    [onBlur]
+  );
+
+  const handleFocus = useCallback(
+    (e) => {
+      if (!onFocus) return;
+      if (transitioning.current) return;
+      if (e.currentTarget.contains(e.relatedTarget)) return;
+
+      onFocus(e);
+    },
+    [onFocus]
+  );
+
   const handleSelectOption = useCallback(
     (nextValue) => {
       setValue(nextValue);
+      transitioning.current = true;
       toggleRef?.current?.focus();
+      transitioning.current = false;
 
       if (onChange) {
         onChange(nextValue);
@@ -123,7 +153,12 @@ const Select: FC<SelectProps> = ({
       },
       ...Children.map(children || [], parseOptionProps)
         .filter(Boolean)
-        .map(makeMenuItemConfigFromChild({ handleSelectOption, value })),
+        .map(
+          makeMenuItemConfigFromChild({
+            handleSelectOption,
+            value,
+          })
+        ),
     ],
     [children, handleSelectOption, placeholder, value]
   );
@@ -133,7 +168,9 @@ const Select: FC<SelectProps> = ({
       setIsOpen(nextIsOpen || false);
 
       if (!nextIsOpen) {
+        transitioning.current = true;
         toggleRef?.current?.focus();
+        transitioning.current = false;
         return;
       }
 
@@ -141,11 +178,52 @@ const Select: FC<SelectProps> = ({
         (i) => value === i.value || value === i.label
       );
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore: Swear forwardedRef.current is a button here.
-      setTimeout(() => firstSelected?.forwardedRef?.current?.focus(), 200);
+      transitioning.current = true;
+
+      setTimeout(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore: Swear forwardedRef.current is a button here.
+        firstSelected?.forwardedRef?.current?.focus();
+        transitioning.current = false;
+      }, 200);
     },
     [menuItems, value]
+  );
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      const { key } = e;
+      if (keysToWatch.indexOf(key) < 0) return;
+      if (!toggleRef?.current?.parentElement) return;
+
+      const isToggleFocused = toggleRef.current === document.activeElement;
+
+      const isItemFocused =
+        !isToggleFocused &&
+        toggleRef.current.parentElement.contains(document.activeElement);
+
+      if (isItemFocused) {
+        if (key === 'ArrowUp') {
+          const currentSelection: MenuItem | undefined = menuItems.find(
+            (item) =>
+              (item.forwardedRef?.current as HTMLElement) ===
+              document.activeElement
+          );
+
+          const enabledItems = menuItems.filter((item) => !item.disabled);
+
+          if (currentSelection && enabledItems.indexOf(currentSelection) > 0) {
+            const nextSelection =
+              enabledItems[enabledItems.indexOf(currentSelection) - 1];
+
+            nextSelection.forwardedRef?.current?.focus();
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        }
+      }
+    },
+    [menuItems]
   );
 
   const selectedItem = useMemo(
@@ -162,11 +240,15 @@ const Select: FC<SelectProps> = ({
       className={classNames(styles.Select, className)}
       defaultIsOpen={false}
       menuItems={menuItems}
+      onBlur={handleBlur}
+      onKeyDown={handleKeyDown}
+      onFocus={handleFocus}
       onToggle={handleToggleOpen}
       menuProps={{
         role: 'listbox',
         className: styles.menu,
         position: position === 'top' ? 'topRight' : 'bottomRight',
+        ...menuProps,
       }}
     >
       <Toggle
