@@ -27,6 +27,7 @@ import {
   InputTime,
   Typography,
   Modal,
+  Form,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -422,6 +423,10 @@ const App = () => {
         <Typography size="md" color="primary">
           Md primary
         </Typography>
+      </Section>
+
+      <Section title="Form">
+        <Form />
       </Section>
 
       <Section title="Modal">
