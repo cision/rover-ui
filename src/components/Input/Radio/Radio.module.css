@@ -1,0 +1,59 @@
+.Radio {
+  position: relative;
+  display: inline-block;
+  /* height: var(--rvr-radio-size);
+  width: var(--rvr-radio-size); */
+  height: 24px;
+  width: 24px;
+}
+
+.svg {
+  transition: var(--rvr-transition-duration-fast) var(--rvr-linear) box-shadow;
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 1;
+  display: block;
+}
+
+.outline {
+  fill: var(--rvr-color-font);
+  transition: var(--rvr-transition-duration-fast) var(--rvr-linear) fill;
+}
+
+.inner {
+  fill: var(--rvr-white);
+}
+
+input:checked + .svg .outline {
+  fill: var(--rvr-color-primary);
+}
+
+input:hover + .svg .outline {
+  fill: var(--rvr-color-primary-hover);
+}
+
+input:focus + .svg {
+  outline: 0 transparent none;
+  box-shadow:
+    0px 0px 0px 2px var(--rvr-white),
+    0px 0px 1px 3px var(--rvr-color-primary-hover),
+    0px 0px 8px 2px var(--rvr-color-primary-hover);
+}
+
+input:disabled + .svg .outline {
+  fill: var(--rvr-color-disabled);
+}
+
+input:checked + .svg .inner {
+  display: none;
+}
