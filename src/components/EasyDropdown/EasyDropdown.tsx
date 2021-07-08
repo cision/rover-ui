@@ -10,6 +10,8 @@ import { DropdownProps } from '../Dropdown/Dropdown';
 import { ItemProps, ButtonElementProps } from '../Dropdown/Menu/Item/Item';
 
 export type MenuItem = ItemProps & {
+  /** A `false` value will stop the default behavior of closing the dropdown when you click an item. */
+  closeOnClick?: boolean;
   /** If you provide group IDs, the menu items will be grouped with dividers between them. */
   group?: string;
   /** This will be the array key and the fallback contents */
@@ -131,7 +133,12 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
                 key={group}
               >
                 {menuItemGroups[group].map(
-                  ({ children: itemChildren, label, ...itemProps }) => (
+                  ({
+                    children: itemChildren,
+                    closeOnClick = true,
+                    label,
+                    ...itemProps
+                  }) => (
                     <Dropdown.Menu.Item
                       {...(itemProps as ButtonElementProps)}
                       key={label}
@@ -139,7 +146,7 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
                         event: React.MouseEvent<HTMLButtonElement, MouseEvent>
                       ) => {
                         // Clicking a menu item has the side effect of closing the menu
-                        if (!isControlled) {
+                        if (!isControlled && closeOnClick) {
                           setUncontrolledIsOpen(false);
                         }
                         // Call the item's onClick event too, for the consumer to observe

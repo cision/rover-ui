@@ -91,6 +91,16 @@ storiesOf('Galaxies/EasyDropdown', module)
                 { label: 'I do nothing!' },
                 { label: 'Click me!', onClick: () => {} },
                 {
+                  label: "I don't close the menu",
+                  onClick: () => {},
+                  closeOnClick: false,
+                },
+                {
+                  label: 'I also do nothing (disabled)',
+                  onClick: () => {},
+                  disabled: true,
+                },
+                {
                   label: "I'm in a group",
                   group: 'Group 1',
                 },
