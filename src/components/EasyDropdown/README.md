@@ -9,6 +9,8 @@ Then it makes a dropdown. It handles all the toggling behavior for you.
   menuItems={[
     { label: 'I do nothing!' },
     { label: 'Click me!', onClick: () => {} },
+    { label: 'I don't close the menu', onClick: () => {}, closeOnClick: false },
+    { label: 'I also do nothing', onClick: () => {}, disabled: true },
     { label: "I'm in a group", onClick: () => {}, group: 'Group 1' },
     { label: "I'm in a group", onClick: () => {}, group: 'Group 1' },
     { label: "I'm in a group", onClick: () => {}, group: 'Group 1' },
