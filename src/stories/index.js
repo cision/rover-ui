@@ -24,6 +24,7 @@ import '../components/Input/story';
 import '../components/Input/Checkbox/story';
 import '../components/InputTime/story';
 import '../components/Typography/story';
+import '../components/Form/story';
 
 /*
  * STAR SYSTEMS
