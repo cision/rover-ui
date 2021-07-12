@@ -8,6 +8,7 @@ import styles from './Toggle.module.css';
 
 interface ToggleProps extends React.HTMLProps<HTMLButtonElement> {
   isDisabled: boolean;
+  isInvalid: boolean;
   isOpen: boolean;
   isPlaceholder: boolean;
   label: string;
@@ -17,6 +18,7 @@ interface ToggleProps extends React.HTMLProps<HTMLButtonElement> {
 const Toggle = ({
   className = '',
   isDisabled = false,
+  isInvalid = false,
   isOpen = false,
   isPlaceholder = false,
   label = '',
@@ -28,6 +30,7 @@ const Toggle = ({
     aria-haspopup="listbox"
     className={classNames(inputStyles.Input, styles.Toggle, className, {
       [inputStyles.disabled]: isDisabled,
+      [inputStyles.invalid]: isInvalid,
       [styles.placeholder]: isPlaceholder,
     })}
     ref={forwardedRef}
@@ -39,6 +42,10 @@ const Toggle = ({
     <Icon className={styles.icon} name="arrow-drop-down" />
   </button>
 );
+
+Toggle.defaultProps = {
+  forwardedRef: undefined,
+};
 
 export default forwardRef<HTMLButtonElement, ToggleProps>((props, ref) => (
   <Toggle {...props} forwardedRef={ref} />

@@ -3,6 +3,10 @@
   display: inline-flex;
 }
 
+.toggle {
+  width: 22ex;
+}
+
 .placeholder {
   font-style: italic;
 }

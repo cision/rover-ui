@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
-import { ClassValue } from 'classnames/types';
 
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
@@ -17,7 +16,7 @@ type Level = 'primary' | 'warning' | 'info' | 'danger';
 
 interface ModalProps {
   children?: React.ReactNode;
-  className?: ClassValue;
+  className?: string;
   isOpen?: boolean;
   onClose?: () => void;
   size?: Size;

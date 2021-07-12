@@ -55,6 +55,7 @@ export const Title = BuildHelper('Title', 'text-xl mb-5 border-b', 'h3');
 
 interface InteractiveInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  defaultValue?: string | number | undefined;
   fauxDisabled?: boolean;
   InputRenderer: React.FC<React.InputHTMLAttributes<HTMLInputElement>>;
   onChange?: () => void;
@@ -70,6 +71,7 @@ export const InteractiveInput: React.FC<InteractiveInputProps> = ({
   const [value, setValue] = useState<string | string[] | number | undefined>(
     defaultValue
   );
+
   const [checked, setChecked] = useState<boolean | undefined>(defaultChecked);
 
   return (

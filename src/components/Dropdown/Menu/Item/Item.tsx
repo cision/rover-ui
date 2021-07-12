@@ -14,6 +14,7 @@ interface DivItemProps extends React.AllHTMLAttributes<HTMLDivElement> {
   disabled?: boolean;
   forwardedRef?: React.Ref<HTMLDivElement>;
 }
+
 interface AnchorItemProps extends AnchorElementProps {
   forwardedRef?: React.Ref<HTMLAnchorElement>;
 }
