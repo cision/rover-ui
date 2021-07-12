@@ -9,7 +9,7 @@ exports[`Select renders 1`] = `
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
-        class="Input Toggle placeholder"
+        class="Input Toggle toggle placeholder"
         data-is-open="false"
         id="foo"
         type="button"
@@ -33,6 +33,21 @@ exports[`Select renders 1`] = `
         </svg>
       </button>
     </div>
+    <select
+      aria-hidden="true"
+      hidden=""
+    >
+      <option
+        value=""
+      >
+        Choose something
+      </option>
+      <option
+        value="Boom"
+      >
+        Boom
+      </option>
+    </select>
   </div>
 </body>
 `;

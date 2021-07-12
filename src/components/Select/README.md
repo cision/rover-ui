@@ -4,12 +4,8 @@ Add your documentation for the `Select` component here.
 
 ## TODOs:
 
-- keyboard arrow control
-- validity
-- required
 - groups
 - typeahead to move the cursor
-- set default min width 30 characters and max width ??? - get design input
 - _Cut line for MVP_
 - set default width to the longest item in the list
 - Google autocomplete for native select, maybe punt on it for now
@@ -23,6 +19,11 @@ Add your documentation for the `Select` component here.
 
 ## TADAs:
 
+- ~Return native select change event on selection~
+- ~set default min width 30 characters and max width 160px - get design input~
+- ~validity~
+- ~required~
+- ~keyboard arrow control~
 - ~autofocus~
 - ~placeholder - let it unset value!~
 - ~on open, scroll to the active or first element (seems to be automatic with focus fixed)~

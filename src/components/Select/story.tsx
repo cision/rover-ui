@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -71,6 +71,11 @@ storiesOf('Planets/Select', module)
       const imperativeFocusRef = useRef<HTMLButtonElement>(null);
       const imperativeFocusSelect = () => imperativeFocusRef.current?.focus();
       const imperativeBlurSelect = () => imperativeFocusRef.current?.blur();
+      const requiredRef = useRef<HTMLButtonElement>(null);
+
+      const [isValid, setRequiredValid] = useState(false);
+
+      const updateIsValid = useCallback((valid) => setRequiredValid(valid), []);
 
       return (
         <Wrap>
@@ -82,7 +87,7 @@ storiesOf('Planets/Select', module)
           <div>With `placeholder=&quot;Pick one&quot;`</div>
           <Select
             onChange={action('onChange with placeholder')}
-            placeholder="Choose one"
+            placeholder="Pick one"
           >
             <Option>Option 1</Option>
           </Select>
@@ -91,7 +96,6 @@ storiesOf('Planets/Select', module)
           <Select
             defaultValue="Option 10"
             onChange={action('onChange with placeholder')}
-            placeholder="Choose one"
           >
             <Option>Option 1</Option>
             <Option>Option 2</Option>
@@ -103,6 +107,7 @@ storiesOf('Planets/Select', module)
             <Option>Option 8</Option>
             <Option>Option 9</Option>
             <Option>Option 10</Option>
+            <Option>Option 11 is very wide, possibly too wide.</Option>
           </Select>
           <Spacer />
           <div>With `position=&quot;top&quot;`</div>
@@ -115,15 +120,24 @@ storiesOf('Planets/Select', module)
           </Select>
           <Spacer />
           <div>With `disabled`</div>
-          <Select disabled placeholder="Choose one (disabled)">
+          <Select disabled>
             <Option>Option 1</Option>
           </Select>
+          <Spacer />
+          <div>With `required`</div>
+          <SelectWithRef
+            ref={requiredRef}
+            onChange={(target) => updateIsValid(target.validity.valid)}
+            required
+          >
+            <Option>Option 1</Option>
+          </SelectWithRef>
+          <div>Is valid: {isValid ? 'true' : 'false'}</div>
           <Spacer />
           <div>Trigger focus and blur</div>
           <SelectWithRef
             onBlur={action('onBlur')}
             onFocus={action('onFocus')}
-            placeholder="Choose one (disabled)"
             ref={imperativeFocusRef}
           >
             <Option>Option 1</Option>

@@ -20,6 +20,8 @@ import type { EasyDropdownProps, MenuItem } from '../EasyDropdown/EasyDropdown';
 import styles from './Select.module.css';
 import type { OptionProps } from './Option';
 import Toggle from './Toggle';
+import useMenuArrowKeys from './useMenuArrowKeys';
+import useSuppressFocusEvents from './useSuppressFocusEvents';
 
 type OptionishElement = ReactElement<OptionProps>;
 
@@ -39,20 +41,27 @@ const parseOptionProps = ({
         value,
       };
 
-const makeMenuItemConfigFromChild = ({ handleSelectOption, value }) => (
-  item: OptionishProps
-) => ({
-  ...item,
-  onSelect: undefined,
-  'aria-selected': value === item.value || value === item.label,
-  forwardedRef: React.createRef<HTMLButtonElement>(),
-  role: 'option',
-  value: item.value === 'string' ? item.value : item.label,
-  onClick: () =>
-    handleSelectOption(item.value === 'string' ? item.value : item.label),
-});
+const getItemSelectionValue = (item: MenuItem) =>
+  typeof item.value === 'string' ? item.value : item.label;
 
-const keysToWatch = ['ArrowUp', 'ArrowDown'];
+const getDoesItemMatchValue = ({ item, value }) =>
+  value === getItemSelectionValue(item);
+
+const makeMenuItemConfigFromChild =
+  ({ handleSelectOption, value }) =>
+  (item: OptionishProps) => {
+    const itemSelectionValue = getItemSelectionValue(item);
+
+    return {
+      ...item,
+      onSelect: undefined,
+      'aria-selected': getDoesItemMatchValue({ item, value }),
+      forwardedRef: React.createRef<HTMLButtonElement>(),
+      role: 'option',
+      value: itemSelectionValue,
+      onClick: () => handleSelectOption(itemSelectionValue),
+    };
+  };
 
 export interface SelectProps
   extends Omit<EasyDropdownProps, 'onChange' | 'placeholder'> {
@@ -62,11 +71,13 @@ export interface SelectProps
   defaultValue?: string;
   disabled?: boolean;
   fauxDisabled?: boolean;
-  forwardedRef?: React.Ref<HTMLButtonElement>;
   id?: string;
-  onChange?: (arg0: string) => void;
+  nativeSelectRef?: React.Ref<HTMLSelectElement>;
+  onChange?: (arg0: HTMLSelectElement) => void;
   placeholder?: ReactNode;
   position?: 'top' | 'bottom';
+  required?: boolean;
+  toggleRef?: React.Ref<HTMLButtonElement>;
 }
 
 const Select: FC<SelectProps> = ({
@@ -76,67 +87,99 @@ const Select: FC<SelectProps> = ({
   defaultValue,
   disabled = false,
   fauxDisabled = false,
-  forwardedRef: forwardedToggleRef,
   id: unsafeId = '',
   menuProps,
+  nativeSelectRef: forwardedNativeSelectRef,
   onBlur,
   onChange,
   onFocus,
   placeholder = 'Choose something',
   position = 'bottom',
+  required = false,
+  toggleRef: forwardedToggleRef,
   ...props
 }) => {
+  const [isInvalid, setIsInvalid] = useState(false);
   const [value, setValue] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const transitioning = useRef(false);
+  // const transitioning = useRef(false);
 
-  const toggleRef = useRef<HTMLButtonElement>(null) as MutableRefObject<
-    HTMLButtonElement
-  >;
+  const nativeSelectRef = useRef<HTMLSelectElement>(
+    null
+  ) as MutableRefObject<HTMLSelectElement>;
 
+  const toggleRef = useRef<HTMLButtonElement>(
+    null
+  ) as MutableRefObject<HTMLButtonElement>;
+
+  useImperativeHandle(forwardedNativeSelectRef, () => nativeSelectRef.current);
   useImperativeHandle(forwardedToggleRef, () => toggleRef.current);
 
   useEffect(() => {
     if (defaultValue !== undefined) setValue(defaultValue);
   }, [defaultValue]);
 
+  const { setIsFocusing, shouldSuppress: shouldSuppressFocusEvents } =
+    useSuppressFocusEvents();
+
   const handleBlur = useCallback(
     (e) => {
       if (!onBlur) return;
-      if (transitioning.current) return;
-      if (e.currentTarget.contains(e.relatedTarget)) return;
+      if (shouldSuppressFocusEvents(e)) return;
 
       onBlur(e);
     },
-    [onBlur]
+    [onBlur, shouldSuppressFocusEvents]
   );
 
   const handleFocus = useCallback(
     (e) => {
       if (!onFocus) return;
-      if (transitioning.current) return;
-      if (e.currentTarget.contains(e.relatedTarget)) return;
+      if (shouldSuppressFocusEvents(e)) return;
 
       onFocus(e);
     },
-    [onFocus]
+    [onFocus, shouldSuppressFocusEvents]
   );
 
   const handleSelectOption = useCallback(
     (nextValue) => {
-      setValue(nextValue);
-      transitioning.current = true;
-      toggleRef?.current?.focus();
-      transitioning.current = false;
+      if (!nativeSelectRef.current) return;
 
-      if (onChange) {
-        onChange(nextValue);
-      }
+      setValue(nextValue);
+      setIsFocusing(true);
+      toggleRef.current?.focus();
+      setIsFocusing(false);
     },
-    [onChange]
+    [setIsFocusing]
   );
 
+  useEffect(() => {
+    if (!nativeSelectRef.current) return;
+    const nativeChangeEvent = new Event('change', { bubbles: true });
+    nativeSelectRef.current.value = value;
+    setIsInvalid(!nativeSelectRef.current.validity.valid);
+    nativeSelectRef.current.dispatchEvent(nativeChangeEvent);
+
+    if (onChange) {
+      onChange(nativeSelectRef.current);
+    }
+  }, [onChange, value]);
+
   const id = useMemo(() => unsafeId || nanoid(), [unsafeId]);
+
+  const menuItemsWithoutPlaceholder: MenuItem[] = useMemo(
+    () =>
+      Children.map(children || [], parseOptionProps)
+        .filter(Boolean)
+        .map(
+          makeMenuItemConfigFromChild({
+            handleSelectOption,
+            value,
+          })
+        ),
+    [children, handleSelectOption, value]
+  );
 
   const menuItems: MenuItem[] = useMemo(
     () => [
@@ -151,16 +194,9 @@ const Select: FC<SelectProps> = ({
         value: '',
         onClick: () => handleSelectOption(''),
       },
-      ...Children.map(children || [], parseOptionProps)
-        .filter(Boolean)
-        .map(
-          makeMenuItemConfigFromChild({
-            handleSelectOption,
-            value,
-          })
-        ),
+      ...menuItemsWithoutPlaceholder,
     ],
-    [children, handleSelectOption, placeholder, value]
+    [handleSelectOption, menuItemsWithoutPlaceholder, placeholder, value]
   );
 
   const handleToggleOpen = useCallback(
@@ -168,66 +204,36 @@ const Select: FC<SelectProps> = ({
       setIsOpen(nextIsOpen || false);
 
       if (!nextIsOpen) {
-        transitioning.current = true;
+        setIsFocusing(true);
+        // transitioning.current = true;
         toggleRef?.current?.focus();
-        transitioning.current = false;
+        setIsFocusing(false);
+        // transitioning.current = false;
         return;
       }
 
-      const firstSelected = menuItems.find(
-        (i) => value === i.value || value === i.label
+      const firstSelected = menuItems.find((item) =>
+        getDoesItemMatchValue({ item, value })
       );
 
-      transitioning.current = true;
+      // transitioning.current = true;
+      setIsFocusing(true);
 
       setTimeout(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
         // @ts-ignore: Swear forwardedRef.current is a button here.
         firstSelected?.forwardedRef?.current?.focus();
-        transitioning.current = false;
+        // transitioning.current = false;
+        setIsFocusing(false);
       }, 200);
     },
-    [menuItems, value]
+    [menuItems, setIsFocusing, value]
   );
 
-  const handleKeyDown = useCallback(
-    (e) => {
-      const { key } = e;
-      if (keysToWatch.indexOf(key) < 0) return;
-      if (!toggleRef?.current?.parentElement) return;
-
-      const isToggleFocused = toggleRef.current === document.activeElement;
-
-      const isItemFocused =
-        !isToggleFocused &&
-        toggleRef.current.parentElement.contains(document.activeElement);
-
-      if (isItemFocused) {
-        if (key === 'ArrowUp') {
-          const currentSelection: MenuItem | undefined = menuItems.find(
-            (item) =>
-              (item.forwardedRef?.current as HTMLElement) ===
-              document.activeElement
-          );
-
-          const enabledItems = menuItems.filter((item) => !item.disabled);
-
-          if (currentSelection && enabledItems.indexOf(currentSelection) > 0) {
-            const nextSelection =
-              enabledItems[enabledItems.indexOf(currentSelection) - 1];
-
-            nextSelection.forwardedRef?.current?.focus();
-            e.preventDefault();
-            e.stopPropagation();
-          }
-        }
-      }
-    },
-    [menuItems]
-  );
+  const handleKeyDown = useMenuArrowKeys(menuItems);
 
   const selectedItem = useMemo(
-    () => menuItems.find((i) => value === (i.value || i.label)),
+    () => menuItems.find((item) => getDoesItemMatchValue({ item, value })),
     [menuItems, value]
   );
 
@@ -235,37 +241,49 @@ const Select: FC<SelectProps> = ({
     selectedItem?.children || selectedItem?.value || placeholder;
 
   return (
-    <EasyDropdown
-      {...props}
-      className={classNames(styles.Select, className)}
-      defaultIsOpen={false}
-      menuItems={menuItems}
-      onBlur={handleBlur}
-      onKeyDown={handleKeyDown}
-      onFocus={handleFocus}
-      onToggle={handleToggleOpen}
-      menuProps={{
-        role: 'listbox',
-        className: styles.menu,
-        position: position === 'top' ? 'topRight' : 'bottomRight',
-        ...menuProps,
-      }}
-    >
-      <Toggle
-        autoFocus={autoFocus}
-        id={id}
-        isDisabled={disabled || fauxDisabled}
-        isOpen={isOpen}
-        isPlaceholder={!selectedItem || selectedItem.value === ''}
-        label={selectionDescriptor}
-        ref={toggleRef}
-      />
-    </EasyDropdown>
+    <>
+      <EasyDropdown
+        {...props}
+        className={classNames(styles.Select, className)}
+        defaultIsOpen={false}
+        menuItems={menuItems}
+        onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onToggle={handleToggleOpen}
+        menuProps={{
+          role: 'listbox',
+          className: styles.menu,
+          position: position === 'top' ? 'topRight' : 'bottomRight',
+          ...menuProps,
+        }}
+      >
+        <Toggle
+          autoFocus={autoFocus}
+          className={styles.toggle}
+          id={id}
+          isDisabled={disabled || fauxDisabled}
+          isInvalid={isInvalid}
+          isOpen={isOpen}
+          isPlaceholder={!selectedItem || selectedItem.value === ''}
+          label={selectionDescriptor}
+          ref={toggleRef}
+        />
+      </EasyDropdown>
+      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
+      <select aria-hidden hidden required={required} ref={nativeSelectRef}>
+        {menuItems.map((item) => (
+          <option key={getItemSelectionValue(item)} value={item.value}>
+            {item.children}
+          </option>
+        ))}
+      </select>
+    </>
   );
 };
 
 export const WithRef = forwardRef<HTMLButtonElement, SelectProps>(
-  (props, ref) => <Select {...props} forwardedRef={ref} />
+  (props, ref) => <Select {...props} toggleRef={ref} />
 );
 
 export default Select;

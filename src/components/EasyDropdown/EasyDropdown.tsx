@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback, useMemo, useState, ReactElement } from 'react';
+import React, { useCallback, useMemo, useState, ReactElement } from 'react';
 import classNames from 'classnames';
 
 import Button from '../Button';
@@ -13,6 +13,11 @@ import type { ButtonElementProps } from '../Button/Button';
 export type MenuItem = ItemProps & {
   /** A `false` value will stop the default behavior of closing the dropdown when you click an item. */
   closeOnClick?: boolean;
+  /** Used internally to capture focus change events on menu items. */
+  forwardedRef?:
+    | React.RefObject<HTMLDivElement>
+    | React.RefObject<HTMLAnchorElement>
+    | React.RefObject<HTMLButtonElement>;
   /** If you provide group IDs, the menu items will be grouped with dividers between them. */
   group?: string;
   /** This will be the array key and the fallback contents */
