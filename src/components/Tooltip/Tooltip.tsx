@@ -128,9 +128,11 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const isText = typeof tooltipContent === 'string';
 
+  const tooltipHasWidth = (tooltipStyle && tooltipStyle.width) || tooltipWidth;
+
   const tooltipWrapperProps = {
     style: {
-      width: (tooltipStyle && tooltipStyle.width) || tooltipWidth,
+      width: tooltipHasWidth,
     } as React.CSSProperties,
     className: tooltipClassNames,
   };
@@ -171,7 +173,14 @@ const Tooltip: React.FC<TooltipProps> = ({
           )}
 
           {isText ? (
-            <div className={styles.textContent}>{tooltipContent}</div>
+            <div
+              className={classNames({
+                [styles.textContentHasWidth]: tooltipHasWidth,
+                [styles.textContent]: !tooltipHasWidth,
+              })}
+            >
+              {tooltipContent}
+            </div>
           ) : (
             tooltipContent
           )}
