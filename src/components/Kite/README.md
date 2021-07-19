@@ -8,8 +8,12 @@ Below is an example structure of the `<Kite>`
 
 ```
 <Kite>
-  <Kite.KiteIcon/> (optional)
+  <Kite.Header>
+    <Kite.KiteIcon/> (optional)
+  </Kite.Header>
+  <Kite.Content> (optional)
+  </Kite.Content>
 </Modal>
 ```
 
-This will render a Kite with an icon.
+This will render a Kite with an icon and body content.

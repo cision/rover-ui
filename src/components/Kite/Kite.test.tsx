@@ -23,7 +23,9 @@ const renderKite = (props = defaultProps) =>
         style={{ display: 'block' }}
         width="20"
       />
-      <Kite.Content title="Kite Title" />
+      <Kite.Content>
+        <p>Kite Content Goes here!</p>
+      </Kite.Content>
     </Kite>
   );
 describe('Kite', () => {
@@ -45,7 +47,14 @@ describe('Kite', () => {
     `(
       'when canBeDismissed = $canBeDismissed, the close button visible should be: $visible',
       ({ canBeDismissed }) => {
-        render(<Kite {...defaultProps} canBeDismissed={canBeDismissed} />);
+        render(
+          <Kite {...defaultProps}>
+            <Kite.Header
+              title={defaultProps.title}
+              canBeDismissed={canBeDismissed}
+            />
+          </Kite>
+        );
 
         const dismissButton = screen.queryByTestId('kite-dismiss-button');
         if (canBeDismissed) {
@@ -59,7 +68,14 @@ describe('Kite', () => {
 
   describe('onClose callback', () => {
     it('calls onClose callback when dismiss button is clicked', async () => {
-      render(<Kite {...defaultProps} />);
+      render(
+        <Kite {...defaultProps}>
+          <Kite.Header
+            title={defaultProps.title}
+            onClose={defaultProps.onClose}
+          />
+        </Kite>
+      );
       const dismissButton = screen.getByTestId('kite-dismiss-button');
       expect(dismissButton).toBeInTheDocument();
 
