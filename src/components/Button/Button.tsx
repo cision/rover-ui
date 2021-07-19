@@ -20,10 +20,12 @@ interface BaseButtonProps {
   circle?: boolean;
   className?: string;
   darkMode?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  forwardedRef?: React.Ref<any>;
   hollow?: boolean;
   level?: TButtonLevel;
   size?: TButtonSize;
-  tag?: React.FC<TagType> | React.ComponentType<TagType> | null;
+  tag?: React.FC<TagType> | React.ComponentType<TagType> | string | null;
 
   // States
   hover?: boolean;
@@ -35,19 +37,21 @@ interface BaseButtonProps {
 }
 
 // Button props
-type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   BaseButtonProps & {
     href?: undefined;
   };
 
 // Anchor props
-type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+export type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   BaseButtonProps & {
     href?: string;
   };
 
 type ButtonType = React.FC<ButtonElementProps | AnchorElementProps> & {
   Addon: React.FC<AddonProps>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  WithRef: any;
 };
 
 // Guard to check if href exists in props
@@ -87,6 +91,7 @@ const Button: ButtonType = ({
   circle = undefined,
   className: passedClassName = '',
   darkMode = false,
+  forwardedRef,
   hollow = false,
   level = 'secondary',
   size = 'lg',
@@ -142,7 +147,7 @@ const Button: ButtonType = ({
 
   if (Tag) {
     return (
-      <Tag {...passedProps} className={className}>
+      <Tag {...passedProps} className={className} ref={forwardedRef}>
         {children}
       </Tag>
     );
@@ -150,7 +155,7 @@ const Button: ButtonType = ({
 
   if (hasHref(passedProps)) {
     return (
-      <a {...passedProps} className={className}>
+      <a {...passedProps} className={className} ref={forwardedRef}>
         {children}
       </a>
     );
@@ -161,6 +166,7 @@ const Button: ButtonType = ({
     <button
       type="button"
       className={className}
+      ref={forwardedRef}
       {...(passedProps as ButtonElementProps)}
     >
       {children}
@@ -169,5 +175,9 @@ const Button: ButtonType = ({
 };
 
 Button.Addon = Addon;
+
+Button.WithRef = React.forwardRef((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));
 
 export default Button;

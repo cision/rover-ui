@@ -5,20 +5,26 @@ import Button from '../Button';
 import Dropdown from '../Dropdown';
 
 import styles from './EasyDropdown.module.css';
-import { MenuProps } from '../Dropdown/Menu/Menu';
-import { DropdownProps } from '../Dropdown/Dropdown';
-import { ItemProps, ButtonElementProps } from '../Dropdown/Menu/Item/Item';
+import type { MenuProps } from '../Dropdown/Menu/Menu';
+import type { DropdownProps } from '../Dropdown/Dropdown';
+import type { ItemProps } from '../Dropdown/Menu/Item/Item';
+import type { ButtonElementProps } from '../Button/Button';
 
 export type MenuItem = ItemProps & {
   /** A `false` value will stop the default behavior of closing the dropdown when you click an item. */
   closeOnClick?: boolean;
+  /** Used internally to capture focus change events on menu items. */
+  forwardedRef?:
+    | React.RefObject<HTMLDivElement>
+    | React.RefObject<HTMLAnchorElement>
+    | React.RefObject<HTMLButtonElement>;
   /** If you provide group IDs, the menu items will be grouped with dividers between them. */
   group?: string;
   /** This will be the array key and the fallback contents */
   label: string;
 };
 
-interface EasyDropdownProps extends DropdownProps {
+export interface EasyDropdownProps extends DropdownProps {
   /** If defaultIsOpen is provided, the component will run in "uncontrolled" mode */
   defaultIsOpen?: boolean;
   /** An array of items that comprise the menu */
@@ -26,6 +32,7 @@ interface EasyDropdownProps extends DropdownProps {
   menuProps?: MenuProps;
   /** Without `defaultIsOpen`, `onToggle` is the only way to set state. With it, it's a convenience callback. */
   toggleProps?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+  onToggle?: (event: MouseEvent | KeyboardEvent, isOpen?: boolean) => void;
 }
 
 const EasyDropdown: React.FC<EasyDropdownProps> = ({
@@ -68,11 +75,14 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
 
   const onToggle = useCallback(
     (event) => {
+      let nextIsOpen: boolean | undefined;
+
       if (!isControlled) {
         setUncontrolledIsOpen(!uncontrolledIsOpen);
+        nextIsOpen = !uncontrolledIsOpen;
       }
 
-      parentOnToggle(event);
+      if (parentOnToggle) parentOnToggle(event, nextIsOpen);
     },
     [isControlled, parentOnToggle, uncontrolledIsOpen]
   );
@@ -96,6 +106,7 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
     ) : (
       React.Children.map(initChildren, (c) => {
         const child = c as ReactElement;
+
         return React.cloneElement(child, {
           ...toggleProps,
           className: classNames(child?.props?.className, toggleProps.className),
@@ -122,7 +133,10 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
     >
       {children}
       {!!menuItems.length && (
-        <Dropdown.Menu {...menuProps}>
+        <Dropdown.Menu
+          {...menuProps}
+          position={menuProps.position || 'bottomRight'}
+        >
           {Object.keys(menuItemGroups).map((group) => {
             return (
               <div
@@ -154,6 +168,7 @@ const EasyDropdown: React.FC<EasyDropdownProps> = ({
                           itemProps.onClick(event);
                         }
                       }}
+                      ref={itemProps.forwardedRef}
                     >
                       {itemChildren || label}
                     </Dropdown.Menu.Item>
