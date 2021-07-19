@@ -264,6 +264,11 @@
 
 .textContent {
   text-align: center;
+  white-space: nowrap;
+}
+
+.textContentHasWidth {
+  text-align: center;
   white-space: normal;
   overflow-wrap: break-word;
 }
