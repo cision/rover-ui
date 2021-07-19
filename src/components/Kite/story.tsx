@@ -24,15 +24,16 @@ function KiteExample() {
           Show Kite
         </Button>
       </div>
-      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
-        <Kite.Icon
-          fill="green"
-          height="20"
-          name="check"
-          style={{ display: 'block' }}
-          width="20"
-        />
-        <Kite.Content title="Success Kite" />
+      <Kite visible={isOpen} onClose={hideKite}>
+        <Kite.Header canBeDismissed title="The Title" onClose={hideKite}>
+          <Kite.Icon
+            fill="green"
+            height="20"
+            name="check"
+            style={{ display: 'block' }}
+            width="20"
+          />
+        </Kite.Header>
       </Kite>
     </>
   );
@@ -56,15 +57,16 @@ function ErrorKiteExample() {
           Error Kite
         </Button>
       </div>
-      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
-        <Kite.Icon
-          fill="red"
-          height="20"
-          name="warning"
-          style={{ display: 'block' }}
-          width="20"
-        />
-        <Kite.Content title="Error Kite" />
+      <Kite visible={isOpen} onClose={hideKite} ttl={3000}>
+        <Kite.Header canBeDismissed title="Error Kite" onClose={hideKite}>
+          <Kite.Icon
+            fill="red"
+            height="20"
+            name="warning"
+            style={{ display: 'block' }}
+            width="20"
+          />
+        </Kite.Header>
       </Kite>
     </>
   );
@@ -88,22 +90,30 @@ function EverythingKiteExample() {
           Everything Kite
         </Button>
       </div>
-      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
-        <Kite.Icon
-          fill="red"
-          height="20"
-          name="warning"
-          style={{ display: 'block' }}
-          width="20"
-        />
-        <Kite.Content title="Regular Kite with no icon">
-          <div>
-            <span>The quick brown fox jumps over the lazy dog!</span>
-          </div>
-          <div className="mt-2">
-            <Button modifiers={['primary']} onClick={() => {}}>
-              Click me!
-            </Button>
+      <Kite visible={isOpen} onClose={hideKite}>
+        <Kite.Header
+          canBeDismissed
+          title="Kite with content"
+          onClose={hideKite}
+        >
+          <Kite.Icon
+            fill="red"
+            height="20"
+            name="warning"
+            style={{ display: 'block' }}
+            width="20"
+          />
+        </Kite.Header>
+        <Kite.Content>
+          <div className="t-flex">
+            <div>
+              <span>The quick brown fox jumps over the lazy dog!</span>
+            </div>
+            <div className="mt-2">
+              <Button modifiers={['primary']} onClick={() => {}}>
+                Click me!
+              </Button>
+            </div>
           </div>
         </Kite.Content>
       </Kite>
@@ -120,14 +130,16 @@ storiesOf('Galaxies/Kite', module)
   .add(
     'Overview',
     () => (
-      <Kite visible={false} canBeDismissed ttl={3000} onClose={() => {}}>
-        <Kite.Icon
-          fill="green"
-          height="20"
-          name="check"
-          style={{ display: 'block' }}
-          width="20"
-        />
+      <Kite visible={false} ttl={3000} onClose={() => {}}>
+        <Kite.Header canBeDismissed title="Kite Title" onClose={() => {}}>
+          <Kite.Icon
+            fill="green"
+            height="20"
+            name="check"
+            style={{ display: 'block' }}
+            width="20"
+          />
+        </Kite.Header>
       </Kite>
     ),
     {
