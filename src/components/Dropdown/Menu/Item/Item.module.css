@@ -12,4 +12,11 @@
 
 .content {
   cursor: default;
+  color: var(--rvr-gray-90);
+}
+
+.content:hover,
+.content:active {
+  background: none;
+  color: var(--rvr-gray-90);
 }
