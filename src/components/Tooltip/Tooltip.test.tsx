@@ -14,6 +14,68 @@ describe('Tooltip', () => {
     );
   });
 
+  describe('when a text only tooltip is rendered', () => {
+    describe('with a custom style width using the tooltipProps', () => {
+      it('should have a textContentHasWidth class', () => {
+        const { getByTestId, queryByText } = render(
+          <Tooltip
+            isOpen
+            content="Text Content with width props"
+            tooltipProps={{
+              style: {
+                width: '100px',
+              },
+            }}
+            data-testid="tooltipElem"
+          />
+        );
+
+        const tooltipElem = getByTestId('tooltipElem');
+        userEvent.hover(tooltipElem);
+        const tooltipContent = queryByText('Text Content with width props');
+
+        expect(tooltipContent?.className).toEqual('textContentHasWidth');
+      });
+    });
+
+    describe('with a tooltipWidth prop', () => {
+      it('should have a textContentHasWidth class', () => {
+        const { getByTestId, queryByText } = render(
+          <Tooltip
+            isOpen
+            content="Text Content with width props"
+            tooltipWidth="100px"
+            data-testid="tooltipElem"
+          />
+        );
+
+        const tooltipElem = getByTestId('tooltipElem');
+        userEvent.hover(tooltipElem);
+        const tooltipContent = queryByText('Text Content with width props');
+
+        expect(tooltipContent?.className).toEqual('textContentHasWidth');
+      });
+    });
+
+    describe('without a tooltipWidth prop', () => {
+      it('should have a textContent class', () => {
+        const { getByTestId, queryByText } = render(
+          <Tooltip
+            isOpen
+            content="Text Content with no width props"
+            data-testid="tooltipElem"
+          />
+        );
+
+        const tooltipElem = getByTestId('tooltipElem');
+        userEvent.hover(tooltipElem);
+        const tooltipContent = queryByText('Text Content with no width props');
+
+        expect(tooltipContent?.className).toEqual('textContent');
+      });
+    });
+  });
+
   describe('when open state is fully controlled', () => {});
 
   describe('when props.showOnHover', () => {

@@ -175,10 +175,9 @@
 
 .arrow::before {
   border-color: transparent;
-  border-width:
-    calc(
-      var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size)
-    );
+  border-width: calc(
+    var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size)
+  );
   filter: blur(2px);
   z-index: -1;
 }
@@ -266,7 +265,12 @@
 .textContent {
   text-align: center;
   white-space: nowrap;
-  word-wrap: none;
+}
+
+.textContentHasWidth {
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .tooltipClose {
