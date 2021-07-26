@@ -37,3 +37,4 @@ export { default as Typography } from './components/Typography';
 export { default as Modal } from './components/Modal';
 export { default as Kite } from './components/Kite';
 export { default as Loader } from './components/Loader';
+export { default as Select, Option } from './components/Select';

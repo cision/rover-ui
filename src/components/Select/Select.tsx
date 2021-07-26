@@ -1,7 +1,10 @@
 import React, {
   Children,
   forwardRef,
+  ForwardRefExoticComponent,
+  Fragment,
   MutableRefObject,
+  RefAttributes,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -80,7 +83,15 @@ export interface SelectProps
   toggleRef?: React.Ref<HTMLButtonElement>;
 }
 
-const Select: FC<SelectProps> = ({
+type WithRefType = ForwardRefExoticComponent<
+  SelectProps & RefAttributes<HTMLButtonElement>
+>;
+
+interface SelectComponentType extends FC<SelectProps> {
+  WithRef: WithRefType;
+}
+
+const Select: SelectComponentType = ({
   autoFocus = false,
   children = undefined,
   className = '',
@@ -151,7 +162,7 @@ const Select: FC<SelectProps> = ({
       toggleRef.current?.focus();
       setIsFocusing(false);
     },
-    [setIsFocusing]
+    [nativeSelectRef, setIsFocusing, toggleRef]
   );
 
   useEffect(() => {
@@ -164,7 +175,7 @@ const Select: FC<SelectProps> = ({
     if (onChange) {
       onChange(nativeSelectRef.current);
     }
-  }, [onChange, value]);
+  }, [onChange, nativeSelectRef, value]);
 
   const id = useMemo(() => unsafeId || nanoid(), [unsafeId]);
 
@@ -227,7 +238,7 @@ const Select: FC<SelectProps> = ({
         setIsFocusing(false);
       }, 200);
     },
-    [menuItems, setIsFocusing, value]
+    [menuItems, setIsFocusing, toggleRef, value]
   );
 
   const handleKeyDown = useMenuArrowKeys(menuItems);
@@ -241,7 +252,7 @@ const Select: FC<SelectProps> = ({
     selectedItem?.children || selectedItem?.value || placeholder;
 
   return (
-    <>
+    <Fragment>
       <EasyDropdown
         {...props}
         className={classNames(styles.Select, className)}
@@ -278,12 +289,14 @@ const Select: FC<SelectProps> = ({
           </option>
         ))}
       </select>
-    </>
+    </Fragment>
   );
 };
 
-export const WithRef = forwardRef<HTMLButtonElement, SelectProps>(
+const WithRef: WithRefType = forwardRef<HTMLButtonElement, SelectProps>(
   (props, ref) => <Select {...props} toggleRef={ref} />
 );
+
+Select.WithRef = WithRef;
 
 export default Select;

@@ -10,7 +10,7 @@ import Button from '../Button';
 
 import Option from './Option';
 import './Option/story';
-import Select, { WithRef as SelectWithRef } from '.';
+import Select from '.';
 import Readme from './README.md';
 
 storiesOf('Planets/Select', module)
@@ -125,23 +125,23 @@ storiesOf('Planets/Select', module)
           </Select>
           <Spacer />
           <div>With `required`</div>
-          <SelectWithRef
+          <Select.WithRef
             ref={requiredRef}
             onChange={(target) => updateIsValid(target.validity.valid)}
             required
           >
             <Option>Option 1</Option>
-          </SelectWithRef>
+          </Select.WithRef>
           <div>Is valid: {isValid ? 'true' : 'false'}</div>
           <Spacer />
           <div>Trigger focus and blur</div>
-          <SelectWithRef
+          <Select.WithRef
             onBlur={action('onBlur')}
             onFocus={action('onFocus')}
             ref={imperativeFocusRef}
           >
             <Option>Option 1</Option>
-          </SelectWithRef>
+          </Select.WithRef>
           <div className="mt-1">
             <Button onClick={imperativeFocusSelect} level="tertiary">
               Focus on it
