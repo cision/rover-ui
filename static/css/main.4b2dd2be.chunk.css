@@ -1045,10 +1045,9 @@ a .Avatar_Avatar__2_adr {
 
 .Tooltip_arrow__34IqN::before {
   border-color: transparent;
-  border-width:
-    calc(
-      var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size)
-    );
+  border-width: calc(
+    var(--rvr-tooltip-arrow-size) + var(--rvr-tooltip-border-size)
+  );
   -webkit-filter: blur(2px);
           filter: blur(2px);
   z-index: -1;
@@ -1137,7 +1136,12 @@ a .Avatar_Avatar__2_adr {
 .Tooltip_textContent__3ablQ {
   text-align: center;
   white-space: nowrap;
-  word-wrap: none;
+}
+
+.Tooltip_textContentHasWidth__3mHYk {
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 .Tooltip_tooltipClose__KArxp {
@@ -2110,4 +2114,4 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
 
 
 
-/*# sourceMappingURL=main.a7ee664a.chunk.css.map*/
+/*# sourceMappingURL=main.4b2dd2be.chunk.css.map*/
