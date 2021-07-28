@@ -23,7 +23,7 @@ interface BaseButtonProps {
   hollow?: boolean;
   level?: TButtonLevel;
   size?: TButtonSize;
-  tag?: React.FC<TagType> | React.ComponentType<TagType> | null;
+  tag?: React.FC<TagType> | React.ComponentType<TagType> | string | null;
 
   // States
   hover?: boolean;

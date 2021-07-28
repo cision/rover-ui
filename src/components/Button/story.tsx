@@ -90,7 +90,9 @@ storiesOf('Planets/Button', module)
                 marginBottom: '10px',
               }}
             >
-              <Button href="#">a</Button>
+              <Button href="#" tag="a">
+                a
+              </Button>
             </span>
             <span
               style={{
@@ -99,7 +101,18 @@ storiesOf('Planets/Button', module)
                 marginBottom: '10px',
               }}
             >
-              <Button>button (default)</Button>
+              <Button tag="button" type="button">
+                button (default)
+              </Button>
+            </span>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button tag="input" type="button" value="input type=button" />
             </span>
           </div>
           <h2>Custom type</h2>
