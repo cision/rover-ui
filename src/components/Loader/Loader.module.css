@@ -1,4 +1,4 @@
-@keyframes LOADERPUFF {
+@keyframes LOADERRIPPLE {
   0% {
     transform: scale(0, 0);
     opacity: 1;
@@ -17,64 +17,64 @@
   justify-content: center;
 }
 
-.loader-icon {
-  background-color: transparent;
-  position: relative;
-  z-index: 100;
-  width: 50px;
-  height: 50px;
-}
-
-.loader-icon::before {
+.loader::before {
   content: '';
   background-color: transparent;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   opacity: 1;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 5px solid #0092c2;
-  animation: LOADERPUFF 1.8s infinite;
+  animation: LOADERRIPPLE 1.8s infinite;
   transform: scale(0, 0);
   animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   animation-delay: 0s;
 }
 
-.loader-icon::after {
+.loader::after {
   content: '';
   background-color: transparent;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   opacity: 1;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 5px solid #0092c2;
-  animation: LOADERPUFF 1.8s infinite;
+  animation: LOADERRIPPLE 1.8s infinite;
   transform: scale(0, 0);
   animation-timing-function: cubic-bezier(0.3, 0.61, 0.335, 1);
   animation-delay: -0.9s;
 }
 
-.size--sm {
+.sm,
+.sm::before,
+.sm::after {
   width: 10px;
   height: 10px;
+  margin: auto;
 }
 
-.size--md {
+.md,
+.md::before,
+.md::after {
   width: 20px;
   height: 20px;
+  margin: auto;
 }
 
-.size--lg {
+.lg,
+.lg::before,
+.lg::after {
   width: 50px;
   height: 50px;
+  margin: auto;
 }
 
-.size--xl {
+.xl,
+.xl::before,
+.xl::after {
   width: 100px;
   height: 100px;
+  margin: auto;
 }

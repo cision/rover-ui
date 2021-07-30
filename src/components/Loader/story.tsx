@@ -50,10 +50,15 @@ storiesOf('Planets/Loader', module)
           <Loader size="xl" />
         </Wrap>
         <Wrap>
-          <Loader style={{ marginLeft: 'auto' }} />
+          <Loader style={{ marginLeft: '0' }} />
         </Wrap>
         <Wrap>
-          <Loader style={{ marginRight: 'auto' }} />
+          <Loader style={{ marginRight: '0' }} />
+        </Wrap>
+        <Wrap>
+          <div style={{ width: '50%' }}>
+            <Loader size="lg" />
+          </div>
         </Wrap>
         <Wrap>
           <Loader style={{ marginTop: '75px', marginBottom: '75px' }} />

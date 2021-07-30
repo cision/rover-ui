@@ -28,6 +28,7 @@ import {
   Typography,
   Modal,
   Kite,
+  Loader,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -473,6 +474,14 @@ const App = () => {
         >
           <Kite.Header>Success Kite!</Kite.Header>
         </Kite>
+      </Section>
+      <Section title="Loader">
+        <div>
+          <Loader size="sm" />
+        </div>
+        <div>
+          <Loader />
+        </div>
       </Section>
 
       {/** USAGE_INJECTOR */}

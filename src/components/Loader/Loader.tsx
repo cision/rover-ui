@@ -11,23 +11,18 @@ interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Loader: React.FC<LoaderProps> = ({ size = 'lg', ...rest }) => {
-  const mainClass = classNames(styles.loader);
-  const iconClass = classNames(
-    styles['loader-icon'],
-    styles[`size--${size}`],
-    rest.className
+  const mainClass = classNames(
+    styles.loader,
+    rest.className,
+    `${styles[size]}`
   );
 
-  const iconProp = {
+  const prop = {
     ...rest,
-    className: iconClass,
+    className: mainClass,
   };
 
-  return (
-    <div className={mainClass}>
-      <div {...iconProp} />
-    </div>
-  );
+  return <div {...prop} />;
 };
 
 export default Loader;
