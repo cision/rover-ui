@@ -139,18 +139,55 @@ storiesOf('Planets/Button', module)
           <hr />
           <h2>Add-ons</h2>
           <div style={{ marginBottom: '20px' }}>
-            <Button>
-              <Button.Addon>
-                <Icon
-                  fill="currentColor"
-                  height="16"
-                  name="check"
-                  style={{ display: 'block' }}
-                  width="16"
-                />
-              </Button.Addon>
-              With left addon
-            </Button>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button level="secondary" size="sm">
+                <Button.Addon>
+                  <Icon
+                    fill="currentColor"
+                    height="16"
+                    name="check"
+                    style={{ display: 'block' }}
+                    width="16"
+                  />
+                </Button.Addon>
+                Small, with left addon
+              </Button>
+            </span>
+            <span
+              style={{
+                display: 'inline-block',
+                marginRight: '20px',
+                marginBottom: '10px',
+              }}
+            >
+              <Button level="primary" size="lg">
+                Large, with 2 right addons
+                <Button.Addon>
+                  <Icon
+                    fill="currentColor"
+                    height="16"
+                    name="check"
+                    style={{ display: 'block' }}
+                    width="16"
+                  />
+                </Button.Addon>
+                <Button.Addon>
+                  <Icon
+                    fill="currentColor"
+                    height="16"
+                    name="check"
+                    style={{ display: 'block' }}
+                    width="16"
+                  />
+                </Button.Addon>
+              </Button>
+            </span>
           </div>
           <hr />
           <h2>Circle</h2>

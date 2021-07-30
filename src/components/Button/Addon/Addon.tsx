@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 
+import ButtonContext from '../Button.context';
 import styles from './Addon.module.css';
 import { TButtonSize } from '../types';
 
@@ -12,23 +12,19 @@ export interface AddonProps {
 
 const Addon: React.FC<AddonProps> = ({
   className = '',
-  size = 'md',
+  size: customSize,
   ...passedProps
-}) => (
-  <div
-    {...passedProps}
-    className={classNames(className, styles.Addon, styles[size])}
-  />
-);
+}) => {
+  const buttonContext = useContext(ButtonContext);
 
-Addon.propTypes = {
-  className: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-};
+  const size = customSize || buttonContext.size || 'md';
 
-Addon.defaultProps = {
-  className: '',
-  size: 'md',
+  return (
+    <div
+      {...passedProps}
+      className={classNames(className, styles.Addon, styles[size])}
+    />
+  );
 };
 
 Addon.displayName = 'ButtonAddon';
