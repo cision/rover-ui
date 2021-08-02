@@ -1,6 +1,5 @@
 import React, { useEffect, CSSProperties } from 'react';
 import classNames from 'classnames';
-import { ClassValue } from 'classnames/types';
 
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -10,7 +9,7 @@ import Icon from '../Icon';
 
 interface KiteProps {
   children?: React.ReactNode;
-  className?: ClassValue;
+  className?: string;
   visible?: boolean;
   onClose?: () => void;
   style?: CSSProperties;
@@ -102,7 +101,7 @@ const KiteHeader: React.FC<KiteHeaderProps> = ({
   return (
     <div {...props} className={classNames(styles.header, className)}>
       {children}
-      {title}
+      <div className={styles.title}>{title}</div>
       <div className={styles.dismissButton}>
         {canBeDismissed && (
           <Button
