@@ -3,8 +3,8 @@
   visibility: hidden;
   box-sizing: border-box;
   position: fixed;
-  top: 12px;
-  right: 12px;
+  top: var(--rvr-space-md);
+  right: var(--rvr-space-md);
   transition: transform .6s ease-in-out;
   animation: slide-in-right .7s;
   display: flex;
@@ -38,11 +38,6 @@
   display: flex;
   align-items: center;
   width: 80%;
-}
-
-.childrenWrapper {
-  margin-top: 8px;
-  margin-bottom: 8px;
 }
 
 .dismissButton {
