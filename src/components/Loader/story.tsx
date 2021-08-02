@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+import { select } from '@storybook/addon-knobs';
 
 import Loader from './Loader';
 import Readme from './README.md';
@@ -27,12 +28,20 @@ storiesOf('Planets/Loader', module)
       sidebar: Readme,
     },
   })
-  .add('Overview', () => (
-    <FlexWrapper>
-      <Loader size="md" />
-      <Loader style={{ marginTop: '100px' }} />
-    </FlexWrapper>
-  ))
+  .add(
+    'Overview',
+    () => (
+      <FlexWrapper>
+        <Loader size={select('size', ['sm', 'md', 'lg', 'xl'], 'lg')} />
+      </FlexWrapper>
+    ),
+    {
+      info: {
+        inline: false,
+        source: true,
+      },
+    }
+  )
   .add(
     'Examples',
     () => (
