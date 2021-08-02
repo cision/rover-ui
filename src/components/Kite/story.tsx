@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, number, text } from '@storybook/addon-knobs';
+import { boolean, number, text, object } from '@storybook/addon-knobs';
 
 import Kite from '.';
 import Readme from './README.md';
@@ -143,11 +143,11 @@ storiesOf('Galaxies/Kite', module)
           onClose={() => {}}
         >
           <Kite.Icon
-            fill="green"
-            height="20"
-            name="check"
-            style={{ display: 'block' }}
-            width="20"
+            fill={text('fill', 'green', 'Kite.Icon')}
+            height={number('height', 20, undefined, 'Kite.Icon')}
+            name={text('name', 'check', 'Kite.Icon')}
+            style={object('style', { display: 'block' }, 'Kite.Icon')}
+            width={number('width', 20, undefined, 'Kite.Icon')}
           />
         </Kite.Header>
       </Kite>
