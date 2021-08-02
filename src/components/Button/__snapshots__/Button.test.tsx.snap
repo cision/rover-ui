@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders a \`button\` tag without error 1`] = `
+<button
+  class="Button secondary lg"
+  type="button"
+/>
+`;
