@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
+import { boolean, number, text } from '@storybook/addon-knobs';
 
 import Kite from '.';
 import Readme from './README.md';
@@ -130,8 +132,16 @@ storiesOf('Galaxies/Kite', module)
   .add(
     'Overview',
     () => (
-      <Kite visible={false} ttl={3000} onClose={() => {}}>
-        <Kite.Header canBeDismissed title="Kite Title" onClose={() => {}}>
+      <Kite
+        visible={boolean('visible', false, 'Kite')}
+        ttl={number('ttl', 3000, undefined, 'Kite')}
+        onClose={action('onClose')}
+      >
+        <Kite.Header
+          canBeDismissed={boolean('canBeDismissed', true, 'Kite.Header')}
+          title={text('title', 'Kite Title', 'Kite.Header')}
+          onClose={() => {}}
+        >
           <Kite.Icon
             fill="green"
             height="20"
