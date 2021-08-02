@@ -9,11 +9,10 @@ Below is an example structure of the `<Kite>`
 ```
 <Kite>
   <Kite.Header>
-    <Kite.KiteIcon/> (optional)
   </Kite.Header>
   <Kite.Content> (optional)
   </Kite.Content>
-</Modal>
+</Kite>
 ```
 
 This will render a Kite with an icon and body content.

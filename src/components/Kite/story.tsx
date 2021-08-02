@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, number, text, object } from '@storybook/addon-knobs';
+import { boolean, number, object } from '@storybook/addon-knobs';
 
 import Kite from '.';
 import Readme from './README.md';
@@ -26,15 +26,17 @@ function KiteExample() {
           Show Kite
         </Button>
       </div>
-      <Kite visible={isOpen} onClose={hideKite}>
-        <Kite.Header canBeDismissed title="The Title" onClose={hideKite}>
-          <Kite.Icon
-            fill="green"
-            height="20"
-            name="check"
-            style={{ display: 'block' }}
-            width="20"
-          />
+      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
+        <Kite.Header
+          iconProps={{
+            fill: 'green',
+            height: '20',
+            name: 'check',
+            style: { display: 'block' },
+            width: '20',
+          }}
+        >
+          The Title
         </Kite.Header>
       </Kite>
     </>
@@ -59,15 +61,17 @@ function ErrorKiteExample() {
           Error Kite
         </Button>
       </div>
-      <Kite visible={isOpen} onClose={hideKite} ttl={3000}>
-        <Kite.Header canBeDismissed title="Error Kite" onClose={hideKite}>
-          <Kite.Icon
-            fill="red"
-            height="20"
-            name="warning"
-            style={{ display: 'block' }}
-            width="20"
-          />
+      <Kite canBeDismissed visible={isOpen} onClose={hideKite} ttl={3000}>
+        <Kite.Header
+          iconProps={{
+            fill: 'red',
+            height: '20',
+            name: 'warning',
+            style: { display: 'block' },
+            width: '20',
+          }}
+        >
+          Error Kite
         </Kite.Header>
       </Kite>
     </>
@@ -92,19 +96,17 @@ function EverythingKiteExample() {
           Everything Kite
         </Button>
       </div>
-      <Kite visible={isOpen} onClose={hideKite}>
+      <Kite canBeDismissed visible={isOpen} onClose={hideKite}>
         <Kite.Header
-          canBeDismissed
-          title="Kite with content"
-          onClose={hideKite}
+          iconProps={{
+            fill: 'red',
+            height: '20',
+            name: 'warning',
+            style: { display: 'block' },
+            width: '20',
+          }}
         >
-          <Kite.Icon
-            fill="red"
-            height="20"
-            name="warning"
-            style={{ display: 'block' }}
-            width="20"
-          />
+          Kite with content
         </Kite.Header>
         <Kite.Content>
           <div className="t-flex">
@@ -133,22 +135,25 @@ storiesOf('Galaxies/Kite', module)
     'Overview',
     () => (
       <Kite
+        canBeDismissed={boolean('canBeDismissed', true, 'Kite')}
         visible={boolean('visible', false, 'Kite')}
         ttl={number('ttl', 3000, undefined, 'Kite')}
         onClose={action('onClose')}
       >
         <Kite.Header
-          canBeDismissed={boolean('canBeDismissed', true, 'Kite.Header')}
-          title={text('title', 'Kite Title', 'Kite.Header')}
-          onClose={() => {}}
+          iconProps={object(
+            'iconProps',
+            {
+              fill: 'green',
+              height: '20',
+              name: 'check',
+              style: { display: 'block' },
+              width: '20',
+            },
+            'Kite.Header'
+          )}
         >
-          <Kite.Icon
-            fill={text('fill', 'green', 'Kite.Icon')}
-            height={number('height', 20, undefined, 'Kite.Icon')}
-            name={text('name', 'check', 'Kite.Icon')}
-            style={object('style', { display: 'block' }, 'Kite.Icon')}
-            width={number('width', 20, undefined, 'Kite.Icon')}
-          />
+          Kite Title
         </Kite.Header>
       </Kite>
     ),

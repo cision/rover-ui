@@ -1,14 +1,16 @@
-import React, { useEffect, CSSProperties } from 'react';
+import React, { useEffect, CSSProperties, useContext } from 'react';
 import classNames from 'classnames';
 
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
+import Context from './Kite.context';
 import styles from './Kite.module.css';
 import Button from '../Button';
 import Icon from '../Icon';
 
 interface KiteProps {
   children?: React.ReactNode;
+  canBeDismissed?: boolean;
   className?: string;
   visible?: boolean;
   onClose?: () => void;
@@ -21,7 +23,7 @@ type KiteContentProps = Pick<KiteProps, 'children' | 'className'>;
 
 type KiteHeaderProps = Pick<KiteProps, 'children' | 'className' | 'onClose'> & {
   canBeDismissed?: boolean;
-  title: React.ReactNode;
+  iconProps?: KiteIconProps;
 };
 
 type KiteType = React.FC<KiteProps> & {
@@ -31,6 +33,7 @@ type KiteType = React.FC<KiteProps> & {
 };
 
 const Kite: KiteType = ({
+  canBeDismissed = true,
   children = undefined,
   className: passedClassName = '',
   visible = false,
@@ -50,26 +53,28 @@ const Kite: KiteType = ({
   }, [onClose, ttl]);
 
   return ReactDOM.createPortal(
-    <CSSTransition
-      in={visible}
-      unmountOnExit
-      timeout={{ enter: 0, exit: 300 }}
-      classNames={{
-        enterDone: styles.enterDone,
-        exit: styles.exit,
-      }}
-    >
-      <div
-        className={classNames(
-          styles.Kite,
-          { [styles.visible]: visible },
-          passedClassName
-        )}
-        {...passedProps}
+    <Context.Provider value={{ canBeDismissed, onClose }}>
+      <CSSTransition
+        in={visible}
+        unmountOnExit
+        timeout={{ enter: 0, exit: 300 }}
+        classNames={{
+          enterDone: styles.enterDone,
+          exit: styles.exit,
+        }}
       >
-        {children}
-      </div>
-    </CSSTransition>,
+        <div
+          className={classNames(
+            styles.Kite,
+            { [styles.visible]: visible },
+            passedClassName
+          )}
+          {...passedProps}
+        >
+          {children}
+        </div>
+      </CSSTransition>
+    </Context.Provider>,
     document.body
   );
 };
@@ -92,16 +97,15 @@ const KiteContent: React.FC<KiteContentProps> = ({
 
 const KiteHeader: React.FC<KiteHeaderProps> = ({
   className,
-  canBeDismissed = true,
   children,
-  onClose = () => {},
-  title,
+  iconProps,
   ...props
 }) => {
+  const { canBeDismissed, onClose } = useContext(Context);
   return (
     <div {...props} className={classNames(styles.header, className)}>
-      {children}
-      <div className={styles.title}>{title}</div>
+      {iconProps && <Kite.Icon {...iconProps} />}
+      <div className={styles.title}>{children}</div>
       <div className={styles.dismissButton}>
         {canBeDismissed && (
           <Button

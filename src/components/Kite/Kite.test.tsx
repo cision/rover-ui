@@ -8,7 +8,6 @@ import Kite from './Kite';
 const defaultProps = {
   visible: true,
   onClose: jest.fn(),
-  title: 'Kite Title!',
   ttl: 3000,
   canBeDismissed: true,
 };
@@ -16,13 +15,17 @@ const defaultProps = {
 const renderKite = (props = defaultProps) =>
   render(
     <Kite {...props}>
-      <Kite.Icon
-        fill="green"
-        height="20"
-        name="check"
-        style={{ display: 'block' }}
-        width="20"
-      />
+      <Kite.Header
+        iconProps={{
+          fill: 'green',
+          height: '20',
+          name: 'check',
+          style: { display: 'block' },
+          width: '20',
+        }}
+      >
+        Kite Title
+      </Kite.Header>
       <Kite.Content>
         <p>Kite Content Goes here!</p>
       </Kite.Content>
@@ -48,11 +51,8 @@ describe('Kite', () => {
       'when canBeDismissed = $canBeDismissed, the close button visible should be: $visible',
       ({ canBeDismissed }) => {
         render(
-          <Kite {...defaultProps}>
-            <Kite.Header
-              title={defaultProps.title}
-              canBeDismissed={canBeDismissed}
-            />
+          <Kite {...defaultProps} canBeDismissed={canBeDismissed}>
+            <Kite.Header>Title</Kite.Header>
           </Kite>
         );
 
@@ -69,11 +69,8 @@ describe('Kite', () => {
   describe('onClose callback', () => {
     it('calls onClose callback when dismiss button is clicked', async () => {
       render(
-        <Kite {...defaultProps}>
-          <Kite.Header
-            title={defaultProps.title}
-            onClose={defaultProps.onClose}
-          />
+        <Kite {...defaultProps} onClose={defaultProps.onClose}>
+          <Kite.Header>Title</Kite.Header>
         </Kite>
       );
       const dismissButton = screen.getByTestId('kite-dismiss-button');
