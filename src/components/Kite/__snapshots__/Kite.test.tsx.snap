@@ -47,7 +47,7 @@ exports[`Kite renders correctly 1`] = `
         type="button"
       >
         <div
-          class="Addon md"
+          class="Addon lg"
         >
           <svg
             fill="currentColor"
