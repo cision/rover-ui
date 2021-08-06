@@ -14,18 +14,11 @@ const defaultProps = {
 
 const renderKite = (props = defaultProps) =>
   render(
-    <Kite {...props}>
-      <Kite.Header
-        iconProps={{
-          fill: 'green',
-          height: '20',
-          name: 'check',
-          style: { display: 'block' },
-          width: '20',
-        }}
-      >
-        Kite Title
-      </Kite.Header>
+    <Kite
+      {...props}
+      icon={<Kite.Icon fill="red" height="20" name="warning" width="20" />}
+    >
+      <Kite.Header>Kite Title</Kite.Header>
       <Kite.Content>
         <p>Kite Content Goes here!</p>
       </Kite.Content>

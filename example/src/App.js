@@ -465,22 +465,13 @@ const App = () => {
           </Button>
         </div>
         <Kite
+          icon={<Kite.Icon fill="green" height="20" name="check" width="20" />}
           canBeDismissed
           visible={isKiteVisible}
           onClose={() => setIsKiteVisible(false)}
           ttl={3000}
         >
-          <Kite.Header
-            iconProps={{
-              fill: 'green',
-              height: '20',
-              name: 'check',
-              style: { display: 'block' },
-              width: '20',
-            }}
-          >
-            Success Kite!
-          </Kite.Header>
+          <Kite.Header>Success Kite!</Kite.Header>
         </Kite>
       </Section>
 
