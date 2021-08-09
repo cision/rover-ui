@@ -6,7 +6,9 @@ exports[`Option renders 1`] = `
     <div
       class="Item content Button text md"
     >
-      Boom
+      <span>
+        Boom
+      </span>
     </div>
   </div>
 </body>

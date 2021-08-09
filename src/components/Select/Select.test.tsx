@@ -57,7 +57,7 @@ describe('Select', () => {
 
       userEvent.click(toggle);
       const menu = await screen.findByRole('listbox');
-      const option6 = within(menu).getByText('Option 6');
+      const option6 = within(menu).getByRole('option', { name: 'Option 6' });
 
       await waitFor(() => expect(option6).toEqual(document.activeElement));
     });

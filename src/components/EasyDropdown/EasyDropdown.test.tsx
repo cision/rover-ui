@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { mount, shallow } from 'enzyme';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Button from '../Button';
@@ -27,34 +27,42 @@ describe('EasyDropdown', () => {
 
     describe('with defaultIsOpen', () => {
       it('starts open when true', () => {
-        const { getByText } = render(
-          <EasyDropdown defaultIsOpen>Boom</EasyDropdown>
-        );
+        render(<EasyDropdown defaultIsOpen>Boom</EasyDropdown>);
 
-        expect(getByText('Boom').getAttribute('data-is-open')).toEqual('true');
+        expect(
+          screen
+            .getByRole('button', { name: 'Boom' })
+            .getAttribute('data-is-open')
+        ).toEqual('true');
       });
 
       it('starts closed when false', () => {
-        const { getByText } = render(
-          <EasyDropdown defaultIsOpen={false}>Boom</EasyDropdown>
-        );
+        render(<EasyDropdown defaultIsOpen={false}>Boom</EasyDropdown>);
 
-        expect(getByText('Boom').getAttribute('data-is-open')).toEqual('false');
+        expect(
+          screen
+            .getByRole('button', { name: 'Boom' })
+            .getAttribute('data-is-open')
+        ).toEqual('false');
       });
 
       it("doesn't even care about controlled isOpen prop changes", () => {
-        const { getByText, rerender } = render(
+        const { rerender } = render(
           <EasyDropdown defaultIsOpen>Boom</EasyDropdown>
         );
 
         rerender(<EasyDropdown defaultIsOpen={false}>Bang</EasyDropdown>);
-        expect(getByText('Bang').getAttribute('data-is-open')).toEqual('true');
+        expect(
+          screen
+            .getByRole('button', { name: 'Bang' })
+            .getAttribute('data-is-open')
+        ).toEqual('true');
       });
 
       it('clicking a menu item closes the menu', async () => {
         const onClickMenuItemSpy = jest.fn();
 
-        const { getByText } = render(
+        render(
           <EasyDropdown
             defaultIsOpen
             menuItems={[
@@ -69,9 +77,14 @@ describe('EasyDropdown', () => {
           </EasyDropdown>
         );
 
-        userEvent.click(getByText('Bing'));
+        userEvent.click(screen.getByText('Bing'));
         expect(onClickMenuItemSpy).toBeCalledTimes(1);
-        expect(getByText('Boom').getAttribute('data-is-open')).toEqual('false');
+
+        expect(
+          screen
+            .getByRole('button', { name: 'Boom' })
+            .getAttribute('data-is-open')
+        ).toEqual('false');
       });
     });
 

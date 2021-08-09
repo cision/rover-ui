@@ -7,14 +7,18 @@ exports[`Item renders 1`] = `
       class="Item button Button text md"
       type="button"
     >
-      Hi
+      <span>
+        Hi
+      </span>
     </button>
   </div>
   <div>
     <div
       class="Item content Button text md"
     >
-      Boom
+      <span>
+        Boom
+      </span>
     </div>
   </div>
 </body>
