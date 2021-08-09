@@ -10,14 +10,14 @@
   }
 }
 
-.loader {
+.Loader {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: center;
 }
 
-.loader::before {
+.Loader::before {
   content: '';
   background-color: transparent;
   position: absolute;
@@ -32,7 +32,7 @@
   animation-delay: 0s;
 }
 
-.loader::after {
+.Loader::after {
   content: '';
   background-color: transparent;
   position: absolute;

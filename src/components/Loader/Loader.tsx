@@ -12,7 +12,7 @@ interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Loader: React.FC<LoaderProps> = ({ size = 'lg', ...rest }) => {
   const mainClass = classNames(
-    styles.loader,
+    styles.Loader,
     rest.className,
     `${styles[size]}`
   );
