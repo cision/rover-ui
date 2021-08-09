@@ -27,6 +27,7 @@ import {
   InputTime,
   Typography,
   Modal,
+  Kite,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -42,6 +43,7 @@ const App = () => {
   const [inputCheckboxValue, setInputCheckboxValue] = useState(false);
   const [inputTimeValue, setInputTimeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isKiteVisible, setIsKiteVisible] = useState(false);
 
   const toggleTooltip = function () {
     setTooltipOpen((prev) => !prev);
@@ -451,6 +453,26 @@ const App = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+      </Section>
+
+      <Section title="Kite">
+        <div>
+          <Button
+            modifiers={['primary']}
+            onClick={() => setIsKiteVisible(true)}
+          >
+            Show Kite
+          </Button>
+        </div>
+        <Kite
+          icon={<Kite.Icon fill="green" height="20" name="check" width="20" />}
+          canBeDismissed
+          visible={isKiteVisible}
+          onClose={() => setIsKiteVisible(false)}
+          ttl={3000}
+        >
+          <Kite.Header>Success Kite!</Kite.Header>
+        </Kite>
       </Section>
 
       {/** USAGE_INJECTOR */}
