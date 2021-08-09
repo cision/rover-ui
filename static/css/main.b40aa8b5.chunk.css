@@ -342,6 +342,7 @@
   --rvr-zindex-modal-backdrop: 1060;
   --rvr-zindex-modal: 1070;
   --rvr-zindex-popover: 1080;
+  --rvr-zindex-kite: 1090;
 
   /* Borders */
   --rvr-border-radius: 4px;
@@ -2113,5 +2114,112 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
 }
 
 
+.Kite_Kite__181XA {
+  z-index: var(--rvr-zindex-kite);
+  visibility: hidden;
+  box-sizing: border-box;
+  position: fixed;
+  top: var(--rvr-space-md);
+  right: var(--rvr-space-md);
+  transition: transform .6s ease-in-out;
+  -webkit-animation: Kite_slide-in-right__3lIaZ .7s;
+          animation: Kite_slide-in-right__3lIaZ .7s;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  background-color: var(--rvr-white);
+  width: 342px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 16px;
+  font-size: var(--rvr-font-size-md);
+  color: var(--rvr-color-font-dark);
+}
 
-/*# sourceMappingURL=main.4b2dd2be.chunk.css.map*/
+.Kite_Kite__181XA > * {
+  margin-left: 16px;
+}
+
+.Kite_Kite__181XA > :first-child {
+  margin-left: 0;
+}
+
+.Kite_visible__1ddvf {
+  visibility: visible;
+}
+
+.Kite_icon__v6pld {
+  flex: 0 0 auto;
+  align-self: flex-start;
+}
+
+.Kite_content__2hMLR {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.Kite_dismissButton__3rH6K {
+  flex: 0 0 auto;
+  margin-right: -16px;
+  margin-top: -12px;
+  margin-bottom: -12px;
+  align-self: flex-start;
+}
+
+.Kite_header__2QUuD {
+  font-weight: var(--rvr-font-weight-bold);
+}
+
+.Kite_header__2QUuD + .Kite_body__15kso {
+  margin-top: 8px;
+}
+
+.Kite_title__3s9Ua {
+  flex-grow: 2;
+}
+
+.Kite_enterDone__2Uldq {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.Kite_exit__3eNmM {
+  opacity: 0;
+  transform: translateX(-200px);
+}
+
+.Kite_top-right__15lBL {
+  top: 12px;
+  right: 12px;
+  transition: all .6s ease-in-out;
+  transform: translateX(100%);
+}
+
+
+
+
+@-webkit-keyframes Kite_slide-in-right__3lIaZ {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+
+
+@keyframes Kite_slide-in-right__3lIaZ {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+/*# sourceMappingURL=main.b40aa8b5.chunk.css.map*/
