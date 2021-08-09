@@ -1,0 +1,80 @@
+@keyframes LOADERRIPPLE {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9, 0.9);
+    opacity: 0;
+  }
+}
+
+.Loader {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.Loader::before {
+  content: '';
+  background-color: transparent;
+  position: absolute;
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #0092c2;
+  animation: LOADERRIPPLE 1.8s infinite;
+  transform: scale(0, 0);
+  animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  animation-delay: 0s;
+}
+
+.Loader::after {
+  content: '';
+  background-color: transparent;
+  position: absolute;
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #0092c2;
+  animation: LOADERRIPPLE 1.8s infinite;
+  transform: scale(0, 0);
+  animation-timing-function: cubic-bezier(0.3, 0.61, 0.335, 1);
+  animation-delay: -0.9s;
+}
+
+.sm,
+.sm::before,
+.sm::after {
+  width: 10px;
+  height: 10px;
+  margin: auto;
+}
+
+.md,
+.md::before,
+.md::after {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.lg,
+.lg::before,
+.lg::after {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.xl,
+.xl::before,
+.xl::after {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}

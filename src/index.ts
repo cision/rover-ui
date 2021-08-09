@@ -36,3 +36,4 @@ export { default as InputTime } from './components/InputTime';
 export { default as Typography } from './components/Typography';
 export { default as Modal } from './components/Modal';
 export { default as Kite } from './components/Kite';
+export { default as Loader } from './components/Loader';
