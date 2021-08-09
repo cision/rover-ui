@@ -1612,6 +1612,105 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
   font-weight: var(--rvr-font-weight-bold);
 }
 
+@-webkit-keyframes Loader_LOADERRIPPLE__3S7FN {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9, 0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes Loader_LOADERRIPPLE__3S7FN {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.9, 0.9);
+    opacity: 0;
+  }
+}
+
+.Loader_Loader__17sQZ {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.Loader_Loader__17sQZ::before {
+  content: '';
+  background-color: transparent;
+  position: absolute;
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #0092c2;
+  -webkit-animation: Loader_LOADERRIPPLE__3S7FN 1.8s infinite;
+          animation: Loader_LOADERRIPPLE__3S7FN 1.8s infinite;
+  transform: scale(0, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+          animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+.Loader_Loader__17sQZ::after {
+  content: '';
+  background-color: transparent;
+  position: absolute;
+  opacity: 1;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #0092c2;
+  -webkit-animation: Loader_LOADERRIPPLE__3S7FN 1.8s infinite;
+          animation: Loader_LOADERRIPPLE__3S7FN 1.8s infinite;
+  transform: scale(0, 0);
+  -webkit-animation-timing-function: cubic-bezier(0.3, 0.61, 0.335, 1);
+          animation-timing-function: cubic-bezier(0.3, 0.61, 0.335, 1);
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+
+.Loader_sm__1_3rg,
+.Loader_sm__1_3rg::before,
+.Loader_sm__1_3rg::after {
+  width: 10px;
+  height: 10px;
+  margin: auto;
+}
+
+.Loader_md__ZLBsC,
+.Loader_md__ZLBsC::before,
+.Loader_md__ZLBsC::after {
+  width: 20px;
+  height: 20px;
+  margin: auto;
+}
+
+.Loader_lg__2hIZo,
+.Loader_lg__2hIZo::before,
+.Loader_lg__2hIZo::after {
+  width: 50px;
+  height: 50px;
+  margin: auto;
+}
+
+.Loader_xl__JTAb9,
+.Loader_xl__JTAb9::before,
+.Loader_xl__JTAb9::after {
+  width: 100px;
+  height: 100px;
+  margin: auto;
+}
+
 .Bar_BarStat__2zvt_ {
   display: flex;
 }
@@ -2222,4 +2321,4 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
 }
 
 
-/*# sourceMappingURL=main.b40aa8b5.chunk.css.map*/
+/*# sourceMappingURL=main.6e8c8e9a.chunk.css.map*/
