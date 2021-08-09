@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { boolean, number } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 
-import Kite from '.';
-import Readme from './README.md';
+import { iconsMap } from '../Icon';
 import { Wrap } from '../../stories/storybook-helpers';
 import Button from '../Button';
+import Readme from './README.md';
+import Kite from '.';
+
+const iconNames = Object.keys(iconsMap);
 
 function KiteExample() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +35,7 @@ function KiteExample() {
         visible={isOpen}
         onClose={hideKite}
       >
-        <Kite.Content>The Title Content</Kite.Content>
+        <Kite.Body>The Title Content</Kite.Body>
       </Kite>
     </>
   );
@@ -93,7 +96,7 @@ function EverythingKiteExample() {
         onClose={hideKite}
       >
         <Kite.Header>Kite with content</Kite.Header>
-        <Kite.Content>
+        <Kite.Body>
           <div className="t-flex">
             <div>
               <span>The quick brown fox jumps over the lazy dog!</span>
@@ -104,7 +107,7 @@ function EverythingKiteExample() {
               </Button>
             </div>
           </div>
-        </Kite.Content>
+        </Kite.Body>
       </Kite>
     </>
   );
@@ -120,13 +123,25 @@ storiesOf('Galaxies/Kite', module)
     'Overview',
     () => (
       <Kite
-        icon={<Kite.Icon fill="green" height="20" name="check" width="20" />}
+        icon={
+          <Kite.Icon
+            fill={text('fill (CSS color)', 'green', 'Kite.Icon')}
+            height={text('height', '20', 'Kite.Icon')}
+            name={select('name', iconNames, 'check', 'Kite.Icon')}
+            width={text('width', '20', 'Kite.Icon')}
+          />
+        }
         canBeDismissed={boolean('canBeDismissed', true, 'Kite')}
         visible={boolean('visible', false, 'Kite')}
         ttl={number('ttl', 3000, undefined, 'Kite')}
         onClose={action('onClose')}
       >
-        <Kite.Header>Kite Title</Kite.Header>
+        <Kite.Header>
+          {text('children', 'Kite header', 'Kite.Header')}
+        </Kite.Header>
+        <Kite.Body>
+          {text('children', 'Kite description', 'Kite.Body')}
+        </Kite.Body>
       </Kite>
     ),
     {

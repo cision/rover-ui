@@ -19,9 +19,9 @@ const renderKite = (props = defaultProps) =>
       icon={<Kite.Icon fill="red" height="20" name="warning" width="20" />}
     >
       <Kite.Header>Kite Title</Kite.Header>
-      <Kite.Content>
+      <Kite.Body>
         <p>Kite Content Goes here!</p>
-      </Kite.Content>
+      </Kite.Body>
     </Kite>
   );
 describe('Kite', () => {

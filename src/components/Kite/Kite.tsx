@@ -19,12 +19,12 @@ interface KiteProps {
 }
 
 type KiteIconProps = Parameters<typeof Icon>[0];
-type KiteChildProps = Pick<KiteProps, 'children' | 'className'>;
+type KiteChildProps = React.HTMLAttributes<HTMLDivElement>;
 
 type KiteType = React.FC<KiteProps> & {
+  Body: React.FC<KiteChildProps>;
   Header: React.FC<KiteChildProps>;
   Icon: React.FC<KiteIconProps>;
-  Content: React.FC<KiteChildProps>;
 };
 
 const Kite: KiteType = ({
@@ -67,7 +67,7 @@ const Kite: KiteType = ({
         {...passedProps}
       >
         {icon && <div className={styles.icon}>{icon}</div>}
-        <div className={styles.body}>{children}</div>
+        <div className={styles.content}>{children}</div>
         {canBeDismissed && (
           <div className={styles.dismissButton}>
             <Button
@@ -96,15 +96,15 @@ const KiteIcon: React.FC<KiteIconProps> = ({ className, ...props }) => {
   return <Icon {...props} className={classNames(styles.icon, className)} />;
 };
 
-const KiteContent: React.FC<KiteChildProps> = ({ className, ...props }) => {
-  return <div {...props} className={classNames(styles.content, className)} />;
+const KiteHeader: React.FC<KiteChildProps> = ({ className, ...props }) => (
+  <div {...props} className={classNames(styles.header, className)} />
+);
+const KiteBody: React.FC<KiteChildProps> = ({ className, ...props }) => {
+  return <div {...props} className={classNames(styles.body, className)} />;
 };
 
-const KiteHeader: React.FC<KiteChildProps> = ({ className, ...props }) => {
-  return <div {...props} className={classNames(styles.header, className)} />;
-};
-
-Kite.Header = KiteHeader;
 Kite.Icon = KiteIcon;
-Kite.Content = KiteContent;
+Kite.Header = KiteHeader;
+Kite.Body = KiteBody;
+
 export default Kite;

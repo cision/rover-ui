@@ -23,7 +23,7 @@ exports[`Kite renders correctly 1`] = `
       </svg>
     </div>
     <div
-      class="body"
+      class="content"
     >
       <div
         class="header"
@@ -31,7 +31,7 @@ exports[`Kite renders correctly 1`] = `
         Kite Title
       </div>
       <div
-        class="content"
+        class="body"
       >
         <p>
           Kite Content Goes here!
