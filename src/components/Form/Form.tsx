@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import _isEmpty from 'lodash/isEmpty';
 import _set from 'lodash/set';
 
@@ -7,17 +7,32 @@ type ValidationSchema = {
 };
 
 interface SchemaElement {
-  message: string;
+  message: ((element?: HTMLInputElement) => string) | string;
   validator?: (value: string, element?: HTMLInputElement) => boolean | string;
 }
 
 export interface FormProps {
   id?: string;
-  children?: (config) => React.ReactElement;
+  children?: React.ComponentClass | React.FunctionComponent | React.ReactNode;
   initialValues?: Record<string, string | boolean>;
   validationSchema?: ValidationSchema;
   onSubmit?: Function;
   className?: string;
+}
+
+export interface FormContext {
+  formState: FormState;
+  values: Record<string, string | string[] | number | boolean | undefined>;
+  handleChange: ({ target: t }: { target: HTMLInputElement }) => void;
+  handleBlur: ({ target: t }: { target: HTMLInputElement }) => void;
+  handleCustom: (name: string, callback: (value: string) => void) => void;
+}
+
+export interface FormState {
+  touched: Record<string, boolean>;
+  validationErrors: Record<string, string>;
+  isSubmitting: boolean;
+  submitError;
 }
 
 const NATIVE_VALIDATORS = [
@@ -32,6 +47,16 @@ const NATIVE_VALIDATORS = [
   'typeMismatch',
   'valueMissing',
 ];
+
+const getValidityKeys = (validity) => {
+  const validityKeys: string[] = [];
+  Object.keys(validity).forEach((validityKey) => {
+    validityKeys.push(validityKey);
+  });
+  return validityKeys;
+};
+
+export const FormContext = createContext({});
 
 const Form: React.FC<FormProps> = ({
   id = 'a_form',
@@ -83,7 +108,8 @@ const Form: React.FC<FormProps> = ({
     });
   }, [validationSchema]);
 
-  const handleBlur = ({ target: { name } }) => {
+  const handleBlur = ({ target: t }: { target: HTMLInputElement }) => {
+    const { name } = t;
     setTouched((prevState) => ({
       ...prevState,
       [name]: true,
@@ -101,7 +127,6 @@ const Form: React.FC<FormProps> = ({
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault(); // TODO: maybe call this conditionally
-
     setValues((prevValues) => ({
       ...prevValues,
       [fieldName]: callback(prevValues[fieldName]),
@@ -124,16 +149,22 @@ const Form: React.FC<FormProps> = ({
       const errors = Object.entries(values).reduce(
         (errorsObject, [fieldName]) => {
           const fieldValidation = validationSchema[fieldName];
+          if (!fieldValidation) {
+            return errorsObject;
+          }
+
           const customValidation = customValidations[fieldName];
           const isValidFromNativeValidators = !isNativeError(validatingElement);
 
           // If the native validator -- valueMissing, patternMismatch, etc. -- reports valid, then any
           // custom validator gets run.
           //
-          let errorMessage = '';
+          let errorMessage: ((elem) => string) | string = '';
+
           if (isValidFromNativeValidators && customValidation) {
             if (values) {
-              const validationReturnValue = customValidation.validator(
+              const validator = customValidation.validator || (() => true);
+              const validationReturnValue = validator(
                 values[fieldName],
                 validatingElement
               );
@@ -157,7 +188,7 @@ const Form: React.FC<FormProps> = ({
           //
           else if (!isValidFromNativeValidators) {
             let nativeErrorName = '';
-            Object.keys(validatingElement.validity).some((key) => {
+            getValidityKeys(validatingElement.validity).some((key) => {
               if (validatingElement.validity[key]) {
                 nativeErrorName = key;
                 return true;
@@ -169,11 +200,15 @@ const Form: React.FC<FormProps> = ({
           }
 
           if (errorMessage) {
-            validatingElement.setCustomValidity(errorMessage);
+            const errorText =
+              typeof errorMessage === 'function'
+                ? errorMessage(validatingElement)
+                : errorMessage;
+            validatingElement.setCustomValidity(errorText);
             validatingElement?.reportValidity();
             errorsObject = {
               ...errorsObject,
-              [fieldName]: errorMessage,
+              [fieldName]: errorText,
             };
           } else {
             validatingElement.setCustomValidity('');
@@ -210,20 +245,26 @@ const Form: React.FC<FormProps> = ({
   }, [isSubmitting, submitError, values, onSubmit]);
 
   return children ? (
-    <form className={className} onSubmit={handleSubmit} id={id}>
-      {children({
-        formState: {
-          touched,
-          validationErrors,
-          isSubmitting,
-          submitError,
-        },
-        values,
-        handleChange,
-        handleBlur,
-        handleCustom,
-      })}
-    </form>
+    <FormContext.Provider
+      value={
+        {
+          formState: {
+            touched,
+            validationErrors,
+            isSubmitting,
+            submitError,
+          },
+          values,
+          handleChange,
+          handleBlur,
+          handleCustom,
+        } as FormContext
+      }
+    >
+      <form className={className} onSubmit={handleSubmit} id={id}>
+        {children}
+      </form>
+    </FormContext.Provider>
   ) : null;
 };
 

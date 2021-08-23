@@ -7,6 +7,8 @@ import Button from '../Button';
 import Input from '../Input';
 import styles from './story.module.css';
 
+import { FormContext } from './Form';
+
 storiesOf('Uncategorized/Form', module)
   .addParameters({
     readme: {
@@ -21,15 +23,20 @@ storiesOf('Uncategorized/Form', module)
       return (
         <Form
           id="my_damn_form"
-          initialValues={{ nameInput: 'James T. Kirk' }}
+          initialValues={{ nameInput: 'James Tiberius Kirk' }}
           // eslint-disable-next-line no-alert
           onSubmit={(values) => alert(JSON.stringify(values))}
           validationSchema={{
+            ageInput: {
+              rangeUnderflow: {
+                message: (elem) => `Age must be great than ${elem?.min}, son`,
+              },
+            },
             nameInput: {
               // This is a ValidityState key.
               //
               valueMissing: {
-                message: 'Custom data missing error message',
+                message: () => "Hey, you got a name, don't you? Share it!",
               },
               // This validator is basically providing a custom error message for a:
               //
@@ -58,65 +65,77 @@ storiesOf('Uncategorized/Form', module)
             },
           }}
         >
-          {({ formState, values, handleChange, handleBlur, handleCustom }) => {
-            return (
-              <div className={styles.inputContainer}>
-                <div className={styles.personName}>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <label className="text-xl inline-block mb-2">
-                    Name
-                    <br />
-                    <Input
-                      type="text"
-                      name="nameInput"
-                      value={values.nameInput}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      required
-                      className={styles.nameInputErrorMessage}
-                      ref={ref}
-                    />
-                    <div>{formState.validationErrors.nameInput}</div>
-                  </label>
-                </div>
+          <FormContext.Consumer>
+            {(context) => {
+              const {
+                formState,
+                values,
+                handleChange,
+                handleBlur,
+                handleCustom,
+              } = context as FormContext;
+              return (
+                <div className={styles.inputContainer}>
+                  <div className={styles.personName}>
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label className="text-xl inline-block mb-2">
+                      Name
+                      <br />
+                      <Input
+                        type="text"
+                        name="nameInput"
+                        id="nameInput"
+                        value={values.nameInput as any}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        required
+                        className={styles.nameInputErrorMessage}
+                        ref={ref}
+                      />
+                      <div>{formState.validationErrors.nameInput}</div>
+                    </label>
+                  </div>
 
-                <div className={styles.personAge}>
-                  {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                  <label className="text-xl inline-block mb-2">
-                    Age
-                    <br />
-                    <Input
-                      type="number"
-                      min="18"
-                      name="age"
-                      value={values.age}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                  </label>
-                </div>
+                  <div className={styles.personAge}>
+                    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                    <label className="text-xl inline-block mb-2">
+                      Age
+                      <br />
+                      <Input
+                        type="number"
+                        min="18"
+                        name="ageInput"
+                        value={values.age as any}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                    </label>
+                  </div>
 
-                <div className={styles.actions}>
-                  <Button
-                    type="button"
-                    onClick={handleCustom('nameInput', (name) =>
-                      name.toUpperCase()
-                    )}
-                    style={{ margin: '20px 15px 15px 0' }}
-                  >
-                    Capitalize
-                  </Button>
-                  <Button
-                    disabled={formState.validationErrors.nameInput}
-                    data-testid="submit-button"
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
+                  <div className={styles.actions}>
+                    <Button
+                      type="button"
+                      onClick={
+                        handleCustom('nameInput', (name) =>
+                          name.toUpperCase()
+                        ) as any
+                      }
+                      style={{ margin: '20px 15px 15px 0' }}
+                    >
+                      Capitalize
+                    </Button>
+                    <Button
+                      disabled={Boolean(formState.validationErrors.nameInput)}
+                      data-testid="submit-button"
+                      type="submit"
+                    >
+                      Submit
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            );
-          }}
+              );
+            }}
+          </FormContext.Consumer>
         </Form>
       );
     },
