@@ -85,7 +85,7 @@ storiesOf('Uncategorized/Form', module)
                         type="text"
                         name="nameInput"
                         id="nameInput"
-                        value={values.nameInput as any}
+                        value={values.nameInput as string}
                         onChange={handleChange}
                         onBlur={handleBlur}
                         required
