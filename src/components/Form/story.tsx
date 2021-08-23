@@ -105,7 +105,7 @@ storiesOf('Uncategorized/Form', module)
                         type="number"
                         min="18"
                         name="ageInput"
-                        value={values.age as any}
+                        value={values.age as number}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
