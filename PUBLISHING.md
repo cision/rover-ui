@@ -48,7 +48,7 @@ yarn storybook:deploy
 
 # Publishing a pre-release version
 
-You should only do this if you're an admin.
+You should only do this if you're an admin. Instructions based loosely on [Prereleases and Npm](https://medium.com/@mbostock/prereleases-and-npm-e778fc5e2420)
 
 Edit the version in `package.json` manually. Pre-release versions should be named in this format:
 
@@ -62,5 +62,12 @@ For example, `v4.0.0-alpha.1` is the first iteration of what will one day become
 Then, from the command line:
 
 ```sh
+gco -b v{MAJOR}.0.0 # E.g. gco -b v5.0.0
 yarn update-changelog
+git add .
+git commit -m "Deploying v{MAJOR}.0.0-alpha.{BUILD}" # E.g. git commit -m "Deploying v5.0.0-alpha.2"
+git push
+git tag v{MAJOR}.0.0-alpha.{BUILD} # E.g. git tag v5.0.0-alpha.2
+git push --tags
+npm publish --tag next
 ```
