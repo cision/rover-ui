@@ -5,22 +5,19 @@ unless_exists: true
 <% PascalName = h.changeCase.pascal(name) %>
 import React from 'react';
 import classNames from 'classnames';
-import { ClassValue } from 'classnames/types';
 
 import styles from './<%= PascalName %>.module.css';
 
 interface <%= PascalName %>Props {
-  className?: ClassValue;
+  className?: string;
 }
 
 const <%= PascalName %>: React.FC<<%= PascalName %>Props> = ({
-  className: klassName = '',
+  className = '',
   ...props
 }) => {
-  const className = classNames(styles.<%= PascalName %>, klassName);
-
   return (
-    <div {...props} className={className}>
+    <div {...props} className={classNames(styles.<%= PascalName %>, className)}>
       Hello World, from <%= PascalName %>!
     </div>
   );
