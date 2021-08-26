@@ -29,6 +29,8 @@ import {
   Modal,
   Kite,
   Loader,
+  Select,
+  Option,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -482,6 +484,26 @@ const App = () => {
         <div>
           <Loader />
         </div>
+      </Section>
+
+      <Section title="Select">
+        <Select.WithRef defaultValue="Option 6" placeholder="Pick one" required>
+          <Option value={new Date().toISOString()}>
+            Current time - {new Date().toString()}
+          </Option>
+          <Option>Option 1</Option>
+          <Option>Option 2</Option>
+          <Option>Option 3</Option>
+          <Option>Option 4</Option>
+          <Option>Option 5</Option>
+          <Option>Option 6</Option>
+          <Option disabled>Disabled option</Option>
+          <Option>Option 8</Option>
+          <Option>Option 9</Option>
+          <Option>Option 10</Option>
+          <Option>Option 11 is very wide, possibly too wide.</Option>
+        </Select.WithRef>{' '}
+        (required)
       </Section>
 
       {/** USAGE_INJECTOR */}

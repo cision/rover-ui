@@ -80,6 +80,7 @@ storiesOf('Planets/Tooltip', module)
             content={text('Tooltip Text', 'Hi there!', 'text')}
             showOnHover={textHover}
             direction={direction}
+            tooltipWidth={text('tooltipWidth', '')}
           >
             <Button>{text('Main Content', 'With Text', 'text')}</Button>
           </Tooltip>
