@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 
 import Media from '../../../Media';
 
-import Item from './';
+import Item from '.';
 import Readme from './README.md';
 
 storiesOf('Star Systems/Dropdown/Menu/Item', module)
@@ -47,9 +47,16 @@ storiesOf('Star Systems/Dropdown/Menu/Item', module)
         <Item onClick={action('onClick')}>
           With basic text content, and onClick
         </Item>
+        <Item
+          href="https://example.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          With an href
+        </Item>
         <Item>
           <Media>
-            <Media.Item mr="md">
+            <Media.Item className="mr-2">
               <img
                 alt="Random from Unsplash"
                 style={{ borderRadius: '20px' }}
@@ -63,7 +70,7 @@ storiesOf('Star Systems/Dropdown/Menu/Item', module)
         </Item>
         <Item onClick={action('onClick')}>
           <Media>
-            <Media.Item mr="md">
+            <Media.Item className="mr-2">
               <img
                 alt="Random from Unsplash"
                 style={{ borderRadius: '20px' }}
