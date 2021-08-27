@@ -58,7 +58,9 @@ storiesOf('Star Systems/Dropdown', module)
       >
         {text('children', 'Dropdown children')}
         <Dropdown.Menu>
-          {text('Dropdown.Menu children', 'Dropdown menu children')}
+          <Dropdown.Menu.Item>
+            {text('Dropdown.Menu children', 'Dropdown menu children')}
+          </Dropdown.Menu.Item>
         </Dropdown.Menu>
       </Dropdown>
     ),
@@ -80,18 +82,16 @@ storiesOf('Star Systems/Dropdown', module)
               menuProps={{
                 children: (
                   <>
-                    <div className="mb-2">
+                    <Dropdown.Menu.Item>
                       Clicking Escape closes the dropdown
-                    </div>
-                    <div className="mb-2">
+                    </Dropdown.Menu.Item>
+                    <Dropdown.Menu.Item>
                       Clicking outside the dropdown also closes it
-                    </div>
+                    </Dropdown.Menu.Item>
                   </>
                 ),
-                className: 'mt-2 p-3 rounded shadow-xl',
                 style: { minWidth: '300px' },
               }}
-              className="inline"
             />
           </div>
           <div className="m-5">
@@ -100,32 +100,31 @@ storiesOf('Star Systems/Dropdown', module)
                 children: 'Top-left positioned',
               }}
               menuProps={{
-                children: 'Up here, look at me!',
+                children: (
+                  <Dropdown.Menu.Item>Up here, look at me!</Dropdown.Menu.Item>
+                ),
                 position: 'topLeft',
-                className: 'p-3',
               }}
-              className="inline"
             />
           </div>
           <div className="m-5">
             <OpenableDropdown
               buttonProps={{
-                children: "With `menuProps.style.max-height: '100px'`",
+                children: "With `menuProps.style.max-height: '115px'`",
               }}
-              className="inline"
               menuProps={{
                 // Too lazy to type out a story example
                 /* eslint-disable @typescript-eslint/no-explicit-any, react/no-array-index-key */
                 children: new Array(20)
                   .fill(null)
                   .map((props: any, i: number) => (
-                    <div key={i} {...props}>
+                    <Dropdown.Menu.Item key={i} {...props}>
                       Item {i + 1}
-                    </div>
+                    </Dropdown.Menu.Item>
                   )),
                 /* eslint-enable @typescript-eslint/no-explicit-any, react/no-array-index-key */
                 style: {
-                  maxHeight: '100px',
+                  maxHeight: '115px',
                 },
               }}
             />
@@ -136,7 +135,6 @@ storiesOf('Star Systems/Dropdown', module)
                 children: 'Disabled',
                 disabled: true,
               }}
-              className="inline"
               disabled
             />
           </div>

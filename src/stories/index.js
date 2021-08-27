@@ -23,6 +23,7 @@ import '../components/Tooltip/story';
 import '../components/Input/story';
 import '../components/Input/Checkbox/story';
 import '../components/InputTime/story';
+import '../components/Select/story';
 import '../components/Typography/story';
 import '../components/Loader/story';
 

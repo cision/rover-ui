@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { mount, shallow } from 'enzyme';
-import { act } from 'react-dom/test-utils';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Button from '../Button';
 
@@ -25,37 +27,42 @@ describe('EasyDropdown', () => {
 
     describe('with defaultIsOpen', () => {
       it('starts open when true', () => {
-        const wrapper = mount(<EasyDropdown defaultIsOpen>Boom</EasyDropdown>);
+        render(<EasyDropdown defaultIsOpen>Boom</EasyDropdown>);
 
         expect(
-          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
+          screen
+            .getByRole('button', { name: 'Boom' })
+            .getAttribute('data-is-open')
         ).toEqual('true');
       });
 
       it('starts closed when false', () => {
-        const wrapper = mount(
-          <EasyDropdown defaultIsOpen={false}>Boom</EasyDropdown>
-        );
+        render(<EasyDropdown defaultIsOpen={false}>Boom</EasyDropdown>);
 
         expect(
-          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
+          screen
+            .getByRole('button', { name: 'Boom' })
+            .getAttribute('data-is-open')
         ).toEqual('false');
       });
 
       it("doesn't even care about controlled isOpen prop changes", () => {
-        const wrapper = mount(<EasyDropdown defaultIsOpen>Boom</EasyDropdown>);
+        const { rerender } = render(
+          <EasyDropdown defaultIsOpen>Boom</EasyDropdown>
+        );
 
-        wrapper.setProps({ isOpen: false });
-
+        rerender(<EasyDropdown defaultIsOpen={false}>Bang</EasyDropdown>);
         expect(
-          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
+          screen
+            .getByRole('button', { name: 'Bang' })
+            .getAttribute('data-is-open')
         ).toEqual('true');
       });
 
       it('clicking a menu item closes the menu', async () => {
         const onClickMenuItemSpy = jest.fn();
 
-        const wrapper = mount(
+        render(
           <EasyDropdown
             defaultIsOpen
             menuItems={[
@@ -70,14 +77,13 @@ describe('EasyDropdown', () => {
           </EasyDropdown>
         );
 
-        const menuItem = wrapper.find('.item-foo').first().parent();
-
-        act(() => menuItem.props().onClick('Pretend event!'));
-
-        expect(onClickMenuItemSpy.mock.calls[0][0]).toEqual('Pretend event!');
+        userEvent.click(screen.getByText('Bing'));
+        expect(onClickMenuItemSpy).toBeCalledTimes(1);
 
         expect(
-          wrapper.find(Button).getDOMNode().getAttribute('data-is-open')
+          screen
+            .getByRole('button', { name: 'Boom' })
+            .getAttribute('data-is-open')
         ).toEqual('false');
       });
     });
