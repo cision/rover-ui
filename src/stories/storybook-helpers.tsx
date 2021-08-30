@@ -56,7 +56,6 @@ interface InteractiveInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   fauxDisabled?: boolean;
   InputRenderer: React.FC<React.InputHTMLAttributes<HTMLInputElement>>;
-  onChange?: () => void;
 }
 
 export const InteractiveInput: React.FC<InteractiveInputProps> = ({
@@ -78,7 +77,7 @@ export const InteractiveInput: React.FC<InteractiveInputProps> = ({
       onChange={(e) => {
         setValue(e.target.value);
         setChecked(e.target.checked);
-        onChange();
+        onChange(e);
       }}
       value={value !== undefined ? value : undefined}
     />

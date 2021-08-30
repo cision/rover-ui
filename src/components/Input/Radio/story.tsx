@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, text } from '@storybook/addon-knobs';
@@ -38,6 +38,7 @@ storiesOf('Planets/Input/Radio', module)
             <Radio
               checked={boolean('checked', false)}
               className={text('className (HTML)', 'w-full')}
+              fauxDisabled={boolean('fauxDisabled', false)}
               id="SampleRadio"
               onChange={action('onChange (HTML)')}
             />
@@ -79,34 +80,104 @@ storiesOf('Planets/Input/Radio', module)
           </small>
         </p>
         <div>
-          {[[], ['checked'], ['disabled'], ['checked', 'disabled']].map(
-            (attributes) => {
-              const attributesId = ['atts', ...attributes].join('-');
-              const attributesLabel = attributes.join(' and ') || 'default';
+          {[
+            [],
+            ['checked'],
+            ['disabled'],
+            ['fauxDisabled'],
+            ['checked', 'disabled'],
+          ].map((attributes) => {
+            const attributesId = ['atts', ...attributes].join('-');
+            const attributesLabel = attributes.join(' and ') || 'default';
 
-              const attributesProps = attributes.reduce(
-                (acc, attr) => ({ ...acc, [attr]: true }),
-                {}
-              );
+            const attributesProps = attributes.reduce(
+              (acc, attr) => ({ ...acc, [attr]: true }),
+              {}
+            );
 
-              return (
-                <div className="my-6" key={attributesId}>
-                  <label htmlFor={attributesId}>
-                    {attributesLabel}{' '}
-                    <InteractiveInput
-                      InputRenderer={Radio}
-                      id={attributesId}
-                      onChange={action(`onChange ${attributesLabel}`)}
-                      {...attributesProps}
-                    />
-                  </label>
-                </div>
-              );
-            }
-          )}
+            return (
+              <div className="my-6" key={attributesId}>
+                <label htmlFor={attributesId}>
+                  {attributesLabel}{' '}
+                  <InteractiveInput
+                    InputRenderer={Radio}
+                    id={attributesId}
+                    onChange={action(`onChange ${attributesLabel}`)}
+                    {...attributesProps}
+                  />
+                </label>
+              </div>
+            );
+          })}
         </div>
       </Wrap>
     ),
+    {
+      info: {
+        inline: false,
+        source: true,
+      },
+    }
+  )
+  .add(
+    'Radio Group Example',
+    () => {
+      const [brother, setBrother] = useState('');
+      return (
+        <Wrap>
+          <form>
+            <h2>Example</h2>
+            <ul style={{ listStyleType: 'none' }}>
+              <li>
+                <label htmlFor="huey">
+                  <Radio
+                    checked={brother === 'huey'}
+                    name="brother"
+                    id="huey"
+                    value="huey"
+                    onChange={(e) => {
+                      action('onChange (HTML)')(e);
+                      setBrother('huey');
+                    }}
+                  />{' '}
+                  Huey
+                </label>
+              </li>
+              <li>
+                <label htmlFor="dewey">
+                  <Radio
+                    checked={brother === 'dewey'}
+                    name="brother"
+                    id="dewey"
+                    value="dewey"
+                    onChange={(e) => {
+                      action('onChange (HTML)')(e);
+                      setBrother('dewey');
+                    }}
+                  />{' '}
+                  Dewey
+                </label>
+              </li>
+              <li>
+                <label htmlFor="louie">
+                  <Radio
+                    checked={brother === 'louie'}
+                    name="brother"
+                    id="louie"
+                    value="louie"
+                    onChange={(e) => {
+                      action('onChange (HTML)')(e);
+                      setBrother('louie');
+                    }}
+                  />{' '}
+                  Louie
+                </label>
+              </li>
+            </ul>
+          </form>
+        </Wrap>
+      );
+    },
     {
       info: {
         inline: false,

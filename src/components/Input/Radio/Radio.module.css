@@ -1,10 +1,8 @@
 .Radio {
   position: relative;
   display: inline-block;
-  /* height: var(--rvr-radio-size);
-  width: var(--rvr-radio-size); */
-  height: 24px;
-  width: 24px;
+  height: var(--rvr-radio-size);
+  width: var(--rvr-radio-size);
 }
 
 .svg {
@@ -24,14 +22,17 @@
   z-index: 1;
   display: block;
 }
-
 .outline {
   fill: var(--rvr-color-font);
   transition: var(--rvr-transition-duration-fast) var(--rvr-linear) fill;
+  border-width: medium;
 }
 
 .inner {
-  fill: var(--rvr-white);
+  fill: none;
+}
+.Radio.checked .outline {
+  fill: var(--rvr-color-primary);
 }
 
 input:checked + .svg .outline {
@@ -55,5 +56,27 @@ input:disabled + .svg .outline {
 }
 
 input:checked + .svg .inner {
-  display: none;
+  fill: var(--rvr-color-primary);
+}
+
+.Radio.checked .check,
+.indeterminate + .svg .dash {
+  display: initial;
+  fill: var(--rvr-white);
+}
+
+.Radio.disabled .svg {
+  box-shadow: none;
+}
+
+input:disabled + .svg .outline,
+.Radio.disabled .svg .outline {
+  fill: var(--rvr-color-disabled);
+  box-shadow: none;
+}
+
+input:disabled + .svg .inner,
+.Radio.disabled .svg .inner {
+  fill: var(--rvr-color-disabled);
+  box-shadow: none;
 }
