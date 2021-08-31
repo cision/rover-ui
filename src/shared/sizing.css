@@ -66,6 +66,7 @@
 
   /* Form elements */
   --rvr-checkbox-size: calc(var(--rvr-baseSize) * 2.25); /* 18px */
+  --rvr-radio-size: calc(var(--rvr-baseSize) * 2); /* 16px */
 
   /* Dropdowns */
   /* Default EasyDropdown menu item with text label */

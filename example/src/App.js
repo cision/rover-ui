@@ -44,6 +44,7 @@ const App = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [inputCheckboxValue, setInputCheckboxValue] = useState(false);
+  const [inputRadioValue, setInputRadioValue] = useState(false);
   const [inputTimeValue, setInputTimeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isKiteVisible, setIsKiteVisible] = useState(false);
@@ -413,6 +414,19 @@ const App = () => {
           type="checkbox"
         />{' '}
         {JSON.stringify(inputCheckboxValue)}
+      </Section>
+
+      <Section title="Input.Radio">
+        <h1>Input.Radio</h1>
+        <Input
+          onChange={(e) =>
+            console.log(e.target.checked) ||
+            setInputRadioValue(e.target.checked)
+          }
+          checked={inputRadioValue}
+          type="radio"
+        />{' '}
+        {JSON.stringify(inputRadioValue)}
       </Section>
 
       <Section title="InputTime">
