@@ -24,6 +24,7 @@ import {
   Tooltip,
   Callout,
   Input,
+  Toggle,
   InputTime,
   Typography,
   Modal,
@@ -44,6 +45,7 @@ const App = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [inputCheckboxValue, setInputCheckboxValue] = useState(false);
+  const [inputToggleValue, setInputToggleValue] = useState(false);
   const [inputTimeValue, setInputTimeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isKiteVisible, setIsKiteVisible] = useState(false);
@@ -413,6 +415,20 @@ const App = () => {
           type="checkbox"
         />{' '}
         {JSON.stringify(inputCheckboxValue)}
+      </Section>
+
+      <Section title="Input.Toggle">
+        <h1>Input.Toggle</h1>
+        <Toggle
+          onClick={(e) =>
+            console.log(e.target.checked) ||
+            setInputToggleValue(e.target.checked)
+          }
+          checked={inputToggleValue}
+        />{' '}
+        {JSON.stringify(inputToggleValue)}
+        <Toggle fauxDisabled />
+        <Toggle checked fauxDisabled />
       </Section>
 
       <Section title="InputTime">
