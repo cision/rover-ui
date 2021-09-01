@@ -1,5 +1,6 @@
 .Toggle {
-  display: flex;
+  display: inline-block;
+  position: relative;
   width: 48px;
   height: 24px;
   background: var(--rvr-gray-40);
@@ -7,7 +8,7 @@
 }
 
 .input {
-  position: sticky;
+  position: absolute;
   top: 0;
   left: 0;
   height: 100%;

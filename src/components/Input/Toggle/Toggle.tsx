@@ -6,9 +6,15 @@ import type { InputProps } from '../Input';
 
 import styles from './Toggle.module.css';
 
-const Toggle: React.FC<InputProps> = ({
+interface ToggleWithRefProps extends InputProps {
+  fauxDisabled?: boolean;
+  forwardedRef?: React.Ref<HTMLInputElement>;
+}
+
+const ToggleWithRef: React.FC<ToggleWithRefProps> = ({
   checked = false,
   fauxDisabled = false,
+  forwardedRef: ref,
   className = '',
   ...passedProps
 }) => {
@@ -24,6 +30,7 @@ const Toggle: React.FC<InputProps> = ({
         aria-hidden
         tabIndex={fauxDisabled ? -1 : undefined}
         checked={checked}
+        ref={ref || undefined}
         {...passedProps}
         className={styles.input}
       />
@@ -31,5 +38,9 @@ const Toggle: React.FC<InputProps> = ({
     </div>
   );
 };
+
+const Toggle = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => (
+  <ToggleWithRef {...props} forwardedRef={ref || undefined} />
+));
 
 export default Toggle;
