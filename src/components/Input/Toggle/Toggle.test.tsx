@@ -21,4 +21,28 @@ describe('Toggle', () => {
       expect(toggleId).toBe('toggleId');
     });
   });
+
+  describe('when clicked with onChange handler', () => {
+    it('should call the handler with the expected value', async () => {
+      let checkValue = false;
+      const changeHandler = () => {
+        checkValue = !checkValue;
+      };
+      const { getByTestId } = render(
+        <Toggle
+          data-testid="toggleElem"
+          onChange={changeHandler}
+          checked={checkValue}
+        />
+      );
+
+      const toggleElem = getByTestId('toggleElem');
+
+      toggleElem.click();
+      expect(checkValue).toBe(true);
+
+      toggleElem.click();
+      expect(checkValue).toBe(false);
+    });
+  });
 });

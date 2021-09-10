@@ -420,10 +420,7 @@ const App = () => {
       <Section title="Input.Toggle">
         <h1>Input.Toggle</h1>
         <Toggle
-          onClick={(e) =>
-            console.log(e.target.checked) ||
-            setInputToggleValue(e.target.checked)
-          }
+          onClick={(e) => setInputToggleValue(e.target.checked)}
           checked={inputToggleValue}
         />{' '}
         {JSON.stringify(inputToggleValue)}
