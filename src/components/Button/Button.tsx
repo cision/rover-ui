@@ -26,7 +26,6 @@ type TagType =
 interface BaseButtonProps {
   circle?: boolean;
   className?: string;
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   forwardedRef?: React.Ref<any>;
   hollow?: boolean;
