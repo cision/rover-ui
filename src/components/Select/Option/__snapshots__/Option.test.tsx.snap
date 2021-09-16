@@ -4,7 +4,7 @@ exports[`Option renders 1`] = `
 <body>
   <div>
     <div
-      class="Item content Button text md"
+      class="Item content Button text md as-text"
     >
       <span>
         Boom

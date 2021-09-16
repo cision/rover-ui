@@ -42,7 +42,7 @@ exports[`Kite renders correctly 1`] = `
       class="dismissButton"
     >
       <button
-        class="Button text lg"
+        class="Button text lg as-text"
         data-testid="kite-dismiss-button"
         type="button"
       >

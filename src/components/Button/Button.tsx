@@ -26,11 +26,11 @@ type TagType =
 interface BaseButtonProps {
   circle?: boolean;
   className?: string;
-  darkMode?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   forwardedRef?: React.Ref<any>;
   hollow?: boolean;
   level?: TButtonLevel;
+  outline?: boolean;
   size?: TButtonSize;
   tag?: TagType;
 
@@ -97,10 +97,10 @@ const Button: ButtonType = ({
   children: initChildren = null,
   circle = undefined,
   className: passedClassName = '',
-  darkMode = false,
   forwardedRef,
-  hollow = false,
+  hollow: DEPRECATED_hollow = false,
   level = 'secondary',
+  outline = false,
   size = 'lg',
   tag = null,
   ...passedProps
@@ -122,13 +122,22 @@ const Button: ButtonType = ({
         styles[level],
         styles[size],
         {
-          [styles.hollow]: hollow || darkMode,
+          [styles['as-text']]: ['link', 'text'].indexOf(level) >= 0,
           [styles.circle]: circle,
+          [styles.outline]: outline || DEPRECATED_hollow, // eslint-disable-line @typescript-eslint/camelcase
           [styles['primary-alt']]: level === 'teal', // For backwards compatibility with the old level name
         },
         truthyStateKeys.map((truthyStateKey) => styles[truthyStateKey])
       ),
-    [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
+    [
+      circle,
+      DEPRECATED_hollow, // eslint-disable-line @typescript-eslint/camelcase
+      level,
+      outline,
+      passedClassName,
+      size,
+      truthyStateKeys,
+    ]
   );
 
   let Tag: TagType = 'button';

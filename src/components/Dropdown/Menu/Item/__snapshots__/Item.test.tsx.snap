@@ -4,7 +4,7 @@ exports[`Item renders 1`] = `
 <body>
   <div>
     <button
-      class="Item button Button text md"
+      class="Item button Button text md as-text"
       type="button"
     >
       <span>
@@ -14,7 +14,7 @@ exports[`Item renders 1`] = `
   </div>
   <div>
     <div
-      class="Item content Button text md"
+      class="Item content Button text md as-text"
     >
       <span>
         Boom
@@ -28,7 +28,7 @@ exports[`Item when children is a React node still renders 1`] = `
 <body>
   <div>
     <div
-      class="Item content Button text md"
+      class="Item content Button text md as-text"
     >
       <span>
         Span!

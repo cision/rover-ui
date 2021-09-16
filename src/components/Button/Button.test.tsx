@@ -42,9 +42,16 @@ describe('Button', () => {
   });
 
   describe('props.level', () => {
-    it('adds custom className', () => {
+    it('adds "primary" level className', () => {
       render(<Button level="primary">Boom</Button>);
       expect(screen.getByRole('button').classList).toContain('primary');
+    });
+  });
+
+  describe('props.outline', () => {
+    it('adds "outline" className', () => {
+      render(<Button outline />);
+      expect(screen.getByRole('button').classList).toContain('outline');
     });
   });
 
