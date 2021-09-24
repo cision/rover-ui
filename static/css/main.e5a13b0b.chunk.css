@@ -1564,7 +1564,7 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
   border-radius: 8px;
   background: var(--rvr-white);
   transition: all var(--rvr-transition-duration-fast) var(--rvr-linear);
-  box-shadow: 0px 0px 3px 2px rgba(0 0 0 / 20%);
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 .Toggle_checked__2Pvn4 {
@@ -2568,4 +2568,4 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
 }
 
 
-/*# sourceMappingURL=main.61c3d451.chunk.css.map*/
+/*# sourceMappingURL=main.e5a13b0b.chunk.css.map*/
