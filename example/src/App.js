@@ -24,10 +24,15 @@ import {
   Tooltip,
   Callout,
   Input,
+  Toggle,
   InputTime,
   Typography,
   Modal,
   Form,
+  Kite,
+  Loader,
+  Select,
+  Option,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -41,8 +46,10 @@ const App = () => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [inputCheckboxValue, setInputCheckboxValue] = useState(false);
+  const [inputToggleValue, setInputToggleValue] = useState(false);
   const [inputTimeValue, setInputTimeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isKiteVisible, setIsKiteVisible] = useState(false);
 
   const toggleTooltip = function () {
     setTooltipOpen((prev) => !prev);
@@ -411,6 +418,17 @@ const App = () => {
         {JSON.stringify(inputCheckboxValue)}
       </Section>
 
+      <Section title="Input.Toggle">
+        <h1>Input.Toggle</h1>
+        <Toggle
+          onClick={(e) => setInputToggleValue(e.target.checked)}
+          checked={inputToggleValue}
+        />{' '}
+        {JSON.stringify(inputToggleValue)}
+        <Toggle fauxDisabled />
+        <Toggle checked fauxDisabled />
+      </Section>
+
       <Section title="InputTime">
         <InputTime
           value={inputTimeValue}
@@ -456,6 +474,54 @@ const App = () => {
             </Button>
           </Modal.Footer>
         </Modal>
+      </Section>
+
+      <Section title="Kite">
+        <div>
+          <Button
+            modifiers={['primary']}
+            onClick={() => setIsKiteVisible(true)}
+          >
+            Show Kite
+          </Button>
+        </div>
+        <Kite
+          icon={<Kite.Icon fill="green" height="20" name="check" width="20" />}
+          canBeDismissed
+          visible={isKiteVisible}
+          onClose={() => setIsKiteVisible(false)}
+          ttl={3000}
+        >
+          <Kite.Header>Success Kite!</Kite.Header>
+        </Kite>
+      </Section>
+      <Section title="Loader">
+        <div>
+          <Loader size="sm" />
+        </div>
+        <div>
+          <Loader />
+        </div>
+      </Section>
+
+      <Section title="Select">
+        <Select.WithRef defaultValue="Option 6" placeholder="Pick one" required>
+          <Option value={new Date().toISOString()}>
+            Current time - {new Date().toString()}
+          </Option>
+          <Option>Option 1</Option>
+          <Option>Option 2</Option>
+          <Option>Option 3</Option>
+          <Option>Option 4</Option>
+          <Option>Option 5</Option>
+          <Option>Option 6</Option>
+          <Option disabled>Disabled option</Option>
+          <Option>Option 8</Option>
+          <Option>Option 9</Option>
+          <Option>Option 10</Option>
+          <Option>Option 11 is very wide, possibly too wide.</Option>
+        </Select.WithRef>{' '}
+        (required)
       </Section>
 
       {/** USAGE_INJECTOR */}

@@ -22,9 +22,12 @@ import '../components/Avatar/story';
 import '../components/Tooltip/story';
 import '../components/Input/story';
 import '../components/Input/Checkbox/story';
+import '../components/Input/Toggle/story';
 import '../components/InputTime/story';
+import '../components/Select/story';
 import '../components/Typography/story';
 import '../components/Form/story';
+import '../components/Loader/story';
 
 /*
  * STAR SYSTEMS
@@ -76,4 +79,5 @@ import '../components/Responsive/Visible/story';
  * NEW & UNCATEGORIZED
  * Move these to a section above before committing
  */
+import '../components/Kite/story';
 /** INJECTOR */

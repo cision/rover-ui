@@ -1,90 +1,122 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import Button from '.';
 
 describe('Button', () => {
   it('renders a `button` tag without error', () => {
-    const wrapper = mount(<Button />);
-    const inner = wrapper.childAt(0);
-    expect(inner.name()).toEqual('button');
+    render(<Button />);
+    expect(screen.getByRole('button')).toMatchSnapshot();
   });
 
   it('You can override default props', () => {
-    const wrapper = mount(<Button type="submit" />);
-    expect(wrapper.prop('type')).toEqual('submit');
+    render(<Button type="submit">Boom</Button>);
+    expect(screen.getByRole('button').getAttribute('type')).toEqual('submit');
   });
 
   describe('props.children', () => {
     it('renders strings', () => {
-      const wrapper = shallow(<Button>Boom</Button>);
-      expect(wrapper.text()).toEqual('Boom');
+      render(<Button className="foo">Boom</Button>);
+      expect(screen.getByRole('button').textContent).toEqual('Boom');
     });
 
     it('renders React nodes', () => {
-      const wrapper = shallow(
-        <Button>
-          <span>Boom</span>
+      render(
+        <Button className="foo">
+          <span data-testid="bar">Boom</span>
         </Button>
       );
 
-      expect(wrapper.text()).toEqual('Boom');
+      expect(screen.getByRole('button').textContent).toEqual('Boom');
+      expect(screen.getByTestId('bar')).toBeTruthy();
     });
   });
 
   describe('props.className', () => {
     it('adds custom className', () => {
-      const wrapper = shallow(<Button className="foo" />);
-      expect(wrapper.hasClass('foo')).toEqual(true);
+      render(<Button className="foo">Boom</Button>);
+      expect(screen.getByRole('button').classList).toContain('foo');
     });
   });
 
-  describe('props.hollow', () => {
-    // Our current test build doesn't do css modules, so this won't work
-    // it('adds hollow className', () => {
-    //   const wrapper = shallow(<Button hollow />);
-    //   expect(wrapper.hasClass(style.hollow)).toEqual(true);
-    // });
+  describe('props.level', () => {
+    it('adds "primary" level className', () => {
+      render(<Button level="primary">Boom</Button>);
+      expect(screen.getByRole('button').classList).toContain('primary');
+    });
   });
 
-  describe('props.level', () => {
-    // Our current test build doesn't do css modules, so this won't work
-    // it.ignore('adds "primary" level className', () => {
-    //   const wrapper = shallow(<Button level="primary" />);
-    //   expect(wrapper.hasClass(style.primary)).toEqual(true);
-    // });
+  describe('props.outline', () => {
+    it('adds "outline" className', () => {
+      render(<Button outline />);
+      expect(screen.getByRole('button').classList).toContain('outline');
+    });
   });
 
   describe('props.size', () => {
-    it('does not pass size prop to `Addon` children', () => {
-      const wrapper = mount(
-        <Button size="md">
-          <Button.Addon size="md" />
-        </Button>
-      );
-      let addon = wrapper.find(Button.Addon);
-      expect(addon.props().size).toEqual('md');
-      wrapper.setProps({ size: 'sm' });
-      addon = wrapper.find(Button.Addon);
-      expect(addon.props().size).toEqual('md');
-      wrapper.setProps({ size: 'lg' });
-      addon = wrapper.find(Button.Addon);
-      expect(addon.props().size).toEqual('md');
+    describe('is available to `Addon` children by default', () => {
+      it('sm', () => {
+        render(
+          <Button size="sm">
+            <Button.Addon>Addon</Button.Addon>
+          </Button>
+        );
+
+        expect(screen.getByText('Addon').classList).toContain('sm');
+      });
+
+      it('lg', () => {
+        render(
+          <Button size="lg">
+            <Button.Addon>Addon</Button.Addon>
+          </Button>
+        );
+
+        expect(screen.getByText('Addon').classList).toContain('lg');
+      });
+    });
+
+    describe('can be overridden by `Addon` children', () => {
+      it('sm', () => {
+        render(
+          <Button size="sm">
+            <Button.Addon size="md">Addon</Button.Addon>
+          </Button>
+        );
+
+        expect(screen.getByText('Addon').classList).toContain('md');
+      });
+
+      it('lg', () => {
+        render(
+          <Button size="lg">
+            <Button.Addon size="md">Addon</Button.Addon>
+          </Button>
+        );
+
+        expect(screen.getByText('Addon').classList).toContain('md');
+      });
     });
   });
 
   describe('props.href', () => {
     it('renders an anchor tag when there is an href', () => {
-      const wrapper = mount(<Button href="#example" />);
-      const inner = wrapper.childAt(0);
-      expect(inner.name()).toEqual('a');
+      render(<Button href="#example">Boom</Button>);
+      expect(screen.getByRole('link')).toBeTruthy();
     });
 
     it('renders a button tag when there is not href', () => {
       const callback = jest.fn();
-      const wrapper = mount(<Button onClick={callback} />);
-      const inner = wrapper.childAt(0);
-      expect(inner.name()).toEqual('button');
+
+      render(<Button onClick={callback}>Boom</Button>);
+
+      const button = screen.getByRole('button');
+      userEvent.click(button);
+
+      expect(button).toBeTruthy();
+      expect(callback).toBeCalledTimes(1);
     });
   });
 });

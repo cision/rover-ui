@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 
+import Context from './Button.context';
 import Addon, { AddonProps } from './Addon/Addon';
 import styles from './Button.module.css';
 import { TButtonLevel, TButtonSize, TButtonState } from './types';
@@ -11,19 +12,27 @@ import { TButtonLevel, TButtonSize, TButtonState } from './types';
   Select (-> These might be better served as a different component)
 */
 
-type TagType = {
+type CustomTagType = {
   className?: string;
   [key: string]: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
+type TagType =
+  | React.FC<CustomTagType>
+  | React.ComponentType<CustomTagType>
+  | string
+  | null;
+
 interface BaseButtonProps {
   circle?: boolean;
   className?: string;
-  darkMode?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  forwardedRef?: React.Ref<any>;
   hollow?: boolean;
   level?: TButtonLevel;
+  outline?: boolean;
   size?: TButtonSize;
-  tag?: React.FC<TagType> | React.ComponentType<TagType> | null;
+  tag?: TagType;
 
   // States
   hover?: boolean;
@@ -35,19 +44,21 @@ interface BaseButtonProps {
 }
 
 // Button props
-type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   BaseButtonProps & {
     href?: undefined;
   };
 
 // Anchor props
-type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
+export type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   BaseButtonProps & {
     href?: string;
   };
 
 type ButtonType = React.FC<ButtonElementProps | AnchorElementProps> & {
   Addon: React.FC<AddonProps>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  WithRef: any;
 };
 
 // Guard to check if href exists in props
@@ -86,37 +97,22 @@ const Button: ButtonType = ({
   children: initChildren = null,
   circle = undefined,
   className: passedClassName = '',
-  darkMode = false,
-  hollow = false,
+  forwardedRef,
+  hollow: DEPRECATED_hollow = false,
   level = 'secondary',
+  outline = false,
   size = 'lg',
-  tag: Tag = null,
+  tag = null,
   ...passedProps
 }: ButtonElementProps | AnchorElementProps) => {
-  const children = initChildren;
+  const children = React.Children.map(initChildren, (child) =>
+    typeof child === 'string' ? <span>{child}</span> : child
+  );
 
-  // For future ref
   const truthyStateKeys = useMemo(
     () => states.filter((state) => !!passedProps[state]),
     [passedProps]
   );
-
-  // Filter out undefined passedProps and `active` from DOM element tags
-  // const safePassedProps = useMemo(
-  //   () =>
-  //     Object.entries(passedProps).reduce((result, [key, value]) => {
-  //       if (value === undefined) {
-  //         return result;
-  //       }
-
-  //       if (typeof Tag === 'string' && key === 'active') {
-  //         return result;
-  //       }
-
-  //       return { ...result, [key]: value };
-  //     }, {}),
-  //   [passedProps, Tag]
-  // );
 
   const className = useMemo(
     () =>
@@ -126,48 +122,50 @@ const Button: ButtonType = ({
         styles[level],
         styles[size],
         {
-          [styles.hollow]: hollow || darkMode,
+          [styles['as-text']]: ['link', 'text'].indexOf(level) >= 0,
           [styles.circle]: circle,
+          [styles.outline]: outline || DEPRECATED_hollow, // eslint-disable-line @typescript-eslint/camelcase
           [styles['primary-alt']]: level === 'teal', // For backwards compatibility with the old level name
         },
-        /*
-          In addition to "real" boolean props, this adds class names for
-          'disabled', 'active', etc. so consumers can force appearance on
-          elements easily
-        */
         truthyStateKeys.map((truthyStateKey) => styles[truthyStateKey])
       ),
-    [circle, darkMode, hollow, level, passedClassName, size, truthyStateKeys]
+    [
+      circle,
+      DEPRECATED_hollow, // eslint-disable-line @typescript-eslint/camelcase
+      level,
+      outline,
+      passedClassName,
+      size,
+      truthyStateKeys,
+    ]
   );
 
-  if (Tag) {
-    return (
-      <Tag {...passedProps} className={className}>
+  let Tag: TagType = 'button';
+
+  if (tag) {
+    Tag = tag;
+  } else if (hasHref(passedProps)) {
+    Tag = 'a';
+  }
+
+  return (
+    <Context.Provider value={{ size }}>
+      <Tag
+        className={className}
+        ref={forwardedRef}
+        type={Tag === 'button' ? 'button' : undefined}
+        {...passedProps}
+      >
         {children}
       </Tag>
-    );
-  }
-
-  if (hasHref(passedProps)) {
-    return (
-      <a {...passedProps} className={className}>
-        {children}
-      </a>
-    );
-  }
-
-  // button render
-  return (
-    <button
-      type="button"
-      className={className}
-      {...(passedProps as ButtonElementProps)}
-    >
-      {children}
-    </button>
+    </Context.Provider>
   );
 };
 
 Button.Addon = Addon;
+
+Button.WithRef = React.forwardRef((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));
 
 export default Button;

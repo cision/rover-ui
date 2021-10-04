@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { ClassValue } from 'classnames/types';
 import Addon from './Addon';
 
 import styles from './Pill.module.css';
@@ -9,7 +8,7 @@ import styles from './Pill.module.css';
 export interface PillProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className' | 'onClick'> {
   checked?: boolean;
-  className?: ClassValue;
+  className?: string;
   onClick?: (() => void) | null;
 }
 

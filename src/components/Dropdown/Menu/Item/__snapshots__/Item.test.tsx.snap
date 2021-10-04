@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item renders 1`] = `
+<body>
+  <div>
+    <button
+      class="Item button Button text md as-text"
+      type="button"
+    >
+      <span>
+        Hi
+      </span>
+    </button>
+  </div>
+  <div>
+    <div
+      class="Item content Button text md as-text"
+    >
+      <span>
+        Boom
+      </span>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Item when children is a React node still renders 1`] = `
+<body>
+  <div>
+    <div
+      class="Item content Button text md as-text"
+    >
+      <span>
+        Span!
+      </span>
+    </div>
+  </div>
+</body>
+`;

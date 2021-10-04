@@ -1,0 +1,59 @@
+.Toggle {
+  display: inline-block;
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background: var(--rvr-gray-40);
+  border-radius: 24px;
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 24px;
+}
+
+.notch {
+  pointer-events: none;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: 4px;
+  border-radius: 8px;
+  background: var(--rvr-white);
+  transition: all var(--rvr-transition-duration-fast) var(--rvr-linear);
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.checked {
+  background: var(--rvr-blue);
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.disabled > input.input {
+  cursor: not-allowed;
+}
+
+.disabled > span.notch {
+  box-shadow: none;
+}
+
+.checked > span.notch {
+  transform: translateX(24px);
+}
+
+.Toggle:focus-within:not(.disabled) {
+  outline: 0 transparent none;
+  box-shadow: 0px 0px 0px 2px var(--rvr-white),
+    0px 0px 1px 3px var(--rvr-color-primary-hover),
+    0px 0px 8px 2px var(--rvr-color-primary-hover);
+}

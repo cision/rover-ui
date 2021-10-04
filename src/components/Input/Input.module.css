@@ -38,8 +38,8 @@
 
 .Input.focus,
 .Input:focus {
-  border-color: var(--rvr-color-primary);
-  box-shadow: 0 0 4px var(--rvr-color-primary);
+  border-color: var(--rvr-color-primary-hover);
+  box-shadow: 0 0 4px var(--rvr-color-primary-hover);
   outline: 0 none;
 }
 
@@ -54,6 +54,7 @@
 
 .Input:disabled,
 .Input.disabled {
+  background-color: var(--rvr-white);
   border-color: var(--rvr-color-disabled);
   box-shadow: none;
   color: var(--rvr-color-disabled);
