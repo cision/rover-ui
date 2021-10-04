@@ -9,7 +9,7 @@ import styles from './story.module.css';
 
 import { FormContext } from './Form';
 
-storiesOf('Uncategorized/Form', module)
+storiesOf('Galaxies/Form', module)
   .addParameters({
     readme: {
       sidebar: Readme,

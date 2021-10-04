@@ -24,7 +24,6 @@ import '../components/Input/story';
 import '../components/Input/Checkbox/story';
 import '../components/InputTime/story';
 import '../components/Typography/story';
-import '../components/Form/story';
 
 /*
  * STAR SYSTEMS
@@ -57,6 +56,7 @@ import '../components/EasyPill/story';
 import '../components/SideTray/story';
 import '../components/Accordion/story';
 import '../components/Modal/story';
+import '../components/Form/story';
 
 /*
  * DARK MATTER
