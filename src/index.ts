@@ -33,6 +33,7 @@ export {
 export { default as Tooltip, EasyRichTooltip } from './components/Tooltip';
 export { default as Input, Checkbox, Toggle } from './components/Input';
 export { default as InputTime } from './components/InputTime';
+export { default as DatePicker } from './components/DatePicker';
 export { default as Typography } from './components/Typography';
 export { default as Modal } from './components/Modal';
 export { default as Kite } from './components/Kite';

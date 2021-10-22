@@ -32,6 +32,7 @@ import {
   Loader,
   Select,
   Option,
+  DatePicker,
   // IMPORT_INJECTOR
 } from '@cision/rover-ui';
 
@@ -49,6 +50,8 @@ const App = () => {
   const [inputTimeValue, setInputTimeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isKiteVisible, setIsKiteVisible] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(new Date());
+  const [showInlineCalendar, setShowInlineCalendar] = useState(false);
 
   const toggleTooltip = function () {
     setTooltipOpen((prev) => !prev);
@@ -60,6 +63,15 @@ const App = () => {
       <p>It can take any form you want!</p>
     </React.Fragment>
   );
+
+  const handleDateClick = (day) => {
+    setSelectedDay(day);
+  };
+
+  const handleInlineDateClick = (day) => {
+    setSelectedDay(day);
+    setShowInlineCalendar(false);
+  };
 
   return (
     <div className="p-8 bg-gray-200 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -517,6 +529,34 @@ const App = () => {
           <Option>Option 11 is very wide, possibly too wide.</Option>
         </Select.WithRef>{' '}
         (required)
+      </Section>
+      <Section title="DatePicker">
+        <DatePicker
+          showOutsideDays
+          onDayClick={handleDateClick}
+          selectedDays={selectedDay}
+        />
+        <br />
+        <Input
+          value={selectedDay.toISOString().split('T')[0]}
+          onClick={() => setShowInlineCalendar(true)}
+        />
+        {showInlineCalendar && (
+          <Paper
+            style={{
+              boxShadow: '0px 0px 2px 2px rgb(0 0 0 / 20%)',
+              display: 'table',
+              padding: '2px',
+              position: 'absolute',
+            }}
+          >
+            <DatePicker
+              showOutsideDays
+              onDayClick={handleInlineDateClick}
+              selectedDays={selectedDay}
+            />
+          </Paper>
+        )}
       </Section>
 
       {/** USAGE_INJECTOR */}
