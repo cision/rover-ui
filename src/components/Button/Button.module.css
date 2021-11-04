@@ -259,6 +259,12 @@
 
 .as-text.focus,
 .as-text:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.as-text.focus-visible ,
+.as-text:focus-visible  {
   outline: 5px auto var(--rvr-btn-focus-outline-color);
   box-shadow: none;
 }
