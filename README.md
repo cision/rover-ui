@@ -16,7 +16,7 @@ yarn add @cision/rover-ui
 
 ```sh
 # npm
-npm install --save @cision/rover-ui
+npm i @cision/rover-ui
 ```
 
 For more instructions on installing and using the RoverUI package in your app, see the [docs in Storybook](https://cision.github.io/rover-ui)
