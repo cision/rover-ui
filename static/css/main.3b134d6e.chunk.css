@@ -752,6 +752,12 @@
 
 .Button_as-text__254_z.Button_focus__XizcQ,
 .Button_as-text__254_z:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.Button_as-text__254_z.Button_focus-visible__2_gxs ,
+.Button_as-text__254_z:focus-visible  {
   outline: 5px auto var(--rvr-btn-focus-outline-color);
   box-shadow: none;
 }
@@ -2568,4 +2574,4 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
 }
 
 
-/*# sourceMappingURL=main.e5a13b0b.chunk.css.map*/
+/*# sourceMappingURL=main.3b134d6e.chunk.css.map*/
