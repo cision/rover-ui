@@ -59,36 +59,6 @@ See our [Contribution guidelines](./CONTRIBUTING.md) for more information.
 
 ## Reporting issues
 
-Report issues at the [GitHub issue tracker](https://github.com/cision/rover-ui/issues).
+Internal reports should be created on Cision Jira (more details to come)
 
-## Customizing the theme with a custom build
-
-There are a few different styling paradigms at work in RoverUI.
-Currently, the best way to customize appearance is by forking the project and making a custom build.
-
-1. Fork the `rover-ui` repository
-2. Edit files
-3. Run `yarn build` from the project root
-4. Publish your fork
-5. Point your front-end consumer app at the fork
-
-Now, you can edit CSS-in-JS and/or the CSS custom properties that are imported for use in CSS modules.
-
-## CSS-in-JS
-
-> **DEPRECATED**: We are currently in the process of removing CSS-in-JS and will be completely removed prior to v3.x.
-
-RoverUI uses [styled-components](https://www.npmjs.com/package/styled-components) and [styled-system](https://www.npmjs.com/package/styled-system) on _some_ components.
-Any component that's currently wrapped in the `withDefaultTheme` HOC should be using theme properties.
-
-To customize CSS-in-JS themes, edit `src/shared/theme.js` and the files it imports.
-
-### Customize the CSS module theme with a custom build
-
-RoverUI uses CSS modules with [css-loader](https://www.npmjs.com/package/css-loader) on _some_ components.
-
-To customize the CSS modules theme, edit `src/shared/**/*.css`
-
-## License
-
-MIT © [mdespuits](https://github.com/mdespuits)
+Public issues can be reported at the [GitHub issue tracker](https://github.com/cision/rover-ui/issues).
