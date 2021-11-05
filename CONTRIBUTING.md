@@ -1,6 +1,10 @@
 # Contributing to RoverUI
 
-## What to avoid in RoverUI
+## Do
+
+RoverUI components should be Presentational building blocks. 
+
+## Don't
 
 It's _not_ a repository for all shared components. Don't try to add components that deal specifically with business logic and concepts here. Don't try to add components that handle whole layout areas. This is a UI library only.
 
