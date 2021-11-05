@@ -1,6 +1,6 @@
 # RoverUI
 
-> UI Component Library used at Cision
+> React UI Component Library used at Cision
 
 [![NPM](https://img.shields.io/npm/v/@cision/rover-ui.svg)](https://www.npmjs.com/package/@cision/rover-ui)
 [![Tests](https://github.com/cision/rover-ui/workflows/Tests/badge.svg)](#install)
