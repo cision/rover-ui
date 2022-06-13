@@ -181,6 +181,7 @@ import TwitterComment from './icons/TwitterComment';
 import TwitterEmail from './icons/TwitterEmail';
 import TwitterLike from './icons/TwitterLike';
 import TwitterVerified from './icons/TwitterVerified';
+import VerificationBadge from './icons/VerificationBadge';
 
 export const iconsMap = {
   'ad-equiv': AdEquiv,
@@ -360,6 +361,7 @@ export const iconsMap = {
   'twitter-email': TwitterEmail,
   'twitter-like': TwitterLike,
   'twitter-verified': TwitterVerified,
+  'verification-badge': VerificationBadge,
   /* NAME_INJECTOR */
 };
 
