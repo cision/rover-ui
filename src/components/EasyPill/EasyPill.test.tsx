@@ -18,6 +18,17 @@ describe('EasyPill', () => {
       expect(wrapper.children()).toHaveLength(1);
       expect(wrapper.text()).toEqual('EasyPill 1');
     });
+
+    it('renders its Addon with tooltip', () => {
+      const tooltip = 'tooltip test';
+      const wrapper = mount(
+        <EasyPill tooltip={tooltip} onDelete={() => {}} checked>
+          EasyPill 2
+        </EasyPill>
+      );
+      const tooltipWapper = wrapper.find('Tooltip');
+      expect(tooltipWapper.children()).toHaveLength(1);
+    });
   });
 
   describe('with props.actions', () => {

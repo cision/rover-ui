@@ -7,11 +7,15 @@ import Pill from '../Pill';
 import { PillProps } from '../Pill/Pill';
 import styles from './EasyPill.module.css';
 import type { MenuItem } from '../EasyDropdown/EasyDropdown';
+import Tooltip from '../Tooltip';
+import { TooltipDirection } from '../Tooltip/Tooltip';
 
 interface EasyPillProps extends PillProps {
   actions?: MenuItem[];
   children?: React.ReactNode;
   onDelete?: (...args) => void;
+  tooltip?: string;
+  tooltipDirection?: TooltipDirection;
 }
 
 interface EasyPillDropdownProps {
@@ -74,8 +78,24 @@ export const EasyPill: React.FC<EasyPillProps> = ({
   actions,
   children,
   onDelete,
+  tooltip,
+  tooltipDirection = 'top-right',
   ...passedProps
 }) => {
+  const renderIfTooltip = () => {
+    return tooltip ? (
+      <Tooltip
+        content={<span className={styles.tooltipText}>{tooltip}</span>}
+        direction={tooltipDirection}
+        showOnHover
+      >
+        <Icon style={{ display: 'block' }} name="clear" />
+      </Tooltip>
+    ) : (
+      <Icon style={{ display: 'block' }} name="clear" />
+    );
+  };
+
   return (
     <Pill {...passedProps}>
       {children}
@@ -92,7 +112,7 @@ export const EasyPill: React.FC<EasyPillProps> = ({
                 onDelete(e);
               }}
             >
-              <Icon style={{ display: 'block' }} name="clear" />
+              {renderIfTooltip()}
             </Pill.Addon>
           )
         ))}

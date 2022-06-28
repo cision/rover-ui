@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { boolean, object } from '@storybook/addon-knobs';
 
-import EasyPill from './';
+import EasyPill from '.';
 import Readme from './README.md';
 
 storiesOf('Galaxies/EasyPill', module)
@@ -33,9 +33,7 @@ storiesOf('Galaxies/EasyPill', module)
           actions={withActions ? actions : []}
           checked={boolean('checked', false)}
           onClick={action('onClick')}
-          onDelete={
-            boolean('with `onDelete`', true) ? action('onDelete') : null
-          }
+          onDelete={action('onDelete')}
         >
           EasyPill 1
         </EasyPill>
@@ -51,7 +49,8 @@ storiesOf('Galaxies/EasyPill', module)
   .add(
     'Examples',
     () => {
-      const CheckablePill = props => {
+      const CheckablePill = (props) => {
+        const { children } = props;
         const [isChecked, setIsChecked] = useState(false);
 
         return (
@@ -60,7 +59,7 @@ storiesOf('Galaxies/EasyPill', module)
             checked={isChecked}
             onClick={() => setIsChecked(!isChecked)}
           >
-            {props.children}
+            {children}
           </EasyPill>
         );
       };
@@ -102,6 +101,14 @@ storiesOf('Galaxies/EasyPill', module)
           <br />
           <CheckablePill onDelete={action('onDelete')}>
             With onDelete but no actions
+          </CheckablePill>
+          <br />
+          <br />
+          <CheckablePill
+            onDelete={action('onDelete')}
+            tooltip="With onDelete but no actions and tooltip"
+          >
+            With onDelete but no actions and tooltip
           </CheckablePill>
           <br />
           <br />

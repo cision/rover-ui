@@ -2,3 +2,11 @@
   align-self: center;
   margin-right: var(--rvr-space-md);
 }
+
+.tooltipText {
+  height: 24px;
+  line-height: 24px;
+  color: #34404b;
+  font-weight: normal;
+  white-space: nowrap;
+}
