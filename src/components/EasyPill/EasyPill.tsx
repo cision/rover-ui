@@ -82,7 +82,7 @@ export const EasyPill: React.FC<EasyPillProps> = ({
   tooltipDirection = 'top-right',
   ...passedProps
 }) => {
-  const renderIfTooltip = () => {
+  const renderIconWithOptionalTooltip = () => {
     return tooltip ? (
       <Tooltip
         content={<span className={styles.tooltipText}>{tooltip}</span>}
@@ -112,7 +112,7 @@ export const EasyPill: React.FC<EasyPillProps> = ({
                 onDelete(e);
               }}
             >
-              {renderIfTooltip()}
+              {renderIconWithOptionalTooltip()}
             </Pill.Addon>
           )
         ))}

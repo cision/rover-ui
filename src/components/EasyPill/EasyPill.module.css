@@ -4,9 +4,9 @@
 }
 
 .tooltipText {
-  height: 24px;
-  line-height: 24px;
-  color: #34404b;
+  height: var(--rvr-line-height-lg);
+  line-height: var(--rvr-line-height-lg);
+  color: var(--rvr-gray-90);
   font-weight: normal;
   white-space: nowrap;
 }
