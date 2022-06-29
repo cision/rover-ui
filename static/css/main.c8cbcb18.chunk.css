@@ -212,7 +212,7 @@
     0 5px 10px 0 rgba(0, 0, 0, 0.1);
   --rvr-tooltip-base-z-index: 900;
   --rvr-tooltip-border-radius: 3px;
-  --rvr-tooltip-offset: 20px;
+  --rvr-tooltip-offset: 10px;
 
   /* Form elements */
   --rvr-checkbox-size: calc(var(--rvr-baseSize) * 2.25); /* 18px */
@@ -2278,6 +2278,13 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
   margin-right: var(--rvr-space-md);
 }
 
+.EasyPill_tooltipText__3Gkjk {
+  line-height: var(--rvr-line-height-lg);
+  color: var(--rvr-gray-90);
+  font-weight: normal;
+  white-space: nowrap;
+}
+
 .SideTray_SideTray___aQm6 {
   background-color: var(--rvr-white);
   position: fixed;
@@ -2574,4 +2581,4 @@ input:disabled + .Checkbox_svg__3YaUu .Checkbox_outline__OB_hr,
 }
 
 
-/*# sourceMappingURL=main.3b134d6e.chunk.css.map*/
+/*# sourceMappingURL=main.c8cbcb18.chunk.css.map*/
