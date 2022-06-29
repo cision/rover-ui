@@ -4,7 +4,6 @@
 }
 
 .tooltipText {
-  height: var(--rvr-line-height-lg);
   line-height: var(--rvr-line-height-lg);
   color: var(--rvr-gray-90);
   font-weight: normal;
