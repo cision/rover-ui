@@ -9,6 +9,8 @@ Easy pill actions may also have `children` props, in which case they'll render t
 
 Easy pills come with a delete action by default. If you provide an `onDelete` function as a prop, it will show up automatically.
 
+Easy pills show a tooltip in delete action. If you provide an `onDelete` functions as a prop and `tooltip` prop but no `actions`.
+
 **TODO**: The easy pill's actions should be in a small dropdown with an ellipsis icon that triggers it.
 
 ## Examples
@@ -57,6 +59,15 @@ Easy pills come with a delete action by default. If you provide an `onDelete` fu
   onDelete={action('onDelete')}
 >
   With onDelete but no actions
+</EasyPill>
+
+<EasyPill
+  checked={isChecked}
+  onClick={() => setIsChecked(!isChecked)}
+  onDelete={action('onDelete')}
+  tooltip="With onDelete but no actions and tooltip"
+>
+  With onDelete but no actions and tooltip
 </EasyPill>
 
 <EasyPill

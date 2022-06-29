@@ -2,3 +2,10 @@
   align-self: center;
   margin-right: var(--rvr-space-md);
 }
+
+.tooltipText {
+  line-height: var(--rvr-line-height-lg);
+  color: var(--rvr-gray-90);
+  font-weight: normal;
+  white-space: nowrap;
+}
