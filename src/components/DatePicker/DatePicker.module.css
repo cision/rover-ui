@@ -1,0 +1,132 @@
+.container {
+  display: inline-block;
+}
+
+.wrapper {
+  border-radius: var(--rvr-border-radius);
+}
+
+.interactionDisabled {
+  cursor: default;
+}
+
+.navBar {
+  position: relative;
+}
+
+.navButtonPrev,
+.navButtonNext {
+  position: absolute;
+  border: solid var(--rvr-color-font);
+  border-width: 3px 3px 0px 0px;
+  display: inline-block;
+  padding: 5px;
+}
+
+.navButtonPrev {
+  transform: rotate(-135deg);
+  top: 18px;
+  left: 18px;
+}
+
+.navButtonNext {
+  transform: rotate(45deg);
+  top: 18px;
+  right: 18px;
+}
+
+.navButtonInteractionDisabled {
+  opacity: 0;
+}
+
+.months {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.month {
+  padding: 12px;
+}
+
+.caption {
+  font-weight: var(--rvr-font-weight-bold);
+  text-align: center;
+  color: var(--rvr-black);
+}
+
+.weekdaysBody {
+  display: table-header-group;
+}
+
+.weekdaysRow {
+  display: table-row;
+}
+
+.weekday {
+  color: var(--rvr-color-font);
+  display: table-cell;
+  text-align: center;
+  padding: 4px 6px;
+}
+.weekday > abbr {
+  text-decoration: none;
+}
+
+.weekNumber {
+  display: table-cell;
+  color: var(--rvr-color-font);
+  padding: 4px 6px;
+  border-right: solid 1px var(--rvr-color-disabled);
+}
+
+.body {
+  display: table-row-group;
+}
+
+.week {
+  display: table-row;
+}
+
+.day {
+  display: table-cell;
+  text-align: center;
+  padding: 4px 6px;
+  border-radius: var(--rvr-border-radius);
+  color: var(--rvr-black);
+}
+
+.day[aria-disabled='false'] {
+  cursor: pointer;
+}
+
+.day:hover[aria-disabled='false'][aria-selected='false'] {
+  background-color: var(--rvr-color-highlight);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.todayButton {
+  color: var(--rvr-btn-color-link-active);
+}
+
+.today {
+  text-decoration: underline;
+  font-weight: var(--rvr-font-weight-bold);
+}
+
+.selected {
+  background-color: var(--rvr-color-primary);
+  color: var(--rvr-white);
+}
+
+.disabled {
+  color: var(--rvr-color-disabled);
+}
+
+.outside {
+  color: var(--rvr-color-disabled);
+}
