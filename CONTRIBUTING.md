@@ -1,9 +1,5 @@
 # Contributing to RoverUI
 
-## What to avoid in RoverUI
-
-It's _not_ a repository for all shared components. Don't try to add components that deal specifically with business logic and concepts here. Don't try to add components that handle whole layout areas. This is a UI library only.
-
 ## Run locally
 
 1. Read the [Code Guidelines](./CODE_GUIDELINES.md)
