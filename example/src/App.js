@@ -28,6 +28,7 @@ import {
   InputTime,
   Typography,
   Modal,
+  Form,
   Kite,
   Loader,
   Select,
@@ -440,6 +441,10 @@ const App = () => {
         <Typography size="md" color="primary">
           Md primary
         </Typography>
+      </Section>
+
+      <Section title="Form">
+        <Form />
       </Section>
 
       <Section title="Modal">

@@ -1,0 +1,33 @@
+.inputContainer {
+  display: grid;
+  grid-template-columns: 200px 75px;
+  grid-template-rows: auto;
+  padding: 20px;
+}
+
+.personName {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.personAge {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+[name=age] {
+  width: 60px;
+}
+
+.actions {
+  grid-column: 1 / 3;
+  grid-row: 2;
+}
+
+label {
+  font-size: 14px ! important;
+}
+
+.nameInputErrorMessage:required {
+  border-color: black;
+}

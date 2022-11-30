@@ -26,6 +26,7 @@ import '../components/Input/Toggle/story';
 import '../components/InputTime/story';
 import '../components/Select/story';
 import '../components/Typography/story';
+import '../components/Form/story';
 import '../components/Loader/story';
 
 /*
